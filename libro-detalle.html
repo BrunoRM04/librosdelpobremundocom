@@ -384,7 +384,7 @@
         function mostrarFavoritos() {
             const contenedor = document.getElementById('contenidoFavoritos');
             contenedor.innerHTML = '';
-            fetch('../libros.json')
+            fetch('libros.json')
                 .then(res => res.json())
                 .then(libros => {
                     favoritos.forEach(id => {
