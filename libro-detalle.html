@@ -155,10 +155,14 @@
 
                     const precioOriginal = parseFloat(libro.precio.replace(/[^\d.]/g, ""));
                     const precioFinal = Math.round(precioOriginal * 0.95);
-                    const rutaImagen = libro.imagen.startsWith("http")
-                        ? libro.imagen
-                        : `../public/img/portadas/${libro.imagen.replace(/^\.?\/*/, '').replace(/%20/g, ' ').split('/').pop()}`;
+                    let rutaImagen = libro.imagen.trim();
 
+                    if (rutaImagen.startsWith("http")) {
+                        // Es una URL externa
+                    } else {
+                        const nombreArchivo = rutaImagen.split('/').pop().replace(/%20/g, ' ');
+                        rutaImagen = `public/img/portadas/${nombreArchivo}`;
+                    }
                     contenedor.innerHTML = `
         <div class="tarjeta-libro-detalle">
           <img src="${rutaImagen}" alt="Portada del libro" class="imagen-libro-detalle">
@@ -390,9 +394,14 @@
                     favoritos.forEach(id => {
                         const libro = libros.find(l => String(l.id) === id);
                         if (libro) {
-                            let rutaImagen = libro.imagen.startsWith('http')
-                                ? libro.imagen
-                                : `../public/img/portadas/${libro.imagen.replace(/^\.?\/*/, '').replace(/%20/g, ' ').split('/').pop()}`;
+                            let rutaImagen = libro.imagen.trim();
+
+                            if (rutaImagen.startsWith("http")) {
+                                // URL externa
+                            } else {
+                                const nombreArchivo = rutaImagen.split('/').pop().replace(/%20/g, ' ');
+                                rutaImagen = `public/img/portadas/${nombreArchivo}`;
+                            }
                             const item = document.createElement('div');
                             item.classList.add('item-favorito');
                             item.innerHTML = `
