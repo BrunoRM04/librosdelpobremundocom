@@ -831,6 +831,20 @@ body {
   }
 }
 
+.zona-total-y-boton {
+  background-color: var(--blanco);
+  padding-top: 10px;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}
+
+@media screen and (max-width: 600px) {
+  .zona-total-y-boton {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
 /* CARRITO LATERAL */
 
 /* CATALOGO */
