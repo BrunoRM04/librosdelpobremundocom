@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libros Del Pobre Mundo | Detalles Del Libro</title>
+    <link rel="stylesheet" href="public/css/styles.css">
+    <link rel="shortcut icon" href="public/img/marca/icono.png">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+
+    <div class="barra-informativa">
+        <div class="contenedor-frases">
+            <span class="frase">
+                Más de 20.000 títulos en nuestro catálogo |
+                Aceptamos transferencia bancaria, mercado pago, tarjeta de débito, crédito y efectivo |
+                Compras con envío gratis mayor a $1500 en Montevideo |
+                Compras con envío gratis mayor a $2000 al interior del país.
+            </span>
+        </div>
+    </div>
+
+    <header class="encabezado-principal">
+
+        <div class="contenedor-logo">
+            <a href="index.html"><img src="public/img/marca/blanco.png" alt="Logotipo" class="imagen-logotipo"></a>
+        </div>
+
+        <div class="iconos-acciones">
+            <i class='bx bx-heart icono-favoritos' id="abrirFavoritos"></i>
+            <i class='bx bx-cart icono-carrito'></i>
+            <i class='bx bx-menu icono-menu' id="botonMenu"></i>
+        </div>
+
+    </header>
+
+    <div class="menu-completo" id="menuCompleto">
+        <i class='bx bx-x icono-cerrar' id="botonCerrar"></i>
+        <nav class="contenido-menu">
+            <a href="index.html">🏠 Inicio</a>
+            <a href="catalogo.html">📚 Catálogo</a>
+        </nav>
+    </div>
+
+    <main>
+
+        <div class="favoritos-lateral" id="favoritosLateral">
+            <div class="encabezado-favoritos">
+                <h2 class="titulo-favoritos">Tus Favoritos</h2>
+                <i class='bx bx-x cerrar-favoritos' id="cerrarFavoritos"></i>
+            </div>
+            <div class="contenido-favoritos" id="contenidoFavoritos"></div>
+        </div>
+
+        <div class="carrito-lateral" id="carritoLateral">
+            <div class="encabezado-carrito">
+                <h2 class="titulo-carrito">Tu Carrito</h2>
+                <i class='bx bx-x cerrar-carrito' id="cerrarCarrito"></i>
+            </div>
+            <div class="contenido-carrito" id="contenidoCarrito"></div>
+            <div class="total-carrito">
+                <span>Total:</span>
+                <strong id="totalCarrito">UYU 0</strong>
+            </div>
+            <button class="boton-comprar-ahora" id="botonComprarAhora">
+                <i class='bx bx-credit-card'></i> Comprar ahora
+            </button>
+        </div>
+        <div class="fondo-oscuro" id="fondoOscuro"></div>
+
+        <section class="zona-detalle-libro">
+            <div class="contenedor-detalle-libro" id="contenedorLibroDetalle">
+                <p class="mensaje-cargando">Cargando información del libro...</p>
+            </div>
+        </section>
+
+
+        <section class="seccion-libros-relacionados">
+            <div class="contenedor-libros-relacionados">
+                <h2 class="titulo-libros-relacionados">Otros lectores vieron</h2>
+
+                <div class="carrusel-relacionados">
+                    <button class="flecha-relacionados izquierda" id="flecha-izquierda-relacionados">
+                        <i class='bx bx-chevron-left'></i>
+                    </button>
+
+                    <div class="libros-relacionados" id="carrusel-relacionados"></div>
+
+                    <button class="flecha-relacionados derecha" id="flecha-derecha-relacionados">
+                        <i class='bx bx-chevron-right'></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="pie-pagina">
+
+        <div class="contenedor-footer">
+
+            <div class="seccion-derechos">
+                <p class="texto-derechos">© 2025 Libros Del Pobre Mundo</p>
+            </div>
+
+            <div class="seccion-enlaces">
+                <a href="index.html" class="enlace-footer">Inicio</a>
+                <a href="catalogo.html" class="enlace-footer">Catálogo</a>
+                <a href="carrito.html" class="enlace-footer">Carrito</a>
+                <a href="contacto.html" class="enlace-footer">Contacto</a>
+            </div>
+
+            <div class="seccion-redes">
+                <a href="https://www.instagram.com/libros_pobremundo/" target="_blank" class="icono-red">
+                    <i class='bx bxl-instagram'></i>
+                </a>
+                <a href="https://wa.me/59894090711" target="_blank" class="icono-red">
+                    <i class='bx bxl-whatsapp'></i>
+                </a>
+            </div>
+
+            <div class="seccion-info">
+                <p class="texto-info">Montevideo, Uruguay. | Envíos a todo el país</p>
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const contenedor = document.getElementById("contenedorLibroDetalle");
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get("id");
+
+            if (!id) {
+                contenedor.innerHTML = "<p class='mensaje-error'>No se especificó un libro válido.</p>";
+                return;
+            }
+
+            fetch("../libros.json")
+                .then(res => res.json())
+                .then(libros => {
+                    const libro = libros.find(l => String(l.id) === id);
+                    if (!libro) {
+                        contenedor.innerHTML = "<p class='mensaje-error'>Libro no encontrado.</p>";
+                        return;
+                    }
+
+                    const precioOriginal = parseFloat(libro.precio.replace(/[^\d.]/g, ""));
+                    const precioFinal = Math.round(precioOriginal * 0.95);
+                    const rutaImagen = libro.imagen.startsWith("http")
+                        ? libro.imagen
+                        : `../public/img/portadas/${libro.imagen.replace(/^\.?\/*/, '').replace(/%20/g, ' ').split('/').pop()}`;
+
+                    contenedor.innerHTML = `
+        <div class="tarjeta-libro-detalle">
+          <img src="${rutaImagen}" alt="Portada del libro" class="imagen-libro-detalle">
+          <div class="info-libro-detalle">
+            <h1 class="titulo-libro-detalle">${libro.titulo}</h1>
+            <p class="dato-libro"><strong>Autor:</strong> ${libro.autor}</p>
+            <p class="dato-libro"><strong>Editorial:</strong> ${libro.editorial}</p>
+            <p class="dato-libro"><strong>ISBN:</strong> ${libro.isbn}</p>
+            <p class="dato-libro"><strong>Páginas:</strong> ${libro.numPaginas}</p>
+            <div class="precio-libro-detalle">
+              <span class="precio-original-libro">UYU ${precioOriginal}</span>
+              <span class="precio-descuento-libro">UYU ${precioFinal}</span>
+            </div>
+            <div class="cantidad-libro">
+              <label for="cantidad">Cantidad:</label>
+              <div class="control-cantidad">
+                <button id="menosCantidad">&minus;</button>
+                <span id="valorCantidad">1</span>
+                <button id="masCantidad">+</button>
+              </div>
+            </div>
+            <div class="acciones-libro-detalle">
+              <button class="boton-anadir-detalle"><i class='bx bx-cart-alt'></i> Añadir al carrito</button>
+              <button class="boton-favorito-detalle"><i class='bx bx-heart'></i> Añadir a favoritos</button>
+            </div>
+            <div class="envios-libro">
+              <p><strong>Envíos:</strong></p>
+              <ul>
+                <li>📦 Montevideo (24 horas): <strong>Desde UYU $120 (Envío gratuito a partir de $1500)</strong></li>
+                <li>🚛 Interior del país: <strong>La gestión y el costo varían según la agencia de transporte.</strong></li>
+              </ul>
+            </div>
+
+            <div class="pagos-libro">
+  <p><strong>Pagos:</strong></p>
+  <ul>
+    <li>💳 Aceptamos tarjetas de crédito y débito. (Hasta 12 cuotas sin interés)</li>
+    <li>📱 Pagos con Mercado Pago.</li>
+    <li>💵 Transferencias bancarias y efectivo</li>
+  </ul>
+</div>
+
+          </div>
+        </div>
+        <p class="descripcion-libro-detalle">${libro.descripcion}</p>`;
+
+                    let cantidad = 1;
+                    const valorCantidad = document.getElementById("valorCantidad");
+                    document.getElementById("menosCantidad").addEventListener("click", () => {
+                        if (cantidad > 1) {
+                            cantidad--;
+                            valorCantidad.textContent = cantidad;
+                        }
+                    });
+                    document.getElementById("masCantidad").addEventListener("click", () => {
+                        cantidad++;
+                        valorCantidad.textContent = cantidad;
+                    });
+                })
+                .catch(() => {
+                    contenedor.innerHTML = "<p class='mensaje-error'>No se pudo cargar la información del libro.</p>";
+                });
+        });
+
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+        actualizarContadorCarrito();
+        actualizarCarrito();
+
+        function actualizarContadorCarrito() {
+            const total = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+            const icono = document.querySelector('.icono-carrito');
+            if (icono) icono.setAttribute('data-contador', total);
+        }
+
+        function actualizarCarrito() {
+            const contenedor = document.getElementById('contenidoCarrito');
+            if (!contenedor) return;
+            contenedor.innerHTML = '';
+            let total = 0;
+            carrito.forEach((item, i) => {
+                total += item.precio * item.cantidad;
+                const div = document.createElement('div');
+                div.classList.add('item-carrito');
+                div.innerHTML = `
+      <img src="${item.imagen}" alt="${item.titulo}">
+      <div class="item-detalles">
+        <h4>${item.titulo}</h4>
+        <p>${item.autor}</p>
+        <div class="controles-cantidad">
+          <button onclick="cambiarCantidad(${i}, -1)">-</button>
+          <span>${item.cantidad}</span>
+          <button onclick="cambiarCantidad(${i}, 1)">+</button>
+        </div>
+      </div>
+      <div class="item-acciones">
+        <strong>UYU ${item.precio * item.cantidad}</strong>
+        <i class='bx bx-trash boton-eliminar' onclick="eliminarItem(${i})"></i>
+      </div>`;
+                contenedor.appendChild(div);
+            });
+            document.getElementById('totalCarrito').textContent = `UYU ${total}`;
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+        }
+
+        function cambiarCantidad(i, cambio) {
+            carrito[i].cantidad += cambio;
+            if (carrito[i].cantidad <= 0) carrito.splice(i, 1);
+            actualizarContadorCarrito();
+            actualizarCarrito();
+        }
+
+        function eliminarItem(i) {
+            carrito.splice(i, 1);
+            actualizarContadorCarrito();
+            actualizarCarrito();
+        }
+
+        document.addEventListener("click", e => {
+            const botonCarrito = e.target.closest('.boton-anadir-detalle');
+            if (botonCarrito) {
+                const titulo = document.querySelector('.titulo-libro-detalle')?.textContent;
+                const autor = document.querySelector('.dato-libro:nth-child(2)')?.textContent.replace('Autor:', '').trim();
+                const imagen = document.querySelector('.imagen-libro-detalle')?.src;
+                const precio = parseInt(document.querySelector('.precio-descuento-libro')?.textContent.replace(/[^\d]/g, ''));
+                const cantidad = parseInt(document.getElementById('valorCantidad')?.textContent || '1');
+
+                if (!titulo || !autor || !imagen || !precio || !cantidad) return;
+                const existente = carrito.find(item => item.titulo === titulo);
+                if (existente) {
+                    existente.cantidad += cantidad;
+                } else {
+                    carrito.push({ titulo, autor, precio, imagen, cantidad });
+                }
+
+                actualizarContadorCarrito();
+                actualizarCarrito();
+            }
+
+            const botonFavorito = e.target.closest('.boton-favorito-detalle');
+            if (botonFavorito) {
+                const idLibro = new URLSearchParams(window.location.search).get('id');
+                if (!idLibro) return;
+                const index = favoritos.indexOf(idLibro);
+                if (index > -1) {
+                    favoritos.splice(index, 1);
+                    botonFavorito.classList.remove('activo');
+                } else {
+                    favoritos.push(idLibro);
+                    botonFavorito.classList.add('activo');
+                }
+                localStorage.setItem('favoritos', JSON.stringify(favoritos));
+            }
+
+            const botonAñadirCarrusel = e.target.closest('.boton-anadir');
+            if (botonAñadirCarrusel) {
+                const tarjeta = botonAñadirCarrusel.closest('.tarjeta-libro');
+                const titulo = tarjeta.querySelector('.titulo-libro')?.textContent;
+                const autor = tarjeta.querySelector('.autor-libro')?.textContent;
+                const imagen = tarjeta.querySelector('.imagen-libro')?.src;
+                const precio = parseInt(tarjeta.querySelector('.precio-descuento')?.textContent.replace(/[^\d]/g, ''));
+
+                if (!titulo || !autor || !imagen || !precio) return;
+
+                const existente = carrito.find(item => item.titulo === titulo);
+                if (existente) {
+                    existente.cantidad += 1;
+                } else {
+                    carrito.push({ titulo, autor, precio, imagen, cantidad: 1 });
+                }
+
+                actualizarContadorCarrito();
+                actualizarCarrito();
+            }
+
+            const botonFavoritoCarrusel = e.target.closest('.boton-favorito');
+            if (botonFavoritoCarrusel) {
+                const idLibro = botonFavoritoCarrusel.dataset.id;
+                if (!idLibro) return;
+                const index = favoritos.indexOf(idLibro);
+
+                if (index > -1) {
+                    favoritos.splice(index, 1);
+                    botonFavoritoCarrusel.classList.remove('activo');
+                } else {
+                    favoritos.push(idLibro);
+                    botonFavoritoCarrusel.classList.add('activo');
+                }
+
+                localStorage.setItem('favoritos', JSON.stringify(favoritos));
+            }
+        });
+
+        document.getElementById('botonMenu')?.addEventListener('click', () => {
+            document.getElementById('menuCompleto')?.classList.add('activo');
+        });
+
+        document.getElementById('botonCerrar')?.addEventListener('click', () => {
+            document.getElementById('menuCompleto')?.classList.remove('activo');
+        });
+
+        document.querySelector('.icono-carrito')?.addEventListener('click', () => {
+            document.getElementById('carritoLateral')?.classList.add('activo');
+            document.getElementById('fondoOscuro')?.classList.add('activo');
+        });
+
+        document.getElementById('cerrarCarrito')?.addEventListener('click', () => {
+            document.getElementById('carritoLateral')?.classList.remove('activo');
+            document.getElementById('fondoOscuro')?.classList.remove('activo');
+        });
+
+        document.getElementById('abrirFavoritos')?.addEventListener('click', () => {
+            mostrarFavoritos();
+            document.getElementById('favoritosLateral')?.classList.add('activo');
+            document.getElementById('fondoOscuro')?.classList.add('activo');
+        });
+
+        document.getElementById('cerrarFavoritos')?.addEventListener('click', () => {
+            document.getElementById('favoritosLateral')?.classList.remove('activo');
+            document.getElementById('fondoOscuro')?.classList.remove('activo');
+        });
+
+        function mostrarFavoritos() {
+            const contenedor = document.getElementById('contenidoFavoritos');
+            contenedor.innerHTML = '';
+            fetch('../libros.json')
+                .then(res => res.json())
+                .then(libros => {
+                    favoritos.forEach(id => {
+                        const libro = libros.find(l => String(l.id) === id);
+                        if (libro) {
+                            let rutaImagen = libro.imagen.startsWith('http')
+                                ? libro.imagen
+                                : `../public/img/portadas/${libro.imagen.replace(/^\.?\/*/, '').replace(/%20/g, ' ').split('/').pop()}`;
+                            const item = document.createElement('div');
+                            item.classList.add('item-favorito');
+                            item.innerHTML = `
+            <a href="libro-detalle.html?id=${libro.id}" class="enlace-favorito">
+              <img src="${rutaImagen}" alt="${libro.titulo}" onerror="this.onerror=null;this.src='https://via.placeholder.com/270x360?text=Sin+imagen'">
+              <div class="info-favorito">
+                <h4>${libro.titulo}</h4>
+                <p>${libro.autor}</p>
+              </div>
+            </a>
+            <button class="eliminar-favorito" data-id="${libro.id}" title="Eliminar de favoritos">
+              <i class='bx bx-trash'></i>
+            </button>`;
+                            contenedor.appendChild(item);
+                        }
+                    });
+                    if (favoritos.length === 0) contenedor.innerHTML = '<p>No tienes libros en favoritos.</p>';
+
+                    document.querySelectorAll('.eliminar-favorito').forEach(boton => {
+                        boton.addEventListener('click', e => {
+                            const idEliminar = e.currentTarget.dataset.id;
+                            favoritos = favoritos.filter(id => id !== idEliminar);
+                            localStorage.setItem('favoritos', JSON.stringify(favoritos));
+                            mostrarFavoritos();
+                        });
+                    });
+                });
+        }
+
+        function cargarLibrosRelacionados() {
+            fetch('libros.json')
+                .then(res => res.json())
+                .then(libros => {
+                    const contenedor = document.getElementById('carrusel-relacionados');
+                    const seleccionados = libros.sort(() => 0.5 - Math.random()).slice(0, 10); // 10 libros al azar
+
+                    seleccionados.forEach(libro => {
+
+                        let rutaImagen = libro.imagen;
+
+                        if (rutaImagen.startsWith("http")) {
+                        } else {
+                            rutaImagen = rutaImagen
+                                .replace(/^\.?\/?public\//, '')
+                                .replace(/%20/g, ' ');
+
+                            rutaImagen = `public/${rutaImagen}`;
+                        }
+
+                        const precioOriginal = parseFloat(libro.precio.replace(/[^\d.]/g, ""));
+                        const precioFinal = Math.round(precioOriginal * 0.95);
+
+                        const tarjeta = document.createElement('div');
+                        tarjeta.classList.add('tarjeta-libro');
+                        tarjeta.innerHTML = `
+          <span class="etiqueta-descuento">-5%</span>
+          <button class="boton-favorito" data-id="${libro.id}">
+            <i class='bx bx-heart'></i>
+          </button>
+          <a href="libro-detalle.html?id=${libro.id}">
+            <img src="${rutaImagen}" alt="Portada de ${libro.titulo}" class="imagen-libro" onerror="this.src='public/img/portadas/default.jpg'">
+          </a>
+          <div class="info-libro">
+            <h3 class="titulo-libro" title="${libro.titulo}">${libro.titulo}</h3>
+            <p class="autor-libro" title="${libro.autor}">${libro.autor}</p>
+          </div>
+          <p class="precio-libro">
+            <span class="precio-original">UYU ${precioOriginal}</span>
+            <span class="precio-descuento">UYU ${precioFinal}</span>
+          </p>
+          <div class="botones-libro">
+            <a href="libro-detalle.html?id=${libro.id}" class="boton-ver">Ver más</a>
+            <button class="boton-anadir"><i class='bx bx-cart-alt'></i> Añadir</button>
+          </div>
+        `;
+                        contenedor.appendChild(tarjeta);
+                    });
+                });
+        }
+
+        cargarLibrosRelacionados();
+
+        document.getElementById("flecha-izquierda-relacionados").addEventListener("click", () => {
+            document.getElementById("carrusel-relacionados").scrollBy({ left: -300, behavior: "smooth" });
+        });
+        document.getElementById("flecha-derecha-relacionados").addEventListener("click", () => {
+            document.getElementById("carrusel-relacionados").scrollBy({ left: 300, behavior: "smooth" });
+        });
+
+        document.getElementById('botonComprarAhora')?.addEventListener('click', () => {
+            if (carrito.length === 0) {
+                alert("Tu carrito está vacío.");
+                return;
+            }
+
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+
+            window.location.href = "finalizar-compra.html";
+        });
+    </script>
+
+
+</body>
+
+</html>

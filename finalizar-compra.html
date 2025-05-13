@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libros Del Pobre Mundo | Finalizar Compra</title>
+    <link rel="stylesheet" href="public/css/styles.css">
+    <link rel="shortcut icon" href="public/img/marca/icono.png">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+
+    <div class="barra-informativa">
+        <div class="contenedor-frases">
+            <span class="frase">
+                Más de 20.000 títulos en nuestro catálogo |
+                Aceptamos transferencia bancaria, mercado pago, tarjeta de débito, crédito y efectivo |
+                Compras con envío gratis mayor a $1500 en Montevideo |
+                Compras con envío gratis mayor a $2000 al interior del país.
+            </span>
+        </div>
+    </div>
+
+    <header class="encabezado-principal">
+
+        <div class="contenedor-logo">
+            <a href="index.html"><img src="public/img/marca/blanco.png" alt="Logotipo" class="imagen-logotipo"></a>
+        </div>
+
+        <div class="iconos-acciones">
+            <i class='bx bx-heart icono-favoritos' id="abrirFavoritos"></i>
+            <i class='bx bx-cart icono-carrito'></i>
+            <i class='bx bx-menu icono-menu' id="botonMenu"></i>
+        </div>
+
+    </header>
+
+    <div class="menu-completo" id="menuCompleto">
+        <i class='bx bx-x icono-cerrar' id="botonCerrar"></i>
+        <nav class="contenido-menu">
+            <a href="index.html">🏠 Inicio</a>
+            <a href="catalogo.html">📚 Catálogo</a>
+        </nav>
+    </div>
+
+    <main>
+
+        <section class="seccion-envio-compra">
+            <div class="contenedor-compra">
+
+                <div class="resumen-compra">
+                    <h2 class="titulo-seccion">Resumen de tu compra</h2>
+                    <div class="contenedor-productos-dinamicos">
+
+                    </div>
+                </div>
+
+                <form class="formulario-envio" id="formulario-envio">
+                    <h2 class="titulo-seccion">Datos de envío</h2>
+
+                    <input type="text" class="campo-formulario" placeholder="Nombre completo" required>
+                    <input type="email" class="campo-formulario" placeholder="Correo electrónico" required>
+                    <input type="tel" class="campo-formulario" placeholder="Teléfono" required>
+                    <input type="text" class="campo-formulario" placeholder="Calle y número" required>
+                    <input type="text" class="campo-formulario" placeholder="Piso / Departamento (opcional)">
+                    <input type="text" class="campo-formulario" placeholder="Código postal">
+
+                    <select id="departamento" class="campo-formulario" required>
+                        <option value="">Seleccionar departamento</option>
+                        <option value="Artigas">Artigas</option>
+                        <option value="Canelones">Canelones</option>
+                        <option value="Cerro Largo">Cerro Largo</option>
+                        <option value="Colonia">Colonia</option>
+                        <option value="Durazno">Durazno</option>
+                        <option value="Flores">Flores</option>
+                        <option value="Florida">Florida</option>
+                        <option value="Lavalleja">Lavalleja</option>
+                        <option value="Maldonado">Maldonado</option>
+                        <option value="Montevideo">Montevideo</option>
+                        <option value="Paysandú">Paysandú</option>
+                        <option value="Río Negro">Río Negro</option>
+                        <option value="Rivera">Rivera</option>
+                        <option value="Rocha">Rocha</option>
+                        <option value="Salto">Salto</option>
+                        <option value="San José">San José</option>
+                        <option value="Soriano">Soriano</option>
+                        <option value="Tacuarembó">Tacuarembó</option>
+                        <option value="Treinta y Tres">Treinta y Tres</option>
+                    </select>
+
+                    <div id="contenedor-barrio" class="oculto">
+                        <select id="barrio" class="campo-formulario" required>
+                            <option value="">Seleccionar barrio</option>
+                            <option value="Ciudad Vieja">Ciudad Vieja</option>
+                            <option value="Centro">Centro</option>
+                            <option value="Barrio Sur">Barrio Sur</option>
+                            <option value="Aguada">Aguada</option>
+                            <option value="Villa Muñoz">Villa Muñoz</option>
+                            <option value="Goes">Goes</option>
+                            <option value="Retiro">Retiro</option>
+                            <option value="Cordón">Cordón</option>
+                            <option value="Palermo">Palermo</option>
+                            <option value="Parque Rodó">Parque Rodó</option>
+                            <option value="Tres Cruces">Tres Cruces</option>
+                            <option value="La Comercial">La Comercial</option>
+                            <option value="Larrañaga">Larrañaga</option>
+                            <option value="La Blanqueada">La Blanqueada</option>
+                            <option value="Parque Batlle">Parque Batlle</option>
+                            <option value="Villa Dolores">Villa Dolores</option>
+                            <option value="Pocitos">Pocitos</option>
+                            <option value="Punta Carretas">Punta Carretas</option>
+                            <option value="Unión">Unión</option>
+                            <option value="Buceo">Buceo</option>
+                            <option value="Malvín">Malvín</option>
+                            <option value="Malvín Norte">Malvín Norte</option>
+                            <option value="Las Canteras">Las Canteras</option>
+                            <option value="Punta Gorda">Punta Gorda</option>
+                            <option value="Carrasco">Carrasco</option>
+                            <option value="Carrasco Norte">Carrasco Norte</option>
+                            <option value="Bañados de Carrasco">Bañados de Carrasco</option>
+                            <option value="Flor de Maroñas">Flor de Maroñas</option>
+                            <option value="Maroñas">Maroñas</option>
+                            <option value="Parque Guaraní">Parque Guaraní</option>
+                            <option value="Villa Española">Villa Española</option>
+                            <option value="Ituzaingó">Ituzaingó</option>
+                            <option value="Castro">Castro</option>
+                            <option value="Pérez Castellanos">Pérez Castellanos</option>
+                            <option value="Mercado Modelo">Mercado Modelo</option>
+                            <option value="Bolívar">Bolívar</option>
+                            <option value="Brazo Oriental">Brazo Oriental</option>
+                            <option value="Jacinto Vera">Jacinto Vera</option>
+                            <option value="La Figurita">La Figurita</option>
+                            <option value="Reducto">Reducto</option>
+                            <option value="Capurro">Capurro</option>
+                            <option value="Bella Vista">Bella Vista</option>
+                            <option value="Arroyo Seco">Arroyo Seco</option>
+                            <option value="Prado">Prado</option>
+                            <option value="Nueva Savona">Nueva Savona</option>
+                            <option value="Atahualpa">Atahualpa</option>
+                            <option value="Aires Puros">Aires Puros</option>
+                            <option value="Paso de las Duranas">Paso de las Duranas</option>
+                            <option value="Belvedere">Belvedere</option>
+                            <option value="La Teja">La Teja</option>
+                            <option value="Tres Ombúes">Tres Ombúes</option>
+                            <option value="Pueblo Victoria">Pueblo Victoria</option>
+                            <option value="Villa del Cerro">Villa del Cerro</option>
+                            <option value="Casabó">Casabó</option>
+                            <option value="Pajas Blancas">Pajas Blancas</option>
+                            <option value="Rincón del Cerro">Rincón del Cerro</option>
+                            <option value="La Paloma">La Paloma</option>
+                            <option value="Tomkinson">Tomkinson</option>
+                            <option value="Paso de la Arena">Paso de la Arena</option>
+                            <option value="Los Bulevares">Los Bulevares</option>
+                            <option value="Santiago Vázquez">Santiago Vázquez</option>
+                            <option value="Nuevo París">Nuevo París</option>
+                        </select>
+                    </div>
+
+                    <p id="costo-envio" class="texto-costo-envio"></p>
+
+                    <h2 class="titulo-seccion">Método de entrega</h2>
+                    <select id="metodo-entrega" class="campo-formulario" required>
+                        <option value="">Seleccionar método</option>
+                        <option value="domicilio">Envío a domicilio</option>
+                        <option value="punto">Retiro en punto de entrega</option>
+                    </select>
+
+                    <h2 class="titulo-seccion">Método de pago</h2>
+                    <div class="metodos-pago">
+                        <label><input type="radio" name="pago" required> Mercado Pago</label>
+                        <label><input type="radio" name="pago"> Tarjeta de débito o crédito</label>
+                        <label id="pago-efectivo"><input type="radio" name="pago"> Efectivo</label>
+                    </div>
+
+                    <div id="contenedor-efectivo" class="oculto">
+                        <input type="number" id="monto-efectivo" class="campo-formulario"
+                            placeholder="¿Con cuánto vas a pagar?" min="1">
+                    </div>
+
+                    <button type="submit" class="boton-confirmar">Confirmar y pagar</button>
+                </form>
+
+            </div>
+        </section>
+
+        <div class="bloque-importante">
+            <h3>🔔 <span>Importante – Información antes de comprar</span></h3>
+            <ul>
+                <li>🕒 Nuestro punto de entrega está en el <strong>Centro</strong>, de lunes a viernes, <strong>de 14:00
+                        a 19:00 hs</strong>.</li>
+                <li>🚚 <strong>Envío gratis en Montevideo</strong> en compras mayores a <strong>UYU 1500</strong>. Para
+                    el interior, gratis desde <strong>UYU 2000</strong>.</li>
+                <li>🏤 El costo del envío al interior depende de la agencia seleccionada.</li>
+                <li>⏱️ Los pedidos se toman dentro de las <strong>24 hs hábiles</strong> tras confirmar el pago.
+                </li>
+                <li>📞 Si elegís <strong>retiro en punto de entrega</strong>, te contactaremos para coordinar.</li>
+            </ul>
+        </div>
+
+        <div id="aviso-coordinacion" class="aviso-coordinacion oculto">
+            <div class="contenido-aviso">
+                <p>📩 Una vez realizada tu compra, nos pondremos en contacto contigo por WhatsApp para coordinar la
+                    entrega o el despacho del pedido.</p>
+                <button class="boton-confirmar-final" id="confirmar-final">Confirmar y pagar</button>
+            </div>
+        </div>
+
+        <div id="pantalla-confirmado" class="pantalla-confirmado oculto">
+            <div class="contenido-confirmado">
+                <button class="boton-cerrar-confirmado" id="cerrar-confirmado" title="Cerrar">
+                    <i class='bx bx-x'></i>
+                </button>
+                <i class='bx bx-check-circle icono-confirmado'></i>
+                <p class="mensaje-confirmado">Pedido Realizado, nos comunicaremos contigo enseguida</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="pie-pagina">
+
+        <div class="contenedor-footer">
+
+            <div class="seccion-derechos">
+                <p class="texto-derechos">© 2025 Libros Del Pobre Mundo</p>
+            </div>
+
+            <div class="seccion-enlaces">
+                <a href="index.html" class="enlace-footer">Inicio</a>
+                <a href="catalogo.html" class="enlace-footer">Catálogo</a>
+                <a href="carrito.html" class="enlace-footer">Carrito</a>
+                <a href="contacto.html" class="enlace-footer">Contacto</a>
+            </div>
+
+            <div class="seccion-redes">
+                <a href="https://www.instagram.com/libros_pobremundo/" target="_blank" class="icono-red">
+                    <i class='bx bxl-instagram'></i>
+                </a>
+                <a href="https://wa.me/59894090711" target="_blank" class="icono-red">
+                    <i class='bx bxl-whatsapp'></i>
+                </a>
+            </div>
+
+            <div class="seccion-info">
+                <p class="texto-info">Montevideo, Uruguay. | Envíos a todo el país</p>
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAOqEfaoJB3ahecxa3NndjFLtXgwn12nNA",
+            authDomain: "librospobremundoventas.firebaseapp.com",
+            projectId: "librospobremundoventas",
+            storageBucket: "librospobremundoventas.firebasestorage.app",
+            messagingSenderId: "233497389702",
+            appId: "1:233497389702:web:03bf2f2ecd6e6a9910ff07"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        window.db = db;
+        window.addDoc = addDoc;
+        window.collection = collection;
+
+    </script>
+
+    <script>
+
+        const botonMenu = document.getElementById('botonMenu');
+        const menuCompleto = document.getElementById('menuCompleto');
+        const botonCerrar = document.getElementById('botonCerrar');
+
+        if (botonMenu && botonCerrar && menuCompleto) {
+            botonMenu.addEventListener('click', () => menuCompleto.classList.add('activo'));
+            botonCerrar.addEventListener('click', () => menuCompleto.classList.remove('activo'));
+        }
+
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+        function actualizarContadorCarrito() {
+            const totalLibros = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+            const iconoCarrito = document.querySelector('.icono-carrito');
+            if (iconoCarrito) iconoCarrito.setAttribute('data-contador', totalLibros);
+        }
+
+        function actualizarCarrito() {
+            const contenedor = document.getElementById('contenidoCarrito');
+            if (!contenedor) return;
+
+            contenedor.innerHTML = '';
+            let total = 0;
+
+            carrito.forEach((item, i) => {
+                total += item.precio * item.cantidad;
+
+                const div = document.createElement('div');
+                div.classList.add('item-carrito');
+                div.innerHTML = `
+        <img src="${item.imagen}" alt="${item.titulo}">
+        <div class="item-detalles">
+          <h4>${item.titulo}</h4>
+          <p>${item.autor}</p>
+          <div class="controles-cantidad">
+            <button onclick="cambiarCantidad(${i}, -1)">-</button>
+            <span>${item.cantidad}</span>
+            <button onclick="cambiarCantidad(${i}, 1)">+</button>
+          </div>
+        </div>
+        <div class="item-acciones">
+          <strong>UYU ${item.precio * item.cantidad}</strong>
+          <i class='bx bx-trash boton-eliminar' onclick="eliminarItem(${i})"></i>
+        </div>
+      `;
+                contenedor.appendChild(div);
+            });
+
+            const totalCarrito = document.getElementById('totalCarrito');
+            if (totalCarrito) totalCarrito.textContent = `UYU ${total}`;
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+        }
+
+        window.cambiarCantidad = function (i, cambio) {
+            carrito[i].cantidad += cambio;
+            if (carrito[i].cantidad <= 0) carrito.splice(i, 1);
+            actualizarContadorCarrito();
+            actualizarCarrito();
+        }
+
+        window.eliminarItem = function (i) {
+            carrito.splice(i, 1);
+            actualizarContadorCarrito();
+            actualizarCarrito();
+        }
+
+        const iconoCarrito = document.querySelector('.icono-carrito');
+        const carritoLateral = document.getElementById('carritoLateral');
+        const fondoOscuro = document.getElementById('fondoOscuro');
+        const cerrarCarrito = document.getElementById('cerrarCarrito');
+
+        if (iconoCarrito && carritoLateral && fondoOscuro) {
+            iconoCarrito.addEventListener('click', () => {
+                carritoLateral.classList.add('activo');
+                fondoOscuro.classList.add('activo');
+            });
+        }
+
+        if (cerrarCarrito && carritoLateral && fondoOscuro) {
+            cerrarCarrito.addEventListener('click', () => {
+                carritoLateral.classList.remove('activo');
+                fondoOscuro.classList.remove('activo');
+            });
+        }
+
+        actualizarContadorCarrito();
+        actualizarCarrito();
+
+        let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+        const iconoFavoritos = document.getElementById('abrirFavoritos');
+        const contenedorFavoritos = document.getElementById('contenidoFavoritos');
+        const panelFavoritos = document.getElementById('favoritosLateral');
+        const cerrarFavoritos = document.getElementById('cerrarFavoritos');
+
+        if (iconoFavoritos && contenedorFavoritos && panelFavoritos) {
+            iconoFavoritos.addEventListener('click', () => {
+                mostrarFavoritos();
+                panelFavoritos.classList.add('activo');
+                fondoOscuro.classList.add('activo');
+            });
+        }
+
+        if (cerrarFavoritos && panelFavoritos) {
+            cerrarFavoritos.addEventListener('click', () => {
+                panelFavoritos.classList.remove('activo');
+                fondoOscuro.classList.remove('activo');
+            });
+        }
+
+        function mostrarFavoritos() {
+            if (!contenedorFavoritos) return;
+            contenedorFavoritos.innerHTML = '';
+
+            fetch('libros.json')
+                .then(res => res.json())
+                .then(libros => {
+                    favoritos.forEach(id => {
+                        const libro = libros.find(l => String(l.id) === id);
+                        if (libro) {
+                            let rutaImagen = libro.imagen || '';
+                            rutaImagen = rutaImagen.replace(/^\.?\/*/, '').replace(/%20/g, ' ').split('/').pop();
+                            rutaImagen = `public/img/portadas/${rutaImagen}`;
+
+                            const item = document.createElement('div');
+                            item.classList.add('item-favorito');
+                            item.innerHTML = `
+              <a href="libro-detalle.html?id=${libro.id}" class="enlace-favorito">
+                <img src="${rutaImagen}" alt="${libro.titulo}" 
+                     onerror="this.onerror=null;this.src='https://via.placeholder.com/270x360?text=Sin+imagen'">
+                <div class="info-favorito">
+                  <h4>${libro.titulo}</h4>
+                  <p>${libro.autor}</p>
+                </div>
+              </a>
+              <button class="eliminar-favorito" data-id="${libro.id}" title="Eliminar de favoritos">
+                <i class='bx bx-trash'></i>
+              </button>
+            `;
+                            contenedorFavoritos.appendChild(item);
+                        }
+                    });
+
+                    document.querySelectorAll('.eliminar-favorito').forEach(boton => {
+                        boton.addEventListener('click', e => {
+                            const idEliminar = e.currentTarget.dataset.id;
+                            favoritos = favoritos.filter(id => id !== idEliminar);
+                            localStorage.setItem('favoritos', JSON.stringify(favoritos));
+                            mostrarFavoritos();
+                        });
+                    });
+
+                    if (favoritos.length === 0) {
+                        contenedorFavoritos.innerHTML = '<p>No tienes libros en favoritos.</p>';
+                    }
+                });
+        }
+
+        const selectDepartamento = document.getElementById("departamento");
+        const contenedorBarrio = document.getElementById("contenedor-barrio");
+        const selectBarrio = document.getElementById("barrio");
+        const selectMetodoEntrega = document.getElementById("metodo-entrega");
+        const pagoEfectivo = document.getElementById("pago-efectivo");
+        const contenedorEfectivo = document.getElementById("contenedor-efectivo");
+        const radiosPago = document.querySelectorAll('input[name="pago"]');
+
+        function actualizarFormulario() {
+            const departamentoSeleccionado = selectDepartamento.value;
+            const totalEnvioEl = document.getElementById("total-envio");
+            const totalFinalEl = document.getElementById("total-final");
+            const totalProductos = window.totalProductos || 0;
+
+            if (departamentoSeleccionado === "Montevideo") {
+                contenedorBarrio.classList.remove("oculto");
+                selectBarrio.setAttribute("required", "required");
+                pagoEfectivo.style.display = "block";
+            } else {
+                contenedorBarrio.classList.add("oculto");
+                selectBarrio.removeAttribute("required");
+                selectBarrio.value = "";
+                pagoEfectivo.style.display = "none";
+                contenedorEfectivo.classList.add("oculto");
+
+                if (totalEnvioEl) totalEnvioEl.textContent = ``;
+                if (totalFinalEl) totalFinalEl.textContent = `UYU ${totalProductos}`;
+            }
+        }
+
+        function calcularCostoEnvio() {
+            const departamento = selectDepartamento.value;
+            const barrio = selectBarrio.value;
+            const metodo = selectMetodoEntrega.value;
+            const totalProductos = window.totalProductos || 0;
+            const totalEnvioEl = document.getElementById("total-envio");
+            const totalFinalEl = document.getElementById("total-final");
+
+            if (metodo === "punto" || departamento !== "Montevideo" || !barrio) {
+                if (totalEnvioEl) totalEnvioEl.textContent = ``;
+                if (totalFinalEl) totalFinalEl.textContent = `UYU ${totalProductos}`;
+                return;
+            }
+
+            let costoFinal = 0;
+            if (totalProductos <= 1500) {
+                const nivel = nivelesBarrio[barrio] ?? nivelesBarrio["default"];
+                costoFinal = costoBase + (nivel * incrementoPorNivel);
+            }
+
+            const totalFinal = totalProductos + costoFinal;
+            if (totalEnvioEl) totalEnvioEl.textContent = `UYU ${costoFinal}`;
+            if (totalFinalEl) totalFinalEl.textContent = `UYU ${totalFinal}`;
+        }
+
+        selectDepartamento.addEventListener("change", () => {
+            actualizarFormulario();
+            calcularCostoEnvio();
+        });
+        actualizarFormulario();
+        radiosPago.forEach(radio => {
+            radio.addEventListener("change", function () {
+                if (radio.parentElement.id === "pago-efectivo" && radio.checked) {
+                    contenedorEfectivo.classList.remove("oculto");
+                } else {
+                    contenedorEfectivo.classList.add("oculto");
+                }
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const contenedorProductos = document.querySelector('.contenedor-productos-dinamicos');
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+            if (carrito.length === 0) {
+                return;
+            }
+
+            let total = 0;
+            contenedorProductos.innerHTML = '';
+
+            carrito.forEach((item, i) => {
+                total += item.precio * item.cantidad;
+
+                const div = document.createElement('div');
+                div.classList.add('producto-resumen');
+                div.innerHTML = `
+        <img src="${item.imagen}" alt="${item.titulo}" class="imagen-producto-resumen">
+        <div class="info-producto-resumen">
+            <h4>${item.titulo}</h4>
+            <p>${item.autor}</p>
+            <p>Cantidad: ${item.cantidad}</p>
+          <strong>UYU ${item.precio * item.cantidad}</strong>
+        </div>
+        <button class="boton-eliminar-resumen" data-index="${i}" title="Eliminar">
+            <i class='bx bx-trash'></i>
+        </button>
+        `;
+                contenedorProductos.appendChild(div);
+            });
+
+            window.totalProductos = total;
+
+            contenedorProductos.innerHTML += `
+    <div class="total-resumen">
+    <div class="fila-resumen">
+        <span class="etiqueta">Total productos:</span>
+        <span class="valor" id="total-productos">UYU ${total}</span>
+    </div>
+    <div class="fila-resumen">
+        <span class="etiqueta">Costo de envío:</span>
+        <span class="valor" id="total-envio">UYU 0</span>
+    </div>
+    <div class="total-final">
+        <span>Total final:</span>
+        <span id="total-final">UYU ${total}</span>
+    </div>
+    </div>
+`;
+            document.querySelectorAll('.boton-eliminar-resumen').forEach(boton => {
+                boton.addEventListener('click', e => {
+                    const index = e.currentTarget.getAttribute('data-index');
+                    carrito.splice(index, 1);
+                    localStorage.setItem('carrito', JSON.stringify(carrito));
+                    location.reload();
+                });
+            });
+        });
+
+        const nivelesBarrio = {
+            "Centro": 0,
+            "Ciudad Vieja": 0,
+            "Cordón": 0,
+            "Barrio Sur": 0,
+            "Palermo": 0,
+            "Parque Rodó": 0,
+            "Tres Cruces": 0,
+            "Aguada": 0,
+            "Villa Muñoz": 0,
+            "Goes": 0,
+            "Retiro": 0,
+            "La Comercial": 0,
+            "Larrañaga": 2,
+            "La Blanqueada": 2,
+            "Parque Batlle": 2,
+            "Villa Dolores": 2,
+            "Jacinto Vera": 2,
+            "Brazo Oriental": 2,
+            "Mercado Modelo": 2,
+            "Bolívar": 2,
+            "La Figurita": 2,
+            "Reducto": 2,
+            "Capurro": 2,
+            "Bella Vista": 2,
+            "Pocitos": 3,
+            "Punta Carretas": 3,
+            "Unión": 3,
+            "Buceo": 3,
+            "Malvín": 3,
+            "Malvín Norte": 3,
+            "Las Canteras": 3,
+            "Punta Gorda": 3,
+            "Flor de Maroñas": 3,
+            "Maroñas": 3,
+            "Parque Guaraní": 3,
+            "Villa Española": 3,
+            "Ituzaingó": 3,
+            "Castro": 3,
+            "Pérez Castellanos": 3,
+            "Arroyo Seco": 3,
+            "Prado": 3,
+            "Nueva Savona": 3,
+            "Atahualpa": 3,
+            "Aires Puros": 3,
+            "Paso de las Duranas": 3,
+            "Belvedere": 4,
+            "La Teja": 4,
+            "Tres Ombúes": 4,
+            "Pueblo Victoria": 4,
+            "Villa del Cerro": 4,
+            "Casabó": 4,
+            "Pajas Blancas": 4,
+            "Rincón del Cerro": 4,
+            "La Paloma": 4,
+            "Tomkinson": 4,
+            "Paso de la Arena": 4,
+            "Los Bulevares": 4,
+            "Santiago Vázquez": 4,
+            "Nuevo París": 4,
+            "default": 2
+        };
+
+        const costoBase = 120;
+        const incrementoPorNivel = 25;
+
+        selectBarrio.addEventListener("change", calcularCostoEnvio);
+
+        selectMetodoEntrega.addEventListener("change", calcularCostoEnvio);
+
+        const formularioEnvio = document.getElementById("formulario-envio");
+        const avisoCoordinacion = document.getElementById("aviso-coordinacion");
+        const botonConfirmarFinal = document.getElementById("confirmar-final");
+        const botonConfirmarInicial = document.querySelector('.boton-confirmar');
+        formularioEnvio.addEventListener("submit", (e) => {
+            e.preventDefault();
+        });
+
+        botonConfirmarInicial?.addEventListener('click', (e) => {
+            e.preventDefault();
+            const departamento = selectDepartamento.value;
+            const metodo = selectMetodoEntrega.value;
+
+            const opcionPagoSeleccionada = [...radiosPago].find(r => r.checked);
+            const opcionPago = opcionPagoSeleccionada ? opcionPagoSeleccionada.parentElement.textContent.trim() : "";
+
+            if (opcionPago === "Efectivo") {
+                avisoCoordinacion.classList.remove("oculto");
+                return;
+            }
+
+            if (departamento !== "Montevideo" || metodo === "punto") {
+                avisoCoordinacion.classList.remove("oculto");
+                return;
+            }
+
+            botonConfirmarFinal.click();
+        });
+
+        botonConfirmarFinal.addEventListener("click", async () => {
+            const opcionPagoSeleccionada = [...radiosPago].find(r => r.checked);
+            const opcionPago = opcionPagoSeleccionada ? opcionPagoSeleccionada.parentElement.textContent.trim() : "";
+
+            if (opcionPago === "Efectivo") {
+                avisoCoordinacion.classList.add("oculto");
+                await guardarDatosEnFirebase();
+                document.getElementById("pantalla-confirmado").classList.remove("oculto");
+                return;
+            }
+
+            avisoCoordinacion.classList.add("oculto");
+            await guardarDatosEnFirebase();
+
+            const correo = formularioEnvio.querySelector('input[placeholder="Correo electrónico"]').value.trim();
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+            const items = carrito.map(libro => {
+                const titulo = libro.titulo || "Sin título";
+                const cantidad = Number(libro.cantidad) || 1;
+
+                let precio = Number(libro.precio);
+                if (isNaN(precio)) {
+                    const match = (libro.precio || "").toString().match(/\d+/g);
+                    precio = match ? parseInt(match.join("")) : 0;
+                }
+
+                return {
+                    title: titulo,
+                    quantity: cantidad,
+                    currency_id: "UYU",
+                    unit_price: precio
+                };
+            });
+
+            const costoEnvio = parseInt(document.getElementById("total-envio").textContent.replace("UYU ", "").trim()) || 0;
+
+            if (costoEnvio > 0) {
+                items.push({
+                    title: "Costo de envío",
+                    quantity: 1,
+                    currency_id: "UYU",
+                    unit_price: costoEnvio
+                });
+            }
+
+            const accessToken = 'APP_USR-1506440745694057-040819-c5e9a4b4d20927c43a80e211a197a1e3-1558317026';
+
+            const preferenceData = {
+                items: items,
+                payer: { email: correo },
+                back_urls: {
+                    success: "https://librospobremundo.com/exito.html",
+                    failure: "https://librospobremundo.com/fallo.html",
+                    pending: "https://librospobremundo.com/pendiente.html"
+                },
+                auto_return: "approved",
+                external_reference: `pedido-${Date.now()}`
+            };
+
+            try {
+                const response = await fetch('https://api.mercadopago.com/checkout/preferences', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(preferenceData)
+                });
+
+                const data = await response.json();
+                if (data.init_point) {
+                    localStorage.removeItem("carrito");
+                    window.location.href = data.init_point;
+                } else {
+                    alert('Error al crear el link de pago.');
+                    console.error(data);
+                }
+            } catch (error) {
+                console.error("Error al conectar con MercadoPago:", error);
+                alert("No se pudo generar el pago. Intenta más tarde.");
+            }
+        });
+
+        async function guardarDatosEnFirebase() {
+            const nombreCompleto = formularioEnvio.querySelector('input[placeholder="Nombre completo"]').value.trim();
+            const correoElectronico = formularioEnvio.querySelector('input[placeholder="Correo electrónico"]').value.trim();
+            const telefono = formularioEnvio.querySelector('input[placeholder="Teléfono"]').value.trim();
+            const calleNumero = formularioEnvio.querySelector('input[placeholder="Calle y número"]').value.trim();
+            const pisoDepartamento = formularioEnvio.querySelector('input[placeholder="Piso / Departamento (opcional)"]').value.trim();
+            const codigoPostal = formularioEnvio.querySelector('input[placeholder="Código postal"]')?.value.trim() || "";
+            const departamento = selectDepartamento.value;
+            const barrio = (departamento === "Montevideo") ? selectBarrio.value : "";
+            const metodoEntrega = selectMetodoEntrega.value;
+
+            const opcionPagoSeleccionada = [...radiosPago].find(r => r.checked);
+            const opcionPago = opcionPagoSeleccionada ? opcionPagoSeleccionada.parentElement.textContent.trim() : "";
+            const montoEfectivo = (opcionPago === "Efectivo") ? document.getElementById("monto-efectivo").value.trim() : "";
+
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+            const resumenCarrito = carrito.map(item => ({
+                titulo: item.titulo,
+                autor: item.autor,
+                precio: item.precio,
+                cantidad: item.cantidad,
+                imagen: item.imagen
+            }));
+
+            const totalProductos = window.totalProductos || 0;
+            const costoEnvioTexto = document.getElementById("total-envio").textContent.replace("UYU ", "");
+            const totalFinalTexto = document.getElementById("total-final").textContent.replace("UYU ", "");
+
+            const datosCompra = {
+                nombreCompleto,
+                correoElectronico,
+                telefono,
+                calleNumero,
+                pisoDepartamento,
+                codigoPostal,
+                departamento,
+                barrio,
+                metodoEntrega,
+                opcionPago,
+                montoEfectivo,
+                carrito: resumenCarrito,
+                totalProductos,
+                costoEnvio: parseInt(costoEnvioTexto) || 0,
+                totalFinal: parseInt(totalFinalTexto) || totalProductos,
+                fechaHora: new Date().toISOString()
+            };
+
+            try {
+                await window.addDoc(window.collection(window.db, "envios"), datosCompra);
+                console.log("✅ Datos guardados correctamente en Firebase.");
+            } catch (error) {
+                console.error("❌ Error al guardar:", error);
+                alert("Ocurrió un error al guardar los datos.");
+            }
+        }
+
+        const cerrarConfirmado = document.getElementById("cerrar-confirmado");
+
+        if (cerrarConfirmado) {
+            cerrarConfirmado.addEventListener("click", () => {
+                window.location.href = "index.html";
+            });
+        }
+
+    </script>
+
+</body>
+
+</html>
