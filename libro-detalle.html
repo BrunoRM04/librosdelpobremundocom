@@ -396,11 +396,12 @@
                         if (libro) {
                             let rutaImagen = libro.imagen.trim();
 
-                            if (rutaImagen.startsWith("http")) {
-                                // URL externa
-                            } else {
-                                const nombreArchivo = rutaImagen.split('/').pop().replace(/%20/g, ' ');
-                                rutaImagen = `public/img/portadas/${nombreArchivo}`;
+                            if (!rutaImagen.startsWith("http")) {
+                                rutaImagen = rutaImagen
+                                    .replace(/^\.?\/?public\//, 'public/')  // Asegura que arranque desde "public/"
+                                    .replace(/img\//, '')                  // Elimina el "/img/" del medio
+                                    .replace(/%20/g, ' ')                  // Corrige espacios codificados
+                                    .trim();
                             }
                             const item = document.createElement('div');
                             item.classList.add('item-favorito');
