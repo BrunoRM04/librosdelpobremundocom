@@ -191,9 +191,9 @@
       menuCompleto.classList.remove('activo');
     });
 
-    const librosDestacados = [60, 1040, 1044, 4, 5, 6];
-    const librosNovedades = [1055, 2, 3, 4, 5, 6];
-    const librosOtros = [1, 2, 3, 4, 5, 6];
+    const librosDestacados = [1077, 306, 294, 863, 864,];
+    const librosNovedades = [1068, 1069, 859, 860, 861, 862];
+    const librosOtros = [443, 444, 445, 446, 447, 449, 450, 451];
 
     function cargarLibros(carruselId, ids) {
       fetch('libros.json')
@@ -206,7 +206,11 @@
             .filter(libro => libro)
             .forEach(libro => {
               const precioOriginal = parseFloat(libro.precio.replace(/[^\d.]/g, ""));
-              const precioFinal = Math.round(precioOriginal * 0.95);
+              let descuento = 0.20;
+              if ([1077, 306].includes(libro.id)) {
+                descuento = 0.15;
+              }
+              const precioFinal = Math.round(precioOriginal * (1 - descuento));
 
               let rutaImagen = libro.imagen;
               if (rutaImagen.startsWith("http")) {
@@ -219,7 +223,7 @@
               const tarjeta = document.createElement('div');
               tarjeta.classList.add('tarjeta-libro');
               tarjeta.innerHTML = `
-  <span class="etiqueta-descuento">-5%</span>
+  <span class="etiqueta-descuento">-${Math.round(descuento * 100)}%</span>
   <button class="boton-favorito" data-id="${libro.id}">
     <i class='bx bx-heart'></i>
   </button>

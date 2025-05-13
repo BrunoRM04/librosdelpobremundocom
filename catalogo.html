@@ -259,7 +259,11 @@
 
                     libros.forEach(libro => {
                         const precioOriginal = parseFloat(libro.precio.replace(/[^\d.]/g, ""));
-                        const precioFinal = Math.round(precioOriginal * 0.95);
+                        let descuento = 0.20;
+                        if ([1077, 306].includes(libro.id)) {
+                            descuento = 0.15;
+                        }
+                        const precioFinal = Math.round(precioOriginal * (1 - descuento));
 
                         let rutaImagen = libro.imagen || '';
                         if (rutaImagen.startsWith('http')) {
@@ -271,8 +275,7 @@
                         const tarjeta = document.createElement('div');
                         tarjeta.classList.add('tarjeta-catalogo');
                         tarjeta.innerHTML = `
-  <span class="etiqueta-descuento-catalogo">-5%</span>
-  <span class="etiqueta-descuento-catalogo">-5%</span>
+<span class="etiqueta-descuento-catalogo">-${Math.round(descuento * 100)}%</span>
 <button class="boton-favorito" data-id="${libro.id}">
   <i class='bx bx-heart'></i>
 </button>

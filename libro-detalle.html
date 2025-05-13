@@ -157,7 +157,11 @@
                     }
 
                     const precioOriginal = parseFloat(libro.precio.replace(/[^\d.]/g, ""));
-                    const precioFinal = Math.round(precioOriginal * 0.95);
+                    let descuento = 0.20;
+                    if (["1077", "306"].includes(id)) {
+                        descuento = 0.15;
+                    }
+                    const precioFinal = Math.round(precioOriginal * (1 - descuento));
                     let rutaImagen = libro.imagen.trim();
 
                     if (rutaImagen.startsWith("http")) {
@@ -176,9 +180,9 @@
             <p class="dato-libro"><strong>ISBN:</strong> ${libro.isbn}</p>
             <p class="dato-libro"><strong>Páginas:</strong> ${libro.numPaginas}</p>
             <div class="precio-libro-detalle">
-              <span class="precio-original-libro">UYU ${precioOriginal}</span>
-              <span class="precio-descuento-libro">UYU ${precioFinal}</span>
-            </div>
+  <span class="precio-original-libro">UYU ${precioOriginal}</span>
+  <span class="precio-descuento-libro">UYU ${precioFinal}</span>
+</div>
             <div class="cantidad-libro">
               <label for="cantidad">Cantidad:</label>
               <div class="control-cantidad">
@@ -493,12 +497,16 @@
                         }
 
                         const precioOriginal = parseFloat(libro.precio.replace(/[^\d.]/g, ""));
-                        const precioFinal = Math.round(precioOriginal * 0.95);
+                        let descuento = 0.20;
+                        if ([1077, 306].includes(libro.id)) {
+                            descuento = 0.15;
+                        }
+                        const precioFinal = Math.round(precioOriginal * (1 - descuento));
 
                         const tarjeta = document.createElement('div');
                         tarjeta.classList.add('tarjeta-libro');
                         tarjeta.innerHTML = `
-          <span class="etiqueta-descuento">-5%</span>
+          <span class="etiqueta-descuento">-${Math.round(descuento * 100)}%</span>
           <button class="boton-favorito" data-id="${libro.id}">
             <i class='bx bx-heart'></i>
           </button>

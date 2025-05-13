@@ -12947,5 +12947,17 @@
         "descripcion": "¿Por qué los chicos de orígenes obreros abandonan la escuela a las primeras de cambio y se dedican a trabajos poco cualificados? A lo largo de tres años Paul Willis estudió profundamente estos problemas, siguiendo la trayectoria de un grupo de chicos británicos desde sus dos últimos años en la escuela hasta sus primeros meses en el trabajo. El libro muestra cómo para una parte importante de ellos es su propia cultura la que bloquea la enseñanza e impide la realización de los objetivos educativos liberales.",
         "imagen": "https://imagessl7.casadellibro.com/a/l/s7/87/9788446044987.webp",
         "stock": 1
+    },
+    {
+        "id": 1077,
+        "titulo": "MI NOMBRE ES EMILIA DEL VALLE",
+        "autor": "ISABEL ALLENDE",
+        "isbn": 9788401035241,
+        "editorial": "PLAZA&JANES",
+        "numPaginas": 368,
+        "precio": "UYU 1090",
+        "descripcion": "Una inolvidable historia de amor y de guerra protagonizada por una mujer que, enfrentada a los mayores desafíos, sobrevive y se reinventa. San Francisco, 1866: una monja irlandesa, embarazada y abandonada por un aristócrata chileno tras una apasionada relación, da a luz a una niña a la que llama Emilia del Valle. Criada por su cariñoso padrastro, Emilia se convertirá en una joven brillante, autónoma e independiente, que desafiará las normas sociales para dedicarse a la escritura. A los 17 años publica novelas bajo seudónimo masculino y luego se convierte en periodista de guerra en Chile, donde enfrentará la violencia, el amor, y el descubrimiento de su identidad.",
+        "imagen": "https://imagessl.casadellibro.com/a/l/s7/41/9788401035241.webp",
+        "stock": 1
     }
 ]
