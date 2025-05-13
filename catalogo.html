@@ -80,7 +80,8 @@
             </div>
         </section>
 
-        <form id="form-aviso" action="https://formsubmit.co/ventaspobremundo@gmail.com" method="POST" style="display: none;">
+        <form id="form-aviso" action="https://formsubmit.co/ventaspobremundo@gmail.com" method="POST"
+            style="display: none;">
             <input type="hidden" name="_subject" value="🛒 ¡Nuevo pedido desde tu tienda!">
             <input type="hidden" name="mensaje" id="mensaje-pedido">
         </form>
@@ -120,6 +121,8 @@
     </footer>
 
     <script>
+
+        let librosCache = [];
 
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
         actualizarContadorCarrito();
@@ -182,8 +185,17 @@
         }
 
         function cambiarCantidad(i, cambio) {
+            const libro = librosCache.find(l => l.titulo === carrito[i].titulo);
+            const stock = libro?.stock || 1;
+
+            if (cambio > 0 && carrito[i].cantidad >= stock) {
+                alert("Has alcanzado el máximo disponible en stock.");
+                return;
+            }
+
             carrito[i].cantidad += cambio;
             if (carrito[i].cantidad <= 0) carrito.splice(i, 1);
+
             actualizarContadorCarrito();
             actualizarCarrito();
         }
@@ -205,9 +217,16 @@
 
                 if (!titulo || !precio) return;
 
+                const libroData = librosCache.find(l => l.titulo === titulo);
+                const stock = libroData?.stock || 1;
+
                 const existente = carrito.find(item => item.titulo === titulo);
                 if (existente) {
-                    existente.cantidad++;
+                    if (existente.cantidad < stock) {
+                        existente.cantidad++;
+                    } else {
+                        alert("No hay más stock disponible para este libro.");
+                    }
                 } else {
                     carrito.push({ titulo, autor, precio, imagen, cantidad: 1 });
                 }
@@ -232,6 +251,7 @@
             fetch('libros.json')
                 .then(res => res.json())
                 .then(libros => {
+                    librosCache = libros;
                     const contenedor = document.getElementById("grid-libros");
                     contenedor.innerHTML = '';
 

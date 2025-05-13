@@ -279,11 +279,20 @@
         const precio = parseInt(tarjeta.querySelector('.precio-descuento').textContent.replace(/[^\d]/g, ""));
         const imagen = tarjeta.querySelector('.imagen-libro').src;
 
+        const idLibro = parseInt(tarjeta.querySelector('.boton-favorito').dataset.id);
+
+        // Obtener el stock del libro desde librosCache
+        const libroStock = librosCache.find(libro => libro.id === idLibro)?.stock || 1;
+
         const existente = carrito.find(item => item.titulo === titulo);
         if (existente) {
-          existente.cantidad++;
+          if (existente.cantidad < libroStock) {
+            existente.cantidad++;
+          } else {
+            alert("No hay más stock disponible para este libro.");
+          }
         } else {
-          carrito.push({ titulo, autor, precio, imagen, cantidad: 1 });
+          carrito.push({ id: idLibro, titulo, autor, precio, imagen, cantidad: 1 });
         }
 
         actualizarContadorCarrito();
@@ -325,8 +334,20 @@
     }
 
     function cambiarCantidad(i, cambio) {
+      const libro = librosCache.find(l => l.titulo === carrito[i].titulo);
+      const stock = libro?.stock || 1;
+
+      if (cambio > 0 && carrito[i].cantidad >= stock) {
+        alert("Has alcanzado el máximo disponible en stock.");
+        return;
+      }
+
       carrito[i].cantidad += cambio;
-      if (carrito[i].cantidad <= 0) carrito.splice(i, 1);
+
+      if (carrito[i].cantidad <= 0) {
+        carrito.splice(i, 1);
+      }
+
       actualizarContadorCarrito();
       actualizarCarrito();
     }

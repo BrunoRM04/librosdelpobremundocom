@@ -134,6 +134,8 @@
 
     <script>
 
+        let stockActual = 1;
+
         document.addEventListener("DOMContentLoaded", () => {
             const contenedor = document.getElementById("contenedorLibroDetalle");
             const params = new URLSearchParams(window.location.search);
@@ -148,6 +150,7 @@
                 .then(res => res.json())
                 .then(libros => {
                     const libro = libros.find(l => String(l.id) === id);
+                    stockActual = libro.stock || 1;
                     if (!libro) {
                         contenedor.innerHTML = "<p class='mensaje-error'>Libro no encontrado.</p>";
                         return;
@@ -218,8 +221,12 @@
                         }
                     });
                     document.getElementById("masCantidad").addEventListener("click", () => {
-                        cantidad++;
-                        valorCantidad.textContent = cantidad;
+                        if (cantidad < stock) {
+                            cantidad++;
+                            valorCantidad.textContent = cantidad;
+                        } else {
+                            alert("Has alcanzado el máximo disponible en stock.");
+                        }
                     });
                 })
                 .catch(() => {
@@ -269,10 +276,32 @@
         }
 
         function cambiarCantidad(i, cambio) {
-            carrito[i].cantidad += cambio;
-            if (carrito[i].cantidad <= 0) carrito.splice(i, 1);
-            actualizarContadorCarrito();
-            actualizarCarrito();
+            const libro = carrito[i];
+            const titulo = libro.titulo;
+
+            fetch('libros.json')
+                .then(res => res.json())
+                .then(libros => {
+                    const libroOriginal = libros.find(l => l.titulo === titulo);
+                    const stockDisponible = libroOriginal?.stock || 1;
+
+                    if (cambio > 0 && carrito[i].cantidad >= stockDisponible) {
+                        alert("Has alcanzado el máximo disponible en stock.");
+                        return;
+                    }
+
+                    carrito[i].cantidad += cambio;
+
+                    if (carrito[i].cantidad <= 0) {
+                        carrito.splice(i, 1);
+                    }
+
+                    actualizarContadorCarrito();
+                    actualizarCarrito();
+                })
+                .catch(() => {
+                    alert("No se pudo verificar el stock.");
+                });
         }
 
         function eliminarItem(i) {
@@ -291,11 +320,22 @@
                 const cantidad = parseInt(document.getElementById('valorCantidad')?.textContent || '1');
 
                 if (!titulo || !autor || !imagen || !precio || !cantidad) return;
+
                 const existente = carrito.find(item => item.titulo === titulo);
                 if (existente) {
-                    existente.cantidad += cantidad;
+                    if (existente.cantidad + cantidad <= stockActual) {
+                        existente.cantidad += cantidad;
+                    } else {
+                        alert("No hay suficiente stock para añadir esa cantidad.");
+                        return;
+                    }
                 } else {
-                    carrito.push({ titulo, autor, precio, imagen, cantidad });
+                    if (cantidad <= stockActual) {
+                        carrito.push({ titulo, autor, precio, imagen, cantidad });
+                    } else {
+                        alert("No hay suficiente stock disponible.");
+                        return;
+                    }
                 }
 
                 actualizarContadorCarrito();
@@ -437,7 +477,7 @@
                 .then(res => res.json())
                 .then(libros => {
                     const contenedor = document.getElementById('carrusel-relacionados');
-                    const seleccionados = libros.sort(() => 0.5 - Math.random()).slice(0, 10); // 10 libros al azar
+                    const seleccionados = libros.sort(() => 0.5 - Math.random()).slice(0, 10);
 
                     seleccionados.forEach(libro => {
 
