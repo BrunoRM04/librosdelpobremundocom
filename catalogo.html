@@ -231,8 +231,14 @@
                     } else {
                         alert("No hay más stock disponible para este libro.");
                     }
+                    const libroId = libroData?.id;
+                    let precioFinal = precio;
+
+                    if ([1077, 306].includes(libroId)) {
+                        precioFinal = Math.max(precio - 1, 0);
+                    }
                 } else {
-                    carrito.push({ titulo, autor, precio, imagen, cantidad: 1 });
+                    carrito.push({ titulo, autor, precio: precioFinal, imagen, cantidad: 1 });
                 }
 
                 localStorage.setItem('carrito', JSON.stringify(carrito));
@@ -267,7 +273,10 @@
                         if ([1077, 306].includes(libro.id)) {
                             descuento = 0.15;
                         }
-                        const precioFinal = Math.round(precioOriginal * (1 - descuento));
+                        let precioFinal = Math.round(precioOriginal * (1 - descuento));
+                        if ([1077, 306].includes(libro.id)) {
+                            precioFinal = Math.max(precioFinal - 1, 0);
+                        }
 
                         let rutaImagen = libro.imagen || '';
                         if (rutaImagen.startsWith('http')) {

@@ -2177,6 +2177,34 @@ body {
 
 
 
+.carrusel-banner {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.carrusel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.3s linear; 
+}
+
+.carrusel-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.carrusel-slide.activo {
+  opacity: 1;
+  position: relative;
+  z-index: 2;
+}
 
 
 

@@ -165,7 +165,10 @@
                     if (["1077", "306"].includes(id)) {
                         descuento = 0.15;
                     }
-                    const precioFinal = Math.round(precioOriginal * (1 - descuento));
+                    let precioFinal = Math.round(precioOriginal * (1 - descuento));
+                    if (["1077", "306"].includes(id)) {
+                        precioFinal = Math.max(precioFinal - 1, 0);
+                    }
                     let rutaImagen = libro.imagen.trim();
 
                     if (rutaImagen.startsWith("http")) {
@@ -329,6 +332,8 @@
 
                 if (!titulo || !autor || !imagen || !precio || !cantidad) return;
 
+                const precioFinal = parseInt(document.querySelector('.precio-descuento-libro')?.textContent.replace(/[^\d]/g, ''));
+
                 const existente = carrito.find(item => item.titulo === titulo);
                 if (existente) {
                     if (existente.cantidad + cantidad <= stockActual) {
@@ -339,7 +344,7 @@
                     }
                 } else {
                     if (cantidad <= stockActual) {
-                        carrito.push({ titulo, autor, precio, imagen, cantidad });
+                        carrito.push({ titulo, autor, precio: precioFinal, imagen, cantidad });
                     } else {
                         alert("No hay suficiente stock disponible.");
                         return;
@@ -505,7 +510,10 @@
                         if ([1077, 306].includes(libro.id)) {
                             descuento = 0.15;
                         }
-                        const precioFinal = Math.round(precioOriginal * (1 - descuento));
+                        let precioFinal = Math.round(precioOriginal * (1 - descuento));
+                        if ([1077, 306].includes(libro.id)) {
+                            precioFinal = Math.max(precioFinal - 1, 0);
+                        }
 
                         const tarjeta = document.createElement('div');
                         tarjeta.classList.add('tarjeta-libro');

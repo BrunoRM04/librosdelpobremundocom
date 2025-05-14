@@ -49,6 +49,15 @@
 
   <main>
 
+    <div class="carrusel-banner">
+      <div class="carrusel-slide activo">
+        <img src="public/img/banners/banner-1.jpg" alt="Banner 1">
+      </div>
+      <div class="carrusel-slide">
+        <img src="public/img/banners/banner-2.jpg" alt="Banner 2">
+      </div>
+    </div>
+
     <div class="favoritos-lateral" id="favoritosLateral">
       <div class="encabezado-favoritos">
         <h2 class="titulo-favoritos">Tus Favoritos</h2>
@@ -184,6 +193,15 @@
 
   <script>
 
+    let index = 0;
+    const slides = document.querySelectorAll(".carrusel-slide");
+
+    setInterval(() => {
+      slides[index].classList.remove("activo");
+      index = (index + 1) % slides.length;
+      slides[index].classList.add("activo");
+    }, 3000);
+
     const botonMenu = document.getElementById('botonMenu');
     const menuCompleto = document.getElementById('menuCompleto');
     const botonCerrar = document.getElementById('botonCerrar');
@@ -215,7 +233,10 @@
               if ([1077, 306].includes(libro.id)) {
                 descuento = 0.15;
               }
-              const precioFinal = Math.round(precioOriginal * (1 - descuento));
+              let precioFinal = Math.round(precioOriginal * (1 - descuento));
+              if ([1077, 306].includes(libro.id)) {
+                precioFinal = Math.max(precioFinal - 1, 0); // Descuento adicional de 1 peso
+              }
 
               let rutaImagen = libro.imagen;
               if (rutaImagen.startsWith("http")) {
