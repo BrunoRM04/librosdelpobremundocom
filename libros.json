@@ -13015,5 +13015,17 @@
         "descripcion": "En este libro la autora ofrece un camino para que todas aquellas mujeres que aman demasiado puedan amarse a sí mismas y establezcan una relación de pareja sana, feliz y duradera. \"Cuando estar enamorada significa sufrir, es que estamos amando demasiado. Cuando la mayoría de nuestras conversaciones con amigas íntimas son acerca de él, de sus problemas, ideas, acciones y sentimientos, cuando casi todas nuestras frases comienzan con 'él...', es que estamos amando demasiado. Cuando disculpamos su mal humor, su indiferencia y sus desaires e intentamos justificarlo o incluso convertirnos en su terapeuta, es que estamos amando demasiado.\" Este best seller lleva tres décadas apoyando a millones de mujeres que, debido a razones erróneas, son adictas a los hombres equivocados. La reconocida terapeuta Robin Norwood presenta un programa claro y completo para reconocer, comprender y pasar de amar demasiado a alguien que provoca dolor, a amar lo suficiente como para detener ese dolor.",
         "imagen": "https://imagessl0.casadellibro.com/a/l/s7/60/9788490707760.webp",
         "stock": 1
+    },
+    {
+        "id": 1079,
+        "titulo": "EL ETERNAUTA",
+        "autor": "H.G. OESTERHELD Y FRANCISCO SOLANO LÓPEZ",
+        "isbn": 9788491749264,
+        "editorial": "PLANETA CÓMIC",
+        "numPaginas": 376,
+        "precio": "UYU 1290",
+        "descripcion": "El Eternauta cuenta una historia que transcurre la mayor parte del tiempo en la ciudad de Buenos Aires, Argentina, en un futuro distópico en el que una invasión de seres sobrenaturales se ha apoderado del territorio y ha desterrado a la población humana a socavones y cuevas en los que llevan vidas comunitarias y sencillas. Un estilo de vida que se contrapone al de los nuevos dueños del mundo, seres con conocimientos y tecnologías mucho más avanzadas.",
+        "imagen": "https://imagessl.casadellibro.com/a/l/s7/64/9788491749264.webp",
+        "stock": 1
     }
 ]

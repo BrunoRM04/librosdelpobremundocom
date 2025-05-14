@@ -214,7 +214,7 @@
       menuCompleto.classList.remove('activo');
     });
 
-    const librosDestacados = [1077, 306, 294, 863, 864,];
+    const librosDestacados = [1077, 1079, 306, 294, 863, 864,];
     const librosNovedades = [1068, 1069, 859, 860, 861, 862];
     const librosOtros = [443, 444, 445, 446, 447, 449, 450, 451];
 
@@ -230,12 +230,12 @@
             .forEach(libro => {
               const precioOriginal = parseFloat(libro.precio.replace(/[^\d.]/g, ""));
               let descuento = 0.20;
-              if ([1077, 306].includes(libro.id)) {
+              if ([1077, 306, 1079].includes(libro.id)) {
                 descuento = 0.15;
               }
               let precioFinal = Math.round(precioOriginal * (1 - descuento));
-              if ([1077, 306].includes(libro.id)) {
-                precioFinal = Math.max(precioFinal - 1, 0); // Descuento adicional de 1 peso
+              if ([1077, 306, 1079].includes(libro.id)) {
+                precioFinal = Math.max(precioFinal - 1, 0);
               }
 
               let rutaImagen = libro.imagen;
