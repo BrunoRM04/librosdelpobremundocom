@@ -265,8 +265,11 @@
     <span class="precio-descuento">UYU ${precioFinal}</span>
   </p>
   <div class="botones-libro">
-    <a href="libro-detalle.html?id=${libro.id}" class="boton-ver">Ver más</a>
-    <button class="boton-anadir"><i class='bx bx-cart-alt'></i> Añadir</button>
+  <a href="libro-detalle.html?id=${libro.id}" class="boton-ver">Ver más</a>
+  ${libro.consultarPorWhatsApp
+                  ? `<a href="https://wa.me/${libro.numeroWhatsApp}?text=Hola,%20quiero%20consultar%20por%20el%20libro%20${encodeURIComponent(libro.titulo)}" target="_blank" class="boton-consultar"><i class='bx bxl-whatsapp'></i> Consultar</a>`
+                  : `<button class="boton-anadir"><i class='bx bx-cart-alt'></i> Añadir</button>`
+                }
   </div>
 `;
               contenedor.appendChild(tarjeta);

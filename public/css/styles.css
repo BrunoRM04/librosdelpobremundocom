@@ -517,6 +517,7 @@ body {
     width: 240px;
     min-height: 500px;
   }
+
   .imagen-libro {
     height: 320px;
   }
@@ -526,14 +527,17 @@ body {
   .contenedor-carrusel {
     padding: 0 10px;
   }
+
   .carrusel-libros {
     overflow-x: auto;
     scrollbar-width: none;
     scroll-snap-type: x mandatory;
   }
+
   .carrusel-libros::-webkit-scrollbar {
     display: none;
   }
+
   /* Un libro a la vez */
   .tarjeta-libro {
     flex: 0 0 100%;
@@ -541,12 +545,15 @@ body {
     min-height: 500px;
     width: 100%;
   }
+
   .imagen-libro {
     height: 300px;
   }
+
   .botones-libro {
     flex-direction: column;
   }
+
   .boton-ver,
   .boton-anadir {
     width: 100%;
@@ -560,18 +567,22 @@ body {
     width: 100%;
     min-height: 460px;
   }
+
   .imagen-libro {
     height: 280px;
   }
+
   .flecha-carrusel {
     width: 35px;
     height: 35px;
     font-size: 2rem;
   }
+
   .titulo-libro,
   .autor-libro {
     white-space: normal;
   }
+
   .info-libro {
     height: auto;
     min-height: unset;
@@ -845,6 +856,7 @@ body {
     padding-bottom: 10px;
   }
 }
+
 /* CARRITO LATERAL */
 
 /* CATALOGO */
@@ -1199,8 +1211,8 @@ body {
 .barra-informativa {
   background-color: var(--negro);
   color: var(--blanco);
-  font-size: 1rem; 
-  padding: 10px 0; 
+  font-size: 1rem;
+  padding: 10px 0;
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
@@ -1223,6 +1235,7 @@ body {
   0% {
     transform: translateX(0%);
   }
+
   100% {
     transform: translateX(-100%);
   }
@@ -1664,6 +1677,7 @@ body {
   .titulo-libros-relacionados {
     font-size: 1.6rem;
   }
+
   .flecha-relacionados {
     font-size: 1.6rem;
     width: 30px;
@@ -1687,6 +1701,7 @@ body {
   .titulo-libros-relacionados {
     font-size: 1.4rem;
   }
+
   .flecha-relacionados {
     font-size: 1.4rem;
     width: 26px;
@@ -1698,6 +1713,7 @@ body {
   .titulo-libros-relacionados {
     font-size: 1.2rem;
   }
+
   .flecha-relacionados {
     font-size: 1.2rem;
     width: 24px;
@@ -1769,7 +1785,50 @@ body {
 
 
 
+.boton-consultar {
+  background-color: var(--rojo-principal);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+  max-width: 100%;
+  box-sizing: border-box;
+}
 
+.boton-consultar i {
+  font-size: 1.2em;
+}
+
+@media (hover: hover) {
+  .boton-consultar:hover {
+    background-color: var(--negro);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .boton-consultar {
+    font-size: 0.875rem;
+    padding: 6px 12px;
+    gap: 6px;
+  }
+
+  .boton-consultar i {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .boton-consultar {
+    font-size: 0.95rem;
+  }
+}
 
 
 
@@ -1787,7 +1846,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); 
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1919,7 +1978,7 @@ body {
   justify-content: space-between;
 }
 
-.total-final span{
+.total-final span {
   margin-top: 0.5rem;
 }
 
@@ -1950,7 +2009,7 @@ body {
     font-size: 1.1rem;
   }
 
-    .total-resumen {
+  .total-resumen {
     font-size: 1rem;
     row-gap: 0.2rem;
   }
@@ -2070,7 +2129,7 @@ body {
 
 .titulo-seccion {
   font-size: 1.5rem;
-  margin-bottom: 0.1rem; 
+  margin-bottom: 0.1rem;
   color: var(--blanco);
 }
 
@@ -2099,7 +2158,7 @@ body {
 
 .campo-formulario option {
   color: var(--negro);
-  background-color: var(--blanco); 
+  background-color: var(--blanco);
 }
 
 .campo-formulario::placeholder {
@@ -2190,7 +2249,7 @@ body {
   left: 0;
   width: 100%;
   opacity: 0;
-  transition: opacity 0.3s linear; 
+  transition: opacity 0.3s linear;
 }
 
 .carrusel-slide img {
@@ -2265,7 +2324,7 @@ body {
 
 .enlace-footer {
   color: var(--blanco);
-  text-decoration: none; 
+  text-decoration: none;
   font-size: 14px;
   transition: color 0.3s ease;
 }
@@ -2288,7 +2347,7 @@ body {
   align-items: center;
   justify-content: center;
   transition: transform 0.3s ease, background-color 0.3s ease;
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 .icono-red i {
