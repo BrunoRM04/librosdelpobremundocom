@@ -198,15 +198,19 @@
                 <button id="masCantidad">+</button>
               </div>
             </div>
-            <div class="acciones-libro-detalle">
-  ${libro.consultarPorWhatsApp
-                            ? `<a href="https://wa.me/${libro.numeroWhatsApp}?text=Hola,%20quiero%20consultar%20por%20el%20libro%20${encodeURIComponent(libro.titulo)}" 
-            target="_blank" class="boton-consultar">
-            <i class='bx bxl-whatsapp'></i> Consultar
-         </a>`
-                            : `<button class="boton-anadir-detalle"><i class='bx bx-cart-alt'></i> Añadir al carrito</button>`
+<div class="acciones-libro-detalle">
+  ${libro.stock > 0
+                            ? (
+                                libro.consultarPorWhatsApp
+                                    ? `<a href="https://wa.me/${libro.numeroWhatsApp}?text=Hola,%20quiero%20consultar%20por%20el%20libro%20${encodeURIComponent(libro.titulo)}" 
+              target="_blank" class="boton-consultar">
+              <i class='bx bxl-whatsapp'></i> Consultar
+           </a>`
+                                    : `<button class="boton-anadir-detalle"><i class='bx bx-cart-alt'></i> Añadir al carrito</button>`
+                            ) +
+                            `<button class="boton-favorito-detalle"><i class='bx bx-heart'></i> Añadir a favoritos</button>`
+                            : `<div class="sin-stock-detalle">¡Sin stock disponible!</div>`
                         }
-  <button class="boton-favorito-detalle"><i class='bx bx-heart'></i> Añadir a favoritos</button>
 </div>
             <div class="envios-libro">
               <p><strong>Envíos:</strong></p>

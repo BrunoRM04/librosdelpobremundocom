@@ -305,13 +305,17 @@
     <span class="precio-descuento-catalogo">UYU ${precioFinal}</span>
   </p>
 <div class="botones-catalogo">
-  <a href="libro-detalle.html?id=${libro.id}" class="boton-ver-catalogo">Ver más</a>
-  ${libro.consultarPorWhatsApp
-                                ? `<a href="https://wa.me/${libro.numeroWhatsApp}?text=Hola,%20quiero%20consultar%20por%20el%20libro%20${encodeURIComponent(libro.titulo)}" 
-            target="_blank" class="boton-consultar">
-            <i class='bx bxl-whatsapp'></i> Consultar
-         </a>`
-                                : `<button class="boton-anadir-catalogo"><i class='bx bx-cart-alt'></i> Añadir</button>`
+  ${libro.stock > 0
+                                ? `
+      <a href="libro-detalle.html?id=${libro.id}" class="boton-ver-catalogo">Ver más</a>
+      ${libro.consultarPorWhatsApp
+                                    ? `<a href="https://wa.me/${libro.numeroWhatsApp}?text=Hola,%20quiero%20consultar%20por%20el%20libro%20${encodeURIComponent(libro.titulo)}" 
+              target="_blank" class="boton-consultar">
+              <i class='bx bxl-whatsapp'></i> Consultar
+           </a>`
+                                    : `<button class="boton-anadir-catalogo"><i class='bx bx-cart-alt'></i> Añadir</button>`}
+    `
+                                : `<div class="sin-stock-catalogo">Sin Stock Disponible</div>`
                             }
 </div>
 `;

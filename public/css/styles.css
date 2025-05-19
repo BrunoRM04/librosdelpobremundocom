@@ -1260,6 +1260,36 @@ body {
 
 /* LIBRO DETALLES */
 
+.sin-stock-detalle {
+  display: inline-block;
+  background-color: var(--rojo-principal);
+  color: var(--blanco);
+  padding: 12px 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.sin-stock-catalogo {
+  display: inline-block;
+  background-color: var(--rojo-principal);
+  color: var(--blanco);
+  font-weight: 500;
+  padding: 9px 8px;
+  text-align: center;
+  font-size: 0.85rem;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+@media (max-width: 480px) {
+  .sin-stock-catalogo {
+    font-size: 0.8rem;
+    padding: 3px 6px;
+  }
+}
+
 .zona-detalle-libro {
   background-color: var(--blanco);
   padding: 4rem 1rem;
