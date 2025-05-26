@@ -50,9 +50,6 @@
   <main>
 
     <div class="carrusel-banner">
-      <div class="carrusel-slide activo">
-        <img src="public/img/banners/banner-1.jpg" alt="Banner 1">
-      </div>
       <div class="carrusel-slide">
         <img src="public/img/banners/banner-2.jpg" alt="Banner 2">
       </div>
@@ -230,7 +227,9 @@
             .forEach(libro => {
               const precioOriginal = parseFloat(libro.precio.replace(/[^\d.]/g, ""));
               let descuento = 0.20;
-              if ([1077, 306, 1079].includes(libro.id)) {
+              if ([1077, 1079].includes(libro.id)) {
+                descuento = 0.05;
+              } else if (libro.id === 306) {
                 descuento = 0.15;
               }
               let precioFinal = Math.round(precioOriginal * (1 - descuento));
