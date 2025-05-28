@@ -272,6 +272,8 @@
                         let descuento = 0.20;
                         if ([1077, 1079].includes(libro.id)) {
                             descuento = 0.05;
+                        } else if (libro.id === 1128) {
+                            descuento = 0.15;
                         }
                         let precioFinal = Math.round(precioOriginal * (1 - descuento));
                         if ([1077].includes(libro.id)) {

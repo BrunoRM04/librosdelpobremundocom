@@ -162,8 +162,11 @@
 
                     const precioOriginal = parseFloat(libro.precio.replace(/[^\d.]/g, ""));
                     let descuento = 0.20;
+
                     if (["1077", "1079"].includes(id)) {
                         descuento = 0.05;
+                    } else if (["1128"].includes(id)) {
+                        descuento = 0.15;
                     }
                     let precioFinal = Math.round(precioOriginal * (1 - descuento));
                     if (["1077", "1079"].includes(id)) {
