@@ -65,7 +65,7 @@
                     <input type="text" class="campo-formulario" placeholder="Nombre completo" required>
                     <input type="email" class="campo-formulario" placeholder="Correo electrónico" required>
                     <input type="tel" class="campo-formulario" placeholder="Teléfono" required>
-                    <input type="text" class="campo-formulario" placeholder="Calle y número" required>
+                    <input type="text" class="campo-formulario" placeholder="Calle y número">
                     <input type="text" class="campo-formulario" placeholder="Piso / Departamento (opcional)">
                     <input type="text" class="campo-formulario" placeholder="Código postal">
 
@@ -664,6 +664,11 @@
         });
 
         botonConfirmarFinal.addEventListener("click", async () => {
+            if (!formularioEnvio.checkValidity()) {
+                formularioEnvio.reportValidity();
+                return;
+            }
+
             const opcionPagoSeleccionada = [...radiosPago].find(r => r.checked);
             const opcionPago = opcionPagoSeleccionada ? opcionPagoSeleccionada.parentElement.textContent.trim() : "";
 
