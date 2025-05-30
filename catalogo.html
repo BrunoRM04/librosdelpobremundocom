@@ -269,11 +269,14 @@
 
                     libros.forEach(libro => {
                         const precioOriginal = parseFloat(libro.precio.replace(/[^\d.]/g, ""));
-                        let descuento = 0.20;
+                        let descuento = 0.20; // descuento por defecto
+
                         if ([1077, 1079].includes(libro.id)) {
                             descuento = 0.05;
                         } else if (libro.id === 1128) {
                             descuento = 0.15;
+                        } else if (libro.id === 1135) {
+                            descuento = 0.10; // ➤ 10% para el libro con ID 1135
                         }
                         let precioFinal = Math.round(precioOriginal * (1 - descuento));
                         if ([1077].includes(libro.id)) {

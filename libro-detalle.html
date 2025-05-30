@@ -167,6 +167,8 @@
                         descuento = 0.05;
                     } else if (["1128"].includes(id)) {
                         descuento = 0.15;
+                    } else if (["1135"].includes(id)) {
+                        descuento = 0.10; // 10% para libro 1135
                     }
                     let precioFinal = Math.round(precioOriginal * (1 - descuento));
                     if (["1077", "1079"].includes(id)) {
