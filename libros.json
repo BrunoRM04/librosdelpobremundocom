@@ -13701,15 +13701,27 @@
         "stock": 1
     },
     {
-    "id": 1135,
-    "titulo": "197 HISTORIAS ILUSTRADAS",
-    "autor": "KIARA LUCAS",
-    "isbn": 9789915427799,
-    "editorial": "INDEPENDIENTE",
-    "numPaginas": 442,
-    "precio": "UYU 790",
-    "descripcion": "197 historias ilustradas es un proyecto que quiere dar a conocer la vida de las personas detenidas desaparecidas en Uruguay. Son textos e ilustraciones que resaltan aspectos de su vida cotidiana y nos recuerdan sus barrios y ciudades, sus pasatiempos, sus pasiones deportivas y artísticas, así como los vínculos familiares y sociales en los que dejaron una huella.",
-    "imagen": "https://cdn9.luna.com.uy/escaramuza.com.uy/cdn/files/tmp/compressed/normal/w1067ieivy8xvo2t0d9u.webp",
-    "stock": 1
-}
-] 
+        "id": 1135,
+        "titulo": "197 HISTORIAS ILUSTRADAS",
+        "autor": "KIARA LUCAS",
+        "isbn": 9789915427799,
+        "editorial": "INDEPENDIENTE",
+        "numPaginas": 442,
+        "precio": "UYU 790",
+        "descripcion": "197 historias ilustradas es un proyecto que quiere dar a conocer la vida de las personas detenidas desaparecidas en Uruguay. Son textos e ilustraciones que resaltan aspectos de su vida cotidiana y nos recuerdan sus barrios y ciudades, sus pasatiempos, sus pasiones deportivas y artísticas, así como los vínculos familiares y sociales en los que dejaron una huella.",
+        "imagen": "https://cdn9.luna.com.uy/escaramuza.com.uy/cdn/files/tmp/compressed/normal/w1067ieivy8xvo2t0d9u.webp",
+        "stock": 1
+    },
+    {
+        "id": 1136,
+        "titulo": "LA SOCIEDAD DEL CANSANCIO",
+        "autor": "BYUNG-CHUL HAN",
+        "isbn": 9788425438547,
+        "editorial": "HERDER",
+        "numPaginas": 120,
+        "precio": "UYU 790",
+        "descripcion": "Byung-Chul Han, una de las voces filosóficas más innovadoras que ha surgido en Alemania recientemente, afirma en este inesperado best seller, cuya primera tirada se agotó en unas semanas, que la sociedad occidental está sufriendo un silencioso cambio de paradigma: el exceso de positividad está conduciendo a una sociedad del cansancio. Así como la sociedad disciplinaria foucaultiana producía criminales y locos, la sociedad que ha acuñado el eslogan Yes We Can produce individuos agotados, fracasados y depresivos. Según el autor, la resistencia solo es posible en relación con la coacción externa. La explotación a la que uno mismo se somete es mucho peor que la externa, ya que se ayuda del sentimiento de libertad. Esta forma de explotación resulta, asimismo, mucho más eficiente y productiva debido a que el individuo decide voluntariamente explotarse a sí mismo hasta la extenuación. Hoy en día carecemos de un tirano o de un rey al que oponernos diciendo No. En este sentido, obras como Indignaos, de Stéphane Hessel, no son de gran ayuda, ya que el propio sistema hace desaparecer aquello a lo que uno podría enfrentarse. Resulta muy difícil rebelarse cuando víctima y verdugo, explotador y explotado, son la misma persona. Han señala que la filosofía debería relajarse y convertirse en un juego productivo, lo que daría lugar a resultados completamente nuevos, que los occidentales deberíamos abandonar conceptos como originalidad, genialidad y creación de la nada y buscar una mayor flexibilidad en el pensamiento: “todos nosotros deberíamos jugar más y trabajar menos, entonces produciríamos más”. ¿O es acaso una coincidencia que los chinos, para quienes originalidad y genialidad son conceptos desconocidos, sean los responsables de casi toda invención –desde la pasta hasta los fuegos artificiales- que ha dejado huella en Occidente? Sin embargo, esto no deja de ser para el autor una utopía inalcanzable para una sociedad en la que todos, incluso el ejecutivo mejor pagado, trabajamos como esclavos aplazando indefinidamente el ocio.",
+        "imagen": "https://images.cdn1.buscalibre.com/fit-in/360x360/5f/fe/5ffe94dbd4ddaa7665c305985105639a.jpg",
+        "stock": 1
+    }
+]
