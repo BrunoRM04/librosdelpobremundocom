@@ -53,9 +53,6 @@
       <div class="carrusel-slide activo">
         <img src="public/img/banners/banner-1.jpg" alt="Banner 1">
       </div>
-      <div class="carrusel-slide">
-        <img src="public/img/banners/banner-2.jpg" alt="Banner 2">
-      </div>
     </div>
 
     <div class="favoritos-lateral" id="favoritosLateral">
@@ -232,13 +229,13 @@
               let descuento = 0.05;
               if ([1077, 1079].includes(libro.id)) {
                 descuento = 0.05;
-              } else if (libro.id === 306 || libro.id === 1128) {
+              } else if (libro.id === libro.id === 1128) {
                 descuento = 0.15;
               } else if (libro.id === 1135) {
                 descuento = 0.10; 
               }
               let precioFinal = Math.round(precioOriginal * (1 - descuento));
-              if ([1077, 306, 1079].includes(libro.id)) {
+              if ([1077, 1079].includes(libro.id)) {
                 precioFinal = Math.max(precioFinal - 1, 0);
               }
 
