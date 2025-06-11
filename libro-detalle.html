@@ -163,15 +163,16 @@
                     const precioOriginal = parseFloat(libro.precio.replace(/[^\d.]/g, ""));
                     let descuento = 0.05;
 
-                    if (["1077", "1079"].includes(id)) {
-                        descuento = 0.05;
-                    } else if (["1128"].includes(id)) {
-                        descuento = 0.15;
-                    } else if (["1135"].includes(id)) {
-                        descuento = 0.10; // 10% para libro 1135
-                    }
+                    // Lógica de descuentos especiales (desactivada):
+                    // if (["1077", "1079"].includes(id)) {
+                    //     descuento = 0.05;
+                    // } else if (["1128"].includes(id)) {
+                    //     descuento = 0.15;
+                    // } else if (["1135"].includes(id)) {
+                    //     descuento = 0.10;
+                    // }
                     let precioFinal = Math.round(precioOriginal * (1 - descuento));
-                    if (["1077", "1079"].includes(id)) {
+                    if ([""].includes(id)) {
                         precioFinal = Math.max(precioFinal - 1, 0);
                     }
                     let rutaImagen = libro.imagen.trim();

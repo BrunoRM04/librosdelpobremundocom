@@ -51,7 +51,6 @@
 
     <div class="carrusel-banner">
       <div class="carrusel-slide activo">
-        <img src="public/img/banners/banner-1.jpg" alt="Banner 1">
       </div>
     </div>
 
@@ -226,18 +225,23 @@
             .filter(libro => libro)
             .forEach(libro => {
               const precioOriginal = parseFloat(libro.precio.replace(/[^\d.]/g, ""));
-              let descuento = 0.05;
-              if ([1077, 1079].includes(libro.id)) {
-                descuento = 0.05;
-              } else if (libro.id === libro.id === 1128) {
-                descuento = 0.15;
-              } else if (libro.id === 1135) {
-                descuento = 0.10; 
-              }
+              const descuento = 0.05;
+
+              // Lógica de descuentos diferenciados (desactivada):
+              // if ([1077, 1079].includes(libro.id)) {
+              //   descuento = 0.05;
+              // } else if (libro.id === 1128) {
+              //   descuento = 0.15;
+              // } else if (libro.id === 1135) {
+              //   descuento = 0.10;
+              // }
+
               let precioFinal = Math.round(precioOriginal * (1 - descuento));
-              if ([1077, 1079].includes(libro.id)) {
-                precioFinal = Math.max(precioFinal - 1, 0);
-              }
+
+              // Ajuste especial para libros específicos (también desactivado):
+              // if ([1077, 1079].includes(libro.id)) {
+              //   precioFinal = Math.max(precioFinal - 1, 0);
+              // }
 
               let rutaImagen = libro.imagen;
               if (rutaImagen.startsWith("http")) {
