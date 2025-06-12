@@ -173,6 +173,7 @@
                     <div class="metodos-pago">
                         <label><input type="radio" name="pago" required> Mercado Pago</label>
                         <label><input type="radio" name="pago"> Tarjeta de débito o crédito</label>
+                        <label id="pago-transferencia"><input type="radio" name="pago"> Transferencia bancaria</label>
                         <label id="pago-efectivo"><input type="radio" name="pago"> Efectivo</label>
                     </div>
 
@@ -208,6 +209,15 @@
                 <button class="boton-confirmar-final" id="confirmar-final">Confirmar y pagar</button>
             </div>
         </div>
+
+        <div id="aviso-transferencia" class="aviso-coordinacion oculto">
+            <div class="contenido-aviso">
+                <p>💳 Para completar la compra, te redirigiremos a WhatsApp donde se te brindará el número de cuenta
+                    para realizar la transferencia. ¡Muchas gracias!</p>
+                <button class="boton-confirmar-final" id="confirmar-transferencia">Confirmar y pagar</button>
+            </div>
+        </div>
+
 
         <div id="pantalla-confirmado" class="pantalla-confirmado oculto">
             <div class="contenido-confirmado">
@@ -442,6 +452,9 @@
         const pagoEfectivo = document.getElementById("pago-efectivo");
         const contenedorEfectivo = document.getElementById("contenedor-efectivo");
         const radiosPago = document.querySelectorAll('input[name="pago"]');
+        const pagoTransferencia = document.getElementById("pago-transferencia");
+        const avisoTransferencia = document.getElementById("aviso-transferencia");
+        const botonConfirmarTransferencia = document.getElementById("confirmar-transferencia");
 
         function actualizarFormulario() {
             const departamentoSeleccionado = selectDepartamento.value;
@@ -463,6 +476,23 @@
                 if (totalEnvioEl) totalEnvioEl.textContent = ``;
                 if (totalFinalEl) totalFinalEl.textContent = `UYU ${totalProductos}`;
             }
+        }
+
+        function aplicarDescuentoSiEsTransferencia() {
+            const opcionPagoSeleccionada = [...radiosPago].find(r => r.checked);
+            const opcionPago = opcionPagoSeleccionada ? opcionPagoSeleccionada.parentElement.textContent.trim() : "";
+            const totalFinalEl = document.getElementById("total-final");
+            const totalProductos = window.totalProductos || 0;
+            const envioTexto = document.getElementById("total-envio").textContent.replace("UYU ", "").trim();
+            const envio = parseInt(envioTexto) || 0;
+            let total = totalProductos + envio;
+
+            if (opcionPago === "Transferencia bancaria") {
+                total = Math.round(total * 0.8); 
+            }
+
+            if (totalFinalEl) totalFinalEl.textContent = `UYU ${total}`;
+            window.totalFinalConDescuento = total; 
         }
 
         function calcularCostoEnvio() {
@@ -502,6 +532,7 @@
                 } else {
                     contenedorEfectivo.classList.add("oculto");
                 }
+                aplicarDescuentoSiEsTransferencia();
             });
         });
 
@@ -655,6 +686,11 @@
                 return;
             }
 
+            if (opcionPago === "Transferencia bancaria") {
+                avisoTransferencia.classList.remove("oculto");
+                return;
+            }
+
             if (departamento !== "Montevideo" || metodo === "punto") {
                 avisoCoordinacion.classList.remove("oculto");
                 return;
@@ -779,7 +815,7 @@
 
             const totalProductos = window.totalProductos || 0;
             const costoEnvioTexto = document.getElementById("total-envio").textContent.replace("UYU ", "");
-            const totalFinalTexto = document.getElementById("total-final").textContent.replace("UYU ", "");
+            const totalFinalTexto = (window.totalFinalConDescuento || document.getElementById("total-final").textContent).toString().replace("UYU ", "");
 
             const datosCompra = {
                 nombreCompleto,
@@ -816,6 +852,36 @@
                 window.location.href = "index.html";
             });
         }
+
+        botonConfirmarTransferencia.addEventListener("click", async () => {
+            if (!formularioEnvio.checkValidity()) {
+                formularioEnvio.reportValidity();
+                return;
+            }
+
+            avisoTransferencia.classList.add("oculto");
+            await guardarDatosEnFirebase();
+
+            const nombre = formularioEnvio.querySelector('input[placeholder="Nombre completo"]').value.trim();
+            const telefono = formularioEnvio.querySelector('input[placeholder="Teléfono"]').value.trim();
+
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            const totalFinal = `UYU ${window.totalFinalConDescuento || document.getElementById("total-final").textContent.trim()}`;
+
+            let resumenLibros = "";
+            carrito.forEach(item => {
+                resumenLibros += `• ${item.titulo} (${item.autor}) – ${item.cantidad} x UYU ${item.precio}\n`;
+            });
+
+            const mensaje = encodeURIComponent(
+                `Hola, soy ${nombre} (${telefono}) y quiero realizar la compra por transferencia bancaria.\n\n` +
+                `📚 Libros solicitados:\n${resumenLibros}\n` +
+                `💰 Total final: ${totalFinal}\n\n` +
+                `¿Podrían pasarme el número de cuenta para hacer la transferencia?`
+            );
+
+            window.location.href = `https://wa.me/59894090711?text=${mensaje}`;
+        });
 
     </script>
 
