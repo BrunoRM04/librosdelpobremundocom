@@ -13723,5 +13723,41 @@
         "descripcion": "Byung-Chul Han, una de las voces filosóficas más innovadoras que ha surgido en Alemania recientemente, afirma en este inesperado best seller, cuya primera tirada se agotó en unas semanas, que la sociedad occidental está sufriendo un silencioso cambio de paradigma: el exceso de positividad está conduciendo a una sociedad del cansancio. Así como la sociedad disciplinaria foucaultiana producía criminales y locos, la sociedad que ha acuñado el eslogan Yes We Can produce individuos agotados, fracasados y depresivos. Según el autor, la resistencia solo es posible en relación con la coacción externa. La explotación a la que uno mismo se somete es mucho peor que la externa, ya que se ayuda del sentimiento de libertad. Esta forma de explotación resulta, asimismo, mucho más eficiente y productiva debido a que el individuo decide voluntariamente explotarse a sí mismo hasta la extenuación. Hoy en día carecemos de un tirano o de un rey al que oponernos diciendo No. En este sentido, obras como Indignaos, de Stéphane Hessel, no son de gran ayuda, ya que el propio sistema hace desaparecer aquello a lo que uno podría enfrentarse. Resulta muy difícil rebelarse cuando víctima y verdugo, explotador y explotado, son la misma persona. Han señala que la filosofía debería relajarse y convertirse en un juego productivo, lo que daría lugar a resultados completamente nuevos, que los occidentales deberíamos abandonar conceptos como originalidad, genialidad y creación de la nada y buscar una mayor flexibilidad en el pensamiento: “todos nosotros deberíamos jugar más y trabajar menos, entonces produciríamos más”. ¿O es acaso una coincidencia que los chinos, para quienes originalidad y genialidad son conceptos desconocidos, sean los responsables de casi toda invención –desde la pasta hasta los fuegos artificiales- que ha dejado huella en Occidente? Sin embargo, esto no deja de ser para el autor una utopía inalcanzable para una sociedad en la que todos, incluso el ejecutivo mejor pagado, trabajamos como esclavos aplazando indefinidamente el ocio.",
         "imagen": "https://images.cdn1.buscalibre.com/fit-in/360x360/5f/fe/5ffe94dbd4ddaa7665c305985105639a.jpg",
         "stock": 1
+    },
+    {
+        "id": 1137,
+        "titulo": "EL ARTE DE INVOCAR LA MEMORIA",
+        "autor": "ESTHER LÓPEZ BARCELÓ",
+        "isbn": 9788412803228,
+        "editorial": "BARLIN LIBROS",
+        "numPaginas": null,
+        "precio": "UYU 990",
+        "descripcion": "La memoria es una forma de invocar el pasado que se conjuga en presente y se traduce en futuro. Muchas veces, la puerta de acceso del hoy a los ayeres requiere de llaves codificadas que, al estilo de la magdalena de Proust, nos ayuden a liberar del olvido a quienes en él quedaron desterrados. En 'El arte de invocar la memoria', la escritora e historiadora Esther López Barceló da cuenta de la fuerza del recuerdo colectivo a través de sus múltiples representaciones y materialidades: objetos personales encontrados en fosas, como los zapatos representados en la cubierta de este libro; grafitis fugaces, a modo de epitafios de urgencia, que dan cuenta del paso de condenados por un campo de concentración; unas escaleras transformadas en pruebas periciales; libros y documentales, depositarios de incómodas verdades, a los que se trata de hacer desaparecer? Este vibrante ensayo, escrito en un delicado tono poético, trenza un recorrido por distintas formas de invocar la memoria de una herida abierta, la de las víctimas del franquismo ?y de otras dictaduras?, a través de vestigios arqueológicos y de artefactos culturales que nos interpelan y, a la vez, nos conectan a un pasado que, gracias a ellos, no es ni será nunca un tiempo perdido.",
+        "imagen": "https://imagessl8.casadellibro.com/a/l/s7/28/9788412803228.webp",
+        "stock": 1
+    },
+    {
+        "id": 1138,
+        "titulo": "LOS INDISPENSABLES",
+        "autor": "DENIS MERKLEN",
+        "isbn": 9789915970394,
+        "editorial": null,
+        "numPaginas": null,
+        "precio": "UYU 890",
+        "descripcion": "",
+        "imagen": "./public/img/portadas/los indispensables.png",
+        "stock": 1
+    },
+    {
+        "id": 1139,
+        "titulo": "EL ARTE DE INVENTAR LA REALIDAD",
+        "autor": "ÁUREA ORTIZ",
+        "isbn": 9788412803242,
+        "editorial": "BARLIN LIBROS",
+        "numPaginas": 128,
+        "precio": "UYU 890",
+        "descripcion": "Podría parecer a simple vista que «ficción» y «realidad» son dos esferas que se diferencian nítidamente la una de la otra, pero lo cierto es que muchas más veces de las que sospechamos actúan como cara y contracara de una misma moneda… llegando incluso a (con)fundirse en múltiples ocasiones.\n\nEn El arte de inventar la realidad, la historiadora del arte y crítica de cine Áurea Ortiz Villeta sondea, a través de abundantes ejemplos de películas y series, incluyendo documentales, el modo en que esta (con)fusión opera, dando lugar a equívocos que, ya sean intencionados o no, bien pudieran suponer un reto a la hora de delimitar qué es la verdad y qué no lo es. ¿Puede una imagen inventada llegar a sustituir lo real? ¿Puede una representación convertirse en algo más real que lo real? Pensemos en un ejemplo icónico: el atentado contra Carrero Blanco. ¿Qué imagen acude a nuestra mente casi al instante al pensar en ello? […] En efecto: una escena perteneciente a la película Operación ogro, del director italiano Gillo Pontecorvo. Una ficción… que sin embargo ha quedado fijada en el imaginario colectivo como representación paradigmática de un suceso.\n\nEste breve ensayo rastrea las zonas de sombra en las que lo ficticio y lo real se entremezclan, en un itinerario orientado a arrojar luz sobre una pregunta de fondo: si cada vez nos cuesta más diferenciar las imágenes ciertas de las ficticias, ¿cuáles son los retos a los que nos enfrentamos como sociedad?",
+        "imagen": "https://images.squarespace-cdn.com/content/v1/585a5be78419c213fafc003d/824c28c6-573b-4a90-83c0-4e1d0bcfbbaf/9788412803242.jpg?format=1000w",
+        "stock": 1
     }
 ]
