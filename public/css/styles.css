@@ -107,6 +107,55 @@ body {
 
 /* BUSCADOR */
 
+.mensaje-sin-resultados {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--negro);
+  background-color: var(--blanco);
+  border: 2px dashed var(--rojo-principal);
+  border-radius: 12px;
+  margin: 2rem auto;
+  max-width: 600px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.mensaje-sin-resultados p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.mensaje-sin-resultados strong {
+  color: var(--rojo-principal);
+}
+
+.boton-consultar-libro {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background-color: var(--rojo-principal);
+  color: var(--blanco);
+  border: none;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+@media (max-width: 480px) {
+  .mensaje-sin-resultados {
+    padding: 1.5rem 1rem;
+  }
+
+  .mensaje-sin-resultados p {
+    font-size: 1rem;
+  }
+
+  .boton-consultar-libro {
+    width: 100%;
+    font-size: 1rem;
+  }
+}
+
+
+
 .seccion-buscador-libros {
   background-color: var(--rojo-principal);
   color: var(--blanco);
@@ -2299,12 +2348,26 @@ body {
 
 
 
+.burbuja-whatsapp {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #25D366;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  z-index: 10;
+  transition: transform 0.3s ease;
+}
 
-
-
-
-
-
+.burbuja-whatsapp i {
+  font-size: 36px;
+}
 
 
 

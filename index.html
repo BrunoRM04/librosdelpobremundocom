@@ -153,6 +153,10 @@
       </div>
     </section>
 
+    <a href="https://wa.me/59894090711" class="burbuja-whatsapp" target="_blank" aria-label="Chatear por WhatsApp">
+      <i class='bx bxl-whatsapp'></i>
+    </a>
+
   </main>
 
   <footer class="pie-pagina">
@@ -452,7 +456,15 @@
       });
 
       if (filtrados.length === 0) {
-        contenedor.innerHTML = '<p>No se encontraron resultados.</p>';
+        contenedor.innerHTML = `
+  <div class="mensaje-sin-resultados">
+    <p>Si no lo encuentra en la web, <strong>consulte en nuestro catálogo</strong>.</p>
+    <a href="https://wa.me/59894090711?text=Hola,%20quisiera%20consultar%20por%20un%20libro%20que%20no%20encuentro%20en%20la%20web" 
+        class="boton-consultar-libro" target="_blank">
+      Consultar libro
+    </a>
+  </div>
+`;
         return;
       }
 
