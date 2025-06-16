@@ -12472,7 +12472,9 @@
         "precio": "UYU 990",
         "descripcion": "Año 2033, Moscú. Los supervivientes de la terrible guerra nuclear que ha devastado el mundo se han refugiado bajo tierra, en la red del metro. En cada una de las estaciones, convertidas en pequeñas ciudades Estado, sus habitantes se agrupan en torno a las más diversas ideologías, religiones o movidos por un único objetivo: impedir una invasión de las criaturas mutantes del exterior.",
         "imagen": "https://planetadelibrosuy0.cdnstatics.com/usuaris/libros/fotos/373/m_libros/372989_portada_metro-2033-ne_dmitry-glukhovsky_202207251716.jpg",
-        "stock": 1
+        "stock": 1,
+        "consultarPorWhatsApp": true,
+        "numeroWhatsApp": "59894090711"
     },
     {
         "id": 1033,
