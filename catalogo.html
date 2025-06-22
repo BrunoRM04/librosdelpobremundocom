@@ -206,12 +206,14 @@
 
             actualizarContadorCarrito();
             actualizarCarrito();
+            localStorage.setItem('carrito', JSON.stringify(carrito)); // ✅ Línea nueva
         }
 
         function eliminarItem(i) {
             carrito.splice(i, 1);
             actualizarContadorCarrito();
             actualizarCarrito();
+            localStorage.setItem('carrito', JSON.stringify(carrito)); // ✅ Línea nueva
         }
 
         document.addEventListener("click", (e) => {
@@ -227,6 +229,12 @@
 
                 const libroData = librosCache.find(l => l.titulo === titulo);
                 const stock = libroData?.stock || 1;
+                const libroId = libroData?.id;
+
+                let precioFinal = precio;
+                if ([1077].includes(libroId)) {
+                    precioFinal = Math.max(precio - 1, 0);
+                }
 
                 const existente = carrito.find(item => item.titulo === titulo);
                 if (existente) {
@@ -234,12 +242,6 @@
                         existente.cantidad++;
                     } else {
                         alert("No hay más stock disponible para este libro.");
-                    }
-                    const libroId = libroData?.id;
-                    let precioFinal = precio;
-
-                    if ([1077].includes(libroId)) {
-                        precioFinal = Math.max(precio - 1, 0);
                     }
                 } else {
                     carrito.push({ titulo, autor, precio: precioFinal, imagen, cantidad: 1 });
