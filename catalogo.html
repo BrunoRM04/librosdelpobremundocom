@@ -447,7 +447,8 @@
                 if (numero === paginaActual) boton.classList.add('activo');
                 boton.addEventListener('click', () => {
                     paginaActual = numero;
-                    renderizarLibros(); // usa librosFiltrados
+                    renderizarLibros();
+                    window.scrollTo({ top: 0, behavior: 'smooth' }); // 👈 Esta es la línea que debes agregar
                 });
                 contenedor.appendChild(boton);
             };
