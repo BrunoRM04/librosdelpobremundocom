@@ -359,10 +359,15 @@
 
                     document.getElementById("contadorProductos").textContent = `${libros.length} productos`;
 
-                    libros.sort(() => Math.random() - 0.5); // Mantener orden aleatorio si lo deseás
+                    libros.sort(() => Math.random() - 0.5); // ✅ Primero mezclás
 
-                    paginaActual = 1; // Siempre empezar desde la primera página
-                    renderizarLibros(); // ✅ Esta función ya respeta paginación
+                    librosCache = libros;
+                    librosFiltrados = [...libros]; // ✅ Luego guardás el orden mezclado
+
+                    document.getElementById("contadorProductos").textContent = `${libros.length} productos`;
+
+                    paginaActual = 1;
+                    renderizarLibros();// ✅ Esta función ya respeta paginación
                 })
                 .catch(err => {
                     console.error("Error cargando libros.json", err);
