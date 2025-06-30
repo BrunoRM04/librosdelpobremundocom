@@ -910,6 +910,75 @@ body {
 
 /* CATALOGO */
 
+.filtros-catalogo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.filtro-izquierda {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.etiqueta-ordenar {
+  color: var(--negro);
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.select-ordenar {
+  padding: 6px 10px;
+  font-size: 1rem;
+  border: 1px solid var(--negro);
+  border-radius: 0;
+  background-color: var(--blanco);
+  color: var(--negro);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.select-ordenar:hover,
+.select-ordenar:focus {
+  border-color: var(--rojo-principal);
+  outline: none;
+}
+
+.contador-productos {
+  color: var(--negro);
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 576px) {
+  .contador-productos {
+    display: none;
+  }
+
+  .select-ordenar {
+    width: 100%;
+  }
+
+  .filtro-izquierda {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .filtros-catalogo {
+    gap: 10px;
+  }
+}
+
+
+
 .seccion-catalogo {
   padding: 50px 20px;
   background-color: var(--blanco);
@@ -1085,6 +1154,67 @@ body {
     margin-bottom: 6px;
   }
 }
+
+.paginacion-catalogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 30px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 8px 12px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;        /* Firefox */
+  max-width: 100vw;             /* No desborda la pantalla */
+  box-sizing: border-box;       /* Incluye padding en el ancho */
+}
+
+.paginacion-catalogo::-webkit-scrollbar {
+  display: none; /* Chrome/Safari: oculta la barra de scroll horizontal */
+}
+
+.boton-pagina {
+  padding: 6px 12px;
+  border: 1px solid var(--rojo-principal);
+  background-color: var(--blanco);
+  color: var(--rojo-principal);
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  flex: 0 0 auto;
+  transition: background 0.2s ease;
+  font-size: 14px;
+}
+
+.boton-pagina.activo {
+  background-color: var(--rojo-principal);
+  color: var(--blanco);
+}
+
+.boton-pagina:hover:not(.activo) {
+  background-color: var(--rojo-principal);
+  color: var(--blanco);
+}
+
+.separador-paginacion {
+  padding: 6px 12px;
+  color: var(--gris);
+  font-weight: bold;
+  flex: 0 0 auto;
+  font-size: 14px;
+  user-select: none;
+}
+
+/* RESPONSIVE para móviles y tablets */
+@media (max-width: 768px) {
+  .paginacion-catalogo {
+    justify-content: flex-start;  /* permite hacer swipe lateral */
+    padding-left: 16px;
+  }
+}
+
 
 /* CATALOGO */
 

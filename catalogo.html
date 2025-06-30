@@ -77,10 +77,27 @@
         </div>
         <div class="fondo-oscuro" id="fondoOscuro"></div>
 
+
         <section class="seccion-catalogo">
             <div class="contenedor-catalogo">
                 <h2 class="titulo-catalogo">Nuestro Catálogo</h2>
+                <div class="filtros-catalogo">
+                    <div class="filtro-izquierda">
+                        <label for="ordenarSelect" class="etiqueta-ordenar">Ordenar por:</label>
+                        <select id="ordenarSelect" class="select-ordenar">
+                            <option value="alfabetico">Alfabéticamente</option>
+                            <option value="precio-asc">Precio: menor a mayor</option>
+                            <option value="precio-desc">Precio: mayor a menor</option>
+                            <option value="fecha">Fecha: antiguo a nuevo</option>
+                            <option value="fecha-reciente">Fecha: nuevo a antiguo</option>
+                        </select>
+                    </div>
+                    <div class="contador-productos" id="contadorProductos">
+                        0 productos
+                    </div>
+                </div>
                 <div class="grid-catalogo" id="grid-libros"></div>
+                <div class="paginacion-catalogo" id="paginacionCatalogo"></div>
             </div>
         </section>
 
@@ -131,6 +148,9 @@
     <script>
 
         let librosCache = [];
+        let librosFiltrados = [];
+        let librosPorPagina = 20;
+        let paginaActual = 1;
 
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
         actualizarContadorCarrito();
@@ -263,43 +283,35 @@
             document.getElementById('fondoOscuro')?.classList.remove('activo');
         });
 
-        function mostrarTodosLosLibros() {
-            fetch('libros.json')
-                .then(res => res.json())
-                .then(libros => {
-                    librosCache = libros;
-                    const contenedor = document.getElementById("grid-libros");
-                    contenedor.innerHTML = '';
+        function extraerPrecio(precioString) {
+            return parseFloat(precioString.replace(/[^\d.]/g, "")) || 0;
+        }
 
-                    libros.sort(() => Math.random() - 0.5);
+        function renderizarLibros(libros = librosFiltrados) {
+            const contenedor = document.getElementById("grid-libros");
+            contenedor.innerHTML = '';
 
-                    libros.forEach(libro => {
-                        const precioOriginal = parseFloat(libro.precio.replace(/[^\d.]/g, ""));
-                        let descuento = 0.10; // descuento por defecto
+            const inicio = (paginaActual - 1) * librosPorPagina;
+            const fin = inicio + librosPorPagina;
+            const librosPagina = libros.slice(inicio, fin);
 
-                        // Lógica de descuentos especiales (desactivada temporalmente):
-                        // if ([1077, 1079].includes(libro.id)) {
-                        //     descuento = 0.05;
-                        // } else if (libro.id === 1128) {
-                        //     descuento = 0.15;
-                        // } else if (libro.id === 1135) {
-                        //     descuento = 0.10;
-                        // }
-                        let precioFinal = Math.round(precioOriginal * (1 - descuento));
-                        if ([].includes(libro.id)) {
-                            precioFinal = Math.max(precioFinal - 1, 0);
-                        }
+            librosPagina.forEach(libro => {
+                const precioOriginal = parseFloat(libro.precio.replace(/[^\d.]/g, ""));
+                let descuento = 0.10;
+                let precioFinal = Math.round(precioOriginal * (1 - descuento));
+                if ([].includes(libro.id)) {
+                    precioFinal = Math.max(precioFinal - 1, 0);
+                }
 
-                        let rutaImagen = libro.imagen || '';
-                        if (rutaImagen.startsWith('http')) {
-                        } else {
-                            rutaImagen = libro.imagen.replace(/^\.?\/?/, '').replace(/%20/g, ' ');
-                            rutaImagen = `public/img/portadas/${rutaImagen.split('/').pop()}`;
-                        }
+                let rutaImagen = libro.imagen || '';
+                if (!rutaImagen.startsWith('http')) {
+                    rutaImagen = libro.imagen.replace(/^\.?\/?/, '').replace(/%20/g, ' ');
+                    rutaImagen = `public/img/portadas/${rutaImagen.split('/').pop()}`;
+                }
 
-                        const tarjeta = document.createElement('div');
-                        tarjeta.classList.add('tarjeta-catalogo');
-                        tarjeta.innerHTML = `
+                const tarjeta = document.createElement('div');
+                tarjeta.classList.add('tarjeta-catalogo');
+                tarjeta.innerHTML = `
 <span class="etiqueta-descuento-catalogo">-${Math.round(descuento * 100)}%</span>
 <button class="boton-favorito" data-id="${libro.id}">
   <i class='bx bx-heart'></i>
@@ -318,21 +330,39 @@
   </p>
 <div class="botones-catalogo">
   ${libro.stock > 0
-                                ? `
+                        ? `
       <a href="libro-detalle.html?id=${libro.id}" class="boton-ver-catalogo">Ver más</a>
       ${libro.consultarPorWhatsApp
-                                    ? `<a href="https://wa.me/${libro.numeroWhatsApp}?text=Hola,%20quiero%20consultar%20por%20el%20libro%20${encodeURIComponent(libro.titulo)}" 
+                            ? `<a href="https://wa.me/${libro.numeroWhatsApp}?text=Hola,%20quiero%20consultar%20por%20el%20libro%20${encodeURIComponent(libro.titulo)}" 
               target="_blank" class="boton-consultar">
               <i class='bx bxl-whatsapp'></i> Consultar
            </a>`
-                                    : `<button class="boton-anadir-catalogo"><i class='bx bx-cart-alt'></i> Añadir</button>`}
+                            : `<button class="boton-anadir-catalogo"><i class='bx bx-cart-alt'></i> Añadir</button>`}
     `
-                                : `<div class="sin-stock-catalogo">Sin Stock Disponible</div>`
-                            }
+                        : `<div class="sin-stock-catalogo">Sin Stock Disponible</div>`
+                    }
 </div>
 `;
-                        contenedor.appendChild(tarjeta);
-                    });
+                contenedor.appendChild(tarjeta);
+            });
+
+            marcarFavoritosIniciales();
+            renderizarPaginacion(libros.length);
+        }
+
+        function mostrarTodosLosLibros() {
+            fetch('libros.json')
+                .then(res => res.json())
+                .then(libros => {
+                    librosCache = libros;
+                    librosFiltrados = [...libros];
+
+                    document.getElementById("contadorProductos").textContent = `${libros.length} productos`;
+
+                    libros.sort(() => Math.random() - 0.5); // Mantener orden aleatorio si lo deseás
+
+                    paginaActual = 1; // Siempre empezar desde la primera página
+                    renderizarLibros(); // ✅ Esta función ya respeta paginación
                 })
                 .catch(err => {
                     console.error("Error cargando libros.json", err);
@@ -340,6 +370,40 @@
         }
 
         document.addEventListener("DOMContentLoaded", mostrarTodosLosLibros);
+
+        document.getElementById("ordenarSelect")?.addEventListener("change", (e) => {
+            const criterio = e.target.value;
+            aplicarFiltro(criterio);
+        });
+
+        function aplicarFiltro(criterio) {
+            let librosOrdenados = [...librosCache];
+
+            switch (criterio) {
+                case "precio-asc":
+                    librosOrdenados.sort((a, b) => extraerPrecio(a.precio) - extraerPrecio(b.precio));
+                    break;
+                case "precio-desc":
+                    librosOrdenados.sort((a, b) => extraerPrecio(b.precio) - extraerPrecio(a.precio));
+                    break;
+                case "alfabetico":
+                    librosOrdenados.sort((a, b) => a.titulo.localeCompare(b.titulo));
+                    break;
+                case "fecha":
+                    librosOrdenados.sort((a, b) => a.id - b.id);
+                    break;
+                case "fecha-reciente":
+                    librosOrdenados.sort((a, b) => b.id - a.id);
+                    break;
+                default:
+                    break;
+            }
+
+            librosFiltrados = librosOrdenados;
+            paginaActual = 1;
+            document.getElementById("contadorProductos").textContent = `${librosFiltrados.length} productos`;
+            renderizarLibros(); // ahora usa librosFiltrados por defecto
+        }
 
         let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
 
@@ -360,6 +424,78 @@
                 localStorage.setItem('favoritos', JSON.stringify(favoritos));
             }
         });
+
+        function renderizarPaginacion(totalLibros) {
+            const totalPaginas = Math.ceil(totalLibros / librosPorPagina);
+            const contenedor = document.getElementById("paginacionCatalogo");
+            contenedor.innerHTML = '';
+
+            if (totalPaginas <= 1) {
+                contenedor.style.display = 'none';
+                return;
+            }
+
+            const crearBoton = (numero) => {
+                const boton = document.createElement('button');
+                boton.textContent = numero;
+                boton.className = 'boton-pagina';
+                if (numero === paginaActual) boton.classList.add('activo');
+                boton.addEventListener('click', () => {
+                    paginaActual = numero;
+                    renderizarLibros(); // usa librosFiltrados
+                });
+                contenedor.appendChild(boton);
+            };
+
+            const crearSeparador = () => {
+                const existe = contenedor.querySelector('.separador-paginacion:last-child');
+                if (!existe || existe.textContent !== '...') {
+                    const span = document.createElement('span');
+                    span.textContent = '...';
+                    span.className = 'separador-paginacion';
+                    contenedor.appendChild(span);
+                }
+            };
+
+            contenedor.style.display = 'flex';
+
+            // Siempre mostrar primera página
+            crearBoton(1);
+
+            // Mostrar páginas cercanas a la actual
+            let desde = Math.max(2, paginaActual - 1);
+            let hasta = Math.min(totalPaginas - 1, paginaActual + 1);
+
+            // Si estamos en las primeras páginas, expandimos visibilidad
+            if (paginaActual <= 6) {
+                desde = 2;
+                hasta = 9;
+            }
+
+            // Si estamos en las últimas páginas
+            if (paginaActual >= totalPaginas - 5) {
+                desde = totalPaginas - 8;
+                hasta = totalPaginas - 1;
+            }
+
+            // Ajuste por si hay menos páginas
+            desde = Math.max(2, desde);
+            hasta = Math.min(totalPaginas - 1, hasta);
+
+            // Separador después del 1 (si hay salto)
+            if (desde > 2) crearSeparador();
+
+            for (let i = desde; i <= hasta; i++) {
+                crearBoton(i);
+            }
+
+            // Separador antes del último (si hay salto)
+            if (hasta < totalPaginas - 1) crearSeparador();
+
+            // Siempre mostrar última página
+            if (totalPaginas > 1) crearBoton(totalPaginas);
+        }
+
 
         function marcarFavoritosIniciales() {
             setTimeout(() => {
