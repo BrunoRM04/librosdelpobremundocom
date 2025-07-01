@@ -488,11 +488,11 @@
             let total = totalProductos + envio;
 
             if (opcionPago === "Transferencia bancaria") {
-                total = Math.round(total * 0.8); 
+
             }
 
             if (totalFinalEl) totalFinalEl.textContent = `UYU ${total}`;
-            window.totalFinalConDescuento = total; 
+            window.totalFinalConDescuento = null;
         }
 
         function calcularCostoEnvio() {
@@ -815,7 +815,7 @@
 
             const totalProductos = window.totalProductos || 0;
             const costoEnvioTexto = document.getElementById("total-envio").textContent.replace("UYU ", "");
-            const totalFinalTexto = (window.totalFinalConDescuento || document.getElementById("total-final").textContent).toString().replace("UYU ", "");
+            const totalFinalTexto = document.getElementById("total-final").textContent;
 
             const datosCompra = {
                 nombreCompleto,

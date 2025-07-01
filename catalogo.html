@@ -297,7 +297,7 @@
 
             librosPagina.forEach(libro => {
                 const precioOriginal = parseFloat(libro.precio.replace(/[^\d.]/g, ""));
-                let descuento = 0.10;
+                let descuento = 0.05;
                 let precioFinal = Math.round(precioOriginal * (1 - descuento));
                 if ([].includes(libro.id)) {
                     precioFinal = Math.max(precioFinal - 1, 0);
