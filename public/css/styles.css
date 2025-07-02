@@ -1166,13 +1166,13 @@ body {
   white-space: nowrap;
   padding: 8px 12px;
   scroll-behavior: smooth;
-  scrollbar-width: none;        /* Firefox */
-  max-width: 100vw;             /* No desborda la pantalla */
-  box-sizing: border-box;       /* Incluye padding en el ancho */
+  scrollbar-width: none;       
+  max-width: 100vw;             
+  box-sizing: border-box;       
 }
 
 .paginacion-catalogo::-webkit-scrollbar {
-  display: none; /* Chrome/Safari: oculta la barra de scroll horizontal */
+  display: none; 
 }
 
 .boton-pagina {
@@ -1182,9 +1182,7 @@ body {
   color: var(--rojo-principal);
   font-weight: bold;
   cursor: pointer;
-  border-radius: 4px;
   flex: 0 0 auto;
-  transition: background 0.2s ease;
   font-size: 14px;
 }
 
@@ -1207,14 +1205,12 @@ body {
   user-select: none;
 }
 
-/* RESPONSIVE para móviles y tablets */
 @media (max-width: 768px) {
   .paginacion-catalogo {
-    justify-content: flex-start;  /* permite hacer swipe lateral */
+    justify-content: flex-start;  
     padding-left: 16px;
   }
 }
-
 
 /* CATALOGO */
 

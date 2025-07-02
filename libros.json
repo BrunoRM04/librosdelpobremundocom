@@ -9,7 +9,13 @@
         "precio": "UYU 850",
         "descripcion": "La puntuación, como sabemos, tiene una larga historia, desde los libros de cuentas de los antiguos escribas egipcios hasta los últimos smileys. Sin dejar de prestar la máxima atención al arte de la puntuación en sus formas clásica y contemporánea, este libro pretende abrir un campo más amplio: el de la estigmatología (del griego stigmê: 'punto'), que analiza los efectos de puntuación allí donde aparecen. En la experiencia estética, en primer lugar: escuchar, mirar, significa siempre puntuar la imagen o el sonido, como ejemplifican la práctica de la auscultación (que dista mucho de limitarse a la medicina) o la práctica del cabeceo en el cine. En segundo lugar, en la narrativa y en la producción autobiográfica del yo: el sujeto no es más que la secuela de una serie de puntuaciones, como sugieren el psicoanálisis y la literatura, desde Tristram Shandy hasta Lacan y el extraordinario cuento de Chéjov El signo de exclamación. Para describir todos estos efectos de puntuación, intentamos finalmente construir un concepto filosófico de la puntuación -con Hegel, Nietzsche y algunos otros- que esté atento al ritmo y a la pulsación del fraseo, así como a las implicaciones políticas inherentes a cada punto final. P. Sz.",
         "imagen": "./public/img/portadas/a fuerza de puntos.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Filosofía",
+            "Teoría literaria",
+            "Psicoanálisis",
+            "Estética"
+        ]
     },
     {
         "id": 2,
@@ -21,7 +27,12 @@
         "precio": "UYU 1650",
         "descripcion": "Los políticos ilustrados decían que intentaban remediar la miseria, pero en realidad estaban manteniendo el sistema que la generaba. Un régimen de injusticia y servilismo que, como indica Tomás Moro en Utopía, se basaba en el argumento de la «pobreza embrutecedora », que deja a los pobres sin «energía para sacudir el yugo». Ese yugo era el orden que exigía represión: mantener siempre la «cuerda tirante», como recomendaba Floridablanca, quien advertía que los pobres «en años de escasez son peligrosísimos». El pobre se convirtió en el último soporte de nobles y criados, de ricos y siervos, de señoras y criadas, de trabajadores que se ofrecían a domicilio a precios de miseria mientras gremios enteros rozaban la pobreza. La caridad era sospechosa, pero pocos se atrevían a revelar que, en realidad, enmascaraba un formidable mecanismo que mantenía legiones de criados a bajo precio, poco más que lo que costaba un esclavo. En este libro, Jacques Soubeyroux reúne las visiones de los historiadores españoles de las dos últimas décadas y también la de Michel Foucault, que influye claramente en su visión de la represión de la pobreza, ofreciendo una tesis que refuerza el enmascaramiento de la violencia social por parte del absolutismo, disfrazado de paternalismo ilustrado. Estamos, pues, ante una obra fundamental que cierra un ciclo historiográfico y plantea un nuevo enfoque sobre un tema crucial en la historia social de España, originado como tantos otros en el siglo olvidado. «Soubeyroux descubrió muy pronto que Madrid fue el destino final de una auténtica inmigración de la miseria convirtiéndose en el mejor observatorio para comprender por qué ser pobre era una manera de mantener estable el sistema». José Luis Gómez Urdáñez",
         "imagen": "./public/img/portadas/el absolutismo ilustrado y los pobes.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Historia",
+            "Política",
+            "Sociología"
+        ]
     },
     {
         "id": 3,
@@ -33,7 +44,11 @@
         "precio": "UYU 1450",
         "descripcion": "Ida es arquitecta, sin hijos y en su mejor momento, pero últimamente las señales de advertencia se han vuelto demasiado diferentes para ignorarlas. Por seguridad, ha explorado la posibilidad de congelar sus óvulos para usarlos más adelante, si encuentra al hombre adecuado. Ahora es verano e Ida está en un autobús rumbo al sur hacia la idílica cabaña familiar junto al mar, donde su madre celebrará su 65 cumpleaños con su pequeña familia. Todo parece listo para un fin de semana de verano perfecto, pero entonces Marthe, la hermana menor de Ida, da una noticia. 'Adultos' es una historia edificante, divertida e inesperadamente devastadora sobre una familia moderna disfuncional.",
         "imagen": "./public/img/portadas/adultos.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Narrativa contemporánea",
+            "Drama familiar"
+        ]
     },
     {
         "id": 4,
@@ -45,7 +60,12 @@
         "precio": "UYU 1150",
         "descripcion": "Llueve intensamente en Nápoles y a las pocas horas los estragos del agua se dejan sentir en la ciudad, algunos edificios se derrumban, grandes simas se abren en las calles. Por si fuera poco, empiezan a producirse extraños fenómenos: de la fortaleza almenada de la ciudad salen voces fantasmagóricas, las monedas de cinco liras emiten una dulce melodía, el mar se desborda y sus aguas siguen el rastro de los niños que callejean, tres muñecas raídas aparecen abandonadas en lugares misteriosos... Todo parece indicar que la lluvia es el presagio de un inminente suceso aún más extraordinario que cambiará para siempre el sentido mismo de la vida. Publicada con inmenso éxito en 1977 pero jamás reeditada hasta la muerte del autor, esta novela coral e inquietante, que la crítica ha considerado como uno de los relatos más bellos jamás escritos sobre Nápoles, se ha convertido al cabo de las décadas en una obra de culto aguardada por generaciones de lectores.",
         "imagen": "./public/img/portadas/aguamala.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Narrativa contemporánea",
+            "Realismo mágico",
+            "Literatura italiana"
+        ]
     },
     {
         "id": 5,
@@ -57,7 +77,12 @@
         "precio": "UYU 1550",
         "descripcion": "Considerada por el autor su mejor obra, el ciclo 'Alamedas oscuras' constituye un hito en la prosa rusa del siglo XX: último exponente de la larga tradición literaria decimonónica iniciada por Pushkin ―una despedida de aquella Rusia patriarcal de nobles y campesinos, de siervos y terratenientes, de fincas, carretas, casas señoriales y celebraciones religiosas―, es también una exploración, una búsqueda del lenguaje y del estilo adecuados para narrar la intimidad de las relaciones amorosas. Iván Bunin, uno de los escritores más exquisitos de su tierra, condensa en estos relatos toda su experiencia vital y artística y alcanza cimas de belleza, sensibilidad y concisión.",
         "imagen": "./public/img/portadas/alamedas oscuras.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Relatos",
+            "Literatura rusa",
+            "Clásicos"
+        ]
     },
     {
         "id": 6,
@@ -69,7 +94,12 @@
         "precio": "UYU 650",
         "descripcion": "Parir y abortar en la clandestinidad, autos cazando a chicos como moscas, delatores por todas partes, personas abandonadas a la buena de Dios, prostitución, militancia, locura e instituciones psiquiátricas atraviesan esta novela de María Teresa Andruetto. También la libertad y su pérdida, la búsqueda persistente de un padre, la dictadura, el insilio, la construcción de identidad y un linaje de mujeres unidas por las violencias de su tiempo. Y vuelve Aldao, territorio ficcional presente en sus otras novelas, convertido aquí en caleidoscopio que, como el óleo de un paisaje de llanura, irradia historias con su sol de fuego. \"La memoria es un carretel que empieza a rodar y se me escapa de las manos y de la voluntad, porque una cosa lleva a la otra, como un río de montaña que serpentea, pega saltos y salpica aquí y allá sin que podamos detenerlo\".",
         "imagen": "./public/img/portadas/aldao.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Narrativa argentina",
+            "Memoria histórica",
+            "Feminismo"
+        ]
     },
     {
         "id": 7,
@@ -81,7 +111,12 @@
         "precio": "UYU 810",
         "descripcion": "\"Un extraordinario debut\" (The New York Review of Books) traducido en más de 20 países, multipremiado y alabado por la crítica internacional. \"Leyendo la primera novela de Andrew Ridker pronto descubres que estás en presencia de un nuevo talento [...]. Su prosa es fresca y divertidísima\". The Times. Arthur Alter no está pasando por un buen momento. Profesor universitario, mediocre y sesentón, tiene harta a su jovencísima novia, no puede pagar la hipoteca y sus hijos, Ethan y Maggie, no le dirigen la palabra. Para evitar perder la lujosa casa familiar, Arthur decide invitarles a pasar un fin de semana con la excusa de una reconciliación, pero con la intención real de hacerse con la pequeña fortuna secreta que su difunta esposa Francine les legó. Desde el fallecimiento de su madre, Ethan vive en Nueva York y se ha convertido en un ermitaño. Ha abandonado su trabajo, se ha comprado un apartamento que no se puede permitir y su parte de la herencia prácticamente ha desaparecido. Maggie, por su parte, se ha convertido en una especie de asceta voluntaria. No quiere tocar el legado de su madre, pero, al mismo tiempo, solo consigue trabajos mal pagados que no le dan ni para subsistir. Contra todo pronóstico, ambos aceptarán la invitación de su padre sin que este imagine que todos tienen una agenda oculta. 'Los altruistas' es una oscura y divertida saga familiar que afronta la división entre los babyboomers y su descendencia millennial, que nos recuerda que todos cometemos errores y que, de alguna manera, lo importante es encontrar el camino de vuelta. La crítica ha dicho: \"El arrollador debut de Ridker sigue las angustias de la familia Alter, judía, de clase media, en su búsqueda de la moralidad. Ridker, con su humor, agudeza y profundidad, ha creado una novela que impactará a los lectores\". Publishers Weekly. \"El entrañable final abre la posibilidad de un futuro brillante para la familia, que es precisamente lo que parece que le depara al dotado autor de este extraordinario debut\". Stephen McCauley, The New York Review of Books. \"Bellamente escrito, con ingeniosos diálogos y personajes fascinantes, el impresionante y profundamente gratificante debut de Ridker es una mirada perspicaz a una familia rota por la pérdida, que lucha volver a conectar entre ellos y con sí mismos\". Booklist. \"Una ingeniosa, maliciosamente divertida y psicológicamente aguda novela sobre el coste de ser bueno. Consigue satirizar la locura de sus personajes y su egoísmo, mientras hace que nos quedemos siempre de su parte\". The Daily Mail. \"Los altruistas es consciente de las contradicciones entre moralidad y comodidad que están presentes por todos lados bajo las estructuras globales del capitalismo y de la política\". The New Yorker. \"Con una prosa aguda y precisión de cirujano, disecciona el desmembramiento de una familia. Lo que ocultamos en las sombras nunca fue tan visible\". Pilar Manzanares, Esquire.",
         "imagen": "./public/img/portadas/los altruistas.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Narrativa contemporánea",
+            "Sátira",
+            "Drama familiar"
+        ]
     },
     {
         "id": 8,
@@ -93,7 +128,12 @@
         "precio": "UYU 750",
         "descripcion": "'Los años extraordinarios' recoge las memorias de Jaime Fanjul, nacido en Salamanca en 1902 en el seno de una familia burguesa apasionada por las serpientes, y nos propone un recorrido valleinclanesco por el siglo XX a través de sus recuerdos y viajes. No hay clave fundamental del siglo que esta prodigiosa novela no evoque: de la llegada del mar a Salamanca al breve auge de los coches impulsados por el pensamiento; de la terrible crueldad de las cárceles portuguesas a la guerra de los de Alicante contra España (y los holandeses contra el resto del mundo); de las hazañas del Miseno, barco submarino transitador de túneles, a las insólitas habilidades de los teósofos, capaces de levitar unos centímetros por encima de la silla; de la llegada —boca abajo— del hombre a la Luna al cambio de ubicación de la ciudad de París en 1940. En 'Los años extraordinarios' caben los niños con poderes antiguos, los esclavos que aterrorizan a sus amos, los fantasmas con ropa de sastre, las jovencitas de ochenta años, los judíos que cambian el tiempo, las peleas a puñetazo limpio con monjas bravas, los talleres de estropear cosas... Jaime Fanjul recorre el mundo contando lo mucho que le pasa y lo poco que aprende. Serio, observador, sin queja, rememora su camino con humor imprevisible y aliento poético.",
         "imagen": "./public/img/portadas/los años extraordinarios.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Ficción histórica",
+            "Realismo mágico",
+            "Humor literario"
+        ]
     },
     {
         "id": 9,
@@ -105,7 +145,12 @@
         "precio": "UYU 790",
         "descripcion": "\"Un viaje fantástico a un mundo en el cual el sexo y las diferencias binarias entre lo normal y lo patológico se disuelven y transmutan, no sin riesgo\", escribió Paul Preciado sobre 'Arcadia'. Esta aclamada novela de la francesa Emmanuelle Bayamack-Tam ha sido traducida al español por Lil Sclavo y editada por El cuenco de plata. Lil elige un fragmento para que empiecen a leer este texto irreverente y vertiginoso que pronto estará en librerías.",
         "imagen": "./public/img/portadas/arcadia.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Narrativa queer",
+            "Literatura contemporánea",
+            "Ficción especulativa"
+        ]
     },
     {
         "id": 10,
@@ -117,7 +162,12 @@
         "precio": "UYU 1900",
         "descripcion": "Un escritor al borde de la jubilación recibe la propuesta de escribir una autobiografía del general Franco. El encargo le parece un sarcasmo. Toda su vida ha estado condicionada ―y no para bien― por el dictador, pero el editor confía en sus cualidades de excelente redactor de libros de divulgación y biografías de personajes célebres. Marcial Pombo, un antifranquista de toda la vida, empieza a escribir como si lo hiciera Franco, pero, de vez en cuando, no puede más y replica al autobiografiado. Es decir, se replica esquizofrénicamente a sí mismo y trata de ofrecer como contrapunto algunas notas de su vida personal durante la dictadura. El resultado: una obra abierta, una novela en la que él es, al mismo tiempo, escritor y personaje. Franco, algunos miembros de su familia y de su entorno político, y muchos de sus enemigos se convierten en personajes de novela sin salir de la historia. Vázquez Montalbán nos ofrece el esfuerzo narrativo más importante de su vida con este relato lleno de hechos históricos y de personajes supuestos.",
         "imagen": "./public/img/portadas/autobiografia del general franco.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Ficción histórica",
+            "Política",
+            "Memoria histórica"
+        ]
     },
     {
         "id": 11,
@@ -129,7 +179,12 @@
         "precio": "UYU 1450",
         "descripcion": "PREMIO GONCOURT DE BIOGRAFÍA. Un viaje alrededor del mundo tras los pasos del creador de Corto Maltés. \"Más de veinte años después de la muerte de Hugo Pratt, ni su máximo héroe ni su obra han envejecido un ápice, las aventuras de Corto Maltés continúan desafiando el tiempo\". Le Monde. \"Cuando quiero relajarme leo a Engels, cuando quiero algo serio leo a Corto Maltés\". Umberto Eco. Esta es una biografía de aventuras, la celebración de ese mundo sin fronteras que fue la vida y la obra de Hugo Pratt, un particularísimo y seductor universo que se burla de la distinción entre la cultura noble y la popular, en el que conviven con naturalidad las civilizaciones del pasado y las del presente, la utopía y el pragmatismo, la acción y el desapego, la bufonería y la melancolía, el comportamiento caballeresco y la codicia, el amor y las ganas de escapar de él... Siempre a través de un dibujo que parece negarse a elegir entre la abstracción y lo figurativo, mediante la audacia de los encuadres, de las elipsis y de una dimensión poética que lo han convertido, como el propio Pratt proclamaba, en auténtica \"literatura dibujada\".",
         "imagen": "./public/img/portadas/la aventura soñada.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Biografía",
+            "Historieta",
+            "Cultura popular"
+        ]
     },
     {
         "id": 12,
@@ -141,7 +196,12 @@
         "precio": "UYU 850",
         "descripcion": "Un thriller magistral y de alto voltaje por la ganadora del Premio Pepe Carvalho entre otros. «Todo un clásico sobre el que aletea el Nobel» --Elena Hevia, El Periódico de Catalunya Corre el año 1977 y Hannnah y Wes Jarrett, un respetable hombre de negocios y miembro de una de las familias más poderosas de Detroit, viven felices junto a sus hijos de cinco y ocho años en su casa de las afueras. Ismelda, su criada, hace que en el hogar todo sea más llevadero. Pero su vida y la de sus vecinos se ve sacudida por la presencia en la ciudad de un asesino al que los medios han apodado Babysitter: ya ha raptado y torturado a seis niños y ha dejado sus cuerpos en la carretera en posturas llamativas, como si durmieran. En una fiesta filantrópica de la familia Jarrett, Hannah conoce al señor R., un hombre extraño y oscuramente carismático con el que inicia una peligrosa aventura. Mientras tanto, el esquivo asesino en serie, que parece formar parte de la élite de Detroit, sigue acumulando víctimas y llevando a la desesperación a la ciudad. 'Babysitter' es una exploración psicológica de los rincones más oscuros de la psique humana y una crítica demoledora del racismo, la violencia sexual, la homofobia y la misoginia.",
         "imagen": "./public/img/portadas/babysitter.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Thriller",
+            "Psicología",
+            "Crítica social"
+        ]
     },
     {
         "id": 13,
@@ -153,7 +213,12 @@
         "precio": "UYU 1690",
         "descripcion": "\"El pasado no te da de comer. Me iré como he llegado. Intacta, acusando de mis faltas a quienes me torturaron. Me hubiera gustado nacer estatua, soy una babosa debajo de mi estiércol.\" Un autorretrato obsesivo y revelador de una mujer notable humillada por las circunstancias de su nacimiento y por su apariencia física. Cuando se publicó por primera vez, 'La Bastarda' obtuvo las comparaciones de Violette Leduc con Jean Genet por la descripción franca de sus escapadas sexuales y su comportamiento 'inmoral'. Una obra confesional que contiene retratos de varios autores y autoras franceses famosos, este libro es más que una memoria centelleante. El brillante estilo de escritura de Leduc y su atención al lenguaje transforman esta autobiografía en una obra de arte.",
         "imagen": "./public/img/portadas/la bastarda.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Autobiografía",
+            "Feminismo",
+            "Literatura francesa"
+        ]
     },
     {
         "id": 14,
@@ -165,7 +230,12 @@
         "precio": "UYU 1190",
         "descripcion": "En el último siglo y medio de desarrollo urbano se ha creado una situación en la que las vías públicas son el campo de batalla de contendientes desiguales: los automóviles de combustión interna, potentes y numerosos, y las bicicletas, vulnerables y menos numerosas. Décadas de decisiones jurídicas, políticas y de infraestructuras han acabado favoreciendo al automóvil y las vías urbanas se han diseñado en consecuencia. Pero esas mismas decisiones no han suprimido los derechos fundamentales de ciclistas y peatones; han mantenido el compromiso de una vía pública compartida, lo que puede tener sentido desde un punto vista jurídico abstracto, pero en realidad ha dado lugar a una competencia desigual de frenos chirriantes. Partiendo de las calles y carreteras como bienes comunes, James Longhurst recorre las pugnas por el espacio público desde el siglo XIX hasta la actualidad.",
         "imagen": "./public/img/portadas/las batallas de la bici.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Urbanismo",
+            "Historia",
+            "Movimientos sociales"
+        ]
     },
     {
         "id": 15,
@@ -177,7 +247,12 @@
         "precio": "UYU 790",
         "descripcion": "Durante una larga noche, Carlos Baumeister, el funebrero de la Tercera Sección, descubre ante un periodista la colección de fenómenos que ha ido registrando con los años. Una mujer con rostro de cerdo, un probador de pesticidas, un pescador controlado por insectos, un comisario expeditivo y brutal, un viejo genetista escapado del Tercer Reich y dos hermanos gemelos en perturbadora sincronía se entrecruzan con la propia historia del empresario de pompas fúnebres, desde sus jóvenes años entre las dos orillas del Río de la Plata hasta el periplo que emprende para editar el poemario escrito por su esposa. Poblada de personajes estrambóticos, demasiado humanos, y ensamblada por secuencias que alteran el orden temporal en la voz de quien relata los hechos, 'Baumeister' es un tour de force narrativo, una novela atravesada por un humor sardónico que parece reírse de los vivos y de los muertos por igual.",
         "imagen": "./public/img/portadas/baumeister.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Narrativa uruguaya",
+            "Realismo mágico",
+            "Humor negro"
+        ]
     },
     {
         "id": 16,
@@ -189,7 +264,13 @@
         "precio": "UYU 1600",
         "descripcion": "Soy Betty Carpenter, nací en una bañera en 1954 y crecí en el pueblo de Breathed, Ohio. De mis ocho hermanos fui la única que heredé la piel oscura de mi papá Landon, que era cheroqui. De niña creía que ser cheroqui significaba estar atado a la luna. También quería ser una princesa con un vestido hecho de carcasas de cigarra y alas de violetas. ¿Tú te has visto en el espejo?, me decía mi mamá Alka, que arrastraba tantas piedras del pasado como las que tenía mi hermanito Lint en la cabeza. Yo ofrendaba flores de cerezo y medias de nailon de mamá al río para quitarme el moreno, pero no funcionaba. Tampoco le funcionaba el río a mi hermana Flossie, que le mandaba cartas a Elvis en botellas que nunca recibían respuesta. Flossie nació para ser una estrella. Mi dulce hermana mayor Fraya, en cambio, lo hizo para cargar con las piedras malditas de las mujeres de la familia. Y yo nací, según papá, para ser la calabaza, la protectora de mis hermanas. Ese es tu cometido, Pequeña India. Él, con su magia ancestral y su infinita ternura, me enseñó que era poderosa. Inspirada en la historia de su propia madre, Tiffany McDaniel nos regala este colosal coming-of-age lleno de lirismo y claroscuros. Para muchos, un futuro clásico de la literatura rural estadounidense.",
         "imagen": "./public/img/portadas/betty.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Coming-of-age",
+            "Literatura estadounidense",
+            "Feminismo",
+            "Narrativa rural"
+        ]
     },
     {
         "id": 17,
@@ -201,7 +282,12 @@
         "precio": "UYU 1150",
         "descripcion": "Publicamos por primera vez en español los dos textos de Martin Buber 'Justo e injusto' e 'Imágenes del bien y del mal', que indagan en el lugar que ocupa el mal en el desarrollo de la persona, sus fuerzas, así como la imagen que la propia persona tiene del mal y sus orígenes. En el primer texto Buber explora el surgimiento del mal a través de los salmos y cómo el hombre ha ido comprendiendo el verdadero alcance y significado que el mal tiene en la propia existencia. En el segundo texto, partiendo de mitos persas e israelitas, busca el origen del mal y la dualidad de la realidad del hombre que marca su destino.",
         "imagen": "./public/img/portadas/bien y mal.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Filosofía",
+            "Ética",
+            "Religión comparada"
+        ]
     },
     {
         "id": 18,
@@ -213,7 +299,12 @@
         "precio": "UYU 1450",
         "descripcion": "La inmensa estatura de Ingmar Bergman como cineasta ha eclipsado demasiado a menudo su también inmensa importancia como escritor. En la primera entrega de su «trilogía familiar», Bergman reconstruye, a partir de fotografías, especulaciones y frases dichas a media voz, los primero años de la turbulenta relación de sus padres. Una relación enferma, llena de epifanías y decepciones, herida por los prejuicios y el hostigamiento familiar, si no por el mismo impulso que la hizo nacer. Concebido como un epílogo al filme «Fanny y Alexander» y convertido en serie de televisión y largometraje por Bille August como «Las mejores intenciones» (ganador, a su vez, de la Palma de Oro en Cannes), «La buena voluntad» es quizá el título más importante de la obra de Bergman como escritor. La cercanía sentimental del autor con lo narrado y el peso de los protagonistas en la formación de su propia sensibilidad convierten esta novela en la más íntima de sus indagaciones en las pasiones humanas, un rotundo testimonio de la conducta de hombres y mujeres que Bergman aprovecha para revisar y fijar la nómina completa de sus obsesiones: la incomunicación, los secretos, la mentira, la culpa, las relaciones de poder en el seno de la familia, el vértigo sexual, la convivencia en pareja, la esperanza (o la fe) y su pérdida. Y el rencor, como incesante y mórbido baile de máscaras.",
         "imagen": "./public/img/portadas/la buena voluntad.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Narrativa intimista",
+            "Autoficción",
+            "Drama familiar"
+        ]
     },
     {
         "id": 19,
@@ -222,10 +313,15 @@
         "isbn": "9789873621369",
         "editorial": "LA CEBRA",
         "numPaginas": 122,
-        "precio": "UYU 750.00",
+        "precio": "UYU 750",
         "descripcion": "A través de un intenso y sutil diálogo con su nieta Zohra, Jean Ziegler sostiene en este libro que el capitalismo –y el orden caníbal que este impuso sobre el planeta– tiene que ser destruido. Ni mejorado ni retocado, sino que radicalmente destruido para que sea posible inventar una nueva organización social y económica del mundo. Con gran claridad, Ziegler realiza una reseña histórica de los orígenes del capitalismo, así como de sus diferentes momentos y transformaciones; pero también, y fundamentalmente, ofrece una mirada descarnada de su actualidad develando sin piedad ni autocensura su rostro atroz: el capitalismo vino al mundo chorreando sangre y lodo, y así sigue, sobrevive y muta. Reverso inmediato del modo de vida y producción de los países del Norte, el autor narra en primera persona su desgarradora experiencia en las minas de coltán, en el Congo, en las industrias textiles, en Bangaladesh, o en los imperios agroindustriales, en Guatemala; reflexiona en torno al problema de la deuda externa como el garrote a través del cual los señores de las finanzas someten a los pueblos del tercer mundo sin necesidad ya de ensangrentarse “directamente” las manos; inquiere sobre el “desempleo permanente” al que han sido expuestos millones de trabajadores en los países del primer mundo como una de las bases sobre la cual se edifica el orden capitalista. En la actualidad, las empresas multinacionales desafían a los Estados y a las instituciones internacionales, pisotean el bien común, deslocalizan su producción dondequiera que puedan maximizar sus beneficios, y no vacilan en obtener ventajas del trabajo de niños esclavos en los países del tercer mundo. Bajo el imperio de este capitalismo mundializado, más de dos mil millones de seres humanos ven su vida arruinada por la miseria, las desigualdades se acrecientan como nunca y el planeta se agota. Hacia el final, discutiendo en torno a la necesidad de un cambio radical en la organización económica y social del mundo, la conversación nos conduce hacia una profunda reflexión en torno al valor de la utopía como una fuerza histórica extraordinaria, capaz de vehiculizar este cambio.",
         "imagen": "./public/img/portadas/el capitalismo explicado a mi nieta.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Economía",
+            "Crítica social",
+            "Divulgación política"
+        ]
     },
     {
         "id": 20,
@@ -237,7 +333,12 @@
         "precio": "UYU 1040",
         "descripcion": "Recién salido de la universidad, al protagonista de El capitalista simbólico lo contratan las Guías Michelin para «atender las inquietudes de los ricos» desentrañando aquello que convierte una experiencia turística en sublime. Aunque apenas visita los lugares que debe puntuar con estrellitas y se limita al plagio de otras guías, cobra un sueldo que le asusta por lo elevado: se sabe un fraude. Además, acaba de abandonar una prometedora carrera deportiva y empieza a coquetear con las élites culturales barcelonesas. Él, hijo de obrero y de ama de casa, vive con una peculiar culpa de clase la promesa de ascenso social de los años noventa, momento en que arranca un periplo marcado por la especulación y el endeudamiento del país, «una década consagrada al epíteto»: un éxito rotundo. El capitalista simbólico culmina con maestría el ciclo de novelas de aprendizaje que comenzó con El enfermero de Lenin y Retrato del futbolista adolescente, un friso narrativo sobre el desclasamiento en España a partir de la generación formada por los hijos de trabajadores emigrados a los extrarradios metropolitanos, mujeres y hombres en los que se depositaron numerosos anhelos aspiracionales. Humorístico, tierno y con un estilo profundamente irónico (y un narrador autobiográfico que combina lucidez y tontería), Valentín Roma es el gran cronista de los sueños desnortados de la España reciente. Y esta hermosa novela, tan picaresca como reflexiva, una verdadera epicomedia del desclasamiento.",
         "imagen": "./public/img/portadas/el capitalista simbolico.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Narrativa contemporánea",
+            "Crítica social",
+            "Ficción política"
+        ]
     },
     {
         "id": 21,
@@ -249,7 +350,12 @@
         "precio": "UYU 1050",
         "descripcion": "Hace ya muchos años que Orlando se marchó de su aldea natal, perdida en la campiña italiana. Ahora, su carrera de pintor, al igual que el resto de su vida, se encuentra en una especie de letargo, un leve extravío que pretende encauzar volviendo a los paisajes de su niñez: allí descubrirá que la vieja casona rosa de su maestra está en venta y la compra sin saber muy bien por qué. Sin embargo, como se anticipa ya desde el título, la casa no será un elemento pasivo en esta historia: comienzan a suceder algunos fenómenos insólitos que le desvelan rastros ocultos y le harán creer que tal vez haya sido la casa quien en realidad lo ha elegido a él. En este viaje al pasado, en el que nuestro protagonista se sumerge para encontrar el sentido de su presente, el suspense y la melancolía se alían inesperadamente para alumbrar una bella novela intimista salpicada de atardeceres luminosos, huertos y flores. Laura Mancinelli realiza un hermoso ejercicio de introspección cuyo hilo conductor es una de las preguntas que han asediado al hombre desde siempre: ¿por qué hacemos lo que hacemos?, ¿cuál es el sentido de ciertas decisiones?",
         "imagen": "./public/img/portadas/la casa del tiempo.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Narrativa italiana",
+            "Realismo mágico",
+            "Novela introspectiva"
+        ]
     },
     {
         "id": 22,
@@ -261,7 +367,12 @@
         "precio": "UYU 1200",
         "descripcion": "«El castigo» cuenta el calvario, el de diecinueve meses de detención, de noventa y cuatro estudiantes castigados por haberse manifestado pacíficamente por las calles de las principales ciudades de Marruecos en marzo de 1965. Con la excusa del servicio militar, estos jóvenes fueron encerrados en cuarteles donde, bajo la vigilancia de suboficiales del entorno del general Ufkir, sufrieron vejaciones, humillaciones y maltratos. Estos acontecimientos se insertan en la represión de los denominados «años de plomo» durante el reinado de Hassan II. Tahar Ben Jelloun, uno de los estudiantes represaliados, cuenta en primera persona lo que fueron aquellos largos meses que marcaron para siempre sus veinte años, alimentaron su conciencia y secretamente lo hicieron escritor. «El castigo» nos impone una reflexión sobre la fragilidad de la libertad.",
         "imagen": "./public/img/portadas/el castigo.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Memorias",
+            "Historia política",
+            "Derechos humanos"
+        ]
     },
     {
         "id": 23,
@@ -273,7 +384,12 @@
         "precio": "UYU 1200",
         "descripcion": "Tras labrarse una meteórica –aunque algo tramposa– trayectoria como curador de exposiciones, el Comisario, un ser cínico e ingenuo a partes iguales, vuelve al barrio de su infancia para construir lo que pretende ser su obra magna: un parque temático dedicado a la literatura. Allí, entre audaces planes de negocio, atracciones vanguardistas y reproches vecinales, se reencontrará tanto con algunos fantasmas de juventud –los problemas de clase, la honestidad sentimental– como con los nuevos desafíos que plantea la edad adulta: de su capacidad o incapacidad para tolerar la imperfección de los sueños cumplidos dependerá que su quijotesca empresa –en insólitas acepciones de «lo quijotesco»– acabe en éxito o fracaso. «El problema de España, quién sabe si del mundo, es que no ha leído bien el Quijote. La única revolución pendiente es la de la comprensión lectora. El libro no va de un pobre viejo del que todos se ríen. No va del fracaso. Nada de héroe romántico. La obra versa sobre el éxito de Alonso Quijano. Sobre un tipo maduro que decide vivir un sueño y, contra todo pronóstico, lo consigue. […] Si lo leyeran los coaches, lo convertirían en su libro de cabecera».",
         "imagen": "./public/img/portadas/cerbantes park.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Narrativa contemporánea",
+            "Literatura satírica",
+            "Crítica cultural"
+        ]
     },
     {
         "id": 24,
@@ -285,7 +401,12 @@
         "precio": "UYU 750",
         "descripcion": "En el norte de California, durante el violento final de la decada de 1960, esta historia se centra en una adolescente sola llamada Evie Boyd que se une a un grupo de niñas que se ven en el parque. Le atrae una chica magnética llamada Suzanne. Evie es invitada a entrar en este círculo liderado por un carismático hombre infame quien vive en un extenso rancho escondido entre las colinas. Su admiración por Suzanne crece y Evie se desespera por entrar en el círculo y ser aceptada. A medida que pasa el tiempo, alejada de su madre, en los ritmos de esta nueva vida diaria, se da cuenta de que se está acercando cada vez más a la violencia más impensable y a ese momento en la vida de una chica en que todo puede ir horriblemente mal.",
         "imagen": "./public/img/portadas/las chicas.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Coming-of-age",
+            "Thriller psicológico",
+            "Feminismo"
+        ]
     },
     {
         "id": 25,
@@ -297,7 +418,12 @@
         "precio": "UYU 1100",
         "descripcion": "¿Adónde van los obreros cuando mueren? Renato Prunetti, al infierno, desde luego, por malhablado. Renato fue un soldador de las grandes siderurgias del norte de Italia, fallecido a causa del amianto. Pero no lo busquéis en el cielo. Su nuevo puesto es el de encargado de mantenimiento de las calderas del averno. Allí lo encontraréis, negociando el convenio con el Todopoderoso, dando esquinazo a Dante Alighieri, que lo persigue en busca de inspiración para su Divina Comedia, y tramando la rebelión de los condenados junto a su compadre, Steve McQueen. Mientras tanto, Francesca, su viuda, que abandonó su empleo para dedicarse a cuidar de los suyos, no quiere que escriban sobre ella. Considera demasiado poca cosa la vida que le ha tocado vivir, a pesar de que sobre sus hombros recayeran la casa y los críos, jornadas interminables y escaso reconocimiento. Le preocupa más la situación laboral de su hijo y que convierta en una consentida a su nieta, Elettra. Tras Amianto y 108 metros, Alberto Prunetti culmina su Trilogía Working Class con esta dantesca comedia obrera, en la que reivindica la pervivencia y la universalidad de la clase trabajadora.",
         "imagen": "./public/img/portadas/el circulo de los blasfemos.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Narrativa obrera",
+            "Comedia social",
+            "Ficción política"
+        ]
     },
     {
         "id": 26,
@@ -309,7 +435,12 @@
         "precio": "UYU 1400",
         "descripcion": "En el Japón ocupado militarmente tras el final de la Segunda Guerra Mundial, un hombre entra una buena mañana en una oficina bancaria de Tokio. Allí dentro explica a los empleados que es un funcionario de salud pública y que para contener un brote de disentería ha de inocular una vacuna a toda la plantilla. Minutos más tarde, doce de los empleados mueren, cuatro caen inconscientes y el falso doctor desaparece con el dinero. Narrada por una superviviente que se siente doblemente culpable por haber sobrevivido al robo y la guerra; un periodista que, ansioso por tener la exclusiva, se hace pasar por médico para tener acceso a una de las víctimas y se enamora de ella, y un detective de la policía que pierde la cordura a causa del odio que siente hacia los ocupantes americanos, entre otras voces, Ciudad ocupada cuenta el día a día de una ciudad descomunal literalmente reducida a escombros tras los bombardeos de la Segunda Guerra Mundial, las barbaridades de los experimentos biológicos que quedaron impunes tras el juicio en los tribunales de crímenes de guerra y recoge la simple idea de que todos los hombres somos culpables. Basada en hechos reales, Ciudad ocupada es el segundo volumen de la Trilogía de Tokio, tras Tokio año cero (Hoja de Lata, 2021) y la posterior Tokio Redux (Hoja de Lata, 2021).",
         "imagen": "./public/img/portadas/ciudad ocupada.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Ficción histórica",
+            "Crimen",
+            "Japón posguerra"
+        ]
     },
     {
         "id": 27,
@@ -321,7 +452,12 @@
         "precio": "UYU 1690",
         "descripcion": "En esta conmovedora introducción a las Meditaciones de Marco Aurelio, el conocido filósofo francés Pierre Hadot ofrece pruebas de la forma en que los pensamientos del emperador romano forman parte de una tradición de ejercicio espiritual que abarca desde los antiguos filósofos griegos hasta Michel Foucault. Este tratado analiza las Meditaciones como la obra de un hombre de acción que buscaba la serenidad principalmente porque era una condición esencial para la eficiencia. Hadot examina las posibles aplicaciones de las opiniones de Aurelio sobre el gobierno, un enfoque en el cual la ciudad era un símbolo del alma del gobernante y, por lo tanto, íntimamente ligado a su praxis espiritual, a la sociedad moderna, planteando preguntas y ofreciendo propuestas a los lectores que, en un momento de tremenda incertidumbre económica, podrían buscar en la filosofía una forma de vida más satisfactoria. En última instancia, el libro argumenta que la verdadera filosofía no es simplemente la práctica de abordar problemas y cuestiones abstractas, sino una manera concreta de mejorar nuestra forma de vida.",
         "imagen": "./public/img/portadas/la ciudadela interior.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Filosofía",
+            "Estoicismo",
+            "Meditaciones"
+        ]
     },
     {
         "id": 28,
@@ -333,7 +469,10 @@
         "precio": "UYU 1690",
         "descripcion": "La comida da forma a las ciudades y moldea el campo que las abastece. Podría decirse que alimentar ciudades tiene un impacto sobre nosotros y nuestro planeta mucho mayor que cualquier otra actividad humana. Sin embargo, pocos ciudadanos occidentales somos conscientes del proceso. La comida llega a nuestros platos como por arte de magia, y rara vez nos paramos a preguntarnos cómo ha llegado allí. Pensando que, para una ciudad como Londres, todos los días se debe producir, importar, vender, cocinar, comer y eliminar nuevamente unos treinta millones de comidas, y que esto sucede a diario con cada ciudad del mundo, resulta sorprendente que quienes vivimos en los núcleos urbanos consigamos comer. Ciudades hambrientas es un libro sobre cómo comen las ciudades, un estudio insólito y revolucionario que examina la forma en que la producción moderna de alimentos ha dañado el equilibrio de la existencia humana y revela un dilema centenario aún por resolver, que podría ser la clave para muchos problemas actuales como la obesidad, el inexorable aumento de los supermercados o la destrucción del mundo natural. Una llamada de advertencia sobre el desperdicio y la destrucción causada por los sistemas alimentarios actuales, y una guía para corregir sus errores.",
         "imagen": "./public/img/portadas/ciudades hambrientas.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Urbanismo"
+        ]
     },
     {
         "id": 29,
@@ -345,7 +484,12 @@
         "precio": "UYU 950",
         "descripcion": "El siglo veinte fue para los intelectuales el siglo de los fascismos rojo y pardo del que pocos pensadores resultaron indemnes… Numerosos filósofos pusieron su inteligencia al servicio de dos barbaries. Sin embargo, en ese renunciamiento a la razón, existieron conciencias refractarias. Mientras que el PCF suscribe el Pacto germano-soviético (23 de agosto de 1939 - 22 de junio de 1941) y hace de la política de colaboración con el ocupante alemán una prioridad decidida por Moscú, Georges Politzer, judío y comunista, inaugura la resistencia intelectual desde 1939 y luego la resistencia armada, antes de morir en 1941 bajo las balas de un pelotón de ejecución. Contra Bergson, a quien coloca del lado de los belicistas y del ocupante, celebra un Descartes que inaugura la filosofía de la Ilustración concluida por Marx y el marxismo. Nizan, también comunista, se muestra reacio al lo comprende en lo que respecta a la URSS, que defiende su supervivencia, pero en lo concerniente al PCF... Marxista secretamente decepcionado por la Unión Soviética, Nizan encuentra en Epicuro lo que Marx, el marxismo y la Rusia bolchevique no le razones para vivir sabiendo que tendremos que morir... Camus, por su parte, fue comunista el tiempo que duró la lucha del Partido por la descolonización. Cuando el PCF obedece a Moscú, que declara nula y sin efecto la lucha por la descolonización con el propósito de resaltar la lucha antifascista, en 1937, deja el Partido al que se había unido en el verano de 1935. Se opone a los totalitarismos pardo y rojo en nombre de un socialismo libertario silenciado y ridiculizado por la crítica sartriana, que solo conoce del socialismo su versión cesariana y de alambres de púas. Simone de Beauvoir y su compañero Jean-Paul Sartre construyeron una leyenda en las antípodas de su experiencia durante la ocupación. No encontramos ningún rastro de su resistencia proclamada por doquier, en cambio, disponemos de pruebas contundentes que expresan lo contrario.",
         "imagen": "./public/img/portadas/las conciencias refractarias.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Filosofía",
+            "Historia intelectual",
+            "Crítica política"
+        ]
     },
     {
         "id": 30,
@@ -357,7 +501,12 @@
         "precio": "UYU 890",
         "descripcion": "Jack Isidore no ve el mundo como la mayoría de las personas. Según su cuñado Charley, es un artista de mierda, que está obsesionado con sus propias teorías e ideas extravagantes, que registra celosamente en sus muchos cuadernos. Está tan mal preparado para la vida real que su hermana y su cuñado se sienten obligados a rescatarlo. Pero aunque Fay y Charley Hume presentan una cara feliz al mundo, demuestran que están tan aislados de la realidad como él, sujetos a unas obsesiones que solo son un poco más aceptables que las de Jack, pero mucho más desagradables. Sus luchas y traiciones constantes demuestran ser una amenaza para su propio matrimonio y las relaciones de todos los que los rodean. Cuando se llevan a Jack a su casa, éste se encuentra en medio de una vorágine de angustia burguesa de la que quizás no podrá escapar.",
         "imagen": "./public/img/portadas/confesiones de un artista de mierda.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Narrativa contemporánea",
+            "Autoficción",
+            "Crítica social"
+        ]
     },
     {
         "id": 31,
@@ -369,7 +518,12 @@
         "precio": "UYU 1700",
         "descripcion": "«Un ensayo original y cautivador que recorre con vivacidad las múltiples expediciones literarias a ese país secreto que es la convalecencia. Al desapego de la medicina, el autor opone la audacia de los escritores a la hora de examinar las sensaciones inéditas, los estados singulares, las variaciones del cuerpo durante el obligado reposo». Le Monde. Los médicos se sienten a menudo impotentes ante ese periodo confuso y vacilante que llamamos convalecencia: ya no es enfermedad, pero tampoco la salud se ha recobrado plenamente. Un descanso forzado que preocupa e impacienta a moralistas y burgueses, pues hace olvidar pronto los beneficios de la vida activa; pero un verdadero oasis, por el contrario, para cualquier escritor: para Jane Austen y Madame de Staël, para Goethe, Tolstói, Zola y Henry James, para Rilke, Proust, Döblin, Céline, Thomas Mann y tantos otros. ¿Elegir la paz que brinda la habitación ―ese remanso para el pensamiento, para la creación, para el amor incluso― o el fragoroso esfuerzo que demanda el mundo? En el pasado, el reposo se contemplaba solo como consecuencia inevitable del ardor guerrero o como tregua destinada al riguroso examen vital, a la conversión profunda y ejemplar. Sin embargo, en este siglo que ahora habitamos, en el que como sociedad seguimos y estamos gravemente dañados, parece que nos hayamos vuelto más atentos y sensibles a esa pausa tan intensa como limitada. Porque demasiado bien sabemos que los placeres frágiles de la convalecencia apenas resisten los embates de los acerados tiempos modernos.",
         "imagen": "./public/img/portadas/convalecencias.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Ensayo literario",
+            "Salud y reposo",
+            "Historia de la literatura"
+        ]
     },
     {
         "id": 32,
@@ -381,7 +535,12 @@
         "precio": "UYU 1200",
         "descripcion": "Szymborska, tan reacia a hablar de su poesía, llevó durante años en la revista Vida literaria lo que podríamos denominar un \"consultorio de escritores\", en el que entre líneas, y con esa fina ironía presente en toda su obra, podemos entrever su particular concepto de la literatura. \"¿Cómo llegar a ser escritor?\". La pregunta que nos hace usted es muy delicada. Es como cuando un niño le pregunta a su madre cómo se hacen los niños y la madre le dice que se lo explicará más tarde, que está muy ocupada, y el niño empieza a insistir: \"Entonces explícame, aunque solo sea cómo se hace la cabeza…\". A ver, intentemos también nosotros explicar, al menos, la cabeza: pues bien, hay que tener algo de talento.",
         "imagen": "./public/img/portadas/correo literario.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Ensayo literario",
+            "Poesía",
+            "Escritura creativa"
+        ]
     },
     {
         "id": 33,
@@ -393,7 +552,12 @@
         "precio": "UYU 810",
         "descripcion": "ALICE MUNRO INÉDITA. El aclamado primer libro de relatos de la Nobel de Literatura, ganador del Governor General's Award. La magia de Alice Munro, que han invocado tantos escritores y críticos literarios, con la que ha llenado de luz las vidas, los sentimientos y los diálogos más cotidianos, y que ha hecho de ella la mejor cuentista de la literatura contemporánea, ganadora del Nobel y del Booker, ya estaba totalmente afianzada en el primero de sus catorce libros de relatos: 'Danza de las sombras'. Quince historias --algunas de marcado carácter autobiográfico-- que revelan los múltiples matices de la naturaleza humana: una joven descubre cuánto ignora sobre su padre cuando lo acompaña a hacer su ruta de reparto como vendedor de la Walker Brothers; una mujer casada regresa a casa tras la muerte de su madre e intenta compensar a su hermana por el tiempo que ha pasado cuidando de aquella; el público de un recital de piano infantil recibe una lección sorprendente cuando una estudiante «singular» transmite una emoción inesperada al interpretar una pieza. Un libro clave en la obra de Munro, inédito hasta hoy en castellano, que obtuvo el Governor General's Award y la consagró como la gran narradora que estaba destinada a ser.",
         "imagen": "./public/img/portadas/danza de las sombras.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Relatos",
+            "Narrativa contemporánea",
+            "Literatura canadiense"
+        ]
     },
     {
         "id": 34,
@@ -405,7 +569,12 @@
         "precio": "UYU 690",
         "descripcion": "La presente edición reúne una serie de textos producidos por Luis Camnitzer desde la década de los sesenta hasta la actualidad. En cada uno habla sobre arte, pero desde múltiples entradas, deconstruyendo los modos en como entendemos el sistema artístico, sus redes de poder y la incidencia que ha tenido el mercado en sus engranajes. La perspectiva que adopta la edición desde la clave colonial hasta las posibles salidas se desplaza en paralelo con la trayectoria del autor, poniendo énfasis en su experiencia vivida dentro del campo artístico de fines de los sesenta hasta su despliegue actual.",
         "imagen": "./public/img/portadas/de la coca cola al arte boludo.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Arte contemporáneo",
+            "Crítica cultural",
+            "Ensayo"
+        ]
     },
     {
         "id": 35,
@@ -417,7 +586,12 @@
         "precio": "UYU 1400",
         "descripcion": "UN LÚCIDO Y NECESARIO MANUAL DE RESISTENCIA. «El concepto de una vida 'vida verdadera' implica que rechacemos las desviaciones que nos imponen lo cotidiano, la sociedad y el mercado, y que sepamos discrepar de la vida reglada, para así poder plantearnos que otra vida es posible. Al no tener pretensiones de ser 'beneficioso', este ensayo tan erudito como actual es un libro de combate con la filosofía como arma». Le Figaro. «François Jullien no pretende dar la receta ni las claves de la sabiduría, sino que cuestiona con rigor la filosofía de la existencia. Reelaborando el concepto de 'vida verdadera', el autor nos propone cómo oponernos a los movimientos de resignación y estancamiento de nuestras vidas». Le Temps. «François Jullien denuncia la actual mercantilización de la felicidad, un seudopensamiento que hay que combatir tanto como hay que resistir a la seudovida. Ante la resignación y la alienación que nos acechan, propone abrirse a nuevas posibilidades que despierten en nosotros emoción y, por tanto, disidencia». Libération. «Mujer u hombre, joven o viejo, cultivado o no, todos nos preguntamos en algún momento: ¿Y si he equivocado mi camino? ¿Acaso estoy perpetuando una existencia ficticia y atrofiada? ¿No será esta la vida auténtica? ¿Y si hubiera otra más intensa, más libre, plena y sorprendente, más feliz que esta rutina, que esta seudovida? Ante el espacio creciente que la industria de la felicidad ocupa en nuestra sociedad, François Jullien retoma el tema universal del desarrollo personal y, reubicándolo en la tradición filosófica, nos ofrece un lúcido manual de resistencia». Le Monde. En ocasiones, nos asalta la sospecha de que la vida podría ser algo muy distinto a la vida que vivimos. Que tal vez esta no sea más que una apariencia de vida, que quizá se haya vaciado de su esencia sin que nos hayamos dado cuenta y sea solo su simulacro o su parodia; porque nuestras vidas se estancan, se resignan, quedan sepultadas bajo el cúmulo de los días, se alienan y se cosifican bajo la influencia forzosa del mercado y la tecnificación. Que tal vez estemos dejando pasar, sin siquiera darnos cuenta, la verdadera vida. Pero ¿qué es la vera vita? De Platón a Rimbaud, de Proust a Adorno, esta pregunta se ha mantenido vigente a través de los tiempos. No es la vida bella, o la buena vida, o la vida dichosa, tal y como la ha ensalzado la tradición occidental. No se encuentra, de ninguna manera, en el mercadeo de la felicidad y el desarrollo personal que tanto negocio hacen hoy en día. La vida auténtica no proyecta ningún contenido ideal, ni cae tampoco en la autocelebración propia del vitalismo. Es, por el contrario, el rechazo obstinado a la vida perdida, el no rotundo a la seudovida. La verdadera vida es tratar de resistir a la no-vida, del mismo modo que pensar es resistir al no-pensamiento.",
         "imagen": "./public/img/portadas/de vera vita.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Filosofía",
+            "Desarrollo personal",
+            "Crítica social"
+        ]
     },
     {
         "id": 36,
@@ -429,7 +603,12 @@
         "precio": "UYU 650",
         "descripcion": "El laberíntico monólogo de un hombre que, enfrentado a una sociedad que le pide que sea alguien, le devuelve lo peor de que es capaz. 'Degenerado' es la historia de un proceso judicial. Empieza una noche gélida cuando un hombre se dispone a hacerse un té y leer después de una larga jornada. Pronto lo distraen las luces de gendarmería: fuera de su casa los vecinos se agolpan, y, a medida que corre el rumor de que el hombre es un pedófilo, se arma una batalla campal. A los animales del corral, por su parte, no les interesa saber si el vecino es o no es un pedófilo: quieren comer, abrir la boca y que el dueño les eche algo. Mientras, algunos vecinos ya piden la cabeza del hombre: como en las plazas públicas, sacan fotos al condenado, y los chicos son alzados sobre los hombros. La madre del acusado está ausente, está presente, es testigo: ese es siempre el drama del amor materno. El acusado acepta pelear hasta el final contra todo y contra todos, porque ¿quién está seguro de haber cometido un error? ¿Quién se puede autoinculpar? En la noche estrellada, ¿dónde empieza el criminal y dónde el hombre honesto?",
         "imagen": "./public/img/portadas/degenerado.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Narrativa contemporánea",
+            "Monólogo interior",
+            "Crítica social"
+        ]
     },
     {
         "id": 37,
@@ -441,7 +620,12 @@
         "precio": "UYU 1050",
         "descripcion": "El laberíntico monólogo de un hombre que, enfrentado a una sociedad que le pide que sea alguien, le devuelve lo peor de que es capaz.",
         "imagen": "./public/img/portadas/los desarzonados.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Filosofía",
+            "Narrativa experimental",
+            "Ensayo narrativo"
+        ]
     },
     {
         "id": 38,
@@ -453,7 +637,12 @@
         "precio": "UYU 800",
         "descripcion": "\"Una historia de detectives con mucho ritmo. 'El detective salvaje' es ese tipo de novela que parece escribirse en la página tan rápido como se lee.\" New York Magazine. 'El detective salvaje' arranca con la visita de una mujer a un detective privado: Phoebe Siegle, una sarcástica neoyorquina, se presenta en la destartalada caravana de Charles Heist, en las afueras de Los Ángeles, para que le ayude a encontrar a Arabella, la hija desaparecida de su amiga. Las únicas pistas que puede darle son una estrafalaria comunidad budista en California y Leonard Cohen, con quien la chica está obsesionada. Heist, un solitario de pocas palabras que como mascota tiene una zarigüeya en el cajón de su escritorio, aceptará de inmediato a la exuberante y habladora Phoebe como compañera. La insólita pareja se embarcará en un viaje entre los vagabundos de las afueras de Los Ángeles y por los parajes más inhóspitos del desierto de Mojave, donde habitan unas extrañas sociedades fuera de toda ley y orden. En este noir de tintes apocalípticos, el aclamado autor de 'Huérfanos de Brooklyn' nos traslada a un Estados Unidos convulso y políticamente frágil. 'El detective salvaje' es otro logro extraordinario de uno de los grandes referentes de la literatura estadounidense.",
         "imagen": "./public/img/portadas/el detective salvaje.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Novela negra",
+            "Ficción contemporánea",
+            "Road novel"
+        ]
     },
     {
         "id": 39,
@@ -465,7 +654,12 @@
         "precio": "UYU 1050",
         "descripcion": "Tod Hackett es artista y ha llegado a Hollywood para trabajar en los estudios como diseñador de vestuario, mientras sueña con pintar su obra maestra, 'La quema de Los Ángeles'. Faye Greener busca triunfar como actriz y entre tanto se vende a quién pueda pagar un precio no muy elevado. Homer Simpson, abúlico y sin un objetivo en la vida, vino por motivos de salud y se limita a existir y a consumirse de amor por Faye. Earle y Miguel son vaqueros sin trabajo, viven en una chabola y organizan peleas de gallos. Adore Loomis, típico niño repelente al que su madre arrastra de casting en casting, ejerce con entusiasmo de típico niño repelente. Todos estos personajes y algunos más conviven en el Hollywood hortera y soleado de los años 30, siempre al margen del éxito, siempre en medio de la insatisfacción, configurando un pequeño universo de deseos frustrados y ambiciones engañadas en el centro mismo de la fábrica de los sueños de cartón piedra. Escrita con despiadado humor y sin concesiones a ningún sentimentalismo, 'El día de la langosta', publicada en 1939, ha sido comparada con otras grandes crónicas del mundo de Hollywood, como 'El último magnate', de Francis Scott Fitzgerald, estricto contemporáneo de West y esclavo, como él, de la industria del cine. John Schlesinger convirtió en película esta novela de culto en 1975, con Donald Sutherland, Karen Black y Burgess Meredith en los principales papeles.",
         "imagen": "./public/img/portadas/el dia de la langosta.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Ficción satírica",
+            "Crítica social",
+            "Hollywood"
+        ]
     },
     {
         "id": 40,
@@ -477,7 +671,12 @@
         "precio": "UYU 1100",
         "descripcion": "Tras una heroica trayectoria como soldado en la Guerra de Secesión, la muerte accidental de un hombre durante una partida de póker marca la trayectoria futura del joven Clay Halser, que parte hacia el Oeste en busca de emociones y aventuras. A lo largo de una década y recorriendo varios estados, Clay pasa de ser condenado a la horca a convertirse en agente del orden, primero en Caldwell y después en Hays, ciudades ganaderas en las que impera la ley del más rápido con el revólver. Muy pronto, la leyenda del mítico marshal Halser, azote de caciques y cuatreros, se extiende por toda la Unión hasta el punto de eclipsar a un ser humano al que la violencia parece perseguir como un destino inaplazable. Basada en la historia real de Wild Bill Hickok (que sin embargo aparece también como personaje secundario), 'Diario de los años del plomo' reinventa un género, el western, que experimenta actualmente un renovado auge en los Estados Unidos y en el que Richard Matheson (inolvidable autor de 'El increíble hombre menguante' y 'Soy leyenda') consigue recrear el sabor clásico de los grandes relatos de frontera. No en vano esta novela se alzó con el Premio Spur, el más prestigioso en su categoría, y recibió elogios de autores como Stephen King.",
         "imagen": "./public/img/portadas/diario de los años del plomo.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Western",
+            "Ficción histórica",
+            "Aventura"
+        ]
     },
     {
         "id": 41,
@@ -489,7 +688,12 @@
         "precio": "UYU 890",
         "descripcion": "El acoso cibernético sufrido por ser autora con voz propia. La incomprensión ante una sexualidad que desafía el sistema binario. El virus de la maternidad y la duda eterna de ser mujer: «Si deseas porque deseas o porque el sistema te hace desear». Este 'Diccionario en guerra' es un original manifiesto de Aixa de la Cruz en favor del caos y en contra del orden con certezas inamovibles del feminismo de eslogan fácil. Del dildo a la burundanga. Del legrado sin anestesia de la bisabuela a las nuevas heroínas de ficción con metralleta en mano. De Emily Dickinson al mito del amor romántico que edulcora y justifica la violencia machista. De un relato lésbico insertado en pleno Jane Eyre al cuento de una hacker que se venga de su trol misógino. Una confesión íntima, en veintisiete letras, de la A a la Z, sin miedos ni tabús. «Dice Aixa de la Cruz que se ha divorciado de la ficción, pero es su dominio de la narrativa lo que hace que este libro brille entre esa sobreproducción de ensayos sobre feminismo». - June Fernández [Prólogo]",
         "imagen": "./public/img/portadas/diccionario en guerra.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Feminismo",
+            "Ensayo personal",
+            "Narrativa política"
+        ]
     },
     {
         "id": 42,
@@ -501,7 +705,12 @@
         "precio": "UYU 1700",
         "descripcion": "Sófocles murió a causa de una alegría, los habitantes de la isla de Delos se afeitaban la cabeza a la muerte de sus parientes y el luto duraba hasta que los cabellos habían recuperado su longitud habitual, el guardia del cementerio marino de Sète adiestró a su perro para que acompañase a los visitantes hasta la tumba de Paul Valéry, el emperador Adriano hizo matar a su arquitecto porque sabía más que él sobre arquitectura y los indios de la Guayana bebían un licor elaborado con la ceniza de sus muertos. A lo largo de la historia, la muerte ha generado a su alrededor una rica constelación de anécdotas, datos y extravagancias. Desde argots, epitafios, jurisdicciones y últimas palabras hasta rituales, condenas, alegorías y tradiciones, este diccionario reúne una amplia selección de palabras vinculadas a la muerte que abarcan temas tan diversos como la filosofía, el arte, la antropología, la demografía o la moral.",
         "imagen": "./public/img/portadas/diccionario ilustrado de la muerte.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Diccionario temático",
+            "Antropología",
+            "Cultura de la muerte"
+        ]
     },
     {
         "id": 43,
@@ -513,7 +722,12 @@
         "precio": "UYU 450",
         "descripcion": "¿Dónde se puede encontrar mejor la felicidad, en Times Square o en un remoto pueblo de la Amazonía? ¿Es posible escapar del ajetreo de las ciudades, el internet, la hiperconexión y el ruido de la vida moderna? En el mundo del siglo XXI, construido sobre carreteras de concreto y autopistas de información, uno se pregunta si es posible esconderse en algún lugar y alejarse de la modernidad. Un libro poderoso y sugestivo que nos lleva a un paisaje que está dentro de nosotros.",
         "imagen": "./public/img/portadas/donde el silencio.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Ensayo",
+            "Filosofía contemporánea",
+            "Crítica cultural"
+        ]
     },
     {
         "id": 44,
@@ -525,7 +739,12 @@
         "precio": "UYU 890",
         "descripcion": "Esta obra recoge, por primera vez, un conjunto de entrevistas y textos de Marguerite Duras, la mayoría inéditos o de difícil acceso, en torno a las diecinueve películas que realizó desde la década del 60 hasta finales de la década del 80. Desde 'La música' hasta 'Los niños', pasando por 'India Song', 'El camión' o 'El navío Night'. Duras redactó dossiers de prensa, notas de rodaje, comentarios y reflexiones sobre sus escritos, sus películas y sobre la situación del mundo y del cine. Para ella todo era escritura: una breve entrevista, el comentario de una película o novela, una obra de teatro o radiofónica, hasta el propio film.",
         "imagen": "./public/img/portadas/duras por duras.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Cine",
+            "Literatura francesa",
+            "Ensayo"
+        ]
     },
     {
         "id": 45,
@@ -537,7 +756,12 @@
         "precio": "UYU 620",
         "descripcion": "Somos cómplices de lo que nos deja indiferentes', señalaba George Steiner. Cuando el testigo del abuso y la violencia mira hacia otro lado, cuando prefiere no ver ni saber, cuando esgrime el 'algo habrá hecho', cuando una vez pasada la violencia exige el olvido, y cuando este testigo representa a una mayoría, nos encontramos ante una sociedad enferma. Lo hemos visto en nuestro país con las heridas de la guerra civil, también en otros conflictos europeos, como la guerra de los Balcanes, o la Irlanda del IRA. Y la historia se repite. Han pasado cinco años desde que ETA anunciara el cese definitivo de la lucha armada. Desde entonces, una buena parte de la sociedad española y vasca parece estar dispuesta a pasar página, como si las últimas décadas de violencia hubieran sido tan sólo una pesadilla, como si la violencia que afectó a tantas personas dentro y fuera de los territorios vascos se pudiera circunscribir a un pasado cerrado. Pero la historia, la responsabilidad frente al pasado, no desaparece por prescripción, sobre todo cuando ampliamos la mirada y consideramos parte del conflicto no sólo a víctimas y perpetradores, sino a la sociedad que fue testigo de la misma -a veces testigo cómplice, a veces testigo amedrentado, a veces testigo indiferente-. Edurne Portela ofrece en este libro una serie de memorias íntimas de la violencia y defiende, a través de reflexiones sobre la literatura y el cine actuales, una cultura para el presente que ayude a afrontar las heridas del pasado.",
         "imagen": "./public/img/portadas/el eco de los disparos.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Memoria histórica",
+            "Violencia política",
+            "Cultura contemporánea"
+        ]
     },
     {
         "id": 46,
@@ -549,7 +773,12 @@
         "precio": "UYU 550",
         "descripcion": "María Negroni observa un fotograma en un film de Joseph Cornell: una niña (sus lánguidos cabellos le cubren el cuerpo) montada sobre un corcel blanco. Es solo una imagen, pero una imagen cargada de visiones. 'Elegía Joseph Cornell' debería leerse según la lógica de un ensamblaje, un collage, un ready-made. La niña y el caballo son los guías de un museo portátil donde cabe todo Cornell: una boîte-en-valise que se despliega ante nosotros para exhibir su repertorio de postales mágicas. Cornell habita el mismo planeta que Mekas, Brakhage y, por supuesto, Duchamp. Todos ellos practicaron el arte de la recolección. Pero fue Cornell quien descubrió el found footage sin saberlo y le robó a Dalí un film que todavía no había imaginado. Se entiende, entonces, por qué a Negroni le gusta volver a pasar sobre estas huellas como si saltara por los casilleros de una rayuela. Igual que 'Museo negro' (1999), 'Galería fantástica' (2009) o 'Pequeño mundo ilustrado' (Caja Negra, 2011), este libro es un catálogo de los detritus más bellos e inútiles. Los juguetes ópticos, las divas de los viejos films, los relatos de Andersen, Little Nemo, Duchamp, las golosinas, Krazy Kat, el cine underground, Nueva York: con primorosa lucidez, el libro acomoda esos restos en compartimentos contiguos, como si fueran los diminutos residentes de una casa de muñecas. Para María Negroni, como para Cornell, el arte es la infancia. No porque la obra atesore un candor olvidado sino porque es el único país de las maravillas y la única tierra del nunca jamás donde se puede conquistar lo incomprensible. 'Elegía Joseph Cornell' es un diario íntimo (si acaso fuera posible un diario íntimo por interpósita persona): el artista-niño no podría haber escrito estas páginas, pero es el único que sabría leerlas. Es que –así lo quiso él– las películas más conmovedoras son aquellas concebidas para no ser filmadas nunca. Como este libro, que aún no ha sido escrito.",
         "imagen": "./public/img/portadas/elegia joseph cornell.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Arte",
+            "Poesía",
+            "Cine experimental"
+        ]
     },
     {
         "id": 47,
@@ -561,7 +790,12 @@
         "precio": "UYU 1400",
         "descripcion": "«En algún rincón del tiempo es la historia de amor que trasciende el tiempo, mientras que Más allá de los sueños es la historia de un amor que trasciende la muerte… Pienso que ambas representan lo mejor que he escrito en forma de novela». Richard Matheson. 'En algún rincón del tiempo' es la abracadabrante historia de un amor que trasciende el tiempo, el espacio y aun la muerte, escrita por uno de los grandes maestros de la literatura fantástica moderna. La novela de Richard Matheson —publicada originalmente en 1975— cuenta la conmovedora y romántica historia de un hombre moderno —el guionista de televisión Richard Collier— que, habiéndose enamorado de una mujer retratada en una antigua fotografía, remonta la corriente del tiempo hasta 1896, donde encuentra a su alma gemela en la forma de una célebre actriz teatral de finales del siglo XIX. La acción transcurre en un hotel de lujo en Coronado (San Diego), que, además de ser un personaje más de esta fascinante novela, funciona como un elemento superconductor entre las dos épocas consideradas. 'En algún rincón del tiempo' ganó en 1976 el World Fantasy Award a la mejor novela, y la versión cinematográfica realizada en 1980 ―protagonizada por Christopher Reeve y Jane Seymour— sigue siendo un clásico de culto cuyos fans continúan celebrando convenciones anuales hasta el día de hoy.",
         "imagen": "./public/img/portadas/en algun rincon del tiempo.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Fantasía romántica",
+            "Viajes en el tiempo",
+            "Ficción especulativa"
+        ]
     },
     {
         "id": 48,
@@ -573,7 +807,12 @@
         "precio": "UYU 790",
         "descripcion": "Uno de los mejores libros del año según The New York Times Book Review, San Francisco Chronicle, NPR, The Washington Post, O: The Oprah Magazine, Library Journal, Kirkus Reviews y Financial Times, entre otros, elogiado unánimemente por la crítica. «Gary Shteyngart capta América a la perfección. [...] Cuando lo leo a veces me entran ganas de gritar: de admiración y de pura risa.» Richard Ford. Narcisista, vulgar, millonario, infantil, acomplejado, soberbio, displicente, inútil, infatuado, estereotípico, incapaz, irresponsable: Barry Cohen está sobradamente cualificado para ser la desastrosa encarnación del sueño americano. Cuando, acosado por los problemas empresariales, le informan de que a su hijo le han diagnosticado autismo, decide dejarlo todo, abandonar a su familia y embarcarse en una odisea caótica e hilarante en la que recorrerá Estados Unidos en autobús buscando un amor ideal, irreal y perdido hace años. Este viaje de autoconocimiento capaz de arrasar con todo, en el que Barry irá entablando estrambóticas relaciones con quien sale a su paso, es el fiel reflejo de la huida hacia delante de una América que ha perdido el control de sí misma. Este es, a fin de cuentas, el presente de un país que quiere ser grande otra vez, quizá monstruosamente grande. Mediante la exageración, la deformación y un sarcasmo irrefrenable, Shteyngart pone en la diana el espíritu de la época en una novela corrosiva, escandalosa y tremendamente divertida.",
         "imagen": "./public/img/portadas/en lake success.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Sátira",
+            "Crítica social",
+            "Narrativa estadounidense"
+        ]
     },
     {
         "id": 49,
@@ -585,7 +824,12 @@
         "precio": "UYU 650",
         "descripcion": "La narradora de estas páginas vive a cinco mil kilómetros de su país natal, trabaja para una agencia de publicidad, quiere tramitar una beca para irse a escribir a Holanda y mantiene periódicas videoconferencias con su hermana. Esta le manda encomiendas, paquetes que incluyen comida, dibujos de sus sobrinos y de vez en cuando alguna sorpresa, como una vieja fotografía. A menudo la comida llega podrida. Una serie de figuras y acontecimientos irán dejando entrever las fisuras que se abren en la cotidianeidad de la protagonista: la recepción de una enorme caja difícil de abrir, una gata que se pasea por el edificio en el que vive, los vecinos que se ausentan y los que llaman a su puerta, el hijo de una vecina, las idas y venidas de su novio, un vagabundo... Y es que, como ella misma dice: «Con qué rapidez se hace pedazos la cáscara de una rutina. Cualquier rutina, por sólida que sea, es arrasada por lo imprevisto.» Con mano maestra y notable economía de medios, Margarita García Robayo conduce al lector por el laberinto de su protagonista y narradora en esta inquietante novela que habla de incertidumbre, recuerdos, miedos, soledad, relaciones familiares, perspectivas de maternidad y anhelos de futuro. Un libro de contenida intensidad, repleto de atisbos más que de certezas, que confirma a la autora como una de las voces de la actual narrativa latinoamericana.",
         "imagen": "./public/img/portadas/la encomienda.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Narrativa contemporánea",
+            "Identidad",
+            "Migración"
+        ]
     },
     {
         "id": 50,
@@ -597,7 +841,12 @@
         "precio": "UYU 1100",
         "descripcion": "El trabajo, la amistad, el dinero, el mercado, la fidelidad, la polémica y la literatura. Todos estos factores que intervienen de un modo u otro en el ecosistema del libro se conjugan en estas memorias de Guillermo Schavelzon para recorrer, a través de sus recuerdos y encuentros con autores como Ricardo Piglia, Augusto Roa Bastos, Mario Benedetti, Julio Cortázar, Gabriel García Márquez, Beatriz Guido, Quino, Juan José Saer, Juan Rulfo, Elena Poniatowska, Elsa Bornemann, Leopoldo Brizuela y Adolfo Bioy Casares, una vida repleta de libros y anécdotas. Desde sus comienzos a los diecinueve años en la editorial de Jorge Álvarez, pasando por sus experiencias en Planeta y Alfaguara, Schavelzon reconstruye un camino agitado, atravesado por el exilio que lo llevó de un lado a otro del Atlántico. Este no es el libro de un escritor sino el de un testigo –reconoce–, una crónica personal de ciertas experiencias públicas y privadas que lo acercaron a algunos de los principales protagonistas de la literatura. Eso es cierto. Y también es cierto que señala un momento clave de la industria en el que la figura del agente literario se volvió, a la vez, relevante y enigmática.",
         "imagen": "./public/img/portadas/el enigma del oficio.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Memorias",
+            "Industria editorial",
+            "Oficio literario"
+        ]
     },
     {
         "id": 51,
@@ -609,7 +858,12 @@
         "precio": "UYU 750",
         "descripcion": "Nora Ephron demuestra su acerado sentido del humor y su temible capacidad de observación en este libro sobre la mujer, el feminismo y los conflictos de la vida cotidiana en los Estados Unidos. En 'Ensalada loca', la neoyorquina Nora Ephron demuestra su acerado sentido del humor y su temible capacidad de observación. La temática del libro gira básicamente en torno a la mujer, el feminismo y los conflictos de la vida cotidiana en los Estados Unidos. Entre los diversos temas que aborda: lo autobiográfico, en el divertidísimo relato «Algunas observaciones sobre pechos»; las fantasías sexuales de las mujeres; la «política vaginal» («Hemos pasado la época en que la felicidad era un perrito cariñoso y la época en que la felicidad era un martini seco y hemos llegado a la era en que la felicidad es 'saber cómo es tu útero'»); la derrota de Betty Friedan, «la-madre-de-todas-nosotras», frente a Gloria Steinem, la representante de la nueva generación; la utilización del movimiento feminista por los partidos políticos; las reinas de la belleza; los grupos de concienciación; la inefable estrella del film porno 'Garganta profunda', Linda Lovelace; un apoteósico concurso nacional de cocina, que es un retrato al vitriolo del ama de casa de la mayoría silenciosa; la persistencia de comportamientos machistas entre varones presuntamente progresistas; la manipulación de la mujer por la industria cosmética; etc., etc.",
         "imagen": "./public/img/portadas/ensalada loca.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Humor",
+            "Feminismo",
+            "Ensayo"
+        ]
     },
     {
         "id": 52,
@@ -621,7 +875,12 @@
         "precio": "UYU 750",
         "descripcion": "Una delicatessen literaria: un ensayo sobre el arte de escribir ensayos y el placer de leerlos. 'Ensayismo' reflexiona sobre el sentido de escribir ensayos en el mundo actual y explora los diversos enfoques y posibilidades: personal, crítico, polémico, seductor, digresivo, elucubrativo, asociativo, erudito, apasionado, desapasionado, reflexivo, curioso, irónico, aforístico... Recorre la historia del género y homenajea a sus grandes maestros: Montaigne, Sir Thomas Browne, Pascal, Charles Lamb, Emerson, Thomas de Quincey, Virginia Woolf, Cyril Connolly, Walter Benjamin, Theodor Adorno, Roland Barthes, Georges Perec, Maurice Blanchot, Susan Sontag, Elizabeth Hardwick, Janet Malcolm, W. G. Sebald... Entrecruzando sus propias experiencias y sus lecturas, Brian Dillon reivindica el ensayo como aventura literaria y celebra la riqueza inagotable de este género, que es una forma lúcida de contemplar y entender la vida.",
         "imagen": "./public/img/portadas/ensayismo.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Ensayo literario",
+            "Escritura",
+            "Reflexión crítica"
+        ]
     },
     {
         "id": 53,
@@ -633,7 +892,12 @@
         "precio": "UYU 1100",
         "descripcion": "Ya fuese como biógrafo de los poetas ingleses más eminentes, como editor de las obras de Shakespeare o como feroz polemista desde las páginas del periódico (los tres aspectos recogidos en este libro), Samuel Johnson ejerció siempre su gran pasión: la crítica, con la que consiguió dar forma a la literatura inglesa. La publicación de sus principales ensayos en un solo libro supone un acontecimiento editorial, y al mismo tiempo una invitación al debate sobre la literatura y la crítica de nuestro presente.",
         "imagen": "./public/img/portadas/ensayos literarios.jpg",
-        "stock": 1
+        "stock": 1,
+        "categorias": [
+            "Crítica literaria",
+            "Biografía de autores",
+            "Literatura inglesa"
+        ]
     },
     {
         "id": 54,
@@ -13782,6 +14046,918 @@
         "precio": "UYU 890",
         "descripcion": "Podría parecer a simple vista que «ficción» y «realidad» son dos esferas que se diferencian nítidamente la una de la otra, pero lo cierto es que muchas más veces de las que sospechamos actúan como cara y contracara de una misma moneda… llegando incluso a (con)fundirse en múltiples ocasiones.\n\nEn El arte de inventar la realidad, la historiadora del arte y crítica de cine Áurea Ortiz Villeta sondea, a través de abundantes ejemplos de películas y series, incluyendo documentales, el modo en que esta (con)fusión opera, dando lugar a equívocos que, ya sean intencionados o no, bien pudieran suponer un reto a la hora de delimitar qué es la verdad y qué no lo es. ¿Puede una imagen inventada llegar a sustituir lo real? ¿Puede una representación convertirse en algo más real que lo real? Pensemos en un ejemplo icónico: el atentado contra Carrero Blanco. ¿Qué imagen acude a nuestra mente casi al instante al pensar en ello? […] En efecto: una escena perteneciente a la película Operación ogro, del director italiano Gillo Pontecorvo. Una ficción… que sin embargo ha quedado fijada en el imaginario colectivo como representación paradigmática de un suceso.\n\nEste breve ensayo rastrea las zonas de sombra en las que lo ficticio y lo real se entremezclan, en un itinerario orientado a arrojar luz sobre una pregunta de fondo: si cada vez nos cuesta más diferenciar las imágenes ciertas de las ficticias, ¿cuáles son los retos a los que nos enfrentamos como sociedad?",
         "imagen": "https://images.squarespace-cdn.com/content/v1/585a5be78419c213fafc003d/824c28c6-573b-4a90-83c0-4e1d0bcfbbaf/9788412803242.jpg?format=1000w",
+        "stock": 1
+    },
+    {
+        "id": 1140,
+        "titulo": "EL ORDEN DEL DÍA",
+        "autor": "ÉRIC VUILLARD",
+        "isbn": 9788490665077,
+        "editorial": "TUSQUETS EDITORES S.A.",
+        "numPaginas": 144,
+        "precio": "UYU 990",
+        "descripcion": "PREMIO GONCOURT 2017 Un relato inquietante acerca de los entresijos del inicio de la Segunda Guerra Mundial y la implicación de los empresarios en el ascenso de Hitler al poder. En febrero de 1933, en el Reichstag tuvo lugar una reunión secreta, que no estaba en el orden del día, en la que los industriales alemanes—entre los que se contaban los dueños de Opel, Krupp, Siemens, IG Farben, Bayer, Telefunken, Agfa y Varta—donaron ingentes cantidades a Hitler para conseguir la estabilidad que él prometía. Desde ese año, Hitler ideó una estrategia de cara a la comunidad internacional para anexionarse Austria «pacíficamente»; para ello, mientras se ganaba la aquiescencia o el silencio de primeros ministros europeos, mantuvo una guerra psicológica con Schuschnigg, el canciller austriaco, hasta que la invasión (un alarde del legendario ejército alemán, que ocultaba graves problemas técnicos) fue un hecho. Esta novela desvela los mercadeos y vulgares intereses comunes, las falsedades y posverdades, que hicieron posible el ascenso del nazismo y su dominio en Europa hasta la Segunda Guerra Mundial, con las consecuencias de todos conocidas. El orden del día narra de un modo trepidante y muy novedoso, en escenas memorables, las bambalinas del ascenso de Hitler al poder, en una lección de literatura, historia y moral política.",
+        "imagen": "https://imagessl7.casadellibro.com/a/l/s7/77/9788490665077.webp",
+        "stock": 1
+    },
+    {
+        "id": 1141,
+        "titulo": "EL PEREGRINO ENCANTADO",
+        "autor": "NIKOLAI SEMIONOVICH LESKOV",
+        "isbn": 9788484284482,
+        "editorial": "ALBA EDITORIAL",
+        "numPaginas": 288,
+        "precio": "UYU 4000",
+        "descripcion": "Durante una travesía por el lago Ládoga los pasajeros sienten curiosidad por la figura colosal de un hombre ya maduro, un gigante con sotana de novicio y aspecto de heroe legendario. Se llama Iván Severiánich y se dirige al monasterio de Solovki, donde espera encontrar \"un sentido a toda mi vida anterior, tan vasta\", una vida exuberante y tormentosa, repleta de aventuras y visiones, osadías y castigos. Inedita en español hasta hoy, es una obra emblemática de uno de los maestros de la literatura rusa del XIX.",
+        "imagen": "https://imagessl2.casadellibro.com/a/l/s7/82/9788484284482.webp",
+        "stock": 1
+    },
+    {
+        "id": 1142,
+        "titulo": "EL PRECIO QUE PAGAMOS",
+        "autor": "DAVID GROSSMAN",
+        "isbn": 9788419951823,
+        "editorial": "DEBATE",
+        "numPaginas": 128,
+        "precio": "UYU 690",
+        "descripcion": "¿Quienes serán los israelíes despues del último ataque terrorista? Los ensayos más reveladores del gran experto en el conflicto israelí-palestino. ¿Quienes seremos? ¿Que clase de personas seremos tras estos días, despues de haber visto lo que hemos visto? ¿Desde que punto se podrá empezar de nuevo tras la destrucción y la aniquilación de tantas y tantas cosas en las que creíamos y de las que estábamos seguros? Durante años, David Grossman ha comentado en los medios \"la situación\" entre Israel y Palestina. Sin embargo, tras el horrible atentado terrorista del 7 de octubre de 2023 y los acontecimientos posteriores, ¿se puede hacer algo que no sea expresar desesperación? El escritor israelí, histórico defensor de la coexistencia pacífica entre ambos territorios, publicó dos días despues del ataque un texto en el que analizaba cómo se pudo llegar tan lejos. El ensayo, que abre este libro, ya es un texto de referencia, y plantea cuestiones tan necesarias como: ¿Por que ha ocurrido esta masacre en suelo israelí? ¿Por que el gobierno de Netanyahu, abducido por sus escándalos, ha perdido de vista a los palestinos de Gaza? ¿Quienes serán los israelíes despues de la tragedia?",
+        "imagen": "https://imagessl3.casadellibro.com/a/l/s7/23/9788419951823.webp",
+        "stock": 1
+    },
+    {
+        "id": 1143,
+        "titulo": "EL SIGNO DE LOS TIEMPOS",
+        "autor": "ODA SAKUNOSUKE",
+        "isbn": 9788419035332,
+        "editorial": "SATORI",
+        "numPaginas": 256,
+        "precio": "UYU 1450",
+        "descripcion": "HAY VIDA DESPUÉS DE LA GUERRA. Historias crepusculares y melancólicas que, a pesar de reflejar los claroscuros de la existencia, jamás cierran la puerta a la esperanza. Una geisha enamorada de un vividor vago y mujeriego que no ceja en su empeño de convertirse en una mujer respetable; un joven que camina sin comida ni dinero por las vías del tren desde Osaka hasta Tokio para declararse a una mujer a la que apenas conoce; un soldado que vuelve de la guerra y antes de salir siquiera de la estación de tren pierde hasta los zapatos; un escritor fracasado en busca de la historia que refleje el signo de los tiempos. Los personajes que pueblan las historias de Oda se dejan llevar por su destino como hojas arrastradas por el viento. Personas insignificantes que habitan un mundo en descomposición y cuyas pequeñas tragedias y minúsculas alegrías palpitan en las vibrantes calles de la ciudad de Osaka. La literatura de Oda no brilla solo por su calidad y modernidad deslumbrantes, sino por su asombrosa capacidad para capturar la esencia misma del ser humano, en sus miserias y en sus grandezas, y dejarnos sonriendo sin saber muy bien a qué clase de magia hemos asistido. «Oda escribía como si se estuviese quedando sin tiempo. Debe de haber otras personas como él. Por desgracia, no he encontrado ninguna.» Dazai Osamu",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/lrw538rrs2ey4v2g5fb0.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1144,
+        "titulo": "EL TEJIDO DE LA CIVILIZACIÓN. COMO LOS TEXTILES DIERON FORMA AL MUNDO",
+        "autor": "VIRGINIA POSTREL",
+        "isbn": 9788418859113,
+        "editorial": "SIRUELA",
+        "numPaginas": 344,
+        "precio": "UYU 1450",
+        "descripcion": "Virginia Postrel ha escrito un libro deslumbrante. Una irresistible aventura del conocimiento. Daniel Arjona, El Confidencial. Las tramas de la historia se entrelazan con las urdimbres de la cultura: un placer comprender el tejido del que está hecha la humanidad... Lorenzo Caprile, modista. El que ha sido para mí el mejor libro de no ficción del año ofrece un audaz repaso de la historia a traves de los tejidos (como decoración, moneda, ritual o mucho más). Uno de los textos más extraordinarios que he leído en años. Bloomberg Opinion. Esta es una historia de enorme complejidad. Sin embargo, ni Postrel ni nosotros (como lectores) perdemos nunca el hilo. El tejido de la civilización es un libro fascinante, tambien bastante persuasivo: al final se demuestra que los textiles dieron forma al mundo. The Times",
+        "imagen": "https://imagessl3.casadellibro.com/a/l/s7/13/9788418859113.webp",
+        "stock": 1
+    },
+    {
+        "id": 1145,
+        "titulo": "EL TIRANO - SHAKESPEARE Y LA POLÍTICA",
+        "autor": "STEPHEN GREENBLATT",
+        "isbn": 9788494994289,
+        "editorial": "ALFABETO EDITORIAL SL",
+        "numPaginas": 254,
+        "precio": "UYU 890",
+        "descripcion": "Para ayudarnos a comprender nuestros dilemas contemporáneos más urgentes, William Shakespeare no tiene igual. Mientras Isabel I, cada vez más envejecida y obstinada, se aferraba al poder con uñas y dientes, un brillante dramaturgo exploraba las causas sociales, las raíces psicológicas y los retorcidos efectos de la tiranía. Al analizar la psique (y las psicosis) de personajes de la catadura de Ricardo III, Macbeth, Lear, Coriolano y de las sociedades sobre las que gobernaban, Stephen Greenblatt desvela las formas en las que Shakespeare ahonda en el ansia de poder absoluto y las catastróficas consecuencias que su ejercicio conlleva. Instituciones de fuerte arraigo parecen frágiles, la política y sus representantes sucumben al caos, la miseria económica alimenta la cólera populista, la población acepta que le mientan, el rencor partidista se impone, la indecencia más desvergonzada impera: aspectos como estos de una sociedad en crisis fascinaban a Shakespeare y están presentes en algunas de sus obras más memorables. Con asombrosa perspicacia, supo mostrar la psicología infantil y los apetitos insaciablemente narcisistas de los demagogos —así como el cinismo y el oportunismo de los diversos cómplices y parásitos que los rodeaban—, e imaginó la manera de frenarlos. Por eso y por otras muchas razones, la obra de Shakespeare, como pone magistralmente de manifiesto Stephen Greenblatt en este libro, sigue teniendo una importancia esencial hoy en día.",
+        "imagen": "https://imagessl9.casadellibro.com/a/l/s7/89/9788494994289.webp",
+        "stock": 1
+    },
+    {
+        "id": 1146,
+        "titulo": "EL ÚLTIMO ENCUENTRO",
+        "autor": "SÁNDOR MÁRAI",
+        "isbn": 9788478886012,
+        "editorial": "SALAMANDRA",
+        "numPaginas": 192,
+        "precio": "UYU 690",
+        "descripcion": "En esta magistral novela, Sándor Márai plantea la búsqueda de la verdad como fuerza liberadora, como soporte ético imprescindible para sobrellevar el peso de una vida. La exactitud de su prosa, unida a la vigencia de sus propuestas morales, lo sitúa entre los grandes escritores europeos del siglo XX. Un pequeño castillo de caza en Hungría, al pie de los Cárpatos, donde alguna vez se celebraron fastuosas veladas y la música de Chopin inundaba los elegantes salones decorados al estilo francés, ha cambiado radicalmente de aspecto. El esplendor de antaño se ha desvanecido, todo anuncia el final de una época. En ese escenario cargado de vivencias, dos hombres se citan para cenar tras cuarenta años sin verse. De jóvenes habían sido amigos inseparables, pero luego sus caminos se bifurcaron: uno se marchó a Extremo Oriente y el otro, en cambio, permaneció hasta hoy en su propiedad. Sin embargo, ambos han vivido a la espera de este momento, pues entre ellos se interpone un secreto de una fuerza singular. Todo converge en un duelo sin armas, aunque tal vez mucho más cruel, cuyo punto en común es el recuerdo imborrable de una mujer.",
+        "imagen": "https://imagessl2.casadellibro.com/a/l/s7/12/9788478886012.webp",
+        "stock": 1
+    },
+    {
+        "id": 1147,
+        "titulo": "EMMA",
+        "autor": "FRANCISCO HINOJOSA",
+        "isbn": 9786074111491,
+        "editorial": "ALMADÍA",
+        "numPaginas": 176,
+        "precio": "UYU 980",
+        "descripcion": "Desde la muerte de sus padres, la joven Emma de Brantome vive de arrimada en la casa de sus tíos, los du Barry, quienes practican con ella el repertorio completo del bullying familiar. Un día, Emma recibe una carta de la misteriosa Escuela Bataille, donde la dirección le comunica que debe reclamar las herencias que sus padres le dejaron: a) una inscripción para que curse estudios en tan noble institución; b) una apetecible cantidad de dinero; y c) el prestigio de ser la hija de las más grandes estrellas y empresarios del sexo de nuestro tiempo: Sylvie y Louis Ferdinand de Brantome, la pareja de más éxito en la industria mundial del cine porno. La joven emprenderá así una aventura donde las pruebas más difíciles no vendrán de las cátedras de introducción al coito y striptease, sino de la leyenda de su apellido, de desconocidos enemigos mortales, y de ser el objeto del deseo de todo el alumnado. ¿Algo le suena familiar al lector? ¿Será la escuela especial, la niña predestinada a la grandeza, los estudios excéntricos, las intrigas? ¿O el humor de Francisco Hinojosa? Ése que trasciende la parodia, juega con la imaginación y el sexo, y cuenta una historia que estalla en cada página.",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/s8qnt6s4690t319n0uui.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1148,
+        "titulo": "EN LA MITAD DE LA VIDA",
+        "autor": "KIERAN SETIYA",
+        "isbn": 9788417007737,
+        "editorial": "LIBROS DEL ASTEROIDE",
+        "numPaginas": null,
+        "precio": "UYU 890",
+        "descripcion": "",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/b3s68cnft4h4621iakot.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1149,
+        "titulo": "EN PRIMERA PERSONA. TESTIMONIOS DESDE LA UTOPÍA",
+        "autor": "MARISA GONZÁLEZ DE OLEAGA",
+        "isbn": 9788494080081,
+        "editorial": "NED EDICIONES",
+        "numPaginas": 336,
+        "precio": "UYU 990",
+        "descripcion": "Colonias galesas, comunidades anabaptistas, cooperativas libertarias, comunas autogestionarias, clubes culturales comunistas, guerrillas antiimperialistas…son sólo algunos ejemplos de la fértil historia de la utopía en América Latina. Una historia que continúa en nuestros días: fábricas recuperadas, comedores populares, radios comunitarias, museos alternativos…una larga tradición que tiene problemas para reconocerse. En los quince capítulos que componen este libro, sus autores, investigadores y activistas, han intentado favorecer el diálogo entre estos emprendimientos que surgieron en los márgenes del Estado y del mercado. Para ello una utopía histórica entra en diálogo con un experimento contemporáneo y ambos con una reflexión teórica y es en este cruce de caminos entre el pasado y el presente donde las utopías –concebidas durante demasiado tiempo como experimentos fallidos- empiezan a adquirir otros contornos, se dejan ver bajo otra luz y nos revelan algunos de sus secretos.",
+        "imagen": "https://imagessl1.casadellibro.com/a/l/s7/81/9788494080081.webp",
+        "stock": 1
+    },
+    {
+        "id": 1150,
+        "titulo": "ENTRE TIERRA Y MAR",
+        "autor": "JOSEPH CONRAD",
+        "isbn": 9788490658758,
+        "editorial": "ALBA EDITORIAL",
+        "numPaginas": 256,
+        "precio": "UYU 690",
+        "descripcion": "En 1912, Joseph Conrad reunió en un volumen que tituló Entre tierra y mar tres largos relatos que había escrito y publicado con anterioridad y cuyo nexo de unión, aparte de los mares del Índico, era \"el carácter, la visión y el sentimiento de los primeros veinte años que fui independiente en mi vida\". La colección tuvo un gran exito, y los títulos que la componen no dejaron de ser, desde entonces, continuamente reeditados: \"Una sonrisa de la fortuna\" es la historia de un negocio feliz. \"Quien compartió en secreto\" trata el tema del doble. Y \"Freya, la de las Siete Islas\" constituye tal vez una de las historias más graves y desoladoras surgidas de la imaginación de Conrad.",
+        "imagen": "https://imagessl8.casadellibro.com/a/l/s7/58/9788490658758.webp",
+        "stock": 1
+    },
+    {
+        "id": 1151,
+        "titulo": "ESTA HERIDA LLENA DE PECES",
+        "autor": "LORENA SALAZAR MASSO",
+        "isbn": 9788412198096,
+        "editorial": "EDITORIAL TRÁNSITO",
+        "numPaginas": 168,
+        "precio": "UYU 1200",
+        "descripcion": "Esta herida llena de peces, de Lorena Salazar Masso, indaga en la maternidad y la infancia en un contexto de violencia y transcurre en los bellos paisajes de la selva colombiana. Una madre y su niño viajan en canoa por el caudaloso río Atrato. La madre es blanca, el niño es negro. Entre manglares, frutas y trenzas, la narradora le va contando a la pasajera de al lado su infancia, sus recuerdos y cómo el pequeño llegó a su vida una mañana calurosa. La lancha avanza, la inquietud se acrecienta. La mujer preferiría no llegar o dar la vuelta. Esta es una historia sobre el arraigo, el miedo y la maternidad en un contexto de violencia, sobre los peligros de la selva colombiana. A través del lirismo de su prosa, Lorena Salazar Masso crea una atmósfera adictiva y nos traslada a un mundo a veces onírico y otras descarnadamente realista en el que la ternura y la belleza de las imágenes salpica.",
+        "imagen": "https://imagessl6.casadellibro.com/a/l/s7/96/9788412198096.webp",
+        "stock": 1
+    },
+    {
+        "id": 1152,
+        "titulo": "EUROPA UNA LETANÍA",
+        "autor": "BLIXA BARGELD",
+        "isbn": 9788494591655,
+        "editorial": "H&O EDITORIAL",
+        "numPaginas": 120,
+        "precio": "UYU 1450",
+        "descripcion": "Subirse a un tren para no volver a casa en dos meses. Dos meses de tiempo en bruto, de gira, de repetir las mismas canciones y transitar una misma ciudad llamada Europa. Una letanía ininterrumpida donde se mezclan voces en lenguas desconocidas, sueños, viejos amigos, recorre estas páginas, de Lisboa a San Petersburgo, de Oslo a Málaga, que hay que leer casi sin respirar. Las ciudades son recuerdos que aparecen de improviso y nuevas construcciones erigidas por los mismos imbéciles que abarrotaban los restaurantes con estrellas antes de la crisis, y que amargan un menú degustación. Hay apenas tiempo para visitar museos y nadie con quien comentar los libros, y se repiten las televisiones ininteligibles y las carreteras que avanzan como si llevaran a algún lado. ¿Comprar zapatos o ir a Pompeya? ¿Cuántas veces hemos tocado aquí? ¿Esos tipos creerán con razón que soy el extranjero de negro, la muerte en persona? Y, en el escenario, contra los focos, ver solamente la más oscura nada y sentir que la nada aplaude. Durante la gira de Einstürzende Neubauten de 2008, Blixa Bargeld, escéptico pero enternecido, escribió esta auténtica letanía bufa, retratando sin saberlo a una Europa tan eufórica como aburrida de sí misma que estaba ya entonces a punto de explotar y desaparecer.",
+        "imagen": "https://imagessl5.casadellibro.com/a/l/s7/55/9788494591655.webp",
+        "stock": 1
+    },
+    {
+        "id": 1153,
+        "titulo": "EXAMEN EXTRAORDINARIO",
+        "autor": "JUAN VILLORO",
+        "isbn": 9786078667659,
+        "editorial": "ALMADÍA",
+        "numPaginas": 312,
+        "precio": "UYU 690",
+        "descripcion": "Un mariachi con serios conflictos de identidad, duelos entre escritores que se remontan a belicosos encuentros juveniles en talleres de escritura, correos electrónicos enviados desde planos de la existencia un tanto inciertos, la odisea contracultural de un padre para congraciarse con su hija, múltiples modalidades de esa variación del masoquismo conocida como romance. Los cuentos de esta antología fueron seleccionados personalmente por el autor; condensan las técnicas, estrategias y motivos narrativos de una de las trayectorias literarias más destacadas de la actualidad. Además de recoger los relatos más emblemáticos de Juan Villoro, Examen extraordinario incluye dos cuentos inéditos en libro.",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/ek53vvh5auhxrk9m8g02.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1154,
+        "titulo": "FLORES DE LA BUFONERÍA",
+        "autor": "OSAMU DAZAI",
+        "isbn": 9789874766390,
+        "editorial": "TAMBIÉN EL CARACOL",
+        "numPaginas": 180,
+        "precio": "UYU 980",
+        "descripcion": "Trece años antes de Indigno de ser humano, Dazai publicó Flores de la bufonería para presentarnos a Yozo Oba. Centrada en su internación tras un intento de suicidio, que en Indigno de ser humano apenas ocupa tres párrafos, esta novela no solo permite completar ese espacio en blanco, sino que nos muestra el germen de una de sus imágenes más potentes: las máscaras como una herramienta para adaptarnos a lo que la sociedad y los amigos esperan de nosotros. En Flores de la bufonería las máscaras se vuelven risa constante, que irrumpe en los momentos más inoportunos y trágicos. Dazai aprovecha para deslizar reflexiones acerca de su visión de la literatura y del mundo. Y lo hace de un modo muy novedoso para la época, a partir de la voz de un narrador en primera persona.",
+        "imagen": "https://libreriamontevideo.com/cdn/shop/products/flores-1_c7edcf36-a0cf-4b76-9589-4cbe7abb35c3_360x.jpg?v=1683521980",
+        "stock": 1
+    },
+    {
+        "id": 1155,
+        "titulo": "LA FUGA DE SIBERIA EN UN TRINEO DE RENOS",
+        "autor": "LEÓN TROTSKY",
+        "isbn": 9789878011486,
+        "editorial": null,
+        "numPaginas": 128,
+        "precio": "UYU 3200",
+        "descripcion": "Traducida al español por primera vez, La fuga de Siberia en un trineo de renos es la obra de un revolucionario impetuoso, sí, pero no tiene nada de alegato político o propaganda. Como protagonista de la Revolución de 1905, sofocada por el poder zarista, un Trotsky de 27 años es enjuiciado y deportado de por vida a Siberia. En una de las postas del trayecto, el prisionero inicia la fuga a través de la estepa siberiana, territorio salvaje y extremo, con temperaturas por debajo de los -25 ºC y poblaciones con costumbres, penurias y solidaridades que él no conoce. Este es el relato en primera persona de esas jornadas extenuantes, llenas de acechanzas. Diario de viaje escrito sobre la marcha, agitado por el suspenso y la expectativa, La fuga de Siberia nos muestra la intimidad del joven Trotsky, y a un narrador literario en estado puro.",
+        "imagen": "https://traficantes.net/sites/default/files/styles/large/public/book_covers/9788412533620.gif?itok=RXiUltyk",
+        "stock": 1
+    },
+    {
+        "id": 1156,
+        "titulo": "GUERRA EN PATERSON Y (OTRAS CRÓNICAS)",
+        "autor": "JOHN REED",
+        "isbn": 9786071667670,
+        "editorial": "FONDO DE CULTURA",
+        "numPaginas": null,
+        "precio": "UYU 590",
+        "descripcion": "Este libro reúne los diversos relatos que John Reed realizó a lo largo de su carrera como periodista y activista político, particularmente durante las huelgas de los obreros en Colorado y los enfrentamientos en Europa durante la Primera Guerra Mundial. Considerado como uno de los pioneros del periodismo político, las crónicas de Reed buscan ofrecer al lector no sólo datos concretos sobre la guerra o la situación económica y política de las naciones; sino una descripción exhaustiva de la vida diaria que deja ver el compromiso del escritor con las causas por las que luchan los sectores más empobrecidos o afectados. La obra de Reed sin duda tiene el propósito de evidenciar las injusticias y sobre todo emprender acciones que tengan un impacto real e inmediato en el día a día de aquellos hombres y mujeres a los que ha dedicado toda una vida de investigación.",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/bx2dmi81fl5pzkxz46q6.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1157,
+        "titulo": "HIJO DE LADRÓN",
+        "autor": "MANUEL ROJAS",
+        "isbn": 9789561231047,
+        "editorial": "ZIG-ZAG",
+        "numPaginas": 312,
+        "precio": "UYU 630",
+        "descripcion": "\"Hijo de ladrón\" es el relato de un joven de 16 años llamado Aniceto Hevia, quien cuenta sus aventuras y desventuras desde el día en que sale de la cárcel, tras haber sido acusado falsamente de un robo a una joyería. Desde este punto, Aniceto comenzará a reconstruir su infancia, ayudado por los personajes que viven en sus recuerdos y que conforman su memoria personal. Así, recorriendo su pasado nos contará su historia y los hechos que lo llevaron hasta el presente. Manuel Rojas plantea en este libro el tema de la sabiduría de enfrentar la existencia desde una situación de marginalidad y de abandono social. Los postulados que plantea Rojas frente a la existencia, frente a la vida, forman parte de la sabiduría que surge de la experiencia de la vida cotidiana.",
+        "imagen": "https://images.cdn1.buscalibre.com/fit-in/360x360/6b/d8/6bd8b94b7a0f72bbd8eba400f290c3ca.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1158,
+        "titulo": "EL HIJO PREDILECTO",
+        "autor": "YUKO TSUSHIMA",
+        "isbn": 9788419581143,
+        "editorial": "IMPEDIMENTA",
+        "numPaginas": 240,
+        "precio": "UYU 1490",
+        "descripcion": "Womens Literature Prize, 1978. Una novela potente, lúcida y desgarradora de la autora de Territorio de luz, que nos habla sobre la feminidad y la maternidad japonesas y que celebra sutilmente a las mujeres que no se conforman. Koko siempre ha vivido en el presente. Afronta cada día sin mirar atrás. Pese a las presiones de su familia, se fue a vivir a un piso con su novio. Ha criado ella sola a una niña de once años mientras sobrevive dando clases particulares de piano. Mientras tanto, la sospecha de un nuevo embarazo despierta en su interior viejos anhelos, culpas eternas y esperanzas ocultas. Yuko Tsushima pone a prueba las convenciones sobre la independencia y la memoria, y nos ofrece un asfixiante baile de máscaras donde familiares, amigos y amantes se empeñan en tener la última palabra sobre cómo deberían vivir la vida las mujeres. Yuko Tsushima, la aclamada autora de Territorio de luz, se sumerge en los abismos del subconsciente en una novela que, 40 años después, conserva la vigencia de un clásico moderno.",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/ltdahwzeraq58g7dgee4.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1159,
+        "titulo": "HISTORIA DEL ARTE Y LUCHA DE CLASES",
+        "autor": "NICOS HADJINICOLAOU",
+        "isbn": 9789682300790,
+        "editorial": "SIGLO XXI EDITORES",
+        "numPaginas": 240,
+        "precio": "UYU 4500",
+        "descripcion": "La historia del arte está hoy, salvo excepciones, dominada por un pensamiento apolítico. El propósito de esta obra es definir nuevamente el objeto de la ciencia de la historia del arte. Son refutados los conceptos dominantes sobre cuál es este objeto y, a fin de definirlo, el autor introduce algunas ideas que no encontramos en la historia académica del arte.",
+        "imagen": "https://images.cdn3.buscalibre.com/fit-in/360x360/b8/5c/b85ca4d2c41609a4a36c47bb5987daee.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1160,
+        "titulo": "HISTORIA DEL HIJO",
+        "autor": "MARIE-HÉLÈNE LAFON",
+        "isbn": 9788412385861,
+        "editorial": "EDITORIAL MINUSCULA, S.L.U.",
+        "numPaginas": 128,
+        "precio": "UYU 890",
+        "descripcion": "Una mujer que vive en París deja a su hijo recien nacido en manos de su hermana, en el campo. El hijo, al crecer, verá a su madre en Navidad y en verano y durante casi treinta años no sabrá quien es su padre: una historia familiar que tras el silencio alberga un secreto, como tantas. Pero este no es un relato familiar tradicional, sino que la autora traza aquí un portentoso mosaico de emociones. La estructura del libro —cada capítulo corresponde a un momento y un enfoque distintos, según el personaje que lo protagoniza— permite explorar con sutileza los sentimientos de todos los implicados. El lenguaje es poetico, rítmico y conciso: la narración abarca un siglo, de 1908 a 2008, y queda recogida en poco más de cien páginas. Enraizada en una geografía muy concreta, cuyos perfumes, sonidos y colores afloran con inusitada intensidad, Historia del hijo es la más reciente tesela de la obra poderosa y singular de Marie-Helene Lafon.",
+        "imagen": "https://imagessl1.casadellibro.com/a/l/s7/61/9788412385861.webp",
+        "stock": 1
+    },
+    {
+        "id": 1161,
+        "titulo": "INTIMIDADES",
+        "autor": "LUCY CALDWELL",
+        "isbn": 9788418059346,
+        "editorial": "CATEDRAL",
+        "numPaginas": 176,
+        "precio": "UYU 1090",
+        "descripcion": "Una visión aguda y reveladora del desamor. Intimidades traza de manera inmejorable los pasos y traspies de mujeres jóvenes que luchan por encontrar su lugar en el mundo. Desde una estudiante de Belfast que se hace con drogas ilegales por internet para poner fin a un embarazo no deseado, a una madre joven, que lidia con la mortalidad. Desde una Nochebuena caminando por las calles del centro de la ciudad, cuando todo parece posible, a un vuelo nocturno desde Canadá que podría cambiarlo todo de manera irrevocable. Historias de amor, perdida y exilio, de nuevos comienzos y vidas vividas lejos del hogar. Estas historias son un fiel reflejo de los problemas a los que deben enfrentarse las mujeres de hoy. The Guardian. Lucy Caldwell se acerca con una gran sensibilidad a los personajes de su obra. Conoce los rincones más ocultos de su corazón y nos cuenta sus historias de manera veraz y tierna. The Independent. Un libro memorable y de lectura obligada de una de las escritoras más importantes de Irlanda. The Sunday Times. Nos descubre el sinfín de caminos ocultos que corren bajo el día a día de nuestras vidas. Irish Independent. Exquisito. The Bookseller.",
+        "imagen": "https://imagessl.casadellibro.com/a/l/s7/46/9788418059346.webp",
+        "stock": 1
+    },
+    {
+        "id": 1162,
+        "titulo": "INTRODUCCIÓN A LA LITERATURA GRIEGA",
+        "autor": "C. M. BOWRA",
+        "isbn": 9788424928773,
+        "editorial": "GREDOS",
+        "numPaginas": 384,
+        "precio": "UYU 3000",
+        "descripcion": "Los griegos no vivían en un mágico aislamiento de los demás pueblos mediterráneos y, al llevar a cabo sus empresas militares o comerciales, pudieron tomar de aquí y de allá leyendas o tecnicas. Con todo, sus deudas con los demás pueblos son pocas, y mucho menos importantes que el empleo que de ellos hicieron o las innovaciones que introdujeron. Desde los primeros versos que nos quedan de ellos hasta las últimas producciones del paganismo, unos doce siglos despues, imprimieron un sello inconfundible a su arte de la palabra. Los griegos obraron siempre en la creencia de que la literatura tenía la capacidad de encantar los oídos de los hombres. La versión castellana que aquí presentamos es de Luis Gil, uno de nuestros más reputados helenistas.",
+        "imagen": "https://imagessl.casadellibro.com/a/l/s7/73/9788424928773.webp",
+        "stock": 1
+    },
+    {
+        "id": 1163,
+        "titulo": "JOHNNY COGIÓ SU FUSIL",
+        "autor": "DALTON TRUMBO",
+        "isbn": 9788476696941,
+        "editorial": "EL ALEPH EDITORES",
+        "numPaginas": 208,
+        "precio": "UYU 4000",
+        "descripcion": "Johnny cogió su fusil es la gran novela antibelicista por excelencia. Publicada por primera vez en 1939, la historia de Dalton Trumbo sobre un joven soldado americano terriblemente dañado durante la Primera Guerra Mundial —sobrevive sin brazos, sin piernas, sin rostro pero con la mente intacta— fue un exito inmediato. Esta conmovedora novela marcó un punto y aparte para muchos americanos que crecieron con la Segunda Guerra Mundial y se convirtió en la novela antisistema más popular de la era de Vietnam. Actualmente vuelve a ser de gran actualidad. Dalton Trumbo (Colorado, 1905 – Hollywood, 1976) debutó como novelista en 1935 con la novela Eclipse y durante ese mismo año empezó a trabajar como guionista en la industria cinematográfica de Hollywood. En 1939 publicó Johnny cogió su fusil, inspirándose en un artículo que leyó sobre un oficial británico que quedó totalmente desfigurado durante la Primera Guerra Mundial. El libro obtuvo el National Book Award y en la década de los sesenta Luis Buñuel le propuso hacer una película sobre el libro. Fue el mismo Trumbo, con 65 años de edad, quien adaptó su novela a la gran pantalla y debutó como director cinematográfico. Asimismo, fue uno de los “Hollywood Ten”, grupo formado por guionistas y directores destacados que fueron arrestados.",
+        "imagen": "https://imagessl1.casadellibro.com/a/l/s7/41/9788476696941.webp",
+        "stock": 1
+    },
+    {
+        "id": 1164,
+        "titulo": "KARL KRAUS EN LOS ÚLTIMOS DÍAS DE LA HUMANIDAD",
+        "autor": "ADAN KOVACSICS",
+        "isbn": 9789563143119,
+        "editorial": "EDICIONES UDP",
+        "numPaginas": 256,
+        "precio": "UYU 1390",
+        "descripcion": "El 19 de noviembre de 1914, ante el nutrido público que se congregaba en la Sala Media de la Konzerthaus de Viena, Karl Kraus leyó En esta gran época, texto con el que rompía el silencio en que lo había sumido el estallido de la Primera Guerra Mundial. Ahí denunciaba la connivencia de la prensa con el delirio bélico y proclamaba que en estas circunstancias el ser humano ya no vendrá al mundo. Los años siguientes, repletos de una frenética actividad, fueron los de la incubación de la obra maestra de Kraus, Los últimos días de la humanidad, que compendia el horror de aquella guerra. Durante todo ese tiempo, Kraus fue asumiendo una postura ante cada uno de los acontecimientos, se dejó poseer por todos los ritmos y cadencias propios del conflicto, y los integró en su drama gigantesco. ¿Cómo es posible estar habitado, durante cuatro largos años, por cientos y cientos de voces que contienen en sí mismas, simultáneamente, su infamia y su condena agudizadas? ¿Cómo sobrellevar tal cantidad de horrores?, se preguntaba Elias Canetti. La clave la procuraría la publicación, en 1974, de la correspondencia de Karl Kraus con la baronesa Sidonie Nádherný, con la que en 1913 entabló una apasionada relación amorosa. Para Canetti, esas cartas de las que este volumen incluye una significativa muestra descubrieron un nuevo Karl Kraus, en cuyos entresijos y complejidades indaga Adan Kovacsics caleidoscópicamente. Lo hace mediante un puñado de ensayos en los que combina atrevidamente narración, investigación, análisis y reflexión. El resultado es una aproximación múltiple a la figura incomparable de Kraus, a la que subyacen estremecedores vislumbres perfectamente extrapolables a la actualidad de la íntima relación entre la creciente rebaja del lenguaje y el incremento de la inhumanidad.",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/qigky4se8fiu7454e1j2.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1165,
+        "titulo": "LA ESCRITURA DE LOS DIOSES",
+        "autor": "EDWARD DOLNICK",
+        "isbn": "9788419942289",
+        "editorial": "SIRUELA",
+        "numPaginas": 340,
+        "precio": "UYU 1690",
+        "descripcion": "Un apasionante thriller cultural sobre el descubrimiento de la piedra de Rosetta y la carrera por descifrar los jeroglíficos egipcios entre Thomas Young y Jean-François Champollion.",
+        "imagen": "https://imagessl9.casadellibro.com/a/l/s7/89/9788419942289.webp",
+        "stock": 1
+    },
+    {
+        "id": 1166,
+        "titulo": "LA ESPERANZA MÁS GRANDE",
+        "autor": "ILSE AICHINGER",
+        "isbn": "9788495587213",
+        "editorial": "EDITORIAL MINÚSCULA",
+        "numPaginas": 284,
+        "precio": "UYU 1090",
+        "descripcion": "Novela autobiográfica ambientada en Viena durante el nazismo, donde un grupo de niños perseguidos por su origen étnico se aferra a una esperanza más grande ante la imposibilidad de huir.",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/0a5ogv4jkouuco134zbi.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1167,
+        "titulo": "LA FUERTE RAZÓN PARA ESTAR JUNTOS",
+        "autor": "PETER SLOTERDIJK",
+        "isbn": "9789878413747",
+        "editorial": "EDICIONES GODOT",
+        "numPaginas": 80,
+        "precio": "UYU 490",
+        "descripcion": "Reflexión filosófica sobre la comunidad y los vínculos humanos, derivada del proyecto Esferas de Sloterdijk y su pregunta sobre qué nos une como sociedad.",
+        "imagen": "",
+        "stock": 1
+    },
+    {
+        "id": 1168,
+        "titulo": "LA GUERRA",
+        "autor": "J.M.G. LE CLÉZIO",
+        "isbn": "9789874489579",
+        "editorial": "EL CUENCO DE PLATA",
+        "numPaginas": null,
+        "precio": "UYU 790",
+        "descripcion": "Una visión literaria y alucinada del concepto de guerra como presencia permanente y destructiva en la vida humana.",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/g9rempsf64j973mnspwn.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1169,
+        "titulo": "LA INCOMPLETA, VERDADERA, AUTÉNTICA Y MARAVILLOSA HISTORIA DEL PRIMERO DE MAYO",
+        "autor": "PETER LINEBAUGH",
+        "isbn": "9788416946464",
+        "editorial": "KATAKRAK",
+        "numPaginas": 256,
+        "precio": "UYU 990",
+        "descripcion": "Ensayo histórico y político sobre el 1 de mayo como día de reivindicación y esperanza, atravesado por luchas sociales y figuras revolucionarias.",
+        "imagen": "",
+        "stock": 1
+    },
+    {
+        "id": 1170,
+        "titulo": "LA INTIMIDAD",
+        "autor": "ROSA MONCAYO CAZORLA",
+        "isbn": "9788412135312",
+        "editorial": "EDITORIAL BARRETT",
+        "numPaginas": 182,
+        "precio": "UYU 1090",
+        "descripcion": "Novela sobre una pareja joven que, atrapada en un círculo de autodestrucción, intenta comenzar de nuevo en el campo, en una exploración cruda de la intimidad.",
+        "imagen": "https://editorialbarrett.org/cdn-cgi/image/width=800,quality=80,format=avif/https://pictures.editorialbarrett.org/la-intimidad_thumbnail.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1171,
+        "titulo": "LA INVENCIÓN DEL PODER",
+        "autor": "BRUCE BUENO DE MESQUITA",
+        "isbn": "9788419942289",
+        "editorial": "SIRUELA",
+        "numPaginas": 416,
+        "precio": "UYU 2000",
+        "descripcion": "La invención del poder echa por tierra el pensamiento convencional acerca de la cultura, la religión y la raza de Europa, y presenta una convincente y novedosa visión que resuelve uno de los grandes enigmas de la historia: ¿por qué Occidente se convirtió en la civilización más poderosa?\n\nLa excepcionalidad occidental ―la idea de que las civilizaciones europeas son más libres, más ricas y menos violentas― es una poderosa noción política ampliamente extendida. Ha sido el origen de la paz y la prosperidad de diversas sociedades, pero también la causante de los estragos y la limpieza étnica en otras.\n\nEn La invención del poder, Bruce Bueno de Mesquita recurre a sus conocimientos como especialista en gestión política y acuerdos de alto nivel para ofrecernos una nueva y revolucionaria teoría acerca de la excepcionalidad occidental: que un único acontecimiento del siglo XII cambió el curso de la historia europea y mundial. Al forjar un compromiso entre iglesias y naciones-Estado que, a todos los efectos, intercambiaban dinero por poder y poder por dinero, el Concordato de Worms, firmado en 1122, incentivó el crecimiento económico, facilitó la secularización y mejoró el destino de los ciudadanos. Todo ello propició que los países europeos siguieran el camino de la prosperidad. En los siglos siguientes, los que han mostrado una dinámica competitiva similar entre Iglesia y Estado han obtenido a la larga mejores resultados que aquellos que no.\n\nLa invención del poder es una obra de formidable erudición: visionaria, original y esencial, plantea a la vez la cuestión de quiénes somos y de dónde venimos, y responde a estas preguntas con fundamento y rotundidad.\n\n«[Este libro] señala la importancia de un suceso casi inadvertido, el Concordato de Worms, del siglo XII, como el instante fundacional en el desarrollo de los Estados y del Gobierno responsable en Europa».\n\nFrancis Fukuyama\n\n«En este absorbente libro, el profesor Bueno de Mesquita muestra los talentos que le han hecho famoso: ideas claras, un novedoso marco de análisis y muy buen estilo».\n\nBarry Weingast",
+        "imagen": "https://m.media-amazon.com/images/I/71jnoqa3m9L._SY425_.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1172,
+        "titulo": "LA LIBRERA DE PARIS",
+        "autor": "KERRI MAHER",
+        "isbn": "9788419179012",
+        "editorial": "NAVONA EDITORIAL",
+        "numPaginas": 416,
+        "precio": "UYU 1200",
+        "descripcion": "Cuando Sylvia Beach, una joven americana amante de los libros, abre Shakespeare and Company en una tranquila calle en el París de 1919, no tiene ni idea de que cambiará el curso de la literatura. Shakespeare and Company es mucho más que una librería. Hemingway y muchos de los escritores de la Generación Perdida la consideran su segunda casa. Allí también se forjan algunas de las amistades literarias más importantes del siglo XX, como la de James Joyce con la misma Sylvia. Cuando la controvertida novela de Joyce, Ulysses, es prohibida, Beach decide publicarla bajo la protección de Shakespeare and Company. Pero el éxito y la fama que conllevan publicar la novela más controvertida e influyente del siglo tiene unos costes muy altos: la rivalidad de otros editores que quieren a Joyce para ellos. Sus relaciones más queridas son puestas a prueba mientras París cae en la Gran Depresión. Ante una gran crisis personal y financiera, Sylvia debe decidir qué significa para ella Shakespeare and Company. Con La librera de París Kerri Maher ha logrado construir un fresco inigualable de una librería, una ciudad y una época esenciales para entender de dónde venimos y hacia dónde vamos.",
+        "imagen": "https://imagessl2.casadellibro.com/a/l/s7/12/9788419179012.webp",
+        "stock": 1
+    },
+    {
+        "id": 1173,
+        "titulo": "LA MUJER DE LA ARENA",
+        "autor": "KÔBÔ ABE",
+        "isbn": "9788419942180",
+        "editorial": "SIRUELA",
+        "numPaginas": 248,
+        "precio": "UYU 1690",
+        "descripcion": "«Siempre sinuoso, adictivo, de lectura compulsiva… Abe es un consumado estilista».   David Mitchell   \nTras una excursión a orillas del mar, un entomólogo aficionado pierde el último autobús de regreso y se ve obligado a pasar la noche en una cabaña al fondo de un inmenso foso entre las dunas. Cuando a la mañana siguiente intenta marcharse, descubre para su sorpresa que los lugareños tienen otros planes para él… Sin posibilidad de escapar, se verá forzado a apartar sin descanso con una pala la arena, que gana terreno sin cesar y amenaza con destruir el pueblo. Su destino se verá entrelazado con el de su única compañera allí abajo, una extraña joven que, codo con codo, luchará a su lado en la interminable batalla contra ese elemento que avanza inexorable, absorbiendo las cosas y los seres, cubriéndolo todo con un manto de olvido.   Considerada una de las obras maestras de la literatura japonesa del siglo XX, La mujer de la arena es una narración de un fluir imparable y poderoso, que combina la esencia del mito con el suspense y la novela existencial. Kôbô Abe plantea de forma intensa y precisa el conflicto del ser humano enfrentado a sus propios límites, en un mundo sin más realidad que la materia y que solo puede ser aprehendido a través de una exacerbada sensualidad.",
+        "imagen": "https://imagessl0.casadellibro.com/a/l/s7/80/9788419942180.webp",
+        "stock": 1
+    },
+    {
+        "id": 1173,
+        "titulo": "LA MUJER Y EL SACRIFICIO. DESDE ANTÍGONA HASTA NOSOTRAS",
+        "autor": "ANNE DUFOURMANTELLE",
+        "isbn": "9789878875217",
+        "editorial": "NOCTURNA EDITORA",
+        "numPaginas": 260,
+        "precio": "UYU 1360",
+        "descripcion": "Pensar la femineidad bajo los auspicios del sacrificio, es también pensar la relación de la mujer al trauma singular y colectivo, que, por este evento, ella revela. En este sentido, el sacrificio es un acto de desobediencia, siempre. Comprometido en contra de la moral común, hay un acto singular, situado en un tiempo y en un lugar preciso, sin vuelta atrás.",
+        "imagen": "https://cdn9.luna.com.uy/escaramuza.com.uy/cdn/files/tmp/compressed/normal/ly4fxafxs43qo4ol32xx.webp",
+        "stock": 1
+    },
+    {
+        "id": 1174,
+        "titulo": "LA MALDICIÓN DE LA NUEZ MOSCADA",
+        "autor": "AMITAV GHOSH",
+        "isbn": "9788412708530",
+        "editorial": "CAPITÁN SWING",
+        "numPaginas": 392,
+        "precio": "UYU 1350",
+        "descripcion": "Esta es una poderosa obra de historia, ensayo, testimonio y polémica que remonta nuestra crisis planetaria contemporánea al descubrimiento del Nuevo Mundo y la ruta marítima hacia el océano Índico. En La maldición de la nuez moscada, Amitav Ghosh sostiene que la dinámica del cambio climático actual hunde sus raíces en un orden geopolítico secular construido por el colonialismo occidental. En el centro de su narración está la hoy omnipresente nuez moscada. La historia de la nuez moscada es una historia de conquista y explotación, tanto de la vida humana como del entorno natural, que es una perfecta parábola de nuestra crisis medioambiental, revelando el modo en que la historia humana siempre ha estado enredada con materiales terrestres como las especias, el té, la caña de azúcar, el opio o los combustibles fósiles.",
+        "imagen": "https://capitanswing.com/wp-content/uploads/Amitav-Ghosh-La-maldicion-de-la-nuez-moscada-450x702.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1175,
+        "titulo": "LA OFICINA DE LA NADA",
+        "autor": "FELIPE CUSSEN",
+        "isbn": "9788419207364",
+        "editorial": "SIRUELA",
+        "numPaginas": null,
+        "precio": "UYU 1800",
+        "descripcion": "La «oficina de la nada» es la expresión de Miguel de Molinos escogida como metáfora de este libro: un espacio en el que se reúnen, analizan y clasifican numerosas obras literarias y visuales producidas principalmente en la segunda mitad del siglo XX y los inicios del siglo XXI que intentan representar, materializar o producir el efecto de la nada. En cada capítulo se despliega una secuencia de motivos, soportes y estrategias recurrentes que han surgido en el ámbito de la narrativa, la poesía y la literatura digital, los libros de artista y el arte conceptual. Como se podrá observar, estos gestos, a veces serios y profundos, otras veces absurdos e irónicos, ponen al desnudo las estructuras culturales, políticas y económicas en que se sustenta aquello que aún entendemos por experiencia estética. Los archivadores de esta oficina acogen, también, una tradición sorprendentemente rica tanto en experimentaciones creativas como en reflexiones filosóficas y religiosas, particularmente de la teología negativa. Se ofrece así un marco de comprensión más amplio y complejo en el que la inefabilidad de la experiencia mística se superpone con las tensiones del lenguaje y la representación en las poéticas negativas contemporáneas.",
+        "imagen": "https://isadoralibros.com.uy/cdn/shop/files/ISACI-17419_9788419207364_60ef7f4f-c784-4575-8cfe-3bc296463d18.jpg?v=1748328046&width=493",
+        "stock": 1
+    },
+    {
+        "id": 1176,
+        "titulo": "PISTA DE ARENA, LA (COMISARIO MONTALBANO 16)",
+        "autor": "ANDREA CAMILLERI",
+        "isbn": "9788418173516",
+        "editorial": "SALAMANDRA",
+        "numPaginas": 224,
+        "precio": "UYU 690",
+        "descripcion": "En su máximo esplendor como detective y como seductor, Montalbano se niega en redondo a subsanar las primeras y evidentes huellas del paso del tiempo.\n\nOtra aventura del comisario más famoso de Italia.\n\nEntre incrédulo y horrorizado, el comisario Salvo Montalbano contempla desde su ventana una imagen de pesadilla: un caballo yace muerto sobre la arena. Una rápida inspección a pie de playa le permite constatar que se trata de un magnífico purasangre que ha sido sacrificado con crueldad y ensañamiento.\n\nPese a no ser precisamente un defensor de los animales, el comisario siente la necesidad de llevar ante la justicia a quien haya sido capaz de perpetrar semejante acto. Así pues, con la ayuda de su amiga Ingrid, Montalbano se adentrará en un ambiente al que nos tiene poco acostumbrados: el de los círculos ecuestres, las carreras de caballos y las elegantes fiestas benéficas, un mundo poblado por hombres de negocios de altos vuelos, aristócratas y amazonas de rompe y rasga.\n\nPero de ahí a las apuestas clandestinas y las carreras amañadas apenas media un paso, y Montalbano se colocará en el punto de mira de turbios personajes que lo amenazarán de todos los modos posibles. Incluso, poco faltará para que su casa acabe pasto de las llamas. ¿Qué otra cosa puede esperarse de la mafia?",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/gd3tzb2k5ylyniusipt4.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1177,
+        "titulo": "LA VIDA NO ES UTIL",
+        "autor": "AILTON KRENAK",
+        "isbn": "9788412664713",
+        "editorial": "ETERNA CADENCIA SL",
+        "numPaginas": 96,
+        "precio": "UYU 890",
+        "descripcion": "Conferencias del líder y filósofo indígena brasileño, activista ecologista y escritor.",
+        "imagen": "https://imagessl3.casadellibro.com/a/l/s7/13/9788412664713.webp",
+        "stock": 1
+    },
+    {
+        "id": 1178,
+        "titulo": "LAS CIUDADES DE PAPEL",
+        "autor": "DOMINIQUE FORTIER",
+        "isbn": "9788412385892",
+        "editorial": "EDITORIAL MINUSCULA, S.L.U.",
+        "numPaginas": 200,
+        "precio": "UYU 990",
+        "descripcion": "Con el tiempo ha llegado a ser una de las figuras más importantes de la literatura. Si, como ella escribió, el agua se aprende por la sed y los pájaros por la nieve, quizá Emily Dickinson pueda aprenderse por el mar y las ciudades. Dominique Fortier repasa sus libros, su jardín y sus fantasmas e imagina momentos de la vida de Emily a partir de los lugares en los que vivió la poeta: Amherst, Boston, Mount Holyoke, Homestead. \"Las ciudades de papel\", una bellísima meditación en torno a la libertad, el poder de la creación, los parajes y las casas que habitamos y que a su vez nos habitan, es la primera obra de Fortier que aparece en castellano.",
+        "imagen": "https://imagessl2.casadellibro.com/a/l/s7/92/9788412385892.webp",
+        "stock": 1
+    },
+    {
+        "id": 1179,
+        "titulo": "LAS FALSAS ALTERNATIVAS",
+        "autor": "ANI PÉREZ RUEDA",
+        "isbn": "9788417870126",
+        "editorial": "LA LLEVIR-VIRUS",
+        "numPaginas": 288,
+        "precio": "UYU 890",
+        "descripcion": "En las últimas décadas, de la crítica a la escuela tradicional han surgido numerosos espacios de educación «alternativa» al margen de la escuela pública -considerada enemiga de la «libertad»-",
+        "imagen": "https://imagessl6.casadellibro.com/a/l/s7/26/9788417870126.webp",
+        "stock": 1
+    },
+    {
+        "id": 1180,
+        "titulo": "LAS GUERRAS COMERCIALES SON GUERRAS DE CLASES",
+        "autor": "MATTHEW KLEIN, MICHAEL PETTIS",
+        "isbn": "9788412619928",
+        "editorial": "CAPITAN SWING",
+        "numPaginas": 340,
+        "precio": "UYU 1690",
+        "descripcion": "Las disputas comerciales suelen entenderse como conflictos entre países con intereses nacionales contrapuestos, pero como demuestran Matthew C. Klein y Michael Pettis, a menudo son el resultado inesperado de decisiones políticas internas para servir a los intereses de los ricos a costa de los trabajadores y los jubilados de a pie. Klein y Pettis rastrean los orígenes de las actuales guerras comerciales en las decisiones tomadas por los políticos y los líderes empresariales de China, Europa y Estados Unidos en los últimos treinta años. En todo el mundo, los ricos han prosperado mientras los trabajadores ya no pueden permitirse comprar lo que producen, han perdido sus puestos de trabajo o se han visto obligados a endeudarse más. En este desafío a la corriente dominante que invita a la reflexión, los autores ofrecen una narración coherente que muestra cómo las guerras de clases de la creciente desigualdad son una amenaza para la economía mundial y la paz internacional, y lo que podemos hacer al respecto.",
+        "imagen": "https://images.cdn1.buscalibre.com/fit-in/360x360/59/57/59579e53c294953208880c6698c8dfd2.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1181,
+        "titulo": "LEAVING LAS VEGAS",
+        "autor": "JOHN O'BRIEN",
+        "isbn": "9788412283280",
+        "editorial": "H&O",
+        "numPaginas": 272,
+        "precio": "UYU 1090",
+        "descripcion": "Ben y Sera se conocen en Las Vegas, la ciudad que nunca duerme. Ben quiere poner fin a su vida a base de litros de alcohol y Sera, una prostituta que acaba de dejar a su chulo, decide acompañarle en su descenso a los infiernos. Neones, mesas de casino, calles desiertas y noches en blanco son los paisajes de una relación tan amarga como bella, tan dolorosa como inevitable. No hay final feliz ni redención, tan sólo dos seres marginales que en el peor momento de sus vidas optan por amarse y respetarse, sin juicios ni reproches, hasta el final de sus días.\n\nUna historia de amor desgarradora, pero inolvidable. El legado de un escritor maldito que no llegó a conocer el éxito de su obra maestra.",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/6svhakm7efeonmzsilns.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1182,
+        "titulo": "LEONORA (PREMIO BIBLIOTECA BREVE 2011)",
+        "autor": "ELENA PONIATOWSKA",
+        "isbn": "9788432200328",
+        "editorial": "BOOKET",
+        "numPaginas": 512,
+        "precio": "UYU 1090",
+        "descripcion": "Una mujer indomable, un espíritu rebelde... una leyenda. Una de esas novelas que uno, simplemente, no puede perderse\nEstaba destinada a crecer como una rica heredera, pero desde pequeña supo que era diferente, que su capacidad de ver lo que otros no veían la convertía en especial. Desafió las convenciones sociales y rompió cualquier atadura religiosa o ideológica para conquistar su derecho a ser una mujer libre, personal y artísticamente. Leonora Carrington es hoy una leyenda, la más importante pintora surrealista.",
+        "imagen": "https://imagessl8.casadellibro.com/a/l/s7/28/9788432200328.webp",
+        "stock": 1
+    },
+    {
+        "id": 1183,
+        "titulo": "LO QUE FUE EL FUTURO",
+        "autor": "DANIELA ALCÍVAR BELLOLIO",
+        "isbn": "9788418504426",
+        "editorial": "CANDAYA",
+        "numPaginas": 288,
+        "precio": "UYU 1200",
+        "descripcion": "Lo que fue el futuro es el relato de una desintegración, la crónica de una crisis devastadora que amenaza a un matrimonio, a una casa, a la cordura, y desata en la narradora una reflexión íntima y honda en la que se cruzan escritura y vida, paisaje y afecto, memoria y porvenir.\nLo que fue el futuro es también el trazado de una genealogía familiar que incorpora un archivo personal: las huellas de un pasado a veces luminoso, a veces turbio con las que la protagonista trata de dar forma a su linaje y reconciliarse con el presente. Desde la recuperación de la infancia y la adolescencia hasta la reconstrucción de la figura sombría del abuelo escritor, esta novela explora nuestra relación con los otros, con los objetos, los animales y el paisaje, deteniéndose especialmente en las diversas formas con las que recuperamos la vida, tras esos quiebres radicales que parecen destruirlo todo.",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/rvzivnm0v1yzx36wbfut.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1184,
+        "titulo": "LO ROTO Y LO SAGRADO",
+        "autor": "ALAN LIGHT",
+        "isbn": "9788419234254",
+        "editorial": "LIBURUAK",
+        "numPaginas": 272,
+        "precio": "UYU 1690",
+        "descripcion": "Lo roto y lo sagrado es la fascinante historia de una de las canciones más queridas, al tiempo que un revelador y magistral estudio del sobrecogedor poder de la música.\nCuando, tras un largo proceso de escritura, Leonard Cohen grabó por primera vez Hallelujah, atrajo escasa atención y la canción fue desestimada tanto por su sello discográfico como por los críticos. Hoy es una de las piezas musicales más grabadas de la historia, versionada por numerosos iconos como Céline Dion, Enrique Morente, John Cale o, sobre todo, Jeff Buckley.\n\n¿Cómo llegó una canción relativamente desconocida a convertirse en un himno internacional de la resiliencia y la tragedia humanas, que cada generación siente haber descubierto y reivindica como propio?\n\nA través de una amplia investigación con entrevistas en profundidad, el reconocido periodista musical Alan Light sigue el cautivador e improbable viaje de Hallelujah hasta el corazón de la cultura popular.\n\nIlustración de cubierta: Irene Villalva",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/q1qmsi6lef1h98tvxakn.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1185,
+        "titulo": "LOS ANARQUISTAS EXPROPIADORES",
+        "autor": "OSVALDO BAYER",
+        "isbn": "9788496044326",
+        "editorial": "VIRUS",
+        "numPaginas": 112,
+        "precio": "UYU 690",
+        "descripcion": "\"Combatidos y hasta estigmatizados por sus propios compañeros de ideas, los anarquistas que a sí mismos se llamaban expropiadores o para emplear otros términos el anarquismo delictivo tuvo en Argentina un gran auge en las décadas del veinte y treinta. [...] Vivían con los segundos contados, sin treguas. Curiosos personajes que atacaban a la sociedad (\"burguesa\") a bombas y a tiros, pero que en sus periódicos censuraban agriamente la dictadura de los bolcheviques defendiendo un vellocino de oro transparente e inmanente: la libertad\"",
+        "imagen": "https://cdn9.luna.com.uy/escaramuza.com.uy/cdn/files/tmp/compressed/normal/3ye7eixb1aucg978s2z6.webp",
+        "stock": 1
+    },
+    {
+        "id": 1186,
+        "titulo": "LOS ÁRBOLES NO HUYEN",
+        "autor": "VERENA STOSSINGER",
+        "isbn": "9788410171053",
+        "editorial": "PERIFÉRICA",
+        "numPaginas": 248,
+        "precio": "UYU 1200",
+        "descripcion": "Al acabar la Segunda Guerra Mundial, millones de alemanes fueron expulsados de Prusia Oriental (entre otras zonas de Europa) y desplazados a Alemania sin posibilidad de regresar. Dado que al principio de la contienda el régimen nazi había utilizado la excusa de las minorías para su política expansionista, los gobiernos de posguerra juzgaron que trasladar a esas minorías era la única manera de evitar futuros conflictos. Pero aquellos que se dieron en llamar territorios recuperados, y que se repartieron Polonia y la entonces Unión Soviética, llevaban siglos habitados por población alemana. El traslado de estas personas fue brutal: a pie en los primeros meses; en trenes de mercancías y transporte de ganado después. Sufrieron inanición, agotamiento, frío extremo y un vandalismo que los despojaba de sus poquísimas pertenencias. Una periodista de la época afirmó que fue «la decisión más inhumana que tomaron nunca unos gobiernos dedicados, en teoría, a la defensa de los derechos humanos».\n\nEl protagonista de esta novela, que tenía trece años cuando se produjo el gran desalojo, es uno de esos desplazados. La guerra lo ha dejado sin familia sólo sobrevive uno de sus hermanos y sin país. Únicamente conserva cuatro fotografías. Al cabo de cincuenta años decide recorrer con su esposa los escenarios de su niñez.\n\nA pesar de que los nuevos moradores de su tierra natal se esforzaron por borrar toda huella de sus existencias erradicando sus comunidades, su cultura y su lengua, Jürgen Ramm tiene la esperanza de reencontrarse al menos con el mar, los prados o los bosques, pues «las aves migratorias siempre regresan y los árboles pueden llegar a hacerse viejos. Los árboles no huyen», aunque lo que verdaderamente desearía es encontrar las piezas que deberían encajar en los vacíos que se abren cuando piensa en el pasado. En esa travesía geográfica, sensorial y memorialística cada nuevo hallazgo sobre su familia despierta en él sentimientos encontrados que a su vez le generan nuevas incógnitas imposibles de esclarecer. Una envolvente novela, asentada en una meticulosa documentación, sobre la memoria alemana de la guerra.",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/ge3cho535ki4gpzwxe65.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1187,
+        "titulo": "LOS BARRIOS BAJOS DE MADRID, SEGUN GALDOS",
+        "autor": "JOSÉ ESTEBAN",
+        "isbn": "9788418141768",
+        "editorial": "REINO DE CORDELIA S.L.",
+        "numPaginas": 256,
+        "precio": "UYU 1350",
+        "descripcion": "En los 58 años que Benito Perez Galdós pasó en Madrid, desde su llegada en 1862, la ciudad sufrió una enorme transformación: duplicó su población y pasó de ser una urbe del antiguo Regimen a una ciudad moderna. Testigo privilegiado de ese cambio, el gran novelista español peinó las calles con su pluma, dejando constancia del paisaje y paisanaje urbano en cada una de sus obras. Jose Esteban se centra ahora en los denominados \"barrios bajos\", los del madroño, aquellos más alejados del oso, que vive desde la Plaza Mayor para arriba: la calle de Toledo, la del Almendro, el Manzanares, El Rastro… En ese viaje galdosiano le acompaña el fotógrafo Antonio Tiedra, para dejar huella gráfico de ese recorrido literario.",
+        "imagen": "https://imagessl8.casadellibro.com/a/l/s7/68/9788418141768.webp",
+        "stock": 1
+    },
+    {
+        "id": 1188,
+        "titulo": "LOS CELOSOS (DINASTÍA DE LOS GARREN 2)",
+        "autor": "SÁNDOR MÁRAI",
+        "isbn": "9788418968884",
+        "editorial": "SALAMANDRA",
+        "numPaginas": 464,
+        "precio": "UYU 990",
+        "descripcion": "Considerada Los Buddenbrook de la literatura húngara, Los celosos es una de las obras más ambiciosas de Sándor Márai. El patriarca de la dinastía Garren está en el lecho de muerte. Para los hermanos de la familia ha llegado la hora de volver a su ciudad natal y reunirse en el hogar de su infancia. Sin embargo, enseguida descubren que su único nexo de unión es la figura del padre y se preguntan entonces si su muerte significará el final de la familia.Con un formidable despliegue de recursos técnicos, Sándor Márai nos guía de forma magistral a través de los pensamientos y emociones de sus personajes y disecciona la complejidad de las relaciones familiares en el escenario político y social de la Europa de entreguerras, marcada por la desintegración del imperio austrohúngaro, que dejó al país sin parte de su territorio y a una clase social, la burguesía, condenada a la extinción.",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/5e1fp6jouoeachd9io5s.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1189,
+        "titulo": "LOS CHICOS DE HIDDEN VALLEY ROAD",
+        "autor": "ROBERT KOLKER",
+        "isbn": "9788419261151",
+        "editorial": "SEXTO PISO",
+        "numPaginas": 530,
+        "precio": "UYU 1390",
+        "descripcion": "Don y Mimi Galvin encarnan como nadie el espíritu ingenuo y entusiasta de los Estados Unidos de su época. Jóvenes y llenos de sueños y ambiciones, el futuro es para ellos un horizonte abierto. Los hijos no tardan en llegar: en 1945 nace Donald, el primero de los doce que tendrá la pareja a lo largo de dos décadas. Atléticos, inteligentes, talentosos, atractivos y felizmente instalados en la idílica casa de Hidden Valley Road, los Galvin se dirían la perfecta familia americana. Hasta que un día, tras una serie de extraños comportamientos, diagnostican esquizofrenia a Donald. En los años sucesivos, nada menos que otros cinco de los chicos de Hidden Valley Road desarrollarán la enfermedad, y la amenaza siempre penderá sobre la cabeza del resto. Pese a que su singular caso llegará a llamar la atención del Instituto Nacional de Salud Mental, Mimi se pasará media vida tratando de mantener la impoluta fachada de familia modélica e intachable, mientras de puertas adentro la desdicha y el horror no hacen sino acrecentarse: crisis nerviosas, episodios de violencia descontrolada, secretos abominablesLos chicos de Hidden Valley Road es una portentosa crónica con un pulso narrativo tan sólido y adictivo que se lee como una novela: una saga familiar llena de amor, sufrimiento y esperanza que se desarrolla en paralelo no solo a los grandes episodios de la historia estadounidense del siglo xx, sino también a los avances en la visión, comprensión y tratamiento de la esquizofrenia. El libro de Kolker es una lectura apasionante que nos habla de la tragedia de una familia devorada por la esquizofrenia en una época en la que nadie sabía demasiado bien qué era: ni los doctores, ni los investigadores, ni mucho menos los Galvin.",
+        "imagen": "https://cdn9.luna.com.uy/escaramuza.com.uy/cdn/files/tmp/compressed/normal/uwq1br6zusux1kto73co.webp",
+        "stock": 1
+    },
+    {
+        "id": 1190,
+        "titulo": "LOS ESTÁNDARES COREANOS",
+        "autor": "PARK MINGYU",
+        "isbn": "9789878823416",
+        "editorial": "HWAR-ANG",
+        "numPaginas": null,
+        "precio": "UYU 980",
+        "descripcion": "En Los estándares coreanos, Park Mingyu se hace eco de los cambios radicales que sufrió Corea a causa de la globalización. Sus cuentos que rozan el absurdo abandonan la tradición realista que dominó toda la escena literaria de su país durante el siglo XX y se sumergen en\nlas contradicciones delirantes de una sociedad que no tiene respiro. Su estilo fantástico y su ruptura con la tradición y lo transformaron en un icono vanguardista para las nuevas generaciones que buscaban otras formas narrativas para hacerse oír.",
+        "imagen": "https://isadoralibros.com.uy/cdn/shop/files/ISACI-19374_9789878823416_dd0f3588-107a-47dc-b7a3-e6c78c3d4c4c.jpg?v=1751394857&width=493",
+        "stock": 1
+    },
+    {
+        "id": 1191,
+        "titulo": "LOS INAMOVIBLES Y OTROS RELATOS DE ATROCIDAD, DEFORMIDAD, HORROR Y DEPRESION",
+        "autor": "GARY J. SHIPLEY",
+        "isbn": "9788412572636",
+        "editorial": "HOLOBIONTE",
+        "numPaginas": null,
+        "precio": "UYU 1690",
+        "descripcion": "Los inamovibles narra lo que le sucede a una familia cuando uno de sus miembros aparece un día petrificado: una entidad que es a un mismo tiempo un cuerpo, una esperanza, una imposibilidad e incluso una fuente de nutrición. Bizarra y oscura, hipnótica y extrema, onírica y perturbadora, Los inamovibles ha sido definida como un «relato familiar sucio y surrealista» que también es un inteligente comentario sobre la irrupción de las tecnologías de comunicación en nuestras vidas; una transformación inexplicable (no se sabe si divina o infernal) que asalta nuestro mundo a través de los sentidos, el lenguaje y el cuerpo. \n\nComo ocurre con las grandes narraciones, Los inamovibles es una novela-portal a lo desconocido, una conexión que −como la época que nos ha tocado vivir− nos arroja a un estado perplejo e indefinido; un pasaje chamánico que revela formas impensadas y canaliza los cambios existenciales de la actualidad, perfilando un enigma para el que todavía no tenemos respuesta. Todo ello contado por una de las voces más salvajes y originales de la literatura inglesa reciente, con un estilo situado en un punto imposible entre Samuel Beckett y el body-horror, Eugène Ionesco y el gore-metal, La metamorfosis de Kafka y Canino de Yorgos Lanthimos.\n\nAsimismo, nuestra edición incluye las piezas experimentales «Apuntes para una poética futura de la impossibilia» y «Todas las cosas horribles (una entrevista)», así como los relatos «Aftermath» y «Escucha, querida hermana, escucha».",
+        "imagen": "https://images.cdn1.buscalibre.com/fit-in/360x360/d9/23/d923e537c9dfb60cc78b2519f5bbb027.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1192,
+        "titulo": "LOS INTELECTUALES EN LA EDAD MEDIA",
+        "autor": "JACQUES LE GOFF",
+        "isbn": "9788416919215",
+        "editorial": "GEDISA",
+        "numPaginas": 168,
+        "precio": "UYU 890",
+        "descripcion": "Los clérigos medievales, que no han de confundirse con los sacerdotes o los monjes, son los descendientes de un linaje original en el mundo urbano medieval de Occidente. Encarnan la tradición de los intelectuales. Aunque la palabra es moderna, designa acertadamente esa múltiple función del clérigo que desempeñaba los papeles de pensador y docente, de transmisor de tradiciones literarias o de editor y productor de textos en el sentido material del término. La investigación de Jacques Le Goff es una introducción a la historia social del intelectual medieval en Occidente. Al atender aspectos singulares y muy diversos, este estudio se convierte en una galería de presentación de caracteres finamente analizados. El autor explora el rico mundo cultural y espiritual de Chartres, de las universidades, de la vida laboral que incluye actividades como el traducir y el copiar textos.Nos habla de figuras genéricas como los \"vagabundos intelectuales\" y de personas tan concretas como Abelardo y Eloísa. Los distintos aspectos se combinan en un fascinante panorama que permite conocer muchos detalles sorprendentes de la vida cotidiana medieval. Este texto ya clásico ha sido revisado y actualizado a fondo, y se ha puesto al día la bibliografia de las investigaciones posteriores sobre el tema, en buena medida inspiradas en la labor pionera de Jaeques Le Goff mismo.",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/jsha82g67fkscju89gtz.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1193,
+        "titulo": "LUCHAR POR LA CALLE",
+        "autor": "VV.AA.",
+        "isbn": "9788412779769",
+        "editorial": "CAPITÁN SWING",
+        "numPaginas": 360,
+        "precio": "UYU 1700",
+        "descripcion": "Como una Jane Jacobs moderna, la comisaria de transportes de Nueva York Janette Sadik-Khan transformó las calles de la ciudad para hacer sitio a peatones, ciclistas, autobuses y espacios verdes. Describiendo las batallas que libró para lograr el cambio, en su libro aporta consejos prácticos que otras ciudades pueden seguir para hacer que sus propias calles sean más seguras y dinámicas.\n\nSadik-Khan consiguió lo que parecía imposible y transformó las calles de una de las ciudades más grandes y duras del mundo en espacios dinámicos y seguros para peatones y ciclistas, a través de un planteamiento drástico y eficaz. El simple hecho de pintar una parte de la calle para convertirla en una plaza o un carril bus no solo hizo que la calle fuera más segura, sino que también disminuyó la congestión y aumentó el tráfico peatonal, lo que mejoró los resultados de los negocios. La experiencia confirmó que si se sabe leer la calle, se puede hacer que funcione mejor, sin reconstruirla totalmente, simplemente reasignando el espacio que ya existe. Luchar por la calle demuestra, con imágenes paso a paso, cómo reescribir el «código fuente» subyacente de una calle. Incluye ejemplos de cómo esta nueva forma de interpretar las calles ya se ha abierto camino en todo el mundo, desde parques de bolsillo en Ciudad de México y Los Ángeles hasta calles más respetuosas con los peatones en Auckland y Buenos Aires, pasando por innovadores diseños de carriles bici y plazas en Austin, Indianápolis y San Francisco. Luchar por la calle deconstruye, reensambla y reinventa la calle, invitando a mirarla de formas que nunca habíamos imaginado.",
+        "imagen": "https://cdn9.luna.com.uy/escaramuza.com.uy/cdn/files/tmp/compressed/normal/hyicsewsqsu9ol0v7p41.webp",
+        "stock": 1
+    },
+    {
+        "id": 1194,
+        "titulo": "MAIGRET Y LA VIEJA DAMA",
+        "autor": "GEORGES SIMENON",
+        "isbn": "9788433921345",
+        "editorial": "ANAGRAMA",
+        "numPaginas": null,
+        "precio": "UYU 590",
+        "descripcion": "Un nuevo título se añade a la colección Georges Simenon, en coedición con Editorial Acantilado.\n\nNo cabe duda de que Valentine Besson, apreciada por todos sus vecinos del pueblo normando de Étretat, es una anciana encantadora: frágil, menuda, de tez sonrosada y rasgos finos. La relación con sus principales allegados, sin embargo, es más compleja: sus hijos y su nuera parecen resentidos con ella por haber derrochado la fortuna de su difunto esposo, un exitoso industrial farmacéutico, y obligarlos a llevar una vida modesta en la que un día fue su segunda residencia en la costa.\n\nCuan­do Rose, la criada de la señora Besson, es envenenada, la anciana, convencida de ser el auténtico objetivo del crimen, decide pedir ayuda al comisario Maigret, quien para resolver el caso deberá sacar a la luz los secretos mejor guardados de esta comunidad pesquera aparentemente apacible.",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/9zaz5ycmg0hd5ausf6pw.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1195,
+        "titulo": "MARRANADAS",
+        "autor": "MARIE DARRIEUSSECQ",
+        "isbn": "9788412440133",
+        "editorial": "TRÁNSITO",
+        "numPaginas": 160,
+        "precio": "UYU 1100",
+        "descripcion": "La insólita metamorfosis de una bonita dependienta de perfumería es la peripecia a través de la cual Mary Darrieussecq compone esta fábula a un tiempo cándida y violenta, esta alegoría apenas futurista de la vida en cualquier gran ciudad europea, esta parodia sangrienta y desternillante del ansioso consumismo que a todos arrastra, este despiadado retrato robot de políticos lujuriosos, neonazis aburridos y presentadores de carroña televisiva. A pesar de la tremenda corrosividad del asunto, a las pocas páginas de embarcarse en Marranadas el lector siente la satisficcación de haber encontrado al fin una novela que se impone por sus propios méritos: de hecho, en un mes y sin ningún apoyo publicitario, sólo por el boca a boca, ya había vendido 120.000 ejemplares, y sigue en la lista de best sellers desde entonces.",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/iu5faw09ncnzn6uzb2f5.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1196,
+        "titulo": "MI DUEÑO Y MI SEÑOR",
+        "autor": "FRANÇOIS HENRI DESERABLE",
+        "isbn": "9788419047328",
+        "editorial": "EDITORIAL CABARET VOLTAIRE",
+        "numPaginas": 224,
+        "precio": "UYU 1890",
+        "descripcion": "Vasco, conservador en la Biblioteca Nacional de Francia, conoce en una cena a Tina, actriz de teatro obsesionada con Verlaine y Rimbaud, y se enamora locamente de ella. Para atraerla, aprovecha la pasión común que ambos profesan a la poesía. La relación muy pronto les crea una fuerte dependencia, hasta que Edgar, compañero de Tina y padre de sus hijos, acaba descubriendo la traición. Tina se ve obligada entonces a elegir entre la seguridad familiar o la ilusión de un amor que apenas ha empezado. Esta historia nos la cuenta un amigo común de los dos amantes, que interrogado por un juez revela todos los detalles del triángulo amoroso. ¿Pero por qué un juez investiga este asunto? ¿Y cómo puede ser la poesía la prueba principal en esta investigación? Pero, sobre todo, ¿qué tiene que ver la pistola de Verlaine con todo esto? Un libro rico en referencias literarias que fue galardonado con el Gran Premio de la Academia Francesa 2021.",
+        "imagen": "https://imagessl8.casadellibro.com/a/l/s7/28/9788419047328.webp",
+        "stock": 1
+    },
+    {
+        "id": 1197,
+        "titulo": "MIGRAÑA EN RACIMOS",
+        "autor": "FRANCISCO HINOJOSA",
+        "isbn": "9786079701437",
+        "editorial": "ALMADÍA",
+        "numPaginas": 152,
+        "precio": "UYU 980",
+        "descripcion": "Sin causa aparente, el cuerpo de pronto sabe que el dolor llegará. Una sensación extraña, un asomo de malestar que inquieta y predice otro, mucho mayor; y tarde o temprano llega, en relámpagos, en un brutal ataque que se concentra en el ojo, que cubre la mitad de la cabeza con un velo impenetrable de oscuridad. Es el dolor de la migraña en racimos. Una dolencia tan brutal, pero de la que se sabía poco hasta hace algunos años, pues no afecta a un porcentaje tan alto de pacientes comparado con otras aflicciones. Al comentar casos individuales y al analizar la farmacopea y las prácticas médicas, el autor abre un panorama al que pocos lectores hemos tenido acceso: el tormento que sufren los pacientes de este mal y su búsqueda desesperada por encontrar alivio. Las cefaleas que asolaron la casa familiar, sus intentos con la medicina alternativa, sus diálogos con otros migrañosos, su búsqueda de conocimiento en los libros como una forma de encontrar consuel y, al mismo tiempo, empezar a sanar. El arte existe porque el mundo está mal hecho. Nada lo capta mejor que un cortocircuito.\n\"Por eso, la literatura de Hinojosa saca chispas.\" Juan Villoro",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/wp861qdkpjngah1nxo2o.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1198,
+        "titulo": "MUERTOS A LA OBRA",
+        "autor": "VINCIANE DESPRET",
+        "isbn": "9789873831867",
+        "editorial": "CACTUS",
+        "numPaginas": 128,
+        "precio": "UYU 860",
+        "descripcion": "Los muertos a veces insisten, pueden seguir actuando, activando relaciones y transformando nuestro presente, que era un futuro que les importaba. Para hacerlo, necesitan que prolonguemos su existencia de otra manera. En las cinco historias que narra con inteligencia y sensibilidad la filósofa Vinciane Despret, esa otra manera son las obras de arte. Con la particularidad de que son obras por encargo y en espacios públicos, en las cuales los difuntos devienen nuestros muertos en común.\n\nUn grupo de adolescentes desorientados, sus amigos accidentados, y dos obeliscos en una plaza; o un profesor de historia apasionado, dos víctimas políticas de un crimen judicial, y un monumento al final de un paseo público; o las cenizas esparcidas de un doctor, excombatientes, unos comandos asaltados por la espalda por el ejército alemán en 1944, y un puente en un barrio pobre de inmigrantes En todas estas historias el protagonista es el proceso a través del cual los vivos, los muertos, y una obra de arte, se transforman y se apropian mutuamente creando una comunidad no reaccionaria, cosmopolítica, una democracia de iniciativa en la cual, como afirma Despret, lo común se vuelve un verbo.",
+        "imagen": "https://cdn9.luna.com.uy/escaramuza.com.uy/cdn/files/tmp/compressed/normal/iq3f6islf3soq8udtb0w.webp",
+        "stock": 1
+    },
+    {
+        "id": 1199,
+        "titulo": "NADAR",
+        "autor": "MARIANNE APOSTOLIDES",
+        "isbn": "9788410171015",
+        "editorial": "PERIFÉRICA",
+        "numPaginas": 128,
+        "precio": "UYU 990",
+        "descripcion": "Kat ha viajado con su hija adolescente a Lutrá, en Grecia, donde deberá tomar una decisión.\n\nLutrá es el pueblo de su padre, que acaba de morir. Se dice que las aguas de las piscinas naturales que lo rodean tienen propiedades curativas, y Kat se sumerge en ellas con la esperanza de que también tengan efectos beneficiosos sobre su atribulado corazón. A su regreso habrá de saber qué hacer con un matrimonio que contrajo siendo muy joven y se ha ido deteriorando. Kat nada y piensa en su vida, 39 largos, uno por cada año cumplido, necesita un procedimiento racional: si puede discernir el momento en que se acabó todo, alguna escena, sabrá qué resolución tomar.\n\nLa tensión de la escritura, la sutileza de sus reflexiones y su belleza esencial hacen de Nadar una lectura hipnótica y liberadora.",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/9p26flmexs0dpf87mwmn.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1200,
+        "titulo": "NOCHE CERRADA",
+        "autor": "CHRIS OFFUTT",
+        "isbn": "9788494850172",
+        "editorial": "SAJALÍN EDITORES",
+        "numPaginas": 243,
+        "precio": "UYU 1450",
+        "descripcion": "Tucker, un jovencísimo soldado de Kentucky que mintió sobre su edad para alistarse, regresa de la Guerra de Corea con once medallas, cuatrocientos dólares de paga y un cuchillo Ka-Bar. De camino a casa, conoce a una adolescente en apuros con la que acaba casándose y formando una familia. Tucker, que se gana la vida transportando alcohol para el contrabandista Ananias Beanpole, es un hombre de pocas palabras y buen corazón. Sin embargo, no dudará en recurrir a la fuerza para proteger a su familia y reclamar lo que considera que es suyo. Tras casi dos décadas sin publicar un libro de ficción, el autor de \"Kentucky seco\" regresa con una impactante novela ambientada en una recóndita región de gente humilde y contrabandistas de alcohol que combina lo mejor de la narrativa de Larry Brown y James M. Cain.",
+        "imagen": "https://images.cdn3.buscalibre.com/fit-in/360x360/42/93/4293a61e64f3d475f8c84e19731dccfc.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1201,
+        "titulo": "NORMA",
+        "autor": "SOFI OKSANEN",
+        "isbn": "9788418107023",
+        "editorial": "SALAMANDRA",
+        "numPaginas": 352,
+        "precio": "UYU 890",
+        "descripcion": "Con su narrativa intensamente evocadora, Sofi Oksanen se ha convertido en una de las principales voces de su generación.\n\nTras irrumpir en el panorama literario internacional con Purga, que vendió más de un millón de ejemplares en más de cuarenta países y recibió el aplauso unánime de los lectores y la crítica, además de numerosos premios y honores, Sofi Oksanen, una de las principales voces de la narrativa finlandesa actual, vuelve a sorprendernos con Norma, una novela intensa y asombrosa que combina con gran eficacia la intriga, el realismo mágico y la crítica social.\n\nCuando el cuerpo de Anita Ross es encontrado en el metro de Helsinki, todos los temores se confirman: la mujer acaba de tirarse a las vías. Pero Norma, su única hija, se muestra incredula, ya que madre jamás la hubiera dejado sola con su secreto: sus cabellos viven, experimentan emociones, cobran impulso y crecen tan rápidamente que hay que cortarlos varias veces al día. Dispuesta a todo con tal de saber la verdad, la joven decide reconstruir los últimos días de su madre, ofreciendose incluso en el salón de belleza donde ella trabajaba, uno más de los negocios de un clan que tambien trafica con vientres de alquiler. Acechada por el pasado y atrapada en una maraña de engaños",
+        "imagen": "https://imagessl3.casadellibro.com/a/l/s7/23/9788418107023.webp",
+        "stock": 1
+    },
+    {
+        "id": 1202,
+        "titulo": "NUEVA YORK. EL COLOR DE UN GRAN CIUDAD",
+        "autor": "THEODORE DREISER",
+        "isbn": "9788417301071",
+        "editorial": "ABADA EDITORES",
+        "numPaginas": 432,
+        "precio": "UYU 1290",
+        "descripcion": "Este volumen reúne treinta y ocho escenas de Nueva York a comienzos del siglo XX en las que Dreiser nos presenta, con maestría periodística, los contrastes sociales de Norteamérica observados en la gran metrópoli. Eclipsada por el gran éxito novelístico del autor e inédita en español hasta la fecha, esta obra surgió de los paseos de Dreiser por la ciudad y su observación de los vecindarios de población inmigrante, de los muelles, de las fábricas y de los ferrocarriles.",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/j718ypdj30oqgcxwa26x.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1203,
+        "titulo": "OAXACA SITIADA",
+        "autor": "DIEGO OSORNO",
+        "isbn": "9786078486052",
+        "editorial": "ALMADÍA",
+        "numPaginas": 373,
+        "precio": "UYU 490",
+        "descripcion": "Esta nueva edición de Oaxaca sitiada describe la dimensión real de la lucha que el pueblo oaxaqueño emprendió en el año 2006 en pos de justicia social. Su cometido era ponerle punto final a los abusos de un régimen autoritario cuya legitimidad siempre estuvo en entredicho. En estas páginas se asienta con detalle la historia de una rebelión: los orígenes del descontento entre los más desprotegidos, la necesidad de una reconversión de nuestro anquilosado sistema democrático, los liderazgos necesarios, el choque de un legítimo movimiento popular contra las altas estructuras del poder del estado, la represión, las cenizas que aún arden en la memoria viva de la sociedad. Con un oficio periodístico a toda prueba, Diego Osorno describe la composición del movimiento, así como la estela que dejó en una región que alcanzó sus límites de tolerancia ante los abusos del poder. La izquierda clandestina, los medios de comunicación independientes, la corrupción de los partidos y los gobiernos, los intereses individuales. Cada elemento encuentra su lugar de exposición y análisis en estas páginas. Esta primera insurrección del siglo XXI representa un parteaguas en la vida del país. Por ello, Oaxaca sitiada es ya un documento clave en la historia de nuestro presente.",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/scru1hsowkxakhadmfwh.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1204,
+        "titulo": "ODIO A LAS MUJERES ICELES MALFOLLAOS Y MACHISTAS MODERNOS",
+        "autor": "SUSANNE KAISER",
+        "isbn": "9788416946716",
+        "editorial": "KATAKRAK",
+        "numPaginas": null,
+        "precio": "UYU 1090",
+        "descripcion": "Algunos grupos antifeministas se crearon en los años noventa del siglo XX, pero no ha sido hasta las primeras décadas del siglo XXI cuando, gracias al anonimato que proporcionan las redes, se han organizado, interconectado, y han construido espacios propios. Este movimiento tiene distintas caras: los ínceles o célibes involutarios, los artistas del ligue, alt-right o fundamentalistas… Todos ellos tienen en común el odio a las mujeres y la reacción ante una emergencia feminista que hace tambalearse los pilares patriarcales de la sociedad.",
+        "imagen": "https://f.fcdn.app/imgs/01f61e/www.libreriaelvirrey.com.uy/lviruy/a197/webp/catalogo/9788416946716_9788416946716_1/2000-2000/odio-a-las-mujeres-iceles-malfollaos-y-machistas-modernos-odio-a-las-mujeres-iceles-malfollaos-y-machistas-modernos.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1205,
+        "titulo": "PARA TERMINAR CON EL JUICIO DE DIOS",
+        "autor": "ANTONIN ARTAUD",
+        "isbn": "9789871772711",
+        "editorial": "EL CUENCO DE PLATA",
+        "numPaginas": null,
+        "precio": "UYU 890",
+        "descripcion": "Temática: DANZA. Obra intensa de Antonin Artaud donde converge su crítica radical a la civilización occidental, su visión sobre el cuerpo, la religión, el dolor y la expresión artística. Una pieza clave de su pensamiento que fue censurada en su tiempo por su contenido transgresor.",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/er7zn1d2aezkux79pb7p.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1206,
+        "titulo": "PAUL BOWLES, EL RECLUSO DE TÁNGER",
+        "autor": "MOHAMED CHUKRI",
+        "isbn": "9788493868987",
+        "editorial": "CABARET VOLTAIRE",
+        "numPaginas": 216,
+        "precio": "UYU 1300",
+        "descripcion": "A partir de su amistad con Paul Bowles, Mohamed Chukri escribió este testimonio íntimo y revelador sobre las vivencias tangerinas más oscuras del autor norteamericano. En él descubrimos su relación con figuras literarias como William Burroughs, Allen Ginsberg y Truman Capote, así como los enigmas que rodearon su pareja con Jane Bowles. Un libro cargado de pasión, juicios severos y consecuencias personales para Chukri, quien afirmó: «Con mi libro sobre Paul Bowles he matado a mi segundo padre».",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/acf2sy3pzu1yqeclxcmb.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1207,
+        "titulo": "PERDER EL JUICIO",
+        "autor": "ARIANA HARWICZ",
+        "isbn": "9788433924056",
+        "editorial": "ANAGRAMA",
+        "numPaginas": 136,
+        "precio": "UYU 790",
+        "descripcion": "Pensamos que no seríamos capaces de cometer un crimen, hasta que lo hacemos. Esta novela cuenta la historia de un robo, una apropiación y un incendio provocado. Un secuestro como forma de vida y evasión. Harwicz plantea que se escribe cuando se está en desacuerdo con el sentido de las palabras, cuando dejar de mentir resulta imposible.",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/yi8y8qi41wdidt52imvz.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1208,
+        "titulo": "PLANETARIO",
+        "autor": "MAURICIO MOLINA",
+        "isbn": "9786078486298",
+        "editorial": "ALMADÍA",
+        "numPaginas": 245,
+        "precio": "UYU 1090",
+        "descripcion": "Nueve mujeres, nueve planetas: cada una, una etapa en el viaje esotérico y homicida de un asesino guiado por la obsesión y el deseo. En esta novela negra, Mauricio Molina combina erotismo, misticismo y locura en una travesía que atraviesa Lisboa, Buenos Aires, Nueva York y Oaxaca, para narrar los rituales sangrientos de una secta oculta. Planetario es una carta astral cruenta y un delirio metafísico que revela los rincones más oscuros del alma humana.",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/alremtm6lw4f4tsxlyzy.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1209,
+        "titulo": "POR ASÍ DECIRLO",
+        "autor": "JOSE ANGEL GONZALEZ SAINZ",
+        "isbn": "9788433924070",
+        "editorial": "ANAGRAMA",
+        "numPaginas": 160,
+        "precio": "UYU 690",
+        "descripcion": "Cuatro divertimentos, tan graves como humorísticos, que forman un cuadrilátero metafórico de nuestra existencia contemporánea. Con ecos de Cervantes, Goya y Kafka, González Sainz nos conduce por situaciones insólitas y fantasías apremiantes que iluminan la banalización de la realidad, el poder, la inocencia y el engaño en la era del nihilismo. Una prosa precisa que desvela lo extraño en lo cotidiano.",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/v72333w9e3u8kc4elneo.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1210,
+        "titulo": "POR UNA PEDAGOGÍA DE LA PREGUNTA",
+        "autor": "PAULO FREIRE - ANTONIO FAUNDEZ",
+        "isbn": "9789876293273",
+        "editorial": "SIGLO VEINTIUNO",
+        "numPaginas": 221,
+        "precio": "UYU 990",
+        "descripcion": "El acto de hacer una pregunta parece muy fácil, algo que no encierra ningún misterio: en general, son los que no saben los que preguntan. Paulo Freire, en diálogo con el educador chileno Antonio Faundez, desbarata esta supuesta evidencia al sostener que formular buenas preguntas requiere un aprendizaje artesanal, de ensayo y error, de trabajo compartido entre maestros y estudiantes. La educación tradicional pone al docente en el lugar del que presenta un repertorio de respuestas y hace a un lado las preguntas molestas con el fin de ofrecerle al alumno un conocimiento que muchas veces, aunque resulte increíble, no tiene relación con las inquietudes de ninguno de los dos. Pero las respuestas que no están ligadas a la curiosidad genuina difícilmente lleguen a destino, porque la curiosidad es el punto de partida tanto para aprender como para enseñar. En este libro dialogado, pensado de a dos, los autores esquivan el riesgo de convertir la propuesta de una pedagogía de la pregunta en un simple juego retórico o en un gesto superficial, y revelan, a partir de sus experiencias como educadores populares en diversos países, la importancia de saber preguntar como base del proceso de enseñanza y aprendizaje. Cuando los maestros o los padres asumen la responsabilidad de educar, o cuando los intelectuales asumen la función de interpretar las necesidades de la gente, es imprescindible que, antes de intervenir con contenidos construidos de antemano, procuren dialogar, preguntarse y preguntar por las necesidades materiales, culturales o espirituales de los otros. Con sabiduría de viejos maestros, Freire y Faundez revisan sus propios métodos de alfabetización y reflexionan sobre el papel de la cultura popular y sobre su rol como docentes, con el propósito de evitar la castración de la curiosidad y recuperar el hábito de admirarse y de \"vivir la pregunta\" como el verdadero sostén de la enseñanza.",
+        "imagen": "https://www.libreriavila.com.uy/images/thumbs/0069653_por-una-pedagogia-de-la-pregunta-freire-faundez_750.jpeg",
+        "stock": 1
+    },
+    {
+        "id": 1211,
+        "titulo": "LOS POSTIGOS VERDES",
+        "autor": "GEORGES SIMENON",
+        "isbn": "9788433921109",
+        "editorial": "ANAGRAMA",
+        "numPaginas": 208,
+        "precio": "UYU 590",
+        "descripcion": "Cuando Émile Maugin, un celebre actor veterano, descubre que un problema cardíaco amenaza seriamente su salud, decide reflexionar sobre su vida. Soberbio, brusco y cínico, aunque en el fondo generoso, reina como un tirano sobre el pequeño grupo de devotos súbditos que lo rodean, incluida Alice, su jovencísima segunda esposa. El miedo a la muerte, sin embargo, se cierne irremediablemente sobre el y lo lleva a soñar con hacer realidad una antigua aspiración de su primera mujer: vivir en una casa con postigos verdes, símbolo del exito material pero tambien de la apacible seguridad que siempre lo ha eludido. ¿Será capaz de reconocer la felicidad a su alcance antes de que sea demasiado tarde?",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/romoerhlzmid5a61dq5z.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1212,
+        "titulo": "PROFESORES TIRANOS Y OTROS PINCHES CHAMACOS",
+        "autor": "FRANCISCO HINOJOSA",
+        "isbn": "9786078667239",
+        "editorial": "ALMADÍA",
+        "numPaginas": 400,
+        "precio": "UYU 1190",
+        "descripcion": "Sujetos cuyos conocimientos enciclopédicos los conducen a la cúspide y en seguida al abismo de sus biografías, hombres obsesionados con la idea de su muerte, profesores empeñados en enseñar de modos sumamente complicados materias sencillísimas, presidentes que quieren vender al mejor postor el país que gobiernan, personajes literarios que se salen de su papel y cometen locuras a diestra y siniestra. La imaginación de Francisco Hinojosa factura tramas tan impredecibles que en cada página sus cuentos dan giros inusitados, se complican de formas insospechadas y mutan siempre hacia la versión más enloquecida de sí mismos. Los personajes tienen vidas absurdas generalmente modestas, incluso pueden estar abrumados por la comodidad y el hastío, hasta que un buen día el destino se tuerce y sus días se convierten en una escalada hacia lo inesperado. El lector tiene entre sus manos la reunión más abarcadora de la narrativa breve del autor, un mapa que señala sus fondos ocultos, los deseos más descabellados y las historias más sorprendentes que lo constituyen. Este volumen representa un acontecimiento para los lectores de Francisco Hinojosa y un auténtico honor para nuestra casa editorial: se trata de la celebración de una obra literaria que, durante varias décadas, se ha ganado la admiración y el cariño de todos.",
+        "imagen": "https://cdn.luna.com.uy/escaramuza.com.uy/files/tmp/uncompressed/e6fqsqoecvoxi676cwxc.jpg",
+        "stock": 1
+    },
+    {
+        "id": 1213,
+        "titulo": "PROPAGANDA",
+        "autor": "EDWARD L. BERNAYS",
+        "isbn": "9788496614420",
+        "editorial": "MELUSINA",
+        "numPaginas": 200,
+        "precio": "UYU 790",
+        "descripcion": "La manipulación consciente e inteligente de los hábitos y opiniones organizados de las masas es un elemento de importancia en la sociedad democrática. Quienes manipulan este mecanismo oculto de la sociedad constituyen el gobierno invisible que detenta el verdadero poder que rige el destino de nuestro país. Quienes nos gobiernan, moldean nuestras mentes, definen nuestros gustos o nos sugieren nuestras ideas son en gran medida personas de las que nunca hemos oído hablar.",
+        "imagen": "https://imagessl0.casadellibro.com/a/l/s7/20/9788496614420.webp",
+        "stock": 1
+    },
+    {
+        "id": 1214,
+        "titulo": "PURGA",
+        "autor": "SOFI OKSANEN",
+        "isbn": "9788498383522",
+        "editorial": "SALAMANDRA",
+        "numPaginas": 384,
+        "precio": "UYU 790",
+        "descripcion": "En una despoblada zona rural de Estonia, en 1992, recuperada la independencia de la pequeña república báltica, Aliide Truu, una anciana que malvive sola junto al bosque, encuentra en su jardín a una joven desconocida, exhausta y desorientada. Se trata de Zara, una veinteañera rusa, víctima del tráfico de mujeres, que ha logrado escapar de sus captores y ha acudido a la casa de Aliide en busca de una ayuda que necesita desesperadamente. En esta novela de múltiples lecturas y matices, Oksanen traza los efectos devastadores del miedo, la humillación y la inagotable capacidad humana para la supervivencia.",
+        "imagen": "https://imagessl2.casadellibro.com/a/l/s7/22/9788498383522.webp",
         "stock": 1
     }
 ]
