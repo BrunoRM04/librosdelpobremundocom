@@ -720,6 +720,13 @@
 
             const correo = formularioEnvio.querySelector('input[placeholder="Correo electrónico"]').value.trim();
             const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            const puntosUsados = parseInt(document.getElementById("usar-puntos")?.value || 0);
+            const totalProductos = window.totalProductos || 0;
+            const costoEnvioTexto = document.getElementById("total-envio")?.textContent.replace("UYU ", "").trim();
+            const envio = parseInt(costoEnvioTexto) || 0;
+            const totalFinal = Math.max(totalProductos + envio - puntosUsados, 0);
+
+            let totalActual = 0;
 
             const items = carrito.map(libro => {
                 const titulo = libro.titulo || "Sin título";
@@ -730,6 +737,8 @@
                     const match = (libro.precio || "").toString().match(/\d+/g);
                     precio = match ? parseInt(match.join("")) : 0;
                 }
+
+                totalActual += precio * cantidad;
 
                 return {
                     title: titulo,
@@ -747,6 +756,14 @@
                     quantity: 1,
                     currency_id: "UYU",
                     unit_price: costoEnvio
+                });
+            }
+            if (puntosUsados > 0) {
+                items.push({
+                    title: "Descuento por puntos del Pobre Mundo",
+                    quantity: 1,
+                    currency_id: "UYU",
+                    unit_price: -1 * puntosUsados
                 });
             }
 
@@ -839,6 +856,23 @@
             try {
                 await window.addDoc(window.collection(window.db, "envios"), datosCompra);
                 console.log("✅ Datos guardados correctamente en Firebase.");
+                try {
+                    const puntosUsados = parseInt(document.getElementById("usar-puntos")?.value || 0);
+                    const puntosGenerados = parseInt(document.getElementById("puntos-generados")?.textContent || 0);
+                    const correo = correoElectronico;
+
+                    const datosPuntos = {
+                        correo,
+                        puntosUsados,
+                        puntosGenerados,
+                        fechaHora: new Date().toISOString()
+                    };
+
+                    await window.addDoc(window.collection(window.db, "puntos"), datosPuntos);
+                    console.log("✅ Puntos guardados correctamente en Firebase.");
+                } catch (error) {
+                    console.error("❌ Error al guardar puntos:", error);
+                }
             } catch (error) {
                 console.error("❌ Error al guardar:", error);
                 alert("Ocurrió un error al guardar los datos.");
@@ -881,6 +915,44 @@
             );
 
             window.location.href = `https://wa.me/59894090711?text=${mensaje}`;
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const puntosPor100 = 1;
+            const puntosGeneradosEl = document.getElementById("puntos-generados");
+            const usarPuntosSelect = document.getElementById("usar-puntos");
+            const descuentoPuntosEl = document.getElementById("descuento-puntos");
+            const totalFinalEl = document.getElementById("total-final");
+
+            let totalCompra = window.totalProductos || 0;
+            let puntosGenerados = Math.floor(totalCompra / 100) * puntosPor100;
+            puntosGeneradosEl.textContent = puntosGenerados;
+
+            // Simulamos puntos acumulados del usuario (esto puede venir de Firebase luego)
+            const puntosAcumulados = 80;
+            const puntosDisponibles = Math.min(puntosGenerados, puntosAcumulados);
+
+            // Llenar el select con opciones hasta el máximo permitido
+            usarPuntosSelect.innerHTML = "";
+            for (let i = 0; i <= puntosDisponibles; i++) {
+                const option = document.createElement("option");
+                option.value = i;
+                option.textContent = `${i} puntos`;
+                usarPuntosSelect.appendChild(option);
+            }
+
+            usarPuntosSelect.addEventListener("change", () => {
+                const puntosUsados = parseInt(usarPuntosSelect.value);
+                const descuento = puntosUsados * 1; // 1 punto = UYU 2
+                descuentoPuntosEl.textContent = `UYU ${descuento}`;
+
+                const envioTexto = document.getElementById("total-envio").textContent.replace("UYU ", "").trim();
+                const envio = parseInt(envioTexto) || 0;
+                const nuevoTotal = totalCompra + envio - descuento;
+
+                totalFinalEl.textContent = `UYU ${Math.max(nuevoTotal, 0)}`;
+                window.totalFinalConDescuento = Math.max(nuevoTotal, 0);
+            });
         });
 
     </script>

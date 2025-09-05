@@ -214,8 +214,8 @@
       menuCompleto.classList.remove('activo');
     });
 
-    const librosDestacados = [1137, 1138, 1139, 1128, 1135, 1136, 1130, 1129, 1077, 1079, 306, 294, 863, 864,];
-    const librosNovedades = [1131, 1132, 1133, 1134, 1123, 1124, 1125, 1126, 1119];
+    const librosDestacados = [1215, 1137, 1138, 1139, 1128, 1135, 1136, 1130, 1129, 1077, 1079, 306, 294, 863, 864,];
+    const librosNovedades = [1215, 1131, 1132, 1133, 1134, 1123, 1124, 1125, 1126, 1119];
     const librosOtros = [443, 444, 445, 446, 447, 449, 450, 451];
 
     function cargarLibros(carruselId, ids) {
@@ -229,16 +229,11 @@
             .filter(libro => libro)
             .forEach(libro => {
               const precioOriginal = parseFloat(libro.precio.replace(/[^\d.]/g, ""));
-              const descuento = 0.05;
+              let descuento = 0.05; 
 
-              // Lógica de descuentos diferenciados (desactivada):
-              // if ([1077, 1079].includes(libro.id)) {
-              //   descuento = 0.05;
-              // } else if (libro.id === 1128) {
-              //   descuento = 0.15;
-              // } else if (libro.id === 1135) {
-              //   descuento = 0.10;
-              // }
+              if (libro.id === 1215) {
+                descuento = 0.10;
+              }
 
               let precioFinal = Math.round(precioOriginal * (1 - descuento));
 
@@ -503,7 +498,7 @@
       }
       actualizarContadorCarrito();
       actualizarCarrito();
-      localStorage.setItem('carrito', JSON.stringify(carrito)); // ✅ AÑADE ESTO
+      localStorage.setItem('carrito', JSON.stringify(carrito));
     }
 
     const campoBuscador = document.querySelector('.campo-buscador');
