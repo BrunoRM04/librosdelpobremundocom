@@ -161,7 +161,7 @@
                     }
 
                     const precioOriginal = parseFloat(libro.precio.replace(/[^\d.]/g, ""));
-                    let descuento = 0.05; // valor por defecto para todos
+                    let descuento = 0.10; // valor por defecto para todos
 
                     // ✅ Descuento especial solo para id 1215
                     if (id === "1215") {
@@ -520,7 +520,7 @@
                         }
 
                         const precioOriginal = parseFloat(libro.precio.replace(/[^\d.]/g, ""));
-                        let descuento = 0.05;
+                        let descuento = 0.10;
                         if ([].includes(libro.id)) {
                         }
                         let precioFinal = Math.round(precioOriginal * (1 - descuento));
