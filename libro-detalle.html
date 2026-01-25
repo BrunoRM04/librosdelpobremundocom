@@ -150,7 +150,7 @@
                 return;
             }
 
-            fetch("libros.json")
+            fetch("api/libros.php")
                 .then(res => res.json())
                 .then(libros => {
                     const libro = libros.find(l => String(l.id) === id);
@@ -460,6 +460,10 @@
                 .then(libros => {
                     favoritos.forEach(id => {
                         const libro = libros.find(l => String(l.id) === id);
+                        if (!libro) {
+                            contenedor.innerHTML = "<p class='mensaje-error'>Libro no encontrado.</p>";
+                            return;
+                        }
                         if (libro) {
                             let rutaImagen = libro.imagen.trim();
 
