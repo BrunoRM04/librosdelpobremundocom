@@ -304,7 +304,7 @@
             const libro = carrito[i];
             const titulo = libro.titulo;
 
-            fetch('libros.json')
+            fetch('api/libros.php')
                 .then(res => res.json())
                 .then(libros => {
                     const libroOriginal = libros.find(l => l.titulo === titulo);
@@ -455,7 +455,7 @@
         function mostrarFavoritos() {
             const contenedor = document.getElementById('contenidoFavoritos');
             contenedor.innerHTML = '';
-            fetch('libros.json')
+            fetch('api/libros.php')
                 .then(res => res.json())
                 .then(libros => {
                     favoritos.forEach(id => {
@@ -500,7 +500,7 @@
         }
 
         function cargarLibrosRelacionados() {
-            fetch('libros.json')
+            fetch('api/libros.php')
                 .then(res => res.json())
                 .then(libros => {
                     const contenedor = document.getElementById('carrusel-relacionados');

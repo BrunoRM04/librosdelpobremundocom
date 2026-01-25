@@ -401,7 +401,7 @@
             if (!contenedorFavoritos) return;
             contenedorFavoritos.innerHTML = '';
 
-            fetch('libros.json')
+            fetch('api/libros.php')
                 .then(res => res.json())
                 .then(libros => {
                     favoritos.forEach(id => {

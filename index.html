@@ -214,83 +214,73 @@
       menuCompleto.classList.remove('activo');
     });
 
-    const librosDestacados = [1217, 1218, 1219, 1220, 1221, 1222, 1215, 1216, 1137, 1138, 1139, 1128, 1135, 1136, 1130, 1129, 1077, 1079, 306, 294, 863, 864,];
+    const librosDestacados = [1217, 1218, 1219, 1220, 1221, 1222, 1215, 1216, 1137, 1138, 1139, 1128, 1135, 1136, 1130, 1129, 1077, 1079, 306, 294, 863, 864];
     const librosNovedades = [1215, 1216, 1131, 1132, 1133, 1134, 1123, 1124, 1125, 1126, 1119];
     const librosOtros = [443, 444, 445, 446, 447, 449, 450, 451];
 
     function cargarLibros(carruselId, ids) {
-      fetch('libros.json')
-        .then(res => res.json())
+
+      fetch('api/libros.php')
+        .then(r => r.json())
         .then(libros => {
+
           const contenedor = document.getElementById(carruselId);
 
-          ids
-            .map(id => libros.find(libro => Number(libro.id) === id))
-            .filter(libro => libro)
+          ids.map(id => libros.find(l => Number(l.id) === id))
+            .filter(l => l)
             .forEach(libro => {
-              const precioOriginal = parseFloat(libro.precio.replace(/[^\d.]/g, ""));
-              let descuento = 0.10; 
 
-              if (libro.id === 1215) {
-                descuento = 0.10;
-              }
-
-              let precioFinal = Math.round(precioOriginal * (1 - descuento));
-
-              // Ajuste especial para libros específicos (también desactivado):
-              // if ([1077, 1079].includes(libro.id)) {
-              //   precioFinal = Math.max(precioFinal - 1, 0);
-              // }
+              const precioOriginal = parseInt(libro.precio);
+              const precioFinal = Math.round(precioOriginal * 0.9);
 
               let rutaImagen = libro.imagen;
-              if (rutaImagen.startsWith("http")) {
-              } else if (rutaImagen.startsWith("./")) {
-                rutaImagen = rutaImagen.replace("./", "");
-              } else {
-                rutaImagen = `public/img/portadas/${rutaImagen.replace(/%20/g, ' ')}`;
+              if (!rutaImagen.startsWith("http")) {
+                rutaImagen = `public/img/portadas/${rutaImagen.replace(/^.*[\\/]/, '')}`;
               }
 
               const tarjeta = document.createElement('div');
               tarjeta.classList.add('tarjeta-libro');
+
               tarjeta.innerHTML = `
-  <span class="etiqueta-descuento">-${Math.round(descuento * 100)}%</span>
-  <button class="boton-favorito" data-id="${libro.id}">
-    <i class='bx bx-heart'></i>
-  </button>
-  <a href="libro-detalle.html?id=${libro.id}">
-    <img src="${rutaImagen}" alt="Portada de ${libro.titulo}" class="imagen-libro" onerror="this.src='public/img/portadas/default.jpg'">
-  </a>
-  <div class="info-libro">
-    <h3 class="titulo-libro" title="${libro.titulo}">${libro.titulo}</h3>
-    <p class="autor-libro" title="${libro.autor}">${libro.autor}</p>
-  </div>
-  <p class="precio-libro">
-    <span class="precio-original">UYU ${precioOriginal}</span>
-    <span class="precio-descuento">UYU ${precioFinal}</span>
-  </p>
-  <div class="botones-libro">
-  <a href="libro-detalle.html?id=${libro.id}" class="boton-ver">Ver más</a>
-  ${libro.consultarPorWhatsApp
-                  ? `<a href="https://wa.me/${libro.numeroWhatsApp}?text=Hola,%20quiero%20consultar%20por%20el%20libro%20${encodeURIComponent(libro.titulo)}" target="_blank" class="boton-consultar"><i class='bx bxl-whatsapp'></i> Consultar</a>`
-                  : `<button class="boton-anadir"><i class='bx bx-cart-alt'></i> Añadir</button>`
-                }
-  </div>
-`;
+      <span class="etiqueta-descuento">-10%</span>
+      <button class="boton-favorito" data-id="${libro.id}">
+        <i class='bx bx-heart'></i>
+      </button>
+      <a href="libro-detalle.html?id=${libro.id}">
+        <img src="${rutaImagen}" onerror="this.src='public/img/portadas/default.jpg'">
+      </a>
+      <div class="info-libro">
+        <h3 class="titulo-libro">${libro.titulo}</h3>
+        <p class="autor-libro">${libro.autor}</p>
+      </div>
+      <p class="precio-libro">
+        <span class="precio-original">UYU ${precioOriginal}</span>
+        <span class="precio-descuento">UYU ${precioFinal}</span>
+      </p>
+      <div class="botones-libro">
+        <a href="libro-detalle.html?id=${libro.id}" class="boton-ver">Ver más</a>
+        <button class="boton-anadir"><i class='bx bx-cart-alt'></i> Añadir</button>
+      </div>
+      `;
+
               contenedor.appendChild(tarjeta);
+
             });
+
         });
+
     }
 
     cargarLibros("carrusel-destacados", librosDestacados);
     cargarLibros("carrusel-novedades", librosNovedades);
     cargarLibros("carrusel-otros", librosOtros);
 
-    function configurarFlechas(flechaIzqId, flechaDerId, carruselId) {
-      document.getElementById(flechaIzqId).addEventListener("click", () => {
-        document.getElementById(carruselId).scrollBy({ left: -300, behavior: "smooth" });
+    function configurarFlechas(i, d, c) {
+      document.getElementById(i).addEventListener("click", () => {
+        document.getElementById(c).scrollBy({ left: -300, behavior: "smooth" });
       });
-      document.getElementById(flechaDerId).addEventListener("click", () => {
-        document.getElementById(carruselId).scrollBy({ left: 300, behavior: "smooth" });
+      document.getElementById(d).addEventListener("click", () => {
+        document.getElementById(c).scrollBy({ left: 300, behavior: "smooth" });
       });
     }
 
@@ -298,93 +288,70 @@
     configurarFlechas("flecha-izquierda-novedades", "flecha-derecha-novedades", "carrusel-novedades");
     configurarFlechas("flecha-izquierda-otros", "flecha-derecha-otros", "carrusel-otros");
 
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    actualizarContadorCarrito();
-    actualizarCarrito();
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
     function actualizarContadorCarrito() {
-      const totalLibros = carrito.reduce((acc, item) => acc + item.cantidad, 0);
-      const iconoCarrito = document.querySelector('.icono-carrito');
-      iconoCarrito.setAttribute('data-contador', totalLibros);
+      const total = carrito.reduce((a, i) => a + i.cantidad, 0);
+      document.querySelector(".icono-carrito")?.setAttribute("data-contador", total);
     }
 
-    document.addEventListener("click", (e) => {
-      if (e.target.closest('.boton-anadir')) {
-        const tarjeta = e.target.closest('.tarjeta-libro');
-        const titulo = tarjeta.querySelector('.titulo-libro').textContent;
-        const autor = tarjeta.querySelector('.autor-libro').textContent;
-        const precio = parseInt(tarjeta.querySelector('.precio-descuento').textContent.replace(/[^\d]/g, ""));
-        const imagen = tarjeta.querySelector('.imagen-libro').src;
+    function actualizarCarrito() {
 
-        const idLibro = parseInt(tarjeta.querySelector('.boton-favorito').dataset.id);
+      const contenedor = document.getElementById("contenidoCarrito");
+      if (!contenedor) return;
 
-        // Obtener el stock del libro desde librosCache
-        const libroStock = librosCache.find(libro => libro.id === idLibro)?.stock || 1;
+      contenedor.innerHTML = "";
+      let total = 0;
 
-        const existente = carrito.find(item => item.titulo === titulo);
-        if (existente) {
-          if (existente.cantidad < libroStock) {
-            existente.cantidad++;
-          } else {
-            alert("No hay más stock disponible para este libro.");
-          }
-        } else {
-          carrito.push({ id: idLibro, titulo, autor, precio, imagen, cantidad: 1 });
-        }
+      carrito.forEach((item, i) => {
+
+        total += item.precio * item.cantidad;
+
+        contenedor.innerHTML += `
+    <div class="item-carrito">
+      <img src="${item.imagen}">
+      <div>
+        <h4>${item.titulo}</h4>
+        <p>${item.autor}</p>
+        <button onclick="cambiarCantidad(${i},-1)">-</button>
+        <span>${item.cantidad}</span>
+        <button onclick="cambiarCantidad(${i},1)">+</button>
+      </div>
+      <div>
+        <strong>UYU ${item.precio * item.cantidad}</strong>
+        <i class='bx bx-trash' onclick="eliminarItem(${i})"></i>
+      </div>
+    </div>
+    `;
+      });
+
+      document.getElementById("totalCarrito").textContent = `UYU ${total}`;
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+    }
+
+    document.addEventListener("click", e => {
+
+      if (e.target.closest(".boton-anadir")) {
+
+        const t = e.target.closest(".tarjeta-libro");
+        const titulo = t.querySelector(".titulo-libro").textContent;
+        const autor = t.querySelector(".autor-libro").textContent;
+        const precio = parseInt(t.querySelector(".precio-descuento").textContent.replace(/\D/g, ""));
+        const imagen = t.querySelector("img").src;
+
+        const existe = carrito.find(i => i.titulo === titulo);
+        if (existe) existe.cantidad++;
+        else carrito.push({ titulo, autor, precio, imagen, cantidad: 1 });
 
         actualizarContadorCarrito();
         actualizarCarrito();
       }
+
     });
 
-    function actualizarCarrito() {
-      const contenedor = document.getElementById('contenidoCarrito');
-      contenedor.innerHTML = '';
-      let total = 0;
-
-      carrito.forEach((item, i) => {
-        total += item.precio * item.cantidad;
-
-        const div = document.createElement('div');
-        div.classList.add('item-carrito');
-        div.innerHTML = `
-          <img src="${item.imagen}" alt="${item.titulo}">
-          <div class="item-detalles">
-            <h4>${item.titulo}</h4>
-            <p>${item.autor}</p>
-            <div class="controles-cantidad">
-              <button onclick="cambiarCantidad(${i}, -1)">-</button>
-              <span>${item.cantidad}</span>
-              <button onclick="cambiarCantidad(${i}, 1)">+</button>
-            </div>
-          </div>
-          <div class="item-acciones">
-  <strong>UYU ${item.precio * item.cantidad}</strong>
-  <i class='bx bx-trash boton-eliminar' onclick="eliminarItem(${i})"></i>
-</div>
-        `;
-        contenedor.appendChild(div);
-      });
-
-      document.getElementById('totalCarrito').textContent = `UYU ${total}`;
-      localStorage.setItem('carrito', JSON.stringify(carrito));
-    }
-
-    function cambiarCantidad(i, cambio) {
-      const libro = librosCache.find(l => l.titulo === carrito[i].titulo);
-      const stock = libro?.stock || 1;
-
-      if (cambio > 0 && carrito[i].cantidad >= stock) {
-        alert("Has alcanzado el máximo disponible en stock.");
-        return;
-      }
-
-      carrito[i].cantidad += cambio;
-
-      if (carrito[i].cantidad <= 0) {
-        carrito.splice(i, 1);
-      }
-
+    function cambiarCantidad(i, c) {
+      carrito[i].cantidad += c;
+      if (carrito[i].cantidad <= 0) carrito.splice(i, 1);
       actualizarContadorCarrito();
       actualizarCarrito();
     }
@@ -395,226 +362,78 @@
       actualizarCarrito();
     }
 
-    document.querySelector('.icono-carrito').addEventListener('click', () => {
-      document.getElementById('carritoLateral').classList.add('activo');
-      document.getElementById('fondoOscuro').classList.add('activo');
+    document.querySelector(".icono-carrito")?.addEventListener("click", () => {
+      document.getElementById("carritoLateral").classList.add("activo");
+      document.getElementById("fondoOscuro").classList.add("activo");
     });
 
-    document.getElementById('cerrarCarrito').addEventListener('click', () => {
-      document.getElementById('carritoLateral').classList.remove('activo');
-      document.getElementById('fondoOscuro').classList.remove('activo');
+    document.getElementById("cerrarCarrito")?.addEventListener("click", () => {
+      document.getElementById("carritoLateral").classList.remove("activo");
+      document.getElementById("fondoOscuro").classList.remove("activo");
     });
 
-    document.getElementById('botonComprarAhora')?.addEventListener('click', () => {
-      if (carrito.length === 0) {
-        alert("Tu carrito está vacío.");
-        return;
-      }
-
-      localStorage.setItem('carrito', JSON.stringify(carrito));
-
+    document.getElementById("botonComprarAhora")?.addEventListener("click", () => {
+      if (carrito.length === 0) return alert("Tu carrito está vacío.");
+      localStorage.setItem("carrito", JSON.stringify(carrito));
       window.location.href = "finalizar-compra.html";
     });
 
-    let librosCache = [];
+    actualizarContadorCarrito();
+    actualizarCarrito();
 
-    async function cargarLibrosBuscador() {
-      if (librosCache.length === 0) {
-        try {
-          const respuesta = await fetch('./libros.json');
-          const data = await respuesta.json();
-          if (Array.isArray(data)) librosCache = data;
-        } catch (err) {
-          console.error("Error al cargar libros.json", err);
+    function debounce(fn, delay) {
+      let t;
+      return (...args) => {
+        clearTimeout(t);
+        t = setTimeout(() => fn(...args), delay);
+      }
+    }
+
+    const campoBuscador = document.querySelector(".campo-buscador");
+
+    campoBuscador.addEventListener("input", debounce(async e => {
+
+      const q = e.target.value.trim();
+      const cont = document.querySelector("#resultados-buscador .contenedor-resultados");
+      cont.innerHTML = "";
+      if (q.length < 2) return;
+
+      const r = await fetch(`api/buscar.php?q=${encodeURIComponent(q)}`);
+      const libros = await r.json();
+
+      libros.forEach(l => {
+
+        let img = l.imagen;
+        if (!img.startsWith("http")) {
+          img = `public/img/portadas/${img.replace(/^.*[\\/]/, '')}`;
         }
-      }
-    }
 
-    function mostrarResultadosFiltrados(termino) {
-      const contenedor = document.querySelector('#resultados-buscador .contenedor-resultados');
-      contenedor.innerHTML = '';
-
-      if (termino.length < 2) return;
-
-      const filtrados = librosCache.filter(libro => {
-        const titulo = libro.titulo?.toLowerCase() || '';
-        const autor = libro.autor?.toLowerCase() || '';
-        const editorial = libro.editorial?.toLowerCase() || '';
-        const isbn = String(libro.isbn || '');
-
-        return (
-          titulo.includes(termino) ||
-          autor.includes(termino) ||
-          editorial.includes(termino) ||
-          isbn.includes(termino)
-        );
-      });
-
-      if (filtrados.length === 0) {
-        contenedor.innerHTML = `
-  <div class="mensaje-sin-resultados">
-    <p>Si no lo encuentra en la web, <strong>consulte en nuestro catálogo</strong>.</p>
-    <a href="https://wa.me/59894090711?text=Hola,%20quisiera%20consultar%20por%20un%20libro%20que%20no%20encuentro%20en%20la%20web" 
-        class="boton-consultar-libro" target="_blank">
-      Consultar libro
-    </a>
-  </div>
-`;
-        return;
-      }
-
-      filtrados.forEach(libro => {
-        const rutaImagen = libro.imagen?.replace('./', '') || 'public/img/portadas/default.jpg';
-        const resultadoHTML = `
-      <div class="item-resultado-libro">
-        <img src="${rutaImagen}" alt="${libro.titulo}" class="imagen-resultado-libro" onerror="this.src='public/img/portadas/default.jpg'">
-        <div class="info-resultado-libro">
-          <h3 class="titulo-resultado-libro">${libro.titulo || 'Sin título'}</h3>
-          <p class="autor-resultado-libro">${libro.autor || 'Desconocido'}</p>
-        </div>
-        <div class="acciones-resultado-libro">
-          <a href="libro-detalle.html?id=${libro.id}" class="boton-ver-detalle">Ver más</a>
-        </div>
+        cont.innerHTML += `
+    <div class="item-resultado-libro">
+      <img src="${img}" onerror="this.src='public/img/portadas/default.jpg'">
+      <div>
+        <h3>${l.titulo}</h3>
+        <p>${l.autor}</p>
       </div>
+      <a href="libro-detalle.html?id=${l.id}">Ver más</a>
+    </div>
     `;
-        contenedor.innerHTML += resultadoHTML;
       });
-    }
 
-    function debounce(funcion, retraso) {
-      let timeout;
-      return function (...args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => funcion.apply(this, args), retraso);
-      };
-    }
-
-    function anadirLibroDesdeBusqueda(titulo, autor, precio, imagen) {
-      const existente = carrito.find(item => item.titulo === titulo);
-      if (existente) {
-        existente.cantidad++;
-      } else {
-        carrito.push({ titulo, autor, precio: parseInt(precio), imagen, cantidad: 1 });
-      }
-      actualizarContadorCarrito();
-      actualizarCarrito();
-      localStorage.setItem('carrito', JSON.stringify(carrito));
-    }
-
-    const campoBuscador = document.querySelector('.campo-buscador');
-
-    campoBuscador.addEventListener('input', debounce(async (e) => {
-      const termino = e.target.value.trim().toLowerCase();
-      await cargarLibrosBuscador();
-      mostrarResultadosFiltrados(termino);
     }, 300));
 
-    let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+    let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
 
     document.addEventListener("click", e => {
-      const boton = e.target.closest('.boton-favorito');
-      if (boton) {
-        const idLibro = boton.dataset.id;
-        const index = favoritos.indexOf(idLibro);
-
-        if (index > -1) {
-          favoritos.splice(index, 1);
-          boton.classList.remove('activo');
-        } else {
-          favoritos.push(idLibro);
-          boton.classList.add('activo');
-        }
-
-        localStorage.setItem('favoritos', JSON.stringify(favoritos));
-      }
+      const b = e.target.closest(".boton-favorito");
+      if (!b) return;
+      const id = b.dataset.id;
+      const i = favoritos.indexOf(id);
+      if (i > -1) { favoritos.splice(i, 1); b.classList.remove("activo") }
+      else { favoritos.push(id); b.classList.add("activo") }
+      localStorage.setItem("favoritos", JSON.stringify(favoritos));
     });
 
-    function marcarFavoritosIniciales() {
-      setTimeout(() => {
-        document.querySelectorAll('.boton-favorito').forEach(boton => {
-          if (favoritos.includes(boton.dataset.id)) {
-            boton.classList.add('activo');
-          }
-        });
-      }, 300);
-    }
-
-    window.addEventListener("load", marcarFavoritosIniciales);
-
-    const iconoFavoritos = document.getElementById('abrirFavoritos');
-    const contenedorFavoritos = document.getElementById('contenidoFavoritos');
-    const panelFavoritos = document.getElementById('favoritosLateral');
-    const cerrarFavoritos = document.getElementById('cerrarFavoritos');
-
-    iconoFavoritos.addEventListener('click', () => {
-      mostrarFavoritos();
-      panelFavoritos.classList.add('activo');
-      document.getElementById('fondoOscuro').classList.add('activo');
-    });
-
-    cerrarFavoritos.addEventListener('click', () => {
-      panelFavoritos.classList.remove('activo');
-      document.getElementById('fondoOscuro').classList.remove('activo');
-    });
-
-    function mostrarFavoritos() {
-      contenedorFavoritos.innerHTML = '';
-      fetch('libros.json')
-        .then(res => res.json())
-        .then(libros => {
-          favoritos.forEach(id => {
-            const libro = libros.find(l => String(l.id) === id);
-            if (libro) {
-              let rutaImagen = libro.imagen || '';
-
-              if (rutaImagen.startsWith('http')) {
-                // URL externa
-              } else {
-                // Ruta local limpia
-                rutaImagen = rutaImagen
-                  .replace(/^\.?\/*/, '')
-                  .replace(/%20/g, ' ')
-                  .split('/').pop();
-
-                rutaImagen = `public/img/portadas/${rutaImagen}`;
-              }
-
-              const item = document.createElement('div');
-              item.classList.add('item-favorito');
-
-              item.innerHTML = `
-            <a href="libro-detalle.html?id=${libro.id}" class="enlace-favorito">
-              <img src="${rutaImagen}" alt="${libro.titulo}" 
-                onerror="this.onerror=null;this.src='https://via.placeholder.com/270x360?text=Sin+imagen'">
-              <div class="info-favorito">
-                <h4>${libro.titulo}</h4>
-                <p>${libro.autor}</p>
-              </div>
-            </a>
-            <button class="eliminar-favorito" data-id="${libro.id}" title="Eliminar de favoritos">
-              <i class='bx bx-trash'></i>
-            </button>
-          `;
-
-              contenedorFavoritos.appendChild(item);
-            }
-          });
-
-          if (favoritos.length === 0) {
-            contenedorFavoritos.innerHTML = '<p>No tienes libros en favoritos.</p>';
-          }
-
-          document.querySelectorAll('.eliminar-favorito').forEach(boton => {
-            boton.addEventListener('click', e => {
-              const idEliminar = e.currentTarget.dataset.id;
-              favoritos = favoritos.filter(id => id !== idEliminar);
-              localStorage.setItem('favoritos', JSON.stringify(favoritos));
-              mostrarFavoritos();
-              marcarFavoritosIniciales();
-            });
-          });
-        });
-    }
   </script>
 
 

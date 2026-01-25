@@ -352,7 +352,7 @@
         }
 
         function mostrarTodosLosLibros() {
-            fetch('libros.json')
+            fetch('api/libros.php')
                 .then(res => res.json())
                 .then(libros => {
                     librosCache = libros;
@@ -534,7 +534,7 @@
 
         function mostrarFavoritos() {
             contenedorFavoritos.innerHTML = '';
-            fetch('libros.json')
+            fetch('api/libros.php')
                 .then(res => res.json())
                 .then(libros => {
                     favoritos.forEach(id => {
