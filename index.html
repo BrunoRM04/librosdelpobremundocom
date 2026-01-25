@@ -260,10 +260,18 @@
         <span class="precio-original">UYU ${precioOriginal}</span>
         <span class="precio-descuento">UYU ${precioFinal}</span>
       </p>
-      <div class="botones-libro">
-        <a href="libro-detalle.html?id=${libro.id}" class="boton-ver">Ver más</a>
-        <button class="boton-anadir"><i class='bx bx-cart-alt'></i> Añadir</button>
-      </div>
+<div class="botones-libro">
+  <a href="libro-detalle.html?id=${libro.id}" class="boton-ver">Ver más</a>
+
+  ${Number(libro.stock) > 0
+                  ? `<button class="boton-anadir"><i class='bx bx-cart-alt'></i> Añadir</button>`
+                  : `<a href="https://wa.me/59894090711?text=Hola,%20quiero%20consultar%20por%20el%20libro%20${encodeURIComponent(libro.titulo)}"
+        target="_blank"
+        class="boton-consultar">
+        <i class='bx bxl-whatsapp'></i> Consultar
+       </a>`
+                }
+</div>
       `;
 
               contenedor.appendChild(tarjeta);

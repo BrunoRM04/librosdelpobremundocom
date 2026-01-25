@@ -15055,5 +15055,17 @@
         "descripcion": "En un bar de Berlín, un filósofo le cuenta a un barman húngaro las peripecias de su viaje a Extremadura, España, invitado por una misteriosa fundación para que conozca la región y escriba sobre ella. El filósofo recibe dinero, un pasaje de avión, un chofer personal y la asistencia de una intérprete que lo ayudará a comunicarse. Aunque cree que la invitación es un malentendido, acepta, sin tener claro sobre qué va a escribir. Apenas llega, se obsesiona con la historia de la muerte del último lobo extremeño y emprende una investigación que se convertirá en una experiencia transfiguradora. Reconocido mundialmente por sus novelas largas y volcánicas, entre las que se destacan Tango satánico y Melancolía de la resistencia, El último lobo es una extraordinaria puerta de entrada para descubrir a uno de los escritores más admirados y fascinantes de la actualidad.",
         "imagen": "https://www.bookshop.com.uy/media/catalog/product/cache/da73607d3528e7d3c6633d199d3d4f17/f/u/fuci-38559786319065824-c6a5c65e4.jpg",
         "stock": 1
+    },
+    {
+        "id": 1223,
+        "titulo": "¿Qué pasó con la confianza en el futuro?",
+        "autor": "MARC AUGÉ",
+        "isbn": "9789876295550",
+        "editorial": "SIGLO XXI",
+        "numPaginas": 139,
+        "precio": "UYU 790",
+        "descripcion": "Dicen los promotores del fin de la historia, tan anunciada en los años noventa del siglo XX, que la humanidad ya no tiene nada que esperar porque ha encontrado su forma más acabada, más perfecta. La democracia y la economía liberal se han convertido en el punto de llegada insuperable. Decidido a mostrar los límites de esta ideología edulcorada del presente, Marc Augé vuelve la mirada sobre nuestra actualidad para repensarla fuera del corset de la supuesta igualdad globalizadora. Así, discute en qué medida el arte, la literatura, los medios e internet pueden contribuir al pensamiento crítico y en qué medida se tornan dispositivos de conformismo o vigilancia; describe la ?cosmotecnología? que organiza la vida de las personas, conectadas a aparatos electrónicos mínimos para acceder al caudal de imágenes, mensajes y ofertas de consumo; analiza la emergencia de formas religiosas burdas o intolerantes, y se remonta a la Grecia antigua para encontrar un ejemplo de ciudad dispuesta al debate. Pero el eje de sus preocupaciones pasa por la educación y la desigualdad, por las brechas que no cesan de ensancharse: brecha entre los más ricos de los ricos y los más pobres de los pobres, entre la suma de conocimientos acumulados en los laboratorios científicos mejor equipados del planeta y el estado de ignorancia en el que es mantenida la mayoría de la población mundial. Augé propone revertir esta tendencia y hacer de la educación nuestra utopía última, tan necesaria para la ciencia como para la sociedad. Con audacia y convicción, insta a la antropología a plantear las preguntas de las que depende el porvenir del hombre, entre ellas, cómo construir un proyecto con fuerza movilizadora que escape a la tiranía del presente y a cualquier otra tiranía.",
+        "imagen": "https://imagenesal.bros.me/9789876295550.jpg",
+        "stock": 1
     }
 ]
