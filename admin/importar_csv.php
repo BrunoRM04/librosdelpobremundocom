@@ -48,10 +48,10 @@ while (($datos = fgetcsv($fp, 1000, ",")) !== false) {
         continue;
     }
 
-    $titulo      = trim($datos[0] ?? '');
-    $autor       = trim($datos[1] ?? '');
-    $isbn        = trim($datos[2] ?? '');
-    $editorial   = trim($datos[3] ?? '');
+    $titulo    = mb_strtoupper(trim($datos[0] ?? ''), 'UTF-8');
+    $autor     = mb_strtoupper(trim($datos[1] ?? ''), 'UTF-8');
+    $isbn      = trim($datos[2] ?? '');
+    $editorial = mb_strtoupper(trim($datos[3] ?? ''), 'UTF-8');
     $numPaginas  = trim($datos[4] ?? '');
     $precio      = trim($datos[5] ?? '');
     $descripcion = trim($datos[6] ?? '');
