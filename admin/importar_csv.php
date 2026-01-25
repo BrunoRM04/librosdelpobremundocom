@@ -1,40 +1,87 @@
 <?php
-session_start();
+session_start([
+    'cookie_httponly' => true,
+    'use_strict_mode' => true
+]);
+
+/* SOLO ADMIN */
 if (!isset($_SESSION['admin'])) {
     header("Location: login.php");
     exit();
 }
 
+/* SOLO POST */
+if ($_SERVER['REQUEST_METHOD'] != "POST") {
+    die("Acceso denegado");
+}
+
 include("conexion.php");
+
+/* VALIDAR ARCHIVO */
+if (!isset($_FILES['archivo'])) {
+    die("No se recibió archivo");
+}
+
+/* VALIDAR TIPO */
+$tipo = mime_content_type($_FILES['archivo']['tmp_name']);
+
+if ($tipo != "text/plain" && $tipo != "text/csv") {
+    die("Formato no permitido");
+}
 
 $archivo = $_FILES['archivo']['tmp_name'];
 
-$handle = fopen($archivo, "r");
+$fp = fopen($archivo, "r");
 
-$contador = 0;
+if (!$fp) {
+    die("No se pudo abrir el archivo");
+}
 
-while (($datos = fgetcsv($handle, 1000, ",")) !== false) {
+$linea = 0;
 
-    if ($contador == 0) {
-        $contador++;
+while (($datos = fgetcsv($fp, 1000, ",")) !== false) {
+
+    /* SALTAR ENCABEZADO */
+    if ($linea == 0) {
+        $linea++;
         continue;
     }
 
-    $titulo = $datos[0];
-    $autor = $datos[1];
-    $isbn = $datos[2];
-    $editorial = $datos[3];
-    $numPaginas = $datos[4];
-    $precio = $datos[5];
-    $descripcion = $datos[6];
-    $imagen = $datos[7];
-    $stock = $datos[8];
+    $titulo      = trim($datos[0] ?? '');
+    $autor       = trim($datos[1] ?? '');
+    $isbn        = trim($datos[2] ?? '');
+    $editorial   = trim($datos[3] ?? '');
+    $numPaginas  = trim($datos[4] ?? '');
+    $precio      = trim($datos[5] ?? '');
+    $descripcion = trim($datos[6] ?? '');
+    $imagen      = trim($datos[7] ?? '');
+    $stock       = trim($datos[8] ?? '');
 
-    $sql = "INSERT INTO libros
-    (titulo, autor, isbn, editorial, numPaginas, precio, descripcion, imagen, stock)
-    VALUES ('$titulo','$autor','$isbn','$editorial','$numPaginas','$precio','$descripcion','$imagen','$stock')";
+    /* CAMPOS MINIMOS */
+    if ($titulo == '' || $autor == '') {
+        continue;
+    }
 
-    mysqli_query($conn, $sql);
+    /* EVITAR ISBN DUPLICADO */
+    if ($isbn != '') {
+        $check = mysqli_query(
+            $conn,
+            "SELECT id FROM libros WHERE isbn='$isbn'"
+        );
+
+        if (mysqli_num_rows($check) > 0) {
+            continue;
+        }
+    }
+
+    mysqli_query($conn, "
+        INSERT INTO libros
+        (titulo,autor,isbn,editorial,numPaginas,precio,descripcion,imagen,stock)
+        VALUES
+        ('$titulo','$autor','$isbn','$editorial','$numPaginas','$precio','$descripcion','$imagen','$stock')
+    ");
 }
 
-echo "Importación finalizada correctamente";
+fclose($fp);
+
+echo "Importación completada correctamente";
