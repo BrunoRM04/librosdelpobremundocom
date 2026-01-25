@@ -247,7 +247,10 @@
         <i class='bx bx-heart'></i>
       </button>
       <a href="libro-detalle.html?id=${libro.id}">
-        <img src="${rutaImagen}" onerror="this.src='public/img/portadas/default.jpg'">
+        <img src="${rutaImagen}" 
+          alt="Portada de ${libro.titulo}" 
+          class="imagen-libro"
+          onerror="this.src='public/img/portadas/default.jpg'">
       </a>
       <div class="info-libro">
         <h3 class="titulo-libro">${libro.titulo}</h3>
