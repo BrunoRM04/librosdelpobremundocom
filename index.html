@@ -220,7 +220,7 @@
 
     function cargarLibros(carruselId, ids) {
 
-      fetch('api/libros.php')
+      fetch(`api/carrusel.php?ids=${ids.join(',')}`)
         .then(r => r.json())
         .then(libros => {
 
@@ -302,7 +302,7 @@
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
     let librosCache = [];
-    fetch('api/libros.php')
+    fetch(`api/carrusel.php?ids=${ids.join(',')}`)
       .then(r => r.json())
       .then(data => librosCache = data);
 
