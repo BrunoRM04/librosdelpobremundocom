@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Usuario y contraseña son requeridos.';
     } else {
         try {
-            $stmt = $pdo->prepare('SELECT id, usuario FROM admin WHERE usuario = ? AND contraseña = ?');
+            $stmt = $pdo->prepare('SELECT id, usuario FROM admin WHERE usuario = ? AND password = ?');
             $stmt->execute([$usuario, $contraseña]);
             $admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
