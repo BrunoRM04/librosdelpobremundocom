@@ -5,9 +5,8 @@ if (!isset($_SESSION['admin_id'])) {
     exit;
 }
 
-require '../api/config.php';   // ACA está tu PDO ($pdo)
+require '../api/config.php'; 
 
-// Variables para el resultado
 $exito = false;
 $mensaje = "";
 $insertados = 0;
@@ -68,10 +67,10 @@ if (!isset($_FILES['archivo'])) {
 
                 try {
                     $stmt->execute([
-                        limpiar($row[$map['titulo']]),
-                        limpiar($row[$map['autor']]),
+                        mayus($row[$map['titulo']]),
+                        mayus($row[$map['autor']]),
                         limpiar($row[$map['isbn']]),
-                        limpiar($row[$map['editorial']]),
+                        mayus($row[$map['editorial']]),
                         (int)$row[$map['numpaginas']],
                         (float)$row[$map['precio']],
                         limpiar($row[$map['descripcion']]),
@@ -95,6 +94,10 @@ if (!isset($_FILES['archivo'])) {
 function limpiar($v)
 {
     return trim(strip_tags($v));
+}
+function mayus($v)
+{
+    return mb_strtoupper(trim(strip_tags($v)), 'UTF-8');
 }
 ?>
 <!DOCTYPE html>
@@ -127,7 +130,7 @@ function limpiar($v)
             <div class="admin-content">
                 <section class="admin-section">
                     <h2>Resultado de la carga</h2>
-                    
+
                     <?php if ($exito): ?>
                         <div style="background-color: #d4edda; border-left: 5px solid #28a745; padding: 20px; border-radius: 5px; margin-bottom: 20px;">
                             <h3 style="color: #155724; margin: 0 0 10px 0; font-size: 20px;">✓ Éxito</h3>

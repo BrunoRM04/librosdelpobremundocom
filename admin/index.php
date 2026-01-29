@@ -35,11 +35,10 @@
                 <section class="admin-section">
                     <h2>Opciones disponibles</h2>
                     <div class="admin-options">
-                        <div class="admin-option-card">
+                        <a href="upload_books.php" class="admin-option-card">
                             <h3>Cargar libros por CSV</h3>
                             <p>Subir archivo CSV generado desde Excel</p>
-                            <a href="upload_books.php">Ir</a>
-                        </div>
+                        </a>
                     </div>
                 </section>
             </div>
