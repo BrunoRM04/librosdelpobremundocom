@@ -36,8 +36,9 @@
                     <h2>Opciones disponibles</h2>
                     <div class="admin-options">
                         <div class="admin-option-card">
-                            <h3>Gestionar Libros</h3>
-                            <p>Agregar, editar o eliminar libros del catálogo</p>
+                            <h3>Cargar libros por CSV</h3>
+                            <p>Subir archivo CSV generado desde Excel</p>
+                            <a href="upload_books.php">Ir</a>
                         </div>
                     </div>
                 </section>
