@@ -1,27 +1,3 @@
-    <div class="fila-resumen" id="fila-envio">
-        <span class="etiqueta">Costo de envío:</span>
-        <span class="valor" id="total-envio">UYU 0</span>
-            const totalEnvioEl = document.getElementById("total-envio");
-            const filaEnvioEl = document.getElementById("fila-envio");
-                if (metodoEntrega === "punto") {
-                    contenedorBarrio.classList.add("oculto");
-                    selectBarrio.removeAttribute("required");
-                    if (filaEnvioEl) filaEnvioEl.style.display = "none";
-                    if (totalEnvioEl) totalEnvioEl.textContent = ``;
-                    if (totalFinalEl) totalFinalEl.textContent = `UYU ${totalProductos}`;
-                } else {
-                    contenedorBarrio.classList.remove("oculto");
-                    selectBarrio.setAttribute("required", "required");
-                    if (filaEnvioEl) filaEnvioEl.style.display = "flex";
-                contenedorBarrio.classList.add("oculto");
-                selectBarrio.removeAttribute("required");
-                selectBarrio.value = "";
-                if (filaEnvioEl) filaEnvioEl.style.display = "none";
-            const totalFinalEl = document.getElementById("total-final");
-            const filaEnvioEl = document.getElementById("fila-envio");
-                if (filaEnvioEl) filaEnvioEl.style.display = "none";
-            const totalFinal = totalProductos + costoFinal;
-            if (filaEnvioEl) filaEnvioEl.style.display = "flex";
 <!DOCTYPE html>
 <html lang="es">
 
@@ -197,7 +173,8 @@
                     <div class="metodos-pago">
                         <label><input type="radio" name="pago" required> Mercado Pago</label>
                         <label><input type="radio" name="pago"> Tarjeta de débito o crédito</label>
-                        <label id="pago-transferencia"><input type="radio" name="pago"> Transferencia bancaria</label>
+                        <label id="pago-transferencia"><input type="radio" name="pago"> Transferencia
+                            bancaria</label>
                         <label id="pago-efectivo"><input type="radio" name="pago"> Efectivo</label>
                     </div>
 
@@ -215,9 +192,11 @@
         <div class="bloque-importante">
             <h3>🔔 <span>Importante – Información antes de comprar</span></h3>
             <ul>
-                <li>🕒 Nuestro punto de entrega está en el <strong>Centro</strong>, de lunes a viernes, <strong>de 16:00
+                <li>🕒 Nuestro punto de entrega está en el <strong>Centro</strong>, de lunes a viernes, <strong>de
+                        16:00
                         a 22:00 hs</strong>.</li>
-                <li>🚚 <strong>Envío gratis en Montevideo</strong> en compras mayores a <strong>UYU 1500</strong>. Para
+                <li>🚚 <strong>Envío gratis en Montevideo</strong> en compras mayores a <strong>UYU 1500</strong>.
+                    Para
                     el interior, gratis desde <strong>UYU 2000</strong>.</li>
                 <li>🏤 El costo del envío al interior depende de la agencia seleccionada.</li>
                 <li>⏱️ Los pedidos se toman dentro de las <strong>24 hs hábiles</strong> tras confirmar el pago.
@@ -1000,8 +979,6 @@
 
             window.location.href = `https://wa.me/59894090711?text=${mensaje}`;
         });
-
-
 
     </script>
 
