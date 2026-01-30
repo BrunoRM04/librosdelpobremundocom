@@ -302,10 +302,26 @@
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
     let librosCache = [];
+    let stockCache = [];
 
     fetch(`api/carrusel.php?ids=${librosDestacados.concat(librosNovedades, librosOtros).join(',')}`)
       .then(r => r.json())
       .then(data => librosCache = data);
+
+    fetch('api/libros.php')
+      .then(r => r.json())
+      .then(data => stockCache = data)
+      .catch(() => { });
+
+    function obtenerLibroPorTitulo(titulo) {
+      return stockCache.find(l => l.titulo === titulo) || librosCache.find(l => l.titulo === titulo);
+    }
+
+    function obtenerStockPorTitulo(titulo) {
+      const stockCompleto = stockCache.find(l => l.titulo === titulo)?.stock;
+      const stockCarrusel = librosCache.find(l => l.titulo === titulo)?.stock;
+      return Number(stockCompleto ?? stockCarrusel ?? 1);
+    }
 
     function actualizarContadorCarrito() {
       const total = carrito.reduce((a, i) => a + i.cantidad, 0);
@@ -360,12 +376,15 @@
         const precio = parseInt(t.querySelector(".precio-descuento").textContent.replace(/\D/g, ""));
         const imagen = t.querySelector("img").src;
 
-        const libroBD = librosCache.find(l => l.titulo === titulo);
-        const stock = libroBD?.stock || 1;
+        const libroDatos = obtenerLibroPorTitulo(titulo);
+        const stock = Number(libroDatos?.stock ?? 1);
+        const idLibro = libroDatos?.id;
 
         const existe = carrito.find(i => i.titulo === titulo);
 
         if (existe) {
+          if (idLibro && !existe.id) existe.id = idLibro;
+          existe.stock = stock;
 
           if (existe.cantidad < stock) {
             existe.cantidad++;
@@ -375,7 +394,7 @@
 
         } else {
 
-          carrito.push({ titulo, autor, precio, imagen, cantidad: 1 });
+          carrito.push({ id: idLibro, titulo, autor, precio, imagen, cantidad: 1, stock });
 
         }
 
@@ -386,6 +405,11 @@
     });
 
     function cambiarCantidad(i, c) {
+      const stock = Number(carrito[i].stock ?? obtenerStockPorTitulo(carrito[i].titulo) ?? 1);
+      if (c > 0 && carrito[i].cantidad >= stock) {
+        alert("Has alcanzado el máximo disponible en stock.");
+        return;
+      }
       carrito[i].cantidad += c;
       if (carrito[i].cantidad <= 0) carrito.splice(i, 1);
       actualizarContadorCarrito();

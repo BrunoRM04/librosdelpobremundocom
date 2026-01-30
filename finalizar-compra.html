@@ -298,6 +298,22 @@
         }
 
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        let stockCache = [];
+        let stockActualizado = false;
+
+        fetch('api/libros.php')
+            .then(r => r.json())
+            .then(data => stockCache = data)
+            .catch(() => { });
+
+        function obtenerStockPorTitulo(titulo) {
+            const stockCompleto = stockCache.find(l => l.titulo === titulo)?.stock;
+            return Number(stockCompleto ?? 1);
+        }
+
+        function obtenerIdPorTitulo(titulo) {
+            return stockCache.find(l => l.titulo === titulo)?.id;
+        }
 
         function actualizarContadorCarrito() {
             const totalLibros = carrito.reduce((acc, item) => acc + item.cantidad, 0);
@@ -342,8 +358,18 @@
         }
 
         window.cambiarCantidad = function (i, cambio) {
-            carrito[i].cantidad += cambio;
-            if (carrito[i].cantidad <= 0) carrito.splice(i, 1);
+            const item = carrito[i];
+            const stockDisponible = Number(item.stock ?? obtenerStockPorTitulo(item.titulo) ?? 1);
+
+            if (cambio > 0 && item.cantidad >= stockDisponible) {
+                alert("Has alcanzado el máximo disponible en stock.");
+                return;
+            }
+
+            item.stock = stockDisponible;
+            item.id = item.id ?? obtenerIdPorTitulo(item.titulo);
+            item.cantidad += cambio;
+            if (item.cantidad <= 0) carrito.splice(i, 1);
             actualizarContadorCarrito();
             actualizarCarrito();
         }
@@ -375,6 +401,39 @@
 
         actualizarContadorCarrito();
         actualizarCarrito();
+
+        async function actualizarStockCompra() {
+            if (stockActualizado) return true;
+
+            const items = (carrito || []).map(item => {
+                const id = item.id ?? obtenerIdPorTitulo(item.titulo);
+                return { id: Number(id), cantidad: Number(item.cantidad) };
+            }).filter(i => i.id > 0 && i.cantidad > 0);
+
+            if (items.length === 0) return true;
+
+            try {
+                const res = await fetch('api/actualizar_stock.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ items })
+                });
+
+                const data = await res.json().catch(() => ({}));
+
+                if (!res.ok || !data.ok) {
+                    alert("No se pudo actualizar el stock. Intenta nuevamente.");
+                    return false;
+                }
+
+                stockActualizado = true;
+                return true;
+            } catch (error) {
+                console.error("Error al actualizar stock:", error);
+                alert("No se pudo actualizar el stock. Intenta nuevamente.");
+                return false;
+            }
+        }
 
         let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
         const iconoFavoritos = document.getElementById('abrirFavoritos');
@@ -711,12 +770,16 @@
             if (opcionPago === "Efectivo") {
                 avisoCoordinacion.classList.add("oculto");
                 await guardarDatosEnFirebase();
+                const okStock = await actualizarStockCompra();
+                if (!okStock) return;
                 document.getElementById("pantalla-confirmado").classList.remove("oculto");
                 return;
             }
 
             avisoCoordinacion.classList.add("oculto");
             await guardarDatosEnFirebase();
+            const okStock = await actualizarStockCompra();
+            if (!okStock) return;
 
             const correo = formularioEnvio.querySelector('input[placeholder="Correo electrónico"]').value.trim();
             const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
@@ -895,6 +958,8 @@
 
             avisoTransferencia.classList.add("oculto");
             await guardarDatosEnFirebase();
+            const okStock = await actualizarStockCompra();
+            if (!okStock) return;
 
             const nombre = formularioEnvio.querySelector('input[placeholder="Nombre completo"]').value.trim();
             const telefono = formularioEnvio.querySelector('input[placeholder="Teléfono"]').value.trim();

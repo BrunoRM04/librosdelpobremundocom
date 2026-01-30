@@ -159,7 +159,7 @@
                         return;
                     }
 
-                    stockActual = libro.stock || 1;
+                    stockActual = libro.stock ?? 0;
                     if (!libro) {
                         contenedor.innerHTML = "<p class='mensaje-error'>Libro no encontrado.</p>";
                         return;
@@ -199,14 +199,14 @@
   <span class="precio-original-libro">UYU ${precioOriginal}</span>
   <span class="precio-descuento-libro">UYU ${precioFinal}</span>
 </div>
-            <div class="cantidad-libro">
-              <label for="cantidad">Cantidad:</label>
-              <div class="control-cantidad">
-                <button id="menosCantidad">&minus;</button>
-                <span id="valorCantidad">1</span>
-                <button id="masCantidad">+</button>
-              </div>
-            </div>
+                        <div class="cantidad-libro">
+                            <label for="cantidad">Cantidad:</label>
+                            <div class="control-cantidad">
+                                <button id="menosCantidad">&minus;</button>
+                                <span id="valorCantidad">1</span>
+                                <button id="masCantidad">+</button>
+                            </div>
+                        </div>
 <div class="acciones-libro-detalle">
   ${libro.stock > 0
                             ? (
@@ -218,7 +218,10 @@
                                     : `<button class="boton-anadir-detalle"><i class='bx bx-cart-alt'></i> Añadir al carrito</button>`
                             ) +
                             `<button class="boton-favorito-detalle"><i class='bx bx-heart'></i> Añadir a favoritos</button>`
-                            : `<div class="sin-stock-detalle">¡Sin stock disponible!</div>`
+                                                        : `<a href="https://wa.me/59894090711?text=Hola,%20quiero%20consultar%20por%20el%20libro%20${encodeURIComponent(libro.titulo)}"
+                            target="_blank" class="boton-consultar">
+                            <i class='bx bxl-whatsapp'></i> Consultar
+                     </a>`
                         }
 </div>
             <div class="envios-libro">
@@ -251,7 +254,7 @@
                         }
                     });
                     document.getElementById("masCantidad").addEventListener("click", () => {
-                        if (cantidad < stock) {
+                        if (cantidad < stockActual) {
                             cantidad++;
                             valorCantidad.textContent = cantidad;
                         } else {
@@ -266,6 +269,17 @@
 
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
         let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+        let stockCache = [];
+
+        fetch('api/libros.php')
+            .then(r => r.json())
+            .then(data => stockCache = data)
+            .catch(() => { });
+
+        function obtenerStockPorTitulo(titulo) {
+            const stockCompleto = stockCache.find(l => l.titulo === titulo)?.stock;
+            return Number(stockCompleto ?? 1);
+        }
         actualizarContadorCarrito();
         actualizarCarrito();
 
@@ -306,32 +320,21 @@
         }
 
         function cambiarCantidad(i, cambio) {
-            const libro = carrito[i];
-            const titulo = libro.titulo;
+            const stockDisponible = Number(carrito[i].stock ?? obtenerStockPorTitulo(carrito[i].titulo) ?? 1);
 
-            fetch(`api/libro.php?id=${id}`)
-                .then(res => res.json())
-                .then(libros => {
-                    const libroOriginal = libros.find(l => l.titulo === titulo);
-                    const stockDisponible = libroOriginal?.stock || 1;
+            if (cambio > 0 && carrito[i].cantidad >= stockDisponible) {
+                alert("Has alcanzado el máximo disponible en stock.");
+                return;
+            }
 
-                    if (cambio > 0 && carrito[i].cantidad >= stockDisponible) {
-                        alert("Has alcanzado el máximo disponible en stock.");
-                        return;
-                    }
+            carrito[i].cantidad += cambio;
 
-                    carrito[i].cantidad += cambio;
+            if (carrito[i].cantidad <= 0) {
+                carrito.splice(i, 1);
+            }
 
-                    if (carrito[i].cantidad <= 0) {
-                        carrito.splice(i, 1);
-                    }
-
-                    actualizarContadorCarrito();
-                    actualizarCarrito();
-                })
-                .catch(() => {
-                    alert("No se pudo verificar el stock.");
-                });
+            actualizarContadorCarrito();
+            actualizarCarrito();
         }
 
         function eliminarItem(i) {
@@ -355,6 +358,8 @@
 
                 const existente = carrito.find(item => item.titulo === titulo);
                 if (existente) {
+                    if (id && !existente.id) existente.id = id;
+                    existente.stock = stockActual;
                     if (existente.cantidad + cantidad <= stockActual) {
                         existente.cantidad += cantidad;
                     } else {
@@ -363,7 +368,7 @@
                     }
                 } else {
                     if (cantidad <= stockActual) {
-                        carrito.push({ titulo, autor, precio: precioFinal, imagen, cantidad });
+                        carrito.push({ id, titulo, autor, precio: precioFinal, imagen, cantidad, stock: stockActual });
                     } else {
                         alert("No hay suficiente stock disponible.");
                         return;
@@ -399,11 +404,20 @@
 
                 if (!titulo || !autor || !imagen || !precio) return;
 
+                const stock = Number(botonAñadirCarrusel.dataset.stock || obtenerStockPorTitulo(titulo) || 1);
+                const idLibro = botonAñadirCarrusel.dataset.id;
                 const existente = carrito.find(item => item.titulo === titulo);
                 if (existente) {
-                    existente.cantidad += 1;
+                    if (idLibro && !existente.id) existente.id = idLibro;
+                    existente.stock = stock;
+                    if (existente.cantidad < stock) {
+                        existente.cantidad += 1;
+                    } else {
+                        alert("No hay más stock disponible para este libro.");
+                        return;
+                    }
                 } else {
-                    carrito.push({ titulo, autor, precio, imagen, cantidad: 1 });
+                    carrito.push({ id: idLibro, titulo, autor, precio, imagen, cantidad: 1, stock });
                 }
 
                 actualizarContadorCarrito();
@@ -539,7 +553,7 @@
 
                         const tarjeta = document.createElement('div');
                         tarjeta.classList.add('tarjeta-libro');
-                        tarjeta.innerHTML = `
+                                                tarjeta.innerHTML = `
           <span class="etiqueta-descuento">-${Math.round(descuento * 100)}%</span>
           <button class="boton-favorito" data-id="${libro.id}">
             <i class='bx bx-heart'></i>
@@ -557,7 +571,14 @@
           </p>
           <div class="botones-libro">
             <a href="libro-detalle.html?id=${libro.id}" class="boton-ver">Ver más</a>
-            <button class="boton-anadir"><i class='bx bx-cart-alt'></i> Añadir</button>
+                        ${Number(libro.stock) > 0
+                                        ? `<button class="boton-anadir" data-stock="${libro.stock}" data-id="${libro.id}"><i class='bx bx-cart-alt'></i> Añadir</button>`
+                                                        : `<a href="https://wa.me/59894090711?text=Hola,%20quiero%20consultar%20por%20el%20libro%20${encodeURIComponent(libro.titulo)}"
+                target="_blank"
+                class="boton-consultar">
+                <i class='bx bxl-whatsapp'></i> Consultar
+             </a>`
+                                                }
           </div>
         `;
                         contenedor.appendChild(tarjeta);
