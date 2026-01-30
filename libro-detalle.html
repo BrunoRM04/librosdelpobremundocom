@@ -218,7 +218,7 @@
                                     : `<button class="boton-anadir-detalle"><i class='bx bx-cart-alt'></i> Añadir al carrito</button>`
                             ) +
                             `<button class="boton-favorito-detalle"><i class='bx bx-heart'></i> Añadir a favoritos</button>`
-                                                         : `
+                            : `
                                       <a href="https://wa.me/59894090711?text=Hola,%20quiero%20consultar%20por%20el%20libro%20${encodeURIComponent(libro.titulo)}"
                                           target="_blank" class="boton-consultar">
                                           <i class='bx bxl-whatsapp'></i> Consultar
@@ -555,7 +555,7 @@
 
                         const tarjeta = document.createElement('div');
                         tarjeta.classList.add('tarjeta-libro');
-                                                tarjeta.innerHTML = `
+                        tarjeta.innerHTML = `
           <span class="etiqueta-descuento">-${Math.round(descuento * 100)}%</span>
           <button class="boton-favorito" data-id="${libro.id}">
             <i class='bx bx-heart'></i>
@@ -574,13 +574,13 @@
           <div class="botones-libro">
             <a href="libro-detalle.html?id=${libro.id}" class="boton-ver">Ver más</a>
                         ${Number(libro.stock) > 0
-                                        ? `<button class="boton-anadir" data-stock="${libro.stock}" data-id="${libro.id}"><i class='bx bx-cart-alt'></i> Añadir</button>`
-                                                        : `<a href="https://wa.me/59894090711?text=Hola,%20quiero%20consultar%20por%20el%20libro%20${encodeURIComponent(libro.titulo)}"
+                                ? `<button class="boton-anadir" data-stock="${libro.stock}" data-id="${libro.id}"><i class='bx bx-cart-alt'></i> Añadir</button>`
+                                : `<a href="https://wa.me/59894090711?text=Hola,%20quiero%20consultar%20por%20el%20libro%20${encodeURIComponent(libro.titulo)}"
                 target="_blank"
                 class="boton-consultar">
                 <i class='bx bxl-whatsapp'></i> Consultar
              </a>`
-                                                }
+                            }
           </div>
         `;
                         contenedor.appendChild(tarjeta);

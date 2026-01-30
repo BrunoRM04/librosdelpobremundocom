@@ -39,7 +39,7 @@ if (!isset($_SESSION['admin_id'])) {
                     <form action="process_books.php" method="POST" enctype="multipart/form-data" style="margin-bottom: 30px;">
                         <div class="admin-form-group">
                             <label for="archivo" style="display: block; margin-bottom: 10px; font-weight: 600; color: var(--negro);">Seleccionar archivo CSV:</label>
-                            <input type="file" id="archivo" name="archivo" accept=".csv" required style="padding: 10px; border: 2px solid var(--rojo-principal); border-radius: 5px; width: 100%; max-width: 500px;">
+                            <input type="file" id="archivo" name="archivo" accept=".csv" required class="admin-file-input">
                         </div>
                         <button type="submit" class="admin-button" style="max-width: 200px; margin-top: 20px;">Subir CSV</button>
                     </form>

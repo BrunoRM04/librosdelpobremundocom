@@ -90,15 +90,31 @@ body {
 .admin-button {
     width: 100%;
     padding: 12px;
-    background-color: transparent;
+    background-color: var(--rojo-principal);
     color: var(--blanco);
-    border: 2px solid var(--blanco);
+    border: 2px solid var(--rojo-principal);
     border-radius: 6px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     font-family: "Raleway", sans-serif;
     margin-top: 10px;
+    transition: all 0.2s ease;
+}
+
+.admin-button:hover {
+    filter: brightness(1.05);
+}
+
+.admin-button--outline {
+    background-color: transparent;
+    color: var(--blanco);
+    border-color: var(--blanco);
+}
+
+.admin-button--outline:hover {
+    background-color: var(--blanco);
+    color: var(--rojo-principal);
 }
 
 .admin-error {
@@ -257,6 +273,33 @@ body {
     font-size: 14px;
     opacity: 0.95;
     margin: 0;
+}
+
+.admin-file-input {
+    padding: 10px;
+    border: 2px solid var(--rojo-principal);
+    border-radius: 5px;
+    width: 100%;
+    max-width: 500px;
+    background-color: var(--blanco);
+    color: var(--rojo-principal);
+    font-family: "Raleway", sans-serif;
+    font-size: 14px;
+}
+
+.admin-file-input::file-selector-button {
+    background-color: var(--rojo-principal);
+    color: var(--blanco);
+    border: 2px solid var(--rojo-principal);
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin-right: 12px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.admin-file-input:hover::file-selector-button {
+    filter: brightness(1.05);
 }
 
 /* ===== RESPONSIVE ===== */

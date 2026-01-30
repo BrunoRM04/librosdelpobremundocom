@@ -61,7 +61,7 @@
                     <p class="admin-error"><?php echo $error; ?></p>
                 <?php endif; ?>
 
-                <button type="submit" class="admin-button">Ingresar</button>
+                <button type="submit" class="admin-button admin-button--outline">Ingresar</button>
             </form>
         </div>
     </div>

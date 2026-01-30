@@ -333,22 +333,22 @@
   </p>
 <div class="botones-catalogo">
   ${libro.stock > 0
-                                ? `
+                        ? `
         <a href="libro-detalle.html?id=${libro.id}" class="boton-ver-catalogo">Ver más</a>
         ${libro.consultarPorWhatsApp
-                                     ? `<a href="https://wa.me/${libro.numeroWhatsApp}?text=Hola,%20quiero%20consultar%20por%20el%20libro%20${encodeURIComponent(libro.titulo)}" 
+                            ? `<a href="https://wa.me/${libro.numeroWhatsApp}?text=Hola,%20quiero%20consultar%20por%20el%20libro%20${encodeURIComponent(libro.titulo)}" 
                   target="_blank" class="boton-consultar">
                   <i class='bx bxl-whatsapp'></i> Consultar
               </a>`
-                                     : `<button class="boton-anadir-catalogo"><i class='bx bx-cart-alt'></i> Añadir</button>`}
+                            : `<button class="boton-anadir-catalogo"><i class='bx bx-cart-alt'></i> Añadir</button>`}
      `
-                                : `
+                        : `
         <a href="libro-detalle.html?id=${libro.id}" class="boton-ver-catalogo">Ver más</a>
         <a href="https://wa.me/59894090711?text=Hola,%20quiero%20consultar%20por%20el%20libro%20${encodeURIComponent(libro.titulo)}"
             target="_blank" class="boton-consultar">
             <i class='bx bxl-whatsapp'></i> Consultar
         </a>`
-                          }
+                    }
 </div>
 `;
                 contenedor.appendChild(tarjeta);
