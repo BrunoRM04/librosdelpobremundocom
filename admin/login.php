@@ -65,6 +65,24 @@
             </form>
         </div>
     </div>
+
+    <div id="login-loader" class="login-loader" aria-hidden="true">
+        <span class="login-loader-text">Cargando...</span>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var form = document.querySelector('.admin-form');
+            var loader = document.getElementById('login-loader');
+
+            if (form && loader) {
+                form.addEventListener('submit', function () {
+                    loader.classList.add('is-active');
+                    loader.setAttribute('aria-hidden', 'false');
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
