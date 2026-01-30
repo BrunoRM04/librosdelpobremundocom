@@ -143,7 +143,7 @@
         document.addEventListener("DOMContentLoaded", () => {
             const contenedor = document.getElementById("contenedorLibroDetalle");
             const params = new URLSearchParams(window.location.search);
-            const id = params.get("id");
+            id = params.get("id");
 
             if (!id) {
                 contenedor.innerHTML = "<p class='mensaje-error'>No se especificó un libro válido.</p>";
@@ -509,7 +509,7 @@
         }
 
         function cargarLibrosRelacionados() {
-            fetch(`api/libro.php?id=${id}`)
+            fetch(`api/catalogo.php?page=1`)
                 .then(res => res.json())
                 .then(libros => {
                     const contenedor = document.getElementById('carrusel-relacionados');
