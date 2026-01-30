@@ -86,7 +86,7 @@
       <div class="contenedor-buscador">
         <h1 class="titulo-buscador">Explora en nuestro catálogo</h1>
         <p class="descripcion-buscador">Busca titulo, autor, isbn y más.</p>
-        <form class="grupo-buscador">
+        <form class="grupo-buscador" id="formBuscador">
           <input type="text" class="campo-buscador" placeholder="Buscar un libro...">
           <button class="boton-buscador" type="submit">Buscar</button>
         </form>
@@ -302,7 +302,8 @@
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
     let librosCache = [];
-    fetch(`api/carrusel.php?ids=${ids.join(',')}`)
+
+    fetch(`api/carrusel.php?ids=${librosDestacados.concat(librosNovedades, librosOtros).join(',')}`)
       .then(r => r.json())
       .then(data => librosCache = data);
 
@@ -425,6 +426,12 @@
     }
 
     const campoBuscador = document.querySelector(".campo-buscador");
+
+    const formBuscador = document.getElementById("formBuscador");
+
+    formBuscador.addEventListener("submit", e => {
+      e.preventDefault();
+    });
 
     campoBuscador.addEventListener("input", debounce(async e => {
 
