@@ -152,8 +152,13 @@
 
             fetch(`api/libro.php?id=${id}`)
                 .then(res => res.json())
-                .then(libros => {
-                    const libro = libros.find(l => String(l.id) === id);
+                .then(libro => {
+
+                    if (!libro) {
+                        contenedor.innerHTML = "<p class='mensaje-error'>Libro no encontrado.</p>";
+                        return;
+                    }
+
                     stockActual = libro.stock || 1;
                     if (!libro) {
                         contenedor.innerHTML = "<p class='mensaje-error'>Libro no encontrado.</p>";
@@ -304,7 +309,7 @@
             const libro = carrito[i];
             const titulo = libro.titulo;
 
-            fetch('api/libros.php')
+            fetch(`api/libro.php?id=${id}`)
                 .then(res => res.json())
                 .then(libros => {
                     const libroOriginal = libros.find(l => l.titulo === titulo);
@@ -455,7 +460,7 @@
         function mostrarFavoritos() {
             const contenedor = document.getElementById('contenidoFavoritos');
             contenedor.innerHTML = '';
-            fetch('api/libros.php')
+            fetch(`api/libro.php?id=${id}`)
                 .then(res => res.json())
                 .then(libros => {
                     favoritos.forEach(id => {
@@ -504,7 +509,7 @@
         }
 
         function cargarLibrosRelacionados() {
-            fetch('api/libros.php')
+            fetch(`api/libro.php?id=${id}`)
                 .then(res => res.json())
                 .then(libros => {
                     const contenedor = document.getElementById('carrusel-relacionados');
