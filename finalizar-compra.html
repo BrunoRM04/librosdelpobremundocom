@@ -1,3 +1,27 @@
+    <div class="fila-resumen" id="fila-envio">
+        <span class="etiqueta">Costo de envío:</span>
+        <span class="valor" id="total-envio">UYU 0</span>
+            const totalEnvioEl = document.getElementById("total-envio");
+            const filaEnvioEl = document.getElementById("fila-envio");
+                if (metodoEntrega === "punto") {
+                    contenedorBarrio.classList.add("oculto");
+                    selectBarrio.removeAttribute("required");
+                    if (filaEnvioEl) filaEnvioEl.style.display = "none";
+                    if (totalEnvioEl) totalEnvioEl.textContent = ``;
+                    if (totalFinalEl) totalFinalEl.textContent = `UYU ${totalProductos}`;
+                } else {
+                    contenedorBarrio.classList.remove("oculto");
+                    selectBarrio.setAttribute("required", "required");
+                    if (filaEnvioEl) filaEnvioEl.style.display = "flex";
+                contenedorBarrio.classList.add("oculto");
+                selectBarrio.removeAttribute("required");
+                selectBarrio.value = "";
+                if (filaEnvioEl) filaEnvioEl.style.display = "none";
+            const totalFinalEl = document.getElementById("total-final");
+            const filaEnvioEl = document.getElementById("fila-envio");
+                if (filaEnvioEl) filaEnvioEl.style.display = "none";
+            const totalFinal = totalProductos + costoFinal;
+            if (filaEnvioEl) filaEnvioEl.style.display = "flex";
 <!DOCTYPE html>
 <html lang="es">
 
@@ -517,21 +541,36 @@
 
         function actualizarFormulario() {
             const departamentoSeleccionado = selectDepartamento.value;
+            const metodoEntrega = selectMetodoEntrega.value;
             const totalEnvioEl = document.getElementById("total-envio");
+            const filaEnvioEl = document.getElementById("fila-envio");
             const totalFinalEl = document.getElementById("total-final");
             const totalProductos = window.totalProductos || 0;
 
             if (departamentoSeleccionado === "Montevideo") {
-                contenedorBarrio.classList.remove("oculto");
-                selectBarrio.setAttribute("required", "required");
                 pagoEfectivo.style.display = "block";
+
+                if (metodoEntrega === "punto") {
+                    contenedorBarrio.classList.add("oculto");
+                    selectBarrio.removeAttribute("required");
+                    selectBarrio.value = "";
+
+                    if (filaEnvioEl) filaEnvioEl.style.display = "none";
+                    if (totalEnvioEl) totalEnvioEl.textContent = ``;
+                    if (totalFinalEl) totalFinalEl.textContent = `UYU ${totalProductos}`;
+                } else {
+                    contenedorBarrio.classList.remove("oculto");
+                    selectBarrio.setAttribute("required", "required");
+                    if (filaEnvioEl) filaEnvioEl.style.display = "flex";
+                }
             } else {
                 contenedorBarrio.classList.add("oculto");
-                selectBarrio.removeAttribute("");
+                selectBarrio.removeAttribute("required");
                 selectBarrio.value = "";
                 pagoEfectivo.style.display = "none";
                 contenedorEfectivo.classList.add("oculto");
 
+                if (filaEnvioEl) filaEnvioEl.style.display = "none";
                 if (totalEnvioEl) totalEnvioEl.textContent = ``;
                 if (totalFinalEl) totalFinalEl.textContent = `UYU ${totalProductos}`;
             }
@@ -560,9 +599,11 @@
             const metodo = selectMetodoEntrega.value;
             const totalProductos = window.totalProductos || 0;
             const totalEnvioEl = document.getElementById("total-envio");
+            const filaEnvioEl = document.getElementById("fila-envio");
             const totalFinalEl = document.getElementById("total-final");
 
             if (metodo === "punto" || departamento !== "Montevideo" || !barrio) {
+                if (filaEnvioEl) filaEnvioEl.style.display = "none";
                 if (totalEnvioEl) totalEnvioEl.textContent = ``;
                 if (totalFinalEl) totalFinalEl.textContent = `UYU ${totalProductos}`;
                 return;
@@ -575,6 +616,7 @@
             }
 
             const totalFinal = totalProductos + costoFinal;
+            if (filaEnvioEl) filaEnvioEl.style.display = "flex";
             if (totalEnvioEl) totalEnvioEl.textContent = `UYU ${costoFinal}`;
             if (totalFinalEl) totalFinalEl.textContent = `UYU ${totalFinal}`;
         }
@@ -634,7 +676,7 @@
         <span class="etiqueta">Total productos:</span>
         <span class="valor" id="total-productos">UYU ${total}</span>
     </div>
-    <div class="fila-resumen">
+    <div class="fila-resumen" id="fila-envio">
         <span class="etiqueta">Costo de envío:</span>
         <span class="valor" id="total-envio">UYU 0</span>
     </div>
@@ -722,7 +764,10 @@
 
         selectBarrio.addEventListener("change", calcularCostoEnvio);
 
-        selectMetodoEntrega.addEventListener("change", calcularCostoEnvio);
+        selectMetodoEntrega.addEventListener("change", () => {
+            actualizarFormulario();
+            calcularCostoEnvio();
+        });
 
         const formularioEnvio = document.getElementById("formulario-envio");
         const avisoCoordinacion = document.getElementById("aviso-coordinacion");
