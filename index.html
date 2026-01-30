@@ -265,7 +265,6 @@
 
     cargarLibros("carrusel-destacados", librosDestacados);
     cargarLibros("carrusel-novedades", librosNovedades);
-    cargarLibros("carrusel-otros", librosOtros);
 
     function configurarFlechas(i, d, c) {
       document.getElementById(i).addEventListener("click", () => {
@@ -278,14 +277,13 @@
 
     configurarFlechas("flecha-izquierda", "flecha-derecha", "carrusel-destacados");
     configurarFlechas("flecha-izquierda-novedades", "flecha-derecha-novedades", "carrusel-novedades");
-    configurarFlechas("flecha-izquierda-otros", "flecha-derecha-otros", "carrusel-otros");
 
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
     let librosCache = [];
     let stockCache = [];
 
-    fetch(`api/carrusel.php?ids=${librosDestacados.concat(librosNovedades, librosOtros).join(',')}`)
+    fetch(`api/carrusel.php?ids=${librosDestacados.concat(librosNovedades).join(',')}`)
       .then(r => r.json())
       .then(data => librosCache = data);
 
