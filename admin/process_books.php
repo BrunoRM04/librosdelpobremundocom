@@ -97,8 +97,12 @@ if (!isset($_FILES['archivo'])) {
             }
 
             fclose($fp);
-            $exito = true;
-            $mensaje = "Libros cargados correctamente: $insertados";
+            $exito = ($insertados > 0);
+            if ($exito) {
+                $mensaje = "Libros cargados correctamente: $insertados";
+            } else {
+                $mensaje = "No se cargó ningún libro. Verifica los errores a continuación.";
+            }
         }
     }
 }
