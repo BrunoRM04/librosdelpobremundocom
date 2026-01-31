@@ -39,6 +39,10 @@
                             <h3>Cargar libros por CSV</h3>
                             <p>Subir archivo CSV generado desde Excel</p>
                         </a>
+                        <a href="upload_books_table.php" class="admin-option-card">
+                            <h3>Subir libros por tabla</h3>
+                            <p>Agregar libros manualmente a través de formulario</p>
+                        </a>
                     </div>
                 </section>
             </div>

@@ -5,7 +5,7 @@ if (!isset($_SESSION['admin_id'])) {
     exit;
 }
 
-require '../api/config.php'; 
+require '../api/config.php';
 
 $exito = false;
 $mensaje = "";
@@ -49,14 +49,15 @@ if (!isset($_FILES['archivo'])) {
         } else {
             $map = array_flip($header);
 
-            /* Preparar INSERT */
             $stmt = $pdo->prepare("
             INSERT INTO libros
             (titulo,autor,isbn,editorial,numPaginas,precio,descripcion,imagen,stock)
             VALUES (?,?,?,?,?,?,?,?,?)
             ");
 
-            $lineaActual = 1; // Línea 1 es la cabecera
+            $stmtCheck = $pdo->prepare("SELECT COUNT(*) FROM libros WHERE isbn = ?");
+
+            $lineaActual = 1; 
 
             while (($row = fgetcsv($fp)) !== false) {
                 $lineaActual++;
@@ -65,11 +66,22 @@ if (!isset($_FILES['archivo'])) {
                     continue;
                 }
 
+                $isbn = limpiar($row[$map['isbn']]);
+                $titulo = mayus($row[$map['titulo']]);
+
+                $stmtCheck->execute([$isbn]);
+                $existe = $stmtCheck->fetchColumn();
+
+                if ($existe > 0) {
+                    $errores[] = "Línea $lineaActual: El libro \"$titulo\" (ISBN: $isbn) ya existe en la base de datos y no fue agregado.";
+                    continue;
+                }
+
                 try {
                     $stmt->execute([
-                        mayus($row[$map['titulo']]),
+                        $titulo,
                         mayus($row[$map['autor']]),
-                        limpiar($row[$map['isbn']]),
+                        $isbn,
                         mayus($row[$map['editorial']]),
                         (int)$row[$map['numpaginas']],
                         (float)$row[$map['precio']],
