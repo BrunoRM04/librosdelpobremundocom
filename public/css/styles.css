@@ -1928,6 +1928,461 @@ body {
 
 /* CARRUSEL LIBROS RELACIONADOS */
 
+/* LOGIN CLIENTES */
+
+.login-clientes-container {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--rojo-principal);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-clientes-box {
+    background-color: var(--rojo-principal);
+    padding: 50px 40px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-clientes-logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-clientes-logo img {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+}
+
+.login-clientes-form h2 {
+    color: var(--blanco);
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.login-clientes-form-group {
+    margin-bottom: 20px;
+}
+
+.login-clientes-password-group {
+    position: relative;
+}
+
+.login-clientes-toggle-password {
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    color: var(--blanco);
+    font-size: 22px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    user-select: none;
+    padding: 2px 5px;
+    z-index: 10;
+}
+
+.login-clientes-toggle-password:hover {
+    opacity: 1;
+}
+
+.login-clientes-toggle-password:active {
+    opacity: 0.9;
+}
+
+.login-clientes-form-group input {
+    width: 100%;
+    padding: 12px 2px;
+    border: none;
+    border-bottom: 2px solid var(--blanco);
+    border-radius: 0;
+    font-family: "Raleway", sans-serif;
+    font-size: 14px;
+    color: var(--blanco);
+    background-color: transparent;
+}
+
+.login-clientes-password-group input {
+    padding-right: 35px;
+}
+
+.login-clientes-form-group input:focus {
+    outline: none;
+    border-bottom-color: var(--blanco);
+}
+
+.login-clientes-form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.login-clientes-button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--rojo-principal);
+    color: var(--blanco);
+    border: 2px solid var(--blanco);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: "Raleway", sans-serif;
+    margin-top: 10px;
+    transition: all 0.2s ease;
+}
+
+.login-clientes-button:hover {
+    background-color: var(--blanco);
+    color: var(--rojo-principal);
+}
+
+.login-clientes-error {
+    color: var(--blanco);
+    text-align: center;
+    font-size: 13px;
+    margin-bottom: 15px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.login-clientes-loader {
+    position: fixed;
+    inset: 0;
+    background-color: var(--rojo-principal);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.login-clientes-loader.is-active {
+    display: flex;
+}
+
+.login-clientes-loader-text {
+    color: var(--blanco);
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.login-clientes-link {
+    text-align: center;
+    margin-top: 20px;
+    color: var(--blanco);
+}
+
+.login-clientes-link a {
+    color: #00d4ff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.login-clientes-link a:hover {
+    color: var(--blanco);
+    text-decoration: underline;
+}
+
+.pantalla-registro-exitoso {
+    position: fixed;
+    inset: 0;
+    background-color: var(--rojo-principal);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 20px;
+}
+
+.contenido-registro-exitoso {
+    text-align: center;
+    max-width: 500px;
+    animation: fadeInScale 0.5s ease;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.icono-exito-registro {
+    font-size: 80px;
+    color: var(--blanco);
+    margin-bottom: 20px;
+    display: block;
+    animation: bounceIn 0.6s ease;
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.contenido-registro-exitoso h2 {
+    color: var(--blanco);
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.contenido-registro-exitoso p {
+    color: var(--blanco);
+    font-size: 18px;
+    margin-bottom: 30px;
+    opacity: 0.95;
+}
+
+.boton-ir-inicio {
+    background-color: var(--blanco);
+    color: var(--rojo-principal);
+    border: 2px solid var(--blanco);
+    padding: 14px 40px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: "Raleway", sans-serif;
+    transition: all 0.3s ease;
+}
+
+.boton-ir-inicio:hover {
+    background-color: transparent;
+    color: var(--blanco);
+    transform: scale(1.05);
+}
+
+.boton-ir-inicio:active {
+    transform: scale(0.98);
+}
+
+@media (max-width: 1024px) {
+    .login-clientes-container {
+        height: auto;
+        min-height: 100vh;
+        padding: 80px 20px 20px;
+    }
+
+    .login-clientes-box {
+        padding: 40px 30px;
+        margin-top: 20px;
+    }
+
+    .login-clientes-logo img {
+        height: 70px;
+    }
+
+    .login-clientes-form h2 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .login-clientes-toggle-password {
+        font-size: 21px;
+        bottom: 11px;
+    }
+}
+
+@media (max-width: 768px) {
+    .login-clientes-container {
+        padding: 100px 20px 20px;
+    }
+
+    .login-clientes-box {
+        padding: 35px 25px;
+        max-width: 500px;
+        margin-top: 0;
+    }
+
+    .login-clientes-logo {
+        margin-bottom: 25px;
+    }
+
+    .login-clientes-logo img {
+        height: 60px;
+    }
+
+    .login-clientes-form h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .login-clientes-form p {
+        font-size: 13px !important;
+        margin-bottom: 15px !important;
+    }
+
+    .login-clientes-form-group {
+        margin-bottom: 18px;
+    }
+
+    .login-clientes-button {
+        padding: 11px;
+        font-size: 15px;
+    }
+
+    .login-clientes-toggle-password {
+        font-size: 20px;
+        bottom: 10px;
+    }
+
+    .login-clientes-password-group input {
+        padding-right: 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-clientes-container {
+        padding: 100px 15px 20px;
+    }
+
+    .login-clientes-box {
+        padding: 30px 20px;
+        max-width: 100%;
+    }
+
+    .login-clientes-logo {
+        margin-bottom: 20px;
+    }
+
+    .login-clientes-logo img {
+        height: 50px;
+    }
+
+    .login-clientes-form h2 {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+
+    .login-clientes-form p {
+        font-size: 12px !important;
+        margin-bottom: 12px !important;
+        line-height: 1.4;
+    }
+
+    .login-clientes-form-group {
+        margin-bottom: 16px;
+    }
+
+    .login-clientes-form-group input {
+        padding: 10px 2px;
+        font-size: 13px;
+    }
+
+    .login-clientes-button {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .login-clientes-error {
+        font-size: 12px;
+        margin-bottom: 12px;
+    }
+
+    .login-clientes-toggle-password {
+        font-size: 19px;
+        bottom: 9px;
+    }
+
+    .login-clientes-password-group input {
+        padding-right: 30px;
+    }
+}
+
+@media (max-width: 360px) {
+    .login-clientes-container {
+        padding: 90px 12px 15px;
+    }
+
+    .login-clientes-box {
+        padding: 25px 18px;
+    }
+
+    .login-clientes-logo img {
+        height: 45px;
+    }
+
+    .login-clientes-form h2 {
+        font-size: 17px;
+        margin-bottom: 10px;
+    }
+
+    .login-clientes-form p {
+        font-size: 11px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .login-clientes-form-group {
+        margin-bottom: 14px;
+    }
+
+    .login-clientes-form-group input {
+        padding: 9px 2px;
+        font-size: 12px;
+    }
+
+    .login-clientes-button {
+        padding: 9px;
+        font-size: 13px;
+    }
+
+    .login-clientes-toggle-password {
+        font-size: 18px;
+        bottom: 8px;
+    }
+
+    .login-clientes-password-group input {
+        padding-right: 28px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .login-clientes-box {
+        max-width: 450px;
+        padding: 60px 50px;
+    }
+
+    .login-clientes-logo img {
+        height: 90px;
+    }
+
+    .login-clientes-form h2 {
+        font-size: 26px;
+    }
+
+    .login-clientes-form p {
+        font-size: 15px !important;
+    }
+
+    .login-clientes-form-group input {
+        font-size: 15px;
+    }
+
+    .login-clientes-button {
+        font-size: 17px;
+        padding: 14px;
+    }
+}
+
+/* LOGIN CLIENTES */
+
 
 
 
