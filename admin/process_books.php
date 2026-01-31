@@ -69,6 +69,7 @@ if (!isset($_FILES['archivo'])) {
                 $isbn = limpiar($row[$map['isbn']]);
                 $titulo = mayus($row[$map['titulo']]);
 
+                // Verificar si el ISBN ya existe
                 $stmtCheck->execute([$isbn]);
                 $existe = $stmtCheck->fetchColumn();
 
@@ -161,7 +162,7 @@ function mayus($v)
 
                     <?php if (!empty($errores)): ?>
                         <div style="background-color: #fff3cd; border-left: 5px solid #ffc107; padding: 20px; border-radius: 5px; margin-bottom: 20px;">
-                            <h3 style="color: #856404; margin: 0 0 15px 0; font-size: 18px;">Advertencias</h3>
+                            <h3 style="color: #856404; margin: 0 0 15px 0; font-size: 18px;">Advertencias y Errores</h3>
                             <ul style="margin: 0; padding-left: 20px; color: #856404;">
                                 <?php foreach ($errores as $error): ?>
                                     <li style="margin-bottom: 5px;"><?php echo htmlspecialchars($error); ?></li>
