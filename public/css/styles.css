@@ -50,6 +50,134 @@ body {
   padding: 5px;
 }
 
+/* Avatar de cliente */
+.avatar-cliente {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--blanco);
+  color: var(--rojo-principal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.avatar-cliente:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Ventana de puntos del cliente */
+.ventana-puntos-cliente {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background-color: var(--blanco);
+  border-radius: 10px;
+  padding: 20px 25px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 250px;
+  display: none;
+  animation: slideInDown 0.3s ease;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ventana-puntos-cliente.activo {
+  display: block;
+}
+
+.ventana-puntos-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--rojo-principal);
+}
+
+.ventana-puntos-header h3 {
+  color: var(--rojo-principal);
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.cerrar-ventana-puntos {
+  color: var(--rojo-principal);
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.cerrar-ventana-puntos:hover {
+  transform: scale(1.2);
+}
+
+.ventana-puntos-contenido {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.ventana-puntos-usuario {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.ventana-puntos-cantidad {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--rojo-principal);
+  margin: 10px 0;
+}
+
+.ventana-puntos-label {
+  color: #888;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.ventana-puntos-acciones {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.boton-cerrar-sesion {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--rojo-principal);
+  color: var(--blanco);
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: "Raleway", sans-serif;
+  transition: all 0.3s ease;
+}
+
+.boton-cerrar-sesion:hover {
+  background-color: #7a0001;
+}
+
 .menu-completo {
   position: fixed;
   top: 0;
@@ -2157,20 +2285,9 @@ body {
     padding: 14px 40px;
     font-size: 16px;
     font-weight: 600;
-    border-radius: 6px;
     cursor: pointer;
     font-family: "Raleway", sans-serif;
     transition: all 0.3s ease;
-}
-
-.boton-ir-inicio:hover {
-    background-color: transparent;
-    color: var(--blanco);
-    transform: scale(1.05);
-}
-
-.boton-ir-inicio:active {
-    transform: scale(0.98);
 }
 
 @media (max-width: 1024px) {

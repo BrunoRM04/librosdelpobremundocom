@@ -33,19 +33,33 @@
 
         <div class="iconos-acciones">
             <i class='bx bx-heart icono-favoritos' id="abrirFavoritos"></i>
+            <div id="avatar-cliente" class="avatar-cliente" style="display: none;"></div>
             <i class='bx bx-cart icono-carrito'></i>
             <i class='bx bx-menu icono-menu' id="botonMenu"></i>
         </div>
 
     </header>
 
-    <div class="menu-completo" id="menuCompleto">
-        <i class='bx bx-x icono-cerrar' id="botonCerrar"></i>
-        <nav class="contenido-menu">
-            <a href="index.html">🏠 Inicio</a>
-            <a href="catalogo.html">📚 Catálogo</a>
-            <a href="login-clientes.html">👤 Registrarse</a>
-        </nav>
+    <div class="ventana-puntos-cliente" id="ventanaPuntosCliente">
+        <div class="ventana-puntos-header">
+            <h3>Mi cuenta</h3>
+            <i class='bx bx-x cerrar-ventana-puntos' id="cerrarVentanaPuntos"></i>
+        </div>
+        <div class="ventana-puntos-contenido">
+            <p class="ventana-puntos-usuario" id="usuarioVentana"></p>
+            <div class="ventana-puntos-cantidad" id="puntosCliente">0</div>
+            <p class="ventana-puntos-label">Puntos acumulados</p>
+        </div>
+        <div class="ventana-puntos-acciones">
+            <button class="boton-cerrar-sesion" id="botonCerrarSesion">Cerrar sesión</button>
+        </div>
+    </div>
+    <i class='bx bx-x icono-cerrar' id="botonCerrar"></i>
+    <nav class="contenido-menu">
+        <a href="index.html">🏠 Inicio</a>
+        <a href="catalogo.html">📚 Catálogo</a>
+        <a href="login-clientes.html">👤 Registrarse</a>
+    </nav>
     </div>
 
     <main>
@@ -607,6 +621,77 @@
 
             window.location.href = "finalizar-compra.html";
         });
+    </script>
+
+    <script>
+        // Gestión de sesión de cliente
+        function verificarSesionCliente() {
+            const clienteLogueado = JSON.parse(localStorage.getItem('clienteLogueado'));
+            const iconoFavoritos = document.querySelector('.icono-favoritos');
+            const avatarCliente = document.getElementById('avatar-cliente');
+
+            if (clienteLogueado && clienteLogueado.usuario) {
+                // Ocultar icono de favoritos y mostrar avatar
+                if (iconoFavoritos) iconoFavoritos.style.display = 'none';
+                if (avatarCliente) {
+                    const inicial = clienteLogueado.usuario.charAt(0).toUpperCase();
+                    avatarCliente.textContent = inicial;
+                    avatarCliente.style.display = 'flex';
+                }
+            } else {
+                // Mostrar icono de favoritos y ocultar avatar
+                if (iconoFavoritos) iconoFavoritos.style.display = 'block';
+                if (avatarCliente) avatarCliente.style.display = 'none';
+            }
+        }
+
+        async function cargarPuntosCliente() {
+            const clienteLogueado = JSON.parse(localStorage.getItem('clienteLogueado'));
+            if (!clienteLogueado) return;
+
+            try {
+                const response = await fetch('api/obtener-puntos-cliente.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'usuario=' + encodeURIComponent(clienteLogueado.usuario)
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    document.getElementById('puntosCliente').textContent = data.puntos;
+                    document.getElementById('usuarioVentana').textContent = clienteLogueado.usuario;
+                }
+            } catch (error) {
+                console.error('Error al cargar puntos:', error);
+            }
+        }
+
+        // Evento click en avatar
+        document.getElementById('avatar-cliente')?.addEventListener('click', () => {
+            const ventana = document.getElementById('ventanaPuntosCliente');
+            ventana.classList.toggle('activo');
+            if (ventana.classList.contains('activo')) {
+                cargarPuntosCliente();
+            }
+        });
+
+        // Cerrar ventana de puntos
+        document.getElementById('cerrarVentanaPuntos')?.addEventListener('click', () => {
+            document.getElementById('ventanaPuntosCliente').classList.remove('activo');
+        });
+
+        // Cerrar sesión
+        document.getElementById('botonCerrarSesion')?.addEventListener('click', () => {
+            if (confirm('¿Deseas cerrar sesión?')) {
+                localStorage.removeItem('clienteLogueado');
+                window.location.reload();
+            }
+        });
+
+        // Verificar sesión al cargar la página
+        verificarSesionCliente();
     </script>
 
 
