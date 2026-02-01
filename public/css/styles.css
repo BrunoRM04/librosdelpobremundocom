@@ -3061,6 +3061,147 @@ body {
 
 /* FOOTER */
 
+/* PERFIL DE USUARIO */
+
+.circulo-perfil {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--blanco);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid var(--blanco);
+}
+
+.circulo-perfil:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.inicial-usuario {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--rojo-principal);
+  text-transform: uppercase;
+}
+
+/* PANEL DE USUARIO */
+
+.panel-usuario {
+  position: fixed;
+  right: -350px;
+  top: 0;
+  width: 350px;
+  height: 100vh;
+  background-color: var(--blanco);
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 998;
+  transition: right 0.3s ease;
+  overflow-y: auto;
+}
+
+.panel-usuario.activo {
+  right: 0;
+}
+
+.contenido-panel-usuario {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.encabezado-panel-usuario {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--rojo-principal);
+}
+
+.encabezado-panel-usuario h3 {
+  color: var(--rojo-principal);
+  font-size: 18px;
+  margin: 0;
+}
+
+.encabezado-panel-usuario i {
+  cursor: pointer;
+  color: var(--rojo-principal);
+  font-size: 24px;
+  transition: transform 0.2s ease;
+}
+
+.encabezado-panel-usuario i:hover {
+  transform: scale(1.2);
+}
+
+.info-usuario-panel {
+  flex: 1;
+  padding: 20px 0;
+}
+
+.info-usuario-panel p {
+  color: var(--negro);
+  font-size: 14px;
+  margin-bottom: 12px;
+  word-break: break-word;
+}
+
+.info-usuario-panel p:first-child {
+  font-weight: 600;
+  color: var(--rojo-principal);
+}
+
+.opciones-usuario {
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.boton-cerrar-sesion {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--rojo-principal);
+  color: var(--blanco);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.boton-cerrar-sesion:hover {
+  background-color: #7a0001;
+  transform: translateY(-2px);
+}
+
+.boton-cerrar-sesion:active {
+  transform: translateY(0);
+}
+
+/* RESPONSIVE PANEL USUARIO */
+
+@media (max-width: 768px) {
+  .panel-usuario {
+    width: 100%;
+    right: -100%;
+  }
+
+  .contenido-panel-usuario {
+    padding: 15px;
+  }
+
+  .encabezado-panel-usuario h3 {
+    font-size: 16px;
+  }
+}
+
+
 
 
 

@@ -32,7 +32,7 @@
         </div>
 
         <div class="iconos-acciones">
-            <i class='bx bx-heart icono-favoritos' id="abrirFavoritos"></i>
+            <div id="contenedorPerfil"></div>
             <i class='bx bx-cart icono-carrito'></i>
             <i class='bx bx-menu icono-menu' id="botonMenu"></i>
         </div>
@@ -234,6 +234,24 @@
         </div>
 
     </main>
+
+    <div class="panel-usuario" id="panelUsuario">
+        <div class="contenido-panel-usuario">
+            <div class="encabezado-panel-usuario">
+                <h3>Mis miserables 📚</h3>
+                <i class='bx bx-x' id="cerrarPanelUsuario"></i>
+            </div>
+            <div class="info-usuario-panel">
+                <p id="emailUsuarioPanel"></p>
+                <p id="fechaRegistroPanel"></p>
+            </div>
+            <div class="opciones-usuario">
+                <button id="cerrarSesionBtn" class="boton-cerrar-sesion">Cerrar sesión</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="fondo-oscuro" id="fondoOscuro"></div>
 
     <footer class="pie-pagina">
 
@@ -980,6 +998,70 @@
 
             window.location.href = `https://wa.me/59894090711?text=${mensaje}`;
         });
+
+        // Funcionalidad de usuario registrado
+        function inicializarPerfil() {
+            const usuarioRegistrado = JSON.parse(localStorage.getItem('usuarioRegistrado'));
+            const contenedorPerfil = document.getElementById('contenedorPerfil');
+            
+            if (usuarioRegistrado) {
+                // Mostrar círculo con inicial
+                const inicial = usuarioRegistrado.inicial;
+                contenedorPerfil.innerHTML = `
+                    <div class="circulo-perfil" id="abrirPerfil" title="${usuarioRegistrado.usuario}">
+                        <span class="inicial-usuario">${inicial}</span>
+                    </div>
+                `;
+                
+                // Event listener para abrir panel
+                document.getElementById('abrirPerfil').addEventListener('click', () => {
+                    abrirPanelUsuario(usuarioRegistrado);
+                });
+            } else {
+                // Mostrar corazón para favoritos
+                contenedorPerfil.innerHTML = `
+                    <i class='bx bx-heart icono-favoritos' id="abrirFavoritos"></i>
+                `;
+                document.getElementById('abrirFavoritos').addEventListener('click', () => {
+                    console.log('Mostrar favoritos en finalizar compra');
+                });
+            }
+        }
+        
+        function abrirPanelUsuario(usuario) {
+            const panelUsuario = document.getElementById('panelUsuario');
+            const fecha = new Date(usuario.fechaRegistro);
+            const fechaFormato = fecha.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+            
+            document.getElementById('emailUsuarioPanel').textContent = `Email: ${usuario.usuario}`;
+            document.getElementById('fechaRegistroPanel').textContent = `Registrado el: ${fechaFormato}`;
+            
+            panelUsuario.classList.add('activo');
+            document.getElementById('fondoOscuro').classList.add('activo');
+        }
+        
+        function cerrarPanelUsuario() {
+            document.getElementById('panelUsuario').classList.remove('activo');
+            document.getElementById('fondoOscuro').classList.remove('activo');
+        }
+        
+        // Event listeners para cerrar panel
+        document.getElementById('cerrarPanelUsuario').addEventListener('click', cerrarPanelUsuario);
+        document.getElementById('cerrarSesionBtn').addEventListener('click', () => {
+            localStorage.removeItem('usuarioRegistrado');
+            cerrarPanelUsuario();
+            location.reload();
+        });
+        
+        // Cerrar panel al clickear el fondo oscuro
+        document.getElementById('fondoOscuro').addEventListener('click', () => {
+            const panelUsuario = document.getElementById('panelUsuario');
+            if (panelUsuario.classList.contains('activo')) {
+                cerrarPanelUsuario();
+            }
+        });
+        
+        inicializarPerfil();
 
     </script>
 
