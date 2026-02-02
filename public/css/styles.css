@@ -3077,7 +3077,6 @@ body {
 }
 
 .circulo-perfil:hover {
-  transform: scale(1.1);
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
@@ -3134,10 +3133,6 @@ body {
   color: var(--rojo-principal);
   font-size: 24px;
   transition: transform 0.2s ease;
-}
-
-.encabezado-panel-usuario i:hover {
-  transform: scale(1.2);
 }
 
 .info-usuario-panel {
