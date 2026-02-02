@@ -516,6 +516,18 @@ body {
   font-size: 0.9rem;
 }
 
+.miserias-libro {
+  width: 100%;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--negro);
+  margin: 6px 0 6px;
+  padding: 4px 8px;
+  border: 1px dashed var(--rojo-principal);
+  background-color: var(--blanco);
+  box-sizing: border-box;
+}
+
 .precio-libro {
   font-size: 0.95rem;
   margin: 5px 0 10px;
@@ -1094,6 +1106,18 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.miserias-catalogo {
+  width: 100%;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--negro);
+  margin: 4px 0 6px;
+  padding: 4px 8px;
+  border: 1px dashed var(--rojo-principal);
+  background-color: var(--blanco);
+  box-sizing: border-box;
 }
 
 .precio-catalogo {
