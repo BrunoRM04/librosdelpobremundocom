@@ -3196,6 +3196,77 @@ body {
   }
 }
 
+/* ESTILOS PARA SECCIÓN DE MISERABLES */
+#contenedor-miserables {
+  margin: 1rem 0;
+  padding: 1.2rem;
+  background-color: rgba(46, 204, 113, 0.1);
+  border: 2px solid #2ecc71;
+  border-radius: 4px;
+}
+
+#contenedor-miserables h2 {
+  color: var(--blanco);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+#info-puntos-disponibles {
+  color: #2ecc71;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background-color: rgba(46, 204, 113, 0.15);
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+#puntos-usar {
+  padding: 0.8rem;
+  border: 1px solid #2ecc71;
+  background-color: transparent;
+  color: var(--blanco);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+#puntos-usar:focus {
+  border-color: #27ae60;
+  box-shadow: 0 0 5px rgba(46, 204, 113, 0.3);
+}
+
+#puntos-usar::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.boton-usar-puntos {
+  background-color: #2ecc71 !important;
+  color: white !important;
+  padding: 0.8rem 1rem !important;
+  border: none !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  font-weight: bold !important;
+  transition: all 0.3s ease !important;
+  white-space: nowrap;
+}
+
+.boton-usar-puntos:hover {
+  background-color: #27ae60 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+#descuento-aplicado {
+  color: #2ecc71;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+.oculto {
+  display: none !important;
+}
+
 
 
 
