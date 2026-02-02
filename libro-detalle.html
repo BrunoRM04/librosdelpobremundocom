@@ -195,6 +195,7 @@
                     }
 
                     let precioFinal = Math.round(precioOriginal * (1 - descuento));
+                    const puntosPobreMundo = Math.floor(precioFinal / 100) * 10;
                     if ([""].includes(id)) {
                         precioFinal = Math.max(precioFinal - 1, 0);
                     }
@@ -216,6 +217,7 @@
             <p class="dato-libro"><strong>Editorial:</strong> ${libro.editorial}</p>
             <p class="dato-libro"><strong>ISBN:</strong> ${libro.isbn}</p>
             <p class="dato-libro"><strong>Páginas:</strong> ${libro.numPaginas}</p>
+                        <p class="miserias-detalle">Este libro genera ${puntosPobreMundo} miserias</p>
             <div class="precio-libro-detalle">
   <span class="precio-original-libro">UYU ${precioOriginal}</span>
   <span class="precio-descuento-libro">UYU ${precioFinal}</span>
