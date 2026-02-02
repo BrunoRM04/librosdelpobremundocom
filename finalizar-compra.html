@@ -171,13 +171,13 @@
                     </select>
 
                     <div id="contenedor-miserables" class="oculto">
-                        <h2 class="titulo-seccion">💰 Usar mis miserables</h2>
-                        <p id="info-puntos-disponibles" style="margin-bottom: 10px; font-size: 14px; color: #666;"></p>
-                        <div style="display: flex; gap: 10px; align-items: center;">
-                            <input type="number" id="puntos-usar" class="campo-formulario" placeholder="¿Cuántos miserables usar?" min="0" value="0" style="flex: 1;">
-                            <button type="button" id="btn-usar-todos-puntos" class="boton-usar-puntos" style="padding: 10px 15px; background-color: #2ecc71; color: white; border: none; border-radius: 4px; cursor: pointer;">Usar todos</button>
+                        <h2 class="titulo-seccion">💰 Usar mis miserias</h2>
+                        <p id="info-puntos-disponibles" style="margin-bottom: 10px; font-size: 14px;"></p>
+                        <div class="miserias-controles">
+                            <input type="number" id="puntos-usar" class="campo-formulario" placeholder="¿Cuántas miserias usar?" min="0" value="0">
+                            <button type="button" id="btn-usar-todos-puntos" class="boton-usar-puntos">Usar todos</button>
                         </div>
-                        <p id="descuento-aplicado" style="margin-top: 8px; font-size: 13px; color: #27ae60; font-weight: bold;"></p>
+                        <p id="descuento-aplicado" class="texto-descuento-miserias"></p>
                     </div>
 
                     <h2 class="titulo-seccion">Método de pago</h2>
@@ -248,7 +248,7 @@
     <div class="panel-usuario" id="panelUsuario">
         <div class="contenido-panel-usuario">
             <div class="encabezado-panel-usuario">
-                <h3 id="tituloPanelUsuario">Mis miserables (0) 📚</h3>
+                <h3 id="tituloPanelUsuario">Mis miserias (0) 📚</h3>
                 <i class='bx bx-x' id="cerrarPanelUsuario"></i>
             </div>
             <div class="info-usuario-panel">
@@ -852,6 +852,7 @@
                 await guardarDatosEnFirebase();
                 const okStock = await actualizarStockCompra();
                 if (!okStock) return;
+                await descontarMiseriasSiCorresponde();
                 document.getElementById("pantalla-confirmado").classList.remove("oculto");
                 return;
             }
@@ -860,6 +861,7 @@
             await guardarDatosEnFirebase();
             const okStock = await actualizarStockCompra();
             if (!okStock) return;
+            await descontarMiseriasSiCorresponde();
 
             const correo = formularioEnvio.querySelector('input[placeholder="Correo electrónico"]').value.trim();
             const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
@@ -1025,7 +1027,10 @@
             const telefono = formularioEnvio.querySelector('input[placeholder="Teléfono"]').value.trim();
 
             const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-            const totalFinal = `UYU ${window.totalFinalConDescuento || document.getElementById("total-final").textContent.trim()}`;
+            const totalFinalTexto = document.getElementById("total-final").textContent.trim();
+            const totalFinal = window.totalFinalConDescuentoPuntos != null
+                ? `UYU ${window.totalFinalConDescuentoPuntos}`
+                : totalFinalTexto;
 
             let resumenLibros = "";
             carrito.forEach(item => {
@@ -1066,7 +1071,7 @@
                     abrirPanelUsuario(usuarioRegistrado);
                 });
                 
-                // Mostrar contenedor de miserables y cargar puntos
+                // Mostrar contenedor de miserias y cargar puntos
                 contenedorMiserables.classList.remove('oculto');
                 cargarPuntosDelUsuario(usuarioRegistrado.usuario);
                 
@@ -1101,7 +1106,7 @@
                 const data = await response.json();
                 if (data && data.success) {
                     puntosDisponibles = Number(data.puntos) || 0;
-                    document.getElementById('info-puntos-disponibles').textContent = `📌 Tienes ${puntosDisponibles} miserables disponibles (1 miserable = UYU 1)`;
+                    document.getElementById('info-puntos-disponibles').textContent = `📌 Tienes ${puntosDisponibles} miserias disponibles (1 miseria = UYU 1)`;
                     
                     // Limitar el input a los puntos disponibles
                     const puntosUsarInput = document.getElementById('puntos-usar');
@@ -1109,7 +1114,7 @@
                 }
             } catch (error) {
                 console.error('Error al cargar puntos:', error);
-                document.getElementById('info-puntos-disponibles').textContent = 'No pudimos cargar tus miserables';
+                document.getElementById('info-puntos-disponibles').textContent = 'No pudimos cargar tus miserias';
             }
         }
         
@@ -1168,7 +1173,7 @@
             document.getElementById('emailUsuarioPanel').textContent = `Email: ${usuario.usuario}`;
             document.getElementById('fechaRegistroPanel').textContent = `Registrado el: ${fechaFormato}`;
             if (tituloPanel) {
-                tituloPanel.textContent = 'Mis miserables (0) 📚';
+                tituloPanel.textContent = 'Mis miserias (0) 📚';
             }
             
             panelUsuario.classList.add('activo');
@@ -1185,10 +1190,35 @@
                 const data = await response.json();
                 if (data && data.success && tituloPanel) {
                     const puntos = Number(data.puntos) || 0;
-                    tituloPanel.textContent = `Mis miserables (${puntos}) 📚`;
+                    tituloPanel.textContent = `Mis miserias (${puntos}) 📚`;
                 }
             } catch (error) {
                 // Sin acción: mantener valor por defecto
+            }
+        }
+
+        async function descontarMiseriasSiCorresponde() {
+            const usuarioRegistrado = JSON.parse(localStorage.getItem('usuarioRegistrado'));
+            const puntosUsarInput = document.getElementById('puntos-usar');
+            const puntosUsados = puntosUsarInput ? parseInt(puntosUsarInput.value) || 0 : 0;
+
+            if (!usuarioRegistrado || puntosUsados <= 0) return;
+
+            try {
+                const response = await fetch('api/get-puntos.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `usuario=${encodeURIComponent(usuarioRegistrado.usuario)}&puntos_usados=${encodeURIComponent(puntosUsados)}`
+                });
+
+                const data = await response.json().catch(() => ({}));
+                if (!data || !data.success) {
+                    console.warn('No se pudieron descontar las miserias.');
+                }
+            } catch (error) {
+                console.warn('Error al descontar miserias:', error);
             }
         }
         

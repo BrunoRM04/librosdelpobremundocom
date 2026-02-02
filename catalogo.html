@@ -81,7 +81,7 @@
         <div class="panel-usuario" id="panelUsuario">
             <div class="contenido-panel-usuario">
                 <div class="encabezado-panel-usuario">
-                    <h3 id="tituloPanelUsuario">Mis miserables (0) 📚</h3>
+                    <h3 id="tituloPanelUsuario">Mis miserias (0) 📚</h3>
                     <i class='bx bx-x' id="cerrarPanelUsuario"></i>
                 </div>
                 <div class="info-usuario-panel">
@@ -666,7 +666,7 @@
             document.getElementById('emailUsuarioPanel').textContent = `Email: ${usuario.usuario}`;
             document.getElementById('fechaRegistroPanel').textContent = `Registrado el: ${fechaFormato}`;
             if (tituloPanel) {
-                tituloPanel.textContent = 'Mis miserables (0) 📚';
+                tituloPanel.textContent = 'Mis miserias (0) 📚';
             }
             
             panelUsuario.classList.add('activo');
@@ -683,7 +683,7 @@
                 const data = await response.json();
                 if (data && data.success && tituloPanel) {
                     const puntos = Number(data.puntos) || 0;
-                    tituloPanel.textContent = `Mis miserables (${puntos}) 📚`;
+                    tituloPanel.textContent = `Mis miserias (${puntos}) 📚`;
                 }
             } catch (error) {
                 // Sin acción: mantener valor por defecto

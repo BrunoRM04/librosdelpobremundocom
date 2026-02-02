@@ -3196,12 +3196,12 @@ body {
   }
 }
 
-/* ESTILOS PARA SECCIÓN DE MISERABLES */
+/* ESTILOS PARA SECCIÓN DE MISERIAS */
 #contenedor-miserables {
   margin: 1rem 0;
   padding: 1.2rem;
-  background-color: rgba(46, 204, 113, 0.1);
-  border: 2px solid #2ecc71;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 2px solid var(--blanco);
   border-radius: 4px;
 }
 
@@ -3212,35 +3212,42 @@ body {
 }
 
 #info-puntos-disponibles {
-  color: #2ecc71;
+  color: var(--blanco);
   margin-bottom: 1rem;
   padding: 0.5rem;
-  background-color: rgba(46, 204, 113, 0.15);
+  background-color: rgba(255, 255, 255, 0.08);
   border-radius: 3px;
   font-weight: 500;
 }
 
+.miserias-controles {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
 #puntos-usar {
   padding: 0.8rem;
-  border: 1px solid #2ecc71;
+  border: 1px solid var(--blanco);
   background-color: transparent;
   color: var(--blanco);
   outline: none;
   transition: all 0.3s ease;
+  flex: 1;
 }
 
 #puntos-usar:focus {
-  border-color: #27ae60;
-  box-shadow: 0 0 5px rgba(46, 204, 113, 0.3);
+  border-color: var(--blanco);
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
 #puntos-usar::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .boton-usar-puntos {
-  background-color: #2ecc71 !important;
-  color: white !important;
+  background-color: var(--blanco) !important;
+  color: var(--rojo-principal) !important;
   padding: 0.8rem 1rem !important;
   border: none !important;
   border-radius: 4px !important;
@@ -3251,13 +3258,14 @@ body {
 }
 
 .boton-usar-puntos:hover {
-  background-color: #27ae60 !important;
+  background-color: var(--negro) !important;
+  color: var(--blanco) !important;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
 }
 
-#descuento-aplicado {
-  color: #2ecc71;
+.texto-descuento-miserias {
+  color: var(--blanco);
   font-weight: bold;
   margin-top: 0.5rem;
   display: block;
