@@ -229,6 +229,7 @@
 
         const precioOriginal = parseInt(libro.precio);
         const precioFinal = Math.round(precioOriginal * 0.95);
+        const puntosPobreMundo = Math.floor(precioFinal / 100) * 10;
 
         let rutaImagen = libro.imagen;
         if (!rutaImagen.startsWith("http")) {
@@ -253,6 +254,7 @@
         <h3 class="titulo-libro">${libro.titulo}</h3>
         <p class="autor-libro">${libro.autor}</p>
       </div>
+      <p class="miserias-libro">Este libro genera ${puntosPobreMundo} miserias</p>
       <p class="precio-libro">
         <span class="precio-original">UYU ${precioOriginal}</span>
         <span class="precio-descuento">UYU ${precioFinal}</span>

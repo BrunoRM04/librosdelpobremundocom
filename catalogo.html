@@ -321,7 +321,7 @@
                 const precioOriginal = parseFloat(libro.precio.replace(/[^\d.]/g, ""));
                 let descuento = 0.05;
                 let precioFinal = Math.round(precioOriginal * (1 - descuento));
-                const puntosPobreMundo = Math.floor(precioFinal / 100) * 1;
+                const puntosPobreMundo = Math.floor(precioFinal / 100) * 10;
                 if ([].includes(libro.id)) {
                     precioFinal = Math.max(precioFinal - 1, 0);
                 }
@@ -347,6 +347,7 @@
     <h3 class="titulo-catalogo-libro" title="${libro.titulo}">${libro.titulo}</h3>
     <p class="autor-catalogo-libro" title="${libro.autor}">${libro.autor}</p>
   </div>
+    <p class="miserias-catalogo">Este libro genera ${puntosPobreMundo} miserias</p>
   <p class="precio-catalogo">
     <span class="precio-original-catalogo">UYU ${precioOriginal}</span>
     <span class="precio-descuento-catalogo">UYU ${precioFinal}</span>
