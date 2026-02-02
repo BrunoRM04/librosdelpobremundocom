@@ -93,6 +93,7 @@
                         <option value="Treinta y Tres">Treinta y Tres</option>
                     </select>
 
+                    <!-- CÓDIGO DE BARRIOS COMENTADO PARA USO FUTURO
                     <div id="contenedor-barrio" class="oculto">
                         <select id="barrio" class="campo-formulario">
                             <option value="">Seleccionar barrio</option>
@@ -160,6 +161,7 @@
                             <option value="Nuevo París">Nuevo París</option>
                         </select>
                     </div>
+                    -->
 
                     <p id="costo-envio" class="texto-costo-envio"></p>
 
@@ -559,22 +561,15 @@
                 pagoEfectivo.style.display = "block";
 
                 if (metodoEntrega === "punto") {
-                    contenedorBarrio.classList.add("oculto");
-                    selectBarrio.removeAttribute("required");
-                    selectBarrio.value = "";
-
+                    // Sin cargo de envío para retiro en punto
                     if (filaEnvioEl) filaEnvioEl.style.display = "none";
                     if (totalEnvioEl) totalEnvioEl.textContent = ``;
                     if (totalFinalEl) totalFinalEl.textContent = `UYU ${totalProductos}`;
-                } else {
-                    contenedorBarrio.classList.remove("oculto");
-                    selectBarrio.setAttribute("required", "required");
+                } else if (metodoEntrega === "domicilio") {
+                    // Envío a domicilio en Montevideo: 150 UYU
                     if (filaEnvioEl) filaEnvioEl.style.display = "flex";
                 }
             } else {
-                contenedorBarrio.classList.add("oculto");
-                selectBarrio.removeAttribute("required");
-                selectBarrio.value = "";
                 pagoEfectivo.style.display = "none";
                 contenedorEfectivo.classList.add("oculto");
 
@@ -603,14 +598,14 @@
 
         function calcularCostoEnvio() {
             const departamento = selectDepartamento.value;
-            const barrio = selectBarrio.value;
             const metodo = selectMetodoEntrega.value;
             const totalProductos = window.totalProductos || 0;
             const totalEnvioEl = document.getElementById("total-envio");
             const filaEnvioEl = document.getElementById("fila-envio");
             const totalFinalEl = document.getElementById("total-final");
 
-            if (metodo === "punto" || departamento !== "Montevideo" || !barrio) {
+            // Si no es Montevideo o es retiro en punto, sin cargo de envío
+            if (metodo === "punto" || departamento !== "Montevideo") {
                 if (filaEnvioEl) filaEnvioEl.style.display = "none";
                 if (totalEnvioEl) totalEnvioEl.textContent = ``;
                 let totalFinal = totalProductos;
@@ -626,25 +621,23 @@
                 return;
             }
 
-            let costoFinal = 0;
-            if (totalProductos <= 1500) {
-                const nivel = nivelesBarrio[barrio] ?? nivelesBarrio["default"];
-                costoFinal = costoBase + (nivel * incrementoPorNivel);
+            // Si es Montevideo con entrega a domicilio: 150 UYU
+            if (departamento === "Montevideo" && metodo === "domicilio") {
+                const costoEnvio = 150;
+                let totalFinal = totalProductos + costoEnvio;
+                
+                // Restar puntos si existen
+                const puntosUsarInput = document.getElementById('puntos-usar');
+                if (puntosUsarInput) {
+                    const puntosAUsar = parseInt(puntosUsarInput.value) || 0;
+                    totalFinal -= puntosAUsar;
+                }
+                if (totalFinal < 0) totalFinal = 0;
+                
+                if (filaEnvioEl) filaEnvioEl.style.display = "flex";
+                if (totalEnvioEl) totalEnvioEl.textContent = `UYU ${costoEnvio}`;
+                if (totalFinalEl) totalFinalEl.textContent = `UYU ${totalFinal}`;
             }
-
-            let totalFinal = totalProductos + costoFinal;
-            
-            // Restar puntos si existen
-            const puntosUsarInput = document.getElementById('puntos-usar');
-            if (puntosUsarInput) {
-                const puntosAUsar = parseInt(puntosUsarInput.value) || 0;
-                totalFinal -= puntosAUsar;
-            }
-            if (totalFinal < 0) totalFinal = 0;
-            
-            if (filaEnvioEl) filaEnvioEl.style.display = "flex";
-            if (totalEnvioEl) totalEnvioEl.textContent = `UYU ${costoFinal}`;
-            if (totalFinalEl) totalFinalEl.textContent = `UYU ${totalFinal}`;
         }
 
         selectDepartamento.addEventListener("change", () => {
@@ -722,6 +715,7 @@
             });
         });
 
+        /* SISTEMA DE NIVELES DE BARRIOS COMENTADO PARA USO FUTURO
         const nivelesBarrio = {
             "Centro": 0,
             "Ciudad Vieja": 0,
@@ -789,6 +783,7 @@
         const incrementoPorNivel = 30;
 
         selectBarrio.addEventListener("change", calcularCostoEnvio);
+        */
         
         // Agregar event listener para cambios en puntos
         const puntosUsarInput = document.getElementById('puntos-usar');
