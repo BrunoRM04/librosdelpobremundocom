@@ -319,7 +319,7 @@
 
             librosPagina.forEach(libro => {
                 const precioOriginal = parseFloat(libro.precio.replace(/[^\d.]/g, ""));
-                let descuento = 0.10;
+                let descuento = 0.05;
                 let precioFinal = Math.round(precioOriginal * (1 - descuento));
                 const puntosPobreMundo = Math.floor(precioFinal / 100) * 1;
                 if ([].includes(libro.id)) {

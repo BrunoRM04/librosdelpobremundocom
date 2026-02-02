@@ -228,7 +228,7 @@
       libros.forEach(libro => {
 
         const precioOriginal = parseInt(libro.precio);
-        const precioFinal = Math.round(precioOriginal * 0.9);
+        const precioFinal = Math.round(precioOriginal * 0.95);
 
         let rutaImagen = libro.imagen;
         if (!rutaImagen.startsWith("http")) {
@@ -239,7 +239,7 @@
         tarjeta.classList.add('tarjeta-libro');
 
         tarjeta.innerHTML = `
-      <span class="etiqueta-descuento">-10%</span>
+      <span class="etiqueta-descuento">-5%</span>
       <button class="boton-favorito" data-id="${libro.id}">
         <i class='bx bx-heart'></i>
       </button>
