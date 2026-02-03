@@ -301,27 +301,6 @@
     </footer>
 
     <script src="https://sdk.mercadopago.com/js/v2"></script>
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyAOqEfaoJB3ahecxa3NndjFLtXgwn12nNA",
-            authDomain: "librospobremundoventas.firebaseapp.com",
-            projectId: "librospobremundoventas",
-            storageBucket: "librospobremundoventas.firebasestorage.app",
-            messagingSenderId: "233497389702",
-            appId: "1:233497389702:web:03bf2f2ecd6e6a9910ff07"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        window.db = db;
-        window.addDoc = addDoc;
-        window.collection = collection;
-
-    </script>
 
     <script>
 
@@ -847,7 +826,8 @@
 
             if (opcionPago === "Efectivo") {
                 avisoCoordinacion.classList.add("oculto");
-                await guardarDatosEnFirebase();
+                const enviado = await enviarDatosVenta();
+                if (!enviado) return;
                 const okStock = await actualizarStockCompra();
                 if (!okStock) return;
                 await descontarMiseriasSiCorresponde();
@@ -856,54 +836,11 @@
             }
 
             avisoCoordinacion.classList.add("oculto");
-            await guardarDatosEnFirebase();
+            const enviado = await enviarDatosVenta();
+            if (!enviado) return;
             const okStock = await actualizarStockCompra();
             if (!okStock) return;
             await descontarMiseriasSiCorresponde();
-
-            await fetch('api/ventas.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    // Datos personales
-                    nombre: formularioEnvio.querySelector('input[placeholder="Nombre completo"]').value.trim(),
-                    email: formularioEnvio.querySelector('input[placeholder="Correo electrónico"]').value.trim(),
-                    telefono: formularioEnvio.querySelector('input[placeholder="Teléfono"]').value.trim(),
-                    direccion: `${formularioEnvio.querySelector('input[placeholder="Calle y número"]').value.trim()} ${formularioEnvio.querySelector('input[placeholder="Piso / Departamento (opcional)"]').value.trim()}`,
-                    codigoPostal: formularioEnvio.querySelector('input[placeholder="Código postal"]')?.value.trim() || "",
-                    departamento: selectDepartamento.value,
-                    barrio: (selectDepartamento.value === "Montevideo" && selectBarrio) ? selectBarrio.value : "",
-
-                    // Entrega / pago
-                    metodo_entrega: selectMetodoEntrega.value,
-                    metodo_pago: opcionPago,
-                    monto_efectivo: opcionPago === "Efectivo"
-                        ? document.getElementById("monto-efectivo")?.value.trim() || ""
-                        : "",
-
-                    // Miserias
-                    puntos_usados: document.getElementById('puntos-usar')
-                        ? parseInt(document.getElementById('puntos-usar').value) || 0
-                        : 0,
-
-                    // Totales (YA EXISTEN)
-                    total_productos: totalProductos,
-                    costo_envio: costoEnvio,
-                    total_final: totalFinal,
-
-                    // Usuario
-                    usuario_registrado: !!JSON.parse(localStorage.getItem('usuarioRegistrado')),
-                    email_usuario_registrado: JSON.parse(localStorage.getItem('usuarioRegistrado'))
-                        ? JSON.parse(localStorage.getItem('usuarioRegistrado')).usuario
-                        : null,
-
-                    // Carrito
-                    carrito: carrito,
-
-                    // Meta
-                    fecha_hora: new Date().toISOString()
-                })
-            });
 
             const correo = formularioEnvio.querySelector('input[placeholder="Correo electrónico"]').value.trim();
             const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
@@ -983,7 +920,7 @@
             }
         });
 
-        async function guardarDatosEnFirebase() {
+        async function enviarDatosVenta() {
             const nombreCompleto = formularioEnvio.querySelector('input[placeholder="Nombre completo"]').value.trim();
             const correoElectronico = formularioEnvio.querySelector('input[placeholder="Correo electrónico"]').value.trim();
             const telefono = formularioEnvio.querySelector('input[placeholder="Teléfono"]').value.trim();
@@ -1007,45 +944,51 @@
 
             const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-            const resumenCarrito = carrito.map(item => ({
-                titulo: item.titulo,
-                autor: item.autor,
-                precio: item.precio,
-                cantidad: item.cantidad,
-                imagen: item.imagen
-            }));
-
             const totalProductos = window.totalProductos || 0;
             const costoEnvioTexto = document.getElementById("total-envio").textContent.replace("UYU ", "");
-            const totalFinalTexto = document.getElementById("total-final").textContent;
+            const totalFinalTexto = document.getElementById("total-final").textContent.replace("UYU ", "");
 
-            const datosCompra = {
-                nombreCompleto,
-                correoElectronico,
-                telefono,
-                calleNumero,
-                pisoDepartamento,
-                codigoPostal,
-                departamento,
-                barrio,
-                metodoEntrega,
-                opcionPago,
-                montoEfectivo,
-                carrito: resumenCarrito,
-                totalProductos,
-                costoEnvio: parseInt(costoEnvioTexto) || 0,
-                totalFinal: parseInt(totalFinalTexto) || totalProductos,
-                puntosUsados: puntosUsados,
-                descuentoPuntos: puntosUsados,
-                fechaHora: new Date().toISOString()
+            const usuarioRegistrado = JSON.parse(localStorage.getItem('usuarioRegistrado'));
+
+            const datosVenta = {
+                nombre: nombreCompleto,
+                email: correoElectronico,
+                telefono: telefono,
+                direccion: `${calleNumero} ${pisoDepartamento}`.trim(),
+                codigoPostal: codigoPostal,
+                departamento: departamento,
+                barrio: barrio,
+                metodo_entrega: metodoEntrega,
+                metodo_pago: opcionPago,
+                monto_efectivo: montoEfectivo,
+                puntos_usados: puntosUsados,
+                total_productos: totalProductos,
+                costo_envio: parseInt(costoEnvioTexto) || 0,
+                total_final: parseInt(totalFinalTexto) || totalProductos,
+                total: parseInt(totalFinalTexto) || totalProductos,
+                usuario_registrado: !!usuarioRegistrado,
+                email_usuario_registrado: usuarioRegistrado ? usuarioRegistrado.usuario : null,
+                carrito: carrito,
+                fecha_hora: new Date().toISOString()
             };
 
             try {
-                await window.addDoc(window.collection(window.db, "envios"), datosCompra);
-                console.log("✅ Datos guardados correctamente en Firebase.");
+                const response = await fetch('api/ventas.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(datosVenta)
+                });
+                
+                const result = await response.json();
+                if (!result.ok) {
+                    throw new Error('Error al enviar datos');
+                }
+                console.log("✅ Datos enviados correctamente a Telegram.");
+                return true;
             } catch (error) {
-                console.error("❌ Error al guardar:", error);
-                alert("Ocurrió un error al guardar los datos.");
+                console.error("❌ Error al enviar datos:", error);
+                alert("Ocurrió un error al procesar tu pedido. Intenta nuevamente.");
+                return false;
             }
         }
 
@@ -1064,7 +1007,8 @@
             }
 
             avisoTransferencia.classList.add("oculto");
-            await guardarDatosEnFirebase();
+            const enviado = await enviarDatosVenta();
+            if (!enviado) return;
             const okStock = await actualizarStockCompra();
             if (!okStock) return;
 
