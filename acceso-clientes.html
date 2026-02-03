@@ -59,7 +59,16 @@
 
                 <form id="acceso-form" class="login-clientes-form">
                     <h2>¡Ingresa a tu cuenta!</h2>
-                    <p style="color: var(--blanco); text-align: center; font-size: 14px; margin-bottom: 20px; opacity: 0.9;">Accede a tu cuenta para ver tus miserias y datos de compra.</p>
+                    <p
+                        style="color: var(--blanco); text-align: center; font-size: 14px; margin-bottom: 20px; opacity: 0.9; line-height: 1.6;">
+                        <strong style="display:block; margin-bottom:6px;">
+                            ¡Bienvenid@ de vuelta! 📚
+                        </strong>
+                        Ingresá para ver las miserias acumuladas y seguir sumando descuentos con cada compra
+                        <span style="display:block; margin-top:6px;">
+                            Cada libro es una miseria menos en este mundo 😉
+                        </span>
+                    </p>
 
                     <div class="login-clientes-form-group">
                         <input type="text" id="usuario" name="usuario" placeholder="Correo electrónico" required>
@@ -73,9 +82,10 @@
                     <div id="acceso-mensaje" class="login-clientes-error" style="display: none;"></div>
 
                     <button type="submit" class="login-clientes-button">Ingresar</button>
-                    
+
                     <p style="color: var(--blanco); text-align: center; font-size: 14px; margin-top: 15px;">
-                        ¿No tienes cuenta? <a href="login-clientes.html" style="color: var(--blanco); text-decoration: underline;">Regístrate aquí</a>
+                        ¿No tienes cuenta? <a href="login-clientes.html"
+                            style="color: var(--blanco); text-decoration: underline;">Regístrate aquí</a>
                     </p>
                 </form>
             </div>
@@ -277,7 +287,7 @@
         function inicializarPerfil() {
             const usuarioRegistrado = JSON.parse(localStorage.getItem('usuarioRegistrado'));
             const contenedorPerfil = document.getElementById('contenedorPerfil');
-            
+
             if (usuarioRegistrado) {
                 // Mostrar círculo con inicial
                 const inicial = usuarioRegistrado.inicial;
@@ -286,7 +296,7 @@
                         <span class="inicial-usuario">${inicial}</span>
                     </div>
                 `;
-                
+
                 // Event listener para abrir panel
                 document.getElementById('abrirPerfil').addEventListener('click', () => {
                     abrirPanelUsuario(usuarioRegistrado);
@@ -302,19 +312,19 @@
                 });
             }
         }
-        
+
         async function abrirPanelUsuario(usuario) {
             const panelUsuario = document.getElementById('panelUsuario');
             const fecha = new Date(usuario.fechaRegistro);
             const fechaFormato = fecha.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
             const tituloPanel = document.getElementById('tituloPanelUsuario');
-            
+
             document.getElementById('emailUsuarioPanel').textContent = `Email: ${usuario.usuario}`;
             document.getElementById('fechaRegistroPanel').textContent = `Registrado el: ${fechaFormato}`;
             if (tituloPanel) {
                 tituloPanel.textContent = 'Mis miserias (0) 📚';
             }
-            
+
             panelUsuario.classList.add('activo');
             document.getElementById('fondoOscuro').classList.add('activo');
 
@@ -335,12 +345,12 @@
                 // Sin acción: mantener valor por defecto
             }
         }
-        
+
         function cerrarPanelUsuario() {
             document.getElementById('panelUsuario').classList.remove('activo');
             document.getElementById('fondoOscuro').classList.remove('activo');
         }
-        
+
         // Event listeners para cerrar panel
         document.getElementById('cerrarPanelUsuario').addEventListener('click', cerrarPanelUsuario);
         document.getElementById('cerrarSesionBtn').addEventListener('click', () => {
@@ -348,7 +358,7 @@
             cerrarPanelUsuario();
             location.reload();
         });
-        
+
         // Cerrar panel al clickear el fondo oscuro
         document.getElementById('fondoOscuro').addEventListener('click', () => {
             const panelUsuario = document.getElementById('panelUsuario');
@@ -360,7 +370,7 @@
                 document.getElementById('fondoOscuro').classList.remove('activo');
             }
         });
-        
+
         inicializarPerfil();
 
         document.getElementById("abrirFavoritos")?.addEventListener("click", () => {
@@ -375,10 +385,10 @@
 
         // Toggle password visibility
         document.querySelectorAll('.login-clientes-toggle-password').forEach(icon => {
-            icon.addEventListener('click', function() {
+            icon.addEventListener('click', function () {
                 const targetId = this.getAttribute('data-target');
                 const input = document.getElementById(targetId);
-                
+
                 if (input.type === 'password') {
                     input.type = 'text';
                     this.classList.remove('bx-show');
@@ -429,11 +439,11 @@
                                 inicial: usuario.charAt(0).toUpperCase(),
                                 fechaRegistro: data.fechaRegistro || new Date().toISOString()
                             }));
-                            
+
                             // Mostrar pantalla de confirmación
                             document.getElementById('email-bienvenida').textContent = `Bienvenido, ${usuario}`;
                             document.getElementById('pantalla-acceso-exitoso').style.display = 'flex';
-                            
+
                             // Configurar botón de ir a inicio
                             document.getElementById('boton-ir-inicio').addEventListener('click', () => {
                                 window.location.href = 'index.html';

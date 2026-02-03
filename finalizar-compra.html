@@ -177,8 +177,10 @@
                         <h2 class="titulo-seccion">💰 Usar mis miserias</h2>
                         <p id="info-puntos-disponibles" style="margin-bottom: 10px; font-size: 14px;"></p>
                         <div class="miserias-controles">
-                            <input type="number" id="puntos-usar" class="campo-formulario" placeholder="¿Cuántas miserias usar?" min="0" value="0">
-                            <button type="button" id="btn-usar-todos-puntos" class="boton-usar-puntos">Usar todos</button>
+                            <input type="number" id="puntos-usar" class="campo-formulario"
+                                placeholder="¿Cuántas miserias usar?" min="0" value="0">
+                            <button type="button" id="btn-usar-todos-puntos" class="boton-usar-puntos">Usar
+                                todos</button>
                         </div>
                         <p id="descuento-aplicado" class="texto-descuento-miserias"></p>
                     </div>
@@ -610,7 +612,7 @@
                 if (filaEnvioEl) filaEnvioEl.style.display = "none";
                 if (totalEnvioEl) totalEnvioEl.textContent = ``;
                 let totalFinal = totalProductos;
-                
+
                 // Restar puntos si existen
                 const puntosUsarInput = document.getElementById('puntos-usar');
                 if (puntosUsarInput) {
@@ -626,7 +628,7 @@
             if (departamento === "Montevideo" && metodo === "domicilio") {
                 const costoEnvio = 150;
                 let totalFinal = totalProductos + costoEnvio;
-                
+
                 // Restar puntos si existen
                 const puntosUsarInput = document.getElementById('puntos-usar');
                 if (puntosUsarInput) {
@@ -634,7 +636,7 @@
                     totalFinal -= puntosAUsar;
                 }
                 if (totalFinal < 0) totalFinal = 0;
-                
+
                 if (filaEnvioEl) filaEnvioEl.style.display = "flex";
                 if (totalEnvioEl) totalEnvioEl.textContent = `UYU ${costoEnvio}`;
                 if (totalFinalEl) totalFinalEl.textContent = `UYU ${totalFinal}`;
@@ -785,7 +787,7 @@
 
         selectBarrio.addEventListener("change", calcularCostoEnvio);
         */
-        
+
         // Agregar event listener para cambios en puntos
         const puntosUsarInput = document.getElementById('puntos-usar');
         if (puntosUsarInput) {
@@ -951,7 +953,7 @@
             const opcionPagoSeleccionada = [...radiosPago].find(r => r.checked);
             const opcionPago = opcionPagoSeleccionada ? opcionPagoSeleccionada.parentElement.textContent.trim() : "";
             const montoEfectivo = (opcionPago === "Efectivo") ? document.getElementById("monto-efectivo").value.trim() : "";
-            
+
             // Obtener puntos usados
             const puntosUsarInput = document.getElementById('puntos-usar');
             const puntosUsados = puntosUsarInput ? parseInt(puntosUsarInput.value) || 0 : 0;
@@ -1045,14 +1047,14 @@
 
         // Funcionalidad de usuario registrado
         let puntosDisponibles = 0;
-        
+
         function inicializarPerfil() {
             const usuarioRegistrado = JSON.parse(localStorage.getItem('usuarioRegistrado'));
             const contenedorPerfil = document.getElementById('contenedorPerfil');
             const contenedorMiserables = document.getElementById('contenedor-miserables');
             const puntosUsarInput = document.getElementById('puntos-usar');
             const btnUsarTodos = document.getElementById('btn-usar-todos-puntos');
-            
+
             if (usuarioRegistrado) {
                 // Mostrar círculo con inicial
                 const inicial = usuarioRegistrado.inicial;
@@ -1061,22 +1063,22 @@
                         <span class="inicial-usuario">${inicial}</span>
                     </div>
                 `;
-                
+
                 // Event listener para abrir panel
                 document.getElementById('abrirPerfil').addEventListener('click', () => {
                     abrirPanelUsuario(usuarioRegistrado);
                 });
-                
+
                 // Mostrar contenedor de miserias y cargar puntos
                 contenedorMiserables.classList.remove('oculto');
                 cargarPuntosDelUsuario(usuarioRegistrado.usuario);
-                
+
                 // Event listener para el botón "Usar todos"
                 btnUsarTodos.addEventListener('click', () => {
                     puntosUsarInput.value = puntosDisponibles;
                     actualizarCalculoDespuesDeMiserables();
                 });
-                
+
                 // Event listener para cambios en el input de puntos
                 puntosUsarInput.addEventListener('change', actualizarCalculoDespuesDeMiserables);
             } else {
@@ -1089,7 +1091,7 @@
                 });
             }
         }
-        
+
         async function cargarPuntosDelUsuario(usuario) {
             try {
                 const response = await fetch('api/get-puntos.php', {
@@ -1103,7 +1105,7 @@
                 if (data && data.success) {
                     puntosDisponibles = Number(data.puntos) || 0;
                     document.getElementById('info-puntos-disponibles').textContent = `📌 Tienes ${puntosDisponibles} miserias disponibles (1 miseria = UYU 1)`;
-                    
+
                     // Limitar el input a los puntos disponibles
                     const puntosUsarInput = document.getElementById('puntos-usar');
                     puntosUsarInput.max = puntosDisponibles;
@@ -1113,22 +1115,22 @@
                 document.getElementById('info-puntos-disponibles').textContent = 'No pudimos cargar tus miserias';
             }
         }
-        
+
         function actualizarCalculoDespuesDeMiserables() {
             const puntosUsarInput = document.getElementById('puntos-usar');
             let puntosAUsar = parseInt(puntosUsarInput.value) || 0;
-            
+
             // Validar que no use más puntos de los disponibles
             if (puntosAUsar > puntosDisponibles) {
                 puntosAUsar = puntosDisponibles;
                 puntosUsarInput.value = puntosAUsar;
             }
-            
+
             if (puntosAUsar < 0) {
                 puntosAUsar = 0;
                 puntosUsarInput.value = 0;
             }
-            
+
             // Actualizar el descuento mostrado
             const descuentoAplicado = document.getElementById('descuento-aplicado');
             if (puntosAUsar > 0) {
@@ -1136,42 +1138,42 @@
             } else {
                 descuentoAplicado.textContent = '';
             }
-            
+
             // Recalcular el total
             recalcularTotalConDescuento();
         }
-        
+
         function recalcularTotalConDescuento() {
             const totalFinalEl = document.getElementById("total-final");
             const puntosUsarInput = document.getElementById('puntos-usar');
             const puntosAUsar = parseInt(puntosUsarInput.value) || 0;
-            
+
             const totalProductos = window.totalProductos || 0;
             const costoEnvioTexto = document.getElementById("total-envio")?.textContent.replace("UYU ", "").trim();
             const envio = parseInt(costoEnvioTexto) || 0;
-            
+
             let total = totalProductos + envio - puntosAUsar;
             if (total < 0) total = 0;
-            
+
             if (totalFinalEl) {
                 totalFinalEl.textContent = `UYU ${total}`;
             }
-            
+
             window.totalFinalConDescuentoPuntos = total;
         }
-        
+
         async function abrirPanelUsuario(usuario) {
             const panelUsuario = document.getElementById('panelUsuario');
             const fecha = new Date(usuario.fechaRegistro);
             const fechaFormato = fecha.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
             const tituloPanel = document.getElementById('tituloPanelUsuario');
-            
+
             document.getElementById('emailUsuarioPanel').textContent = `Email: ${usuario.usuario}`;
             document.getElementById('fechaRegistroPanel').textContent = `Registrado el: ${fechaFormato}`;
             if (tituloPanel) {
                 tituloPanel.textContent = 'Mis miserias (0) 📚';
             }
-            
+
             panelUsuario.classList.add('activo');
             document.getElementById('fondoOscuro').classList.add('activo');
 
@@ -1217,12 +1219,12 @@
                 console.warn('Error al descontar miserias:', error);
             }
         }
-        
+
         function cerrarPanelUsuario() {
             document.getElementById('panelUsuario').classList.remove('activo');
             document.getElementById('fondoOscuro').classList.remove('activo');
         }
-        
+
         // Event listeners para cerrar panel
         document.getElementById('cerrarPanelUsuario').addEventListener('click', cerrarPanelUsuario);
         document.getElementById('cerrarSesionBtn').addEventListener('click', () => {
@@ -1230,7 +1232,7 @@
             cerrarPanelUsuario();
             location.reload();
         });
-        
+
         // Cerrar panel al clickear el fondo oscuro
         document.getElementById('fondoOscuro').addEventListener('click', () => {
             const panelUsuario = document.getElementById('panelUsuario');
@@ -1238,7 +1240,7 @@
                 cerrarPanelUsuario();
             }
         });
-        
+
         inicializarPerfil();
 
     </script>
