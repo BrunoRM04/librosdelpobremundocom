@@ -991,7 +991,10 @@
             const pisoDepartamento = formularioEnvio.querySelector('input[placeholder="Piso / Departamento (opcional)"]').value.trim();
             const codigoPostal = formularioEnvio.querySelector('input[placeholder="Código postal"]')?.value.trim() || "";
             const departamento = selectDepartamento.value;
-            const barrio = (departamento === "Montevideo") ? selectBarrio.value : "";
+            const barrio =
+                (departamento === "Montevideo" && selectBarrio)
+                    ? selectBarrio.value
+                    : "";
             const metodoEntrega = selectMetodoEntrega.value;
 
             const opcionPagoSeleccionada = [...radiosPago].find(r => r.checked);
