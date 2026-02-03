@@ -44,6 +44,7 @@
         <nav class="contenido-menu">
             <a href="index.html">🏠 Inicio</a>
             <a href="catalogo.html">📚 Catálogo</a>
+            <a href="acceso-clientes.html">👋 Iniciar Sesión</a>
             <a href="login-clientes.html">👤 Registrarse</a>
         </nav>
     </div>
@@ -635,7 +636,7 @@
         function inicializarPerfil() {
             const usuarioRegistrado = JSON.parse(localStorage.getItem('usuarioRegistrado'));
             const contenedorPerfil = document.getElementById('contenedorPerfil');
-            
+
             if (usuarioRegistrado) {
                 // Mostrar círculo con inicial
                 const inicial = usuarioRegistrado.inicial;
@@ -644,7 +645,7 @@
                         <span class="inicial-usuario">${inicial}</span>
                     </div>
                 `;
-                
+
                 // Event listener para abrir panel
                 document.getElementById('abrirPerfil').addEventListener('click', () => {
                     abrirPanelUsuario(usuarioRegistrado);
@@ -660,19 +661,19 @@
                 });
             }
         }
-        
+
         async function abrirPanelUsuario(usuario) {
             const panelUsuario = document.getElementById('panelUsuario');
             const fecha = new Date(usuario.fechaRegistro);
             const fechaFormato = fecha.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
             const tituloPanel = document.getElementById('tituloPanelUsuario');
-            
+
             document.getElementById('emailUsuarioPanel').textContent = `Email: ${usuario.usuario}`;
             document.getElementById('fechaRegistroPanel').textContent = `Registrado el: ${fechaFormato}`;
             if (tituloPanel) {
                 tituloPanel.textContent = 'Mis miserias (0) 📚';
             }
-            
+
             panelUsuario.classList.add('activo');
             document.getElementById('fondoOscuro').classList.add('activo');
 
@@ -693,12 +694,12 @@
                 // Sin acción: mantener valor por defecto
             }
         }
-        
+
         function cerrarPanelUsuario() {
             document.getElementById('panelUsuario').classList.remove('activo');
             document.getElementById('fondoOscuro').classList.remove('activo');
         }
-        
+
         // Event listeners para cerrar panel
         document.getElementById('cerrarPanelUsuario').addEventListener('click', cerrarPanelUsuario);
         document.getElementById('cerrarSesionBtn').addEventListener('click', () => {
@@ -706,7 +707,7 @@
             cerrarPanelUsuario();
             location.reload();
         });
-        
+
         // Cerrar panel al clickear el fondo oscuro
         document.getElementById('fondoOscuro').addEventListener('click', () => {
             const panelUsuario = document.getElementById('panelUsuario');
@@ -718,7 +719,7 @@
                 document.getElementById('fondoOscuro').classList.remove('activo');
             }
         });
-        
+
         inicializarPerfil();
     </script>
 

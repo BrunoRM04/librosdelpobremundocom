@@ -5,7 +5,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Libros Del Pobre Mundo | Registrarse</title>
+    <title>Libros Del Pobre Mundo | Acceso a tu cuenta</title>
     <link rel="stylesheet" href="public/css/styles.css?v=99">
     <link rel="shortcut icon" href="public/img/marca/icono.png">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -57,42 +57,39 @@
                     <img src="public/img/marca/blanco.png" alt="Pobre Mundo">
                 </div>
 
-                <form id="registro-form" class="login-clientes-form">
-                    <h2>¡Crea tu cuenta!</h2>
-                    <p style="color: var(--blanco); text-align: center; font-size: 14px; margin-bottom: 20px; opacity: 0.9;">Crea tu cuenta, suma puntos con cada compra y ahorra en la próxima vez que nos visites.</p>
+                <form id="acceso-form" class="login-clientes-form">
+                    <h2>¡Ingresa a tu cuenta!</h2>
+                    <p style="color: var(--blanco); text-align: center; font-size: 14px; margin-bottom: 20px; opacity: 0.9;">Accede a tu cuenta para ver tus miserias y datos de compra.</p>
 
                     <div class="login-clientes-form-group">
-                        <input type="text" id="usuario" name="usuario" placeholder="Correo electrónico" required minlength="3">
+                        <input type="text" id="usuario" name="usuario" placeholder="Correo electrónico" required>
                     </div>
 
                     <div class="login-clientes-form-group login-clientes-password-group">
-                        <input type="password" id="password" name="password" placeholder="Contraseña" required
-                            minlength="6">
+                        <input type="password" id="password" name="password" placeholder="Contraseña" required>
                         <i class='bx bx-show login-clientes-toggle-password' data-target="password"></i>
                     </div>
 
-                    <div class="login-clientes-form-group login-clientes-password-group">
-                        <input type="password" id="password-confirm" name="password-confirm"
-                            placeholder="Confirmar Contraseña" required minlength="6">
-                        <i class='bx bx-show login-clientes-toggle-password' data-target="password-confirm"></i>
-                    </div>
+                    <div id="acceso-mensaje" class="login-clientes-error" style="display: none;"></div>
 
-                    <div id="registro-mensaje" class="login-clientes-error" style="display: none;"></div>
-
-                    <button type="submit" class="login-clientes-button">Registrarse</button>
+                    <button type="submit" class="login-clientes-button">Ingresar</button>
+                    
+                    <p style="color: var(--blanco); text-align: center; font-size: 14px; margin-top: 15px;">
+                        ¿No tienes cuenta? <a href="login-clientes.html" style="color: var(--blanco); text-decoration: underline;">Regístrate aquí</a>
+                    </p>
                 </form>
             </div>
         </div>
 
-        <div id="login-loader" class="login-clientes-loader" aria-hidden="true">
-            <span class="login-clientes-loader-text">Registrando...</span>
+        <div id="acceso-loader" class="login-clientes-loader" aria-hidden="true">
+            <span class="login-clientes-loader-text">Accediendo...</span>
         </div>
 
-        <div id="pantalla-registro-exitoso" class="pantalla-registro-exitoso" style="display: none;">
+        <div id="pantalla-acceso-exitoso" class="pantalla-registro-exitoso" style="display: none;">
             <div class="contenido-registro-exitoso">
                 <i class='bx bx-check-circle icono-exito-registro'></i>
-                <h2>¡Muchas gracias por tu registro!</h2>
-                <p>Ahora podrás sumar puntos en tus compras</p>
+                <h2 id="titulo-bienvenida">¡Bienvenido!</h2>
+                <p id="email-bienvenida"></p>
                 <button id="boton-ir-inicio" class="boton-ir-inicio">Ir a inicio</button>
             </div>
         </div>
@@ -397,9 +394,9 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            var form = document.getElementById('registro-form');
-            var loader = document.getElementById('login-loader');
-            var mensaje = document.getElementById('registro-mensaje');
+            var form = document.getElementById('acceso-form');
+            var loader = document.getElementById('acceso-loader');
+            var mensaje = document.getElementById('acceso-mensaje');
 
             if (form && loader) {
                 form.addEventListener('submit', async function (e) {
@@ -407,19 +404,12 @@
 
                     var usuario = document.getElementById('usuario').value;
                     var password = document.getElementById('password').value;
-                    var passwordConfirm = document.getElementById('password-confirm').value;
-
-                    if (password !== passwordConfirm) {
-                        mensaje.textContent = 'Las contraseñas no coinciden';
-                        mensaje.style.display = 'block';
-                        return;
-                    }
 
                     loader.classList.add('is-active');
                     loader.setAttribute('aria-hidden', 'false');
 
                     try {
-                        const response = await fetch('api/registro-clientes.php', {
+                        const response = await fetch('api/acceso-clientes.php', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -437,18 +427,19 @@
                             localStorage.setItem('usuarioRegistrado', JSON.stringify({
                                 usuario: usuario,
                                 inicial: usuario.charAt(0).toUpperCase(),
-                                fechaRegistro: new Date().toISOString()
+                                fechaRegistro: data.fechaRegistro || new Date().toISOString()
                             }));
                             
                             // Mostrar pantalla de confirmación
-                            document.getElementById('pantalla-registro-exitoso').style.display = 'flex';
+                            document.getElementById('email-bienvenida').textContent = `Bienvenido, ${usuario}`;
+                            document.getElementById('pantalla-acceso-exitoso').style.display = 'flex';
                             
                             // Configurar botón de ir a inicio
                             document.getElementById('boton-ir-inicio').addEventListener('click', () => {
                                 window.location.href = 'index.html';
                             });
                         } else {
-                            mensaje.textContent = data.message || 'Error en el registro';
+                            mensaje.textContent = data.message || 'Correo o contraseña incorrectos';
                             mensaje.style.display = 'block';
                             mensaje.classList.add('admin-error');
                         }
