@@ -9,7 +9,16 @@
     <link rel="stylesheet" href="public/css/styles.css?v=99">
     <link rel="shortcut icon" href="public/img/marca/icono.png">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DF5MEPLKRP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
+        gtag('config', 'G-DF5MEPLKRP');
+    </script>
+    
 </head>
 
 <body>
@@ -978,20 +987,20 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(datosVenta)
                 });
-                
+
                 if (!response.ok) {
                     const errorText = await response.text();
                     console.error("Error del servidor:", errorText);
                     throw new Error(`Error ${response.status}: ${errorText}`);
                 }
-                
+
                 const contentType = response.headers.get("content-type");
                 if (!contentType || !contentType.includes("application/json")) {
                     const text = await response.text();
                     console.error("Respuesta no JSON:", text);
                     throw new Error('La respuesta del servidor no es JSON válido');
                 }
-                
+
                 const result = await response.json();
                 if (!result.ok) {
                     throw new Error('Error al enviar datos');
