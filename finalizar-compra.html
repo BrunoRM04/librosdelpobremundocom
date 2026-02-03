@@ -861,6 +861,50 @@
             if (!okStock) return;
             await descontarMiseriasSiCorresponde();
 
+            await fetch('api/ventas.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    // Datos personales
+                    nombre: formularioEnvio.querySelector('input[placeholder="Nombre completo"]').value.trim(),
+                    email: formularioEnvio.querySelector('input[placeholder="Correo electrónico"]').value.trim(),
+                    telefono: formularioEnvio.querySelector('input[placeholder="Teléfono"]').value.trim(),
+                    direccion: `${formularioEnvio.querySelector('input[placeholder="Calle y número"]').value.trim()} ${formularioEnvio.querySelector('input[placeholder="Piso / Departamento (opcional)"]').value.trim()}`,
+                    codigoPostal: formularioEnvio.querySelector('input[placeholder="Código postal"]')?.value.trim() || "",
+                    departamento: selectDepartamento.value,
+                    barrio: (selectDepartamento.value === "Montevideo" && selectBarrio) ? selectBarrio.value : "",
+
+                    // Entrega / pago
+                    metodo_entrega: selectMetodoEntrega.value,
+                    metodo_pago: opcionPago,
+                    monto_efectivo: opcionPago === "Efectivo"
+                        ? document.getElementById("monto-efectivo")?.value.trim() || ""
+                        : "",
+
+                    // Miserias
+                    puntos_usados: document.getElementById('puntos-usar')
+                        ? parseInt(document.getElementById('puntos-usar').value) || 0
+                        : 0,
+
+                    // Totales (YA EXISTEN)
+                    total_productos: totalProductos,
+                    costo_envio: costoEnvio,
+                    total_final: totalFinal,
+
+                    // Usuario
+                    usuario_registrado: !!JSON.parse(localStorage.getItem('usuarioRegistrado')),
+                    email_usuario_registrado: JSON.parse(localStorage.getItem('usuarioRegistrado'))
+                        ? JSON.parse(localStorage.getItem('usuarioRegistrado')).usuario
+                        : null,
+
+                    // Carrito
+                    carrito: carrito,
+
+                    // Meta
+                    fecha_hora: new Date().toISOString()
+                })
+            });
+
             const correo = formularioEnvio.querySelector('input[placeholder="Correo electrónico"]').value.trim();
             const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
             const totalProductos = window.totalProductos || 0;
