@@ -557,8 +557,14 @@
                     if (totalEnvioEl) totalEnvioEl.textContent = ``;
                     if (totalFinalEl) totalFinalEl.textContent = `UYU ${totalProductos}`;
                 } else if (metodoEntrega === "domicilio") {
-                    // Envío a domicilio en Montevideo: 150 UYU
-                    if (filaEnvioEl) filaEnvioEl.style.display = "flex";
+                    // Envío a domicilio en Montevideo: 150 UYU (gratis si total > 1500)
+                    if (totalProductos > 1500) {
+                        if (filaEnvioEl) filaEnvioEl.style.display = "none";
+                        if (totalEnvioEl) totalEnvioEl.textContent = ``;
+                        if (totalFinalEl) totalFinalEl.textContent = `UYU ${totalProductos}`;
+                    } else {
+                        if (filaEnvioEl) filaEnvioEl.style.display = "flex";
+                    }
                 }
             } else {
                 pagoEfectivo.style.display = "none";
@@ -612,9 +618,9 @@
                 return;
             }
 
-            // Si es Montevideo con entrega a domicilio: 150 UYU
+            // Si es Montevideo con entrega a domicilio: 150 UYU (gratis si total > 1500)
             if (departamento === "Montevideo" && metodo === "domicilio") {
-                const costoEnvio = 150;
+                const costoEnvio = totalProductos > 1500 ? 0 : 150;
                 let totalFinal = totalProductos + costoEnvio;
 
                 // Restar puntos si existen
@@ -625,8 +631,8 @@
                 }
                 if (totalFinal < 0) totalFinal = 0;
 
-                if (filaEnvioEl) filaEnvioEl.style.display = "flex";
-                if (totalEnvioEl) totalEnvioEl.textContent = `UYU ${costoEnvio}`;
+                if (filaEnvioEl) filaEnvioEl.style.display = costoEnvio > 0 ? "flex" : "none";
+                if (totalEnvioEl) totalEnvioEl.textContent = costoEnvio > 0 ? `UYU ${costoEnvio}` : ``;
                 if (totalFinalEl) totalFinalEl.textContent = `UYU ${totalFinal}`;
             }
         }
