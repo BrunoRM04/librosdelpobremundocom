@@ -239,7 +239,7 @@
 
         const precioOriginal = parseInt(libro.precio);
         const precioFinal = Math.round(precioOriginal * 0.95);
-        const puntosPobreMundo = Math.floor(precioFinal / 100) * 10;
+        const puntosPobreMundo = Math.floor(precioFinal / 100) * 3;
 
         let rutaImagen = libro.imagen;
         if (!rutaImagen.startsWith("http")) {
