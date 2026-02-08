@@ -326,7 +326,7 @@
         let stockCache = [];
         let stockActualizado = false;
 
-        fetch('api/libros.php')
+        fetch('api/web/libros.php')
             .then(r => r.json())
             .then(data => stockCache = data)
             .catch(() => { });
@@ -438,7 +438,7 @@
             if (items.length === 0) return true;
 
             try {
-                const res = await fetch('api/actualizar_stock.php', {
+                const res = await fetch('api/web/actualizar_stock.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ items })
@@ -485,7 +485,7 @@
             if (!contenedorFavoritos) return;
             contenedorFavoritos.innerHTML = '';
 
-            fetch('api/libros.php')
+            fetch('api/web/libros.php')
                 .then(res => res.json())
                 .then(libros => {
                     favoritos.forEach(id => {
@@ -988,7 +988,7 @@
             };
 
             try {
-                const response = await fetch('api/ventas.php', {
+                const response = await fetch('api/web/ventas.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(datosVenta)
@@ -1113,7 +1113,7 @@
 
         async function cargarPuntosDelUsuario(usuario) {
             try {
-                const response = await fetch('api/get-puntos.php', {
+                const response = await fetch('api/clientes/get-puntos.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
@@ -1197,7 +1197,7 @@
             document.getElementById('fondoOscuro').classList.add('activo');
 
             try {
-                const response = await fetch('api/get-puntos.php', {
+                const response = await fetch('api/clientes/get-puntos.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
@@ -1222,7 +1222,7 @@
             if (!usuarioRegistrado || puntosUsados <= 0) return;
 
             try {
-                const response = await fetch('api/get-puntos.php', {
+                const response = await fetch('api/clientes/get-puntos.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',

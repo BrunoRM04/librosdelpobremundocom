@@ -181,7 +181,7 @@
                 return;
             }
 
-            fetch(`api/libro.php?id=${id}`)
+            fetch(`api/web/libro.php?id=${id}`)
                 .then(res => res.json())
                 .then(libro => {
 
@@ -306,7 +306,7 @@
         let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
         let stockCache = [];
 
-        fetch('api/libros.php')
+        fetch('api/web/libros.php')
             .then(r => r.json())
             .then(data => stockCache = data)
             .catch(() => { });
@@ -509,7 +509,7 @@
         function mostrarFavoritos() {
             const contenedor = document.getElementById('contenidoFavoritos');
             contenedor.innerHTML = '';
-            fetch(`api/libro.php?id=${id}`)
+            fetch(`api/web/libro.php?id=${id}`)
                 .then(res => res.json())
                 .then(libros => {
                     favoritos.forEach(id => {
@@ -558,7 +558,7 @@
         }
 
         function cargarLibrosRelacionados() {
-            fetch(`api/catalogo.php?page=1`)
+            fetch(`api/web/catalogo.php?page=1`)
                 .then(res => res.json())
                 .then(libros => {
                     const contenedor = document.getElementById('carrusel-relacionados');
@@ -687,7 +687,7 @@
             document.getElementById('fondoOscuro').classList.add('activo');
 
             try {
-                const response = await fetch('api/get-puntos.php', {
+                const response = await fetch('api/clientes/get-puntos.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',

@@ -287,7 +287,7 @@
     }
 
     function cargarUltimosIngresos() {
-      fetch('api/libros.php')
+      fetch('api/web/libros.php')
         .then(r => r.json())
         .then(libros => {
           librosCache = libros;
@@ -303,7 +303,7 @@
     }
 
     function cargarNovedades() {
-      fetch(`api/carrusel.php?ids=${librosNovedades.join(',')}`)
+      fetch(`api/web/carrusel.php?ids=${librosNovedades.join(',')}`)
         .then(r => r.json())
         .then(libros => {
           const ordenados = librosNovedades
@@ -485,7 +485,7 @@
       cont.innerHTML = "";
       if (q.length < 2) return;
 
-      const r = await fetch(`api/buscar.php?q=${encodeURIComponent(q)}`);
+      const r = await fetch(`api/web/buscar.php?q=${encodeURIComponent(q)}`);
       const libros = await r.json();
 
       libros.forEach(l => {
@@ -563,7 +563,7 @@
       document.getElementById('fondoOscuro').classList.add('activo');
 
       try {
-        const response = await fetch('api/get-puntos.php', {
+        const response = await fetch('api/clientes/get-puntos.php', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

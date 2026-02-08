@@ -5,7 +5,7 @@ if (!isset($_SESSION['admin_id'])) {
     exit;
 }
 
-require '../api/config.php';
+require '../api/_shared/config.php';
 
 $exito = false;
 $mensaje = "";

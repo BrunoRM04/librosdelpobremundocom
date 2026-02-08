@@ -379,6 +379,11 @@ body {
     font-family: "Raleway", sans-serif;
 }
 
+.admin-textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
 .admin-input:focus {
     outline: none;
     border-color: var(--rojo-principal);

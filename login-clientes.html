@@ -341,7 +341,7 @@
             document.getElementById('fondoOscuro').classList.add('activo');
 
             try {
-                const response = await fetch('api/get-puntos.php', {
+                const response = await fetch('api/clientes/get-puntos.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
@@ -438,7 +438,7 @@
                     loader.setAttribute('aria-hidden', 'false');
 
                     try {
-                        const response = await fetch('api/registro-clientes.php', {
+                        const response = await fetch('api/clientes/registro-clientes.php', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/x-www-form-urlencoded',

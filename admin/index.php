@@ -56,15 +56,40 @@
                         <div id="resultado-busqueda" class="resultado-busqueda" style="display: none;">
                             <div class="libro-resultado">
                                 <div class="libro-info">
-                                    <p><strong>Título:</strong> <span id="libro-titulo"></span></p>
-                                    <p><strong>Autor:</strong> <span id="libro-autor"></span></p>
-                                    <p><strong>ISBN:</strong> <span id="libro-isbn"></span></p>
                                     <p><strong>ID:</strong> <span id="libro-id"></span></p>
                                 </div>
                                 <div class="libro-edicion">
                                     <div class="form-group">
+                                        <label>Título:</label>
+                                        <input type="text" id="libro-titulo" class="admin-input">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Autor:</label>
+                                        <input type="text" id="libro-autor" class="admin-input">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>ISBN:</label>
+                                        <input type="text" id="libro-isbn" class="admin-input">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Editorial:</label>
+                                        <input type="text" id="libro-editorial" class="admin-input">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Número de páginas:</label>
+                                        <input type="number" id="libro-num-paginas" class="admin-input" step="1" min="0">
+                                    </div>
+                                    <div class="form-group">
                                         <label>Precio (UYU):</label>
                                         <input type="number" id="libro-precio" class="admin-input" step="1" min="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Descripción:</label>
+                                        <textarea id="libro-descripcion" class="admin-input admin-textarea" rows="4"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Imagen (ruta):</label>
+                                        <input type="text" id="libro-imagen" class="admin-input">
                                     </div>
                                     <div class="form-group">
                                         <label>Stock:</label>
@@ -104,7 +129,7 @@
             }
 
             try {
-                const response = await fetch('../api/buscar-libro-admin.php', {
+                const response = await fetch('../api/admin/buscar-libro-admin.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
@@ -118,12 +143,16 @@
                     const libro = data.libro;
                     libroActualId = libro.id;
                     
-                    document.getElementById('libro-titulo').textContent = libro.titulo;
-                    document.getElementById('libro-autor').textContent = libro.autor;
-                    document.getElementById('libro-isbn').textContent = libro.isbn || 'N/A';
+                    document.getElementById('libro-titulo').value = libro.titulo || '';
+                    document.getElementById('libro-autor').value = libro.autor || '';
+                    document.getElementById('libro-isbn').value = libro.isbn || '';
+                    document.getElementById('libro-editorial').value = libro.editorial || '';
+                    document.getElementById('libro-num-paginas').value = libro.numPaginas ?? '';
                     document.getElementById('libro-id').textContent = libro.id;
-                    document.getElementById('libro-precio').value = libro.precio;
-                    document.getElementById('libro-stock').value = libro.stock;
+                    document.getElementById('libro-precio').value = libro.precio ?? '';
+                    document.getElementById('libro-descripcion').value = libro.descripcion || '';
+                    document.getElementById('libro-imagen').value = libro.imagen || '';
+                    document.getElementById('libro-stock').value = libro.stock ?? '';
 
                     resultadoBusqueda.style.display = 'block';
                     mensajeBusqueda.style.display = 'none';
@@ -144,8 +173,20 @@
                 return;
             }
 
+            const titulo = document.getElementById('libro-titulo').value.trim();
+            const autor = document.getElementById('libro-autor').value.trim();
+            const isbn = document.getElementById('libro-isbn').value.trim();
+            const editorial = document.getElementById('libro-editorial').value.trim();
+            const numPaginas = document.getElementById('libro-num-paginas').value;
             const precio = document.getElementById('libro-precio').value;
+            const descripcion = document.getElementById('libro-descripcion').value.trim();
+            const imagen = document.getElementById('libro-imagen').value.trim();
             const stock = document.getElementById('libro-stock').value;
+
+            if (!titulo || !autor) {
+                mostrarMensaje('Ingresa título y autor', 'error');
+                return;
+            }
 
             if (precio === '' || stock === '') {
                 mostrarMensaje('Ingresa precio y stock', 'error');
@@ -153,12 +194,23 @@
             }
 
             try {
-                const response = await fetch('../api/actualizar-libro-admin.php', {
+                const response = await fetch('../api/admin/actualizar-libro-admin.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
-                    body: `id=${encodeURIComponent(libroActualId)}&precio=${encodeURIComponent(precio)}&stock=${encodeURIComponent(stock)}`
+                    body: new URLSearchParams({
+                        id: libroActualId,
+                        titulo,
+                        autor,
+                        isbn,
+                        editorial,
+                        numPaginas,
+                        precio,
+                        descripcion,
+                        imagen,
+                        stock
+                    }).toString()
                 });
 
                 const data = await response.json();

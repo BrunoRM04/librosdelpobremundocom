@@ -11,7 +11,7 @@
 <body>
     <?php
     session_start();
-    require_once __DIR__ . '/../api/config.php';
+    require_once __DIR__ . '/../api/_shared/config.php';
 
     $error = "";
 

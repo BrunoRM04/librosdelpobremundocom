@@ -390,7 +390,7 @@
         }
 
         function mostrarTodosLosLibros() {
-            fetch(`api/catalogo.php?page=1`)
+            fetch(`api/web/catalogo.php?page=1`)
                 .then(res => res.json())
                 .then(libros => {
                     librosCache = libros;
@@ -572,7 +572,7 @@
 
         function mostrarFavoritos() {
             contenedorFavoritos.innerHTML = '';
-            fetch(`api/catalogo.php?page=1`)
+            fetch(`api/web/catalogo.php?page=1`)
                 .then(res => res.json())
                 .then(libros => {
                     favoritos.forEach(id => {
@@ -684,7 +684,7 @@
             document.getElementById('fondoOscuro').classList.add('activo');
 
             try {
-                const response = await fetch('api/get-puntos.php', {
+                const response = await fetch('api/clientes/get-puntos.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
