@@ -543,36 +543,11 @@
         function actualizarFormulario() {
             const departamentoSeleccionado = selectDepartamento.value;
             const metodoEntrega = selectMetodoEntrega.value;
-            const totalEnvioEl = document.getElementById("total-envio");
-            const filaEnvioEl = document.getElementById("fila-envio");
-            const totalFinalEl = document.getElementById("total-final");
-            const totalProductos = window.totalProductos || 0;
-
             if (departamentoSeleccionado === "Montevideo") {
                 pagoEfectivo.style.display = "block";
-
-                if (metodoEntrega === "punto") {
-                    // Sin cargo de envío para retiro en punto
-                    if (filaEnvioEl) filaEnvioEl.style.display = "none";
-                    if (totalEnvioEl) totalEnvioEl.textContent = ``;
-                    if (totalFinalEl) totalFinalEl.textContent = `UYU ${totalProductos}`;
-                } else if (metodoEntrega === "domicilio") {
-                    // Envío a domicilio en Montevideo: 150 UYU (gratis si total > 1500)
-                    if (totalProductos > 1500) {
-                        if (filaEnvioEl) filaEnvioEl.style.display = "none";
-                        if (totalEnvioEl) totalEnvioEl.textContent = ``;
-                        if (totalFinalEl) totalFinalEl.textContent = `UYU ${totalProductos}`;
-                    } else {
-                        if (filaEnvioEl) filaEnvioEl.style.display = "flex";
-                    }
-                }
             } else {
                 pagoEfectivo.style.display = "none";
                 contenedorEfectivo.classList.add("oculto");
-
-                if (filaEnvioEl) filaEnvioEl.style.display = "none";
-                if (totalEnvioEl) totalEnvioEl.textContent = ``;
-                if (totalFinalEl) totalFinalEl.textContent = `UYU ${totalProductos}`;
             }
         }
 
@@ -600,41 +575,41 @@
             const totalEnvioEl = document.getElementById("total-envio");
             const filaEnvioEl = document.getElementById("fila-envio");
             const totalFinalEl = document.getElementById("total-final");
+            const puntosUsarInput = document.getElementById('puntos-usar');
+            const puntosAUsar = puntosUsarInput ? parseInt(puntosUsarInput.value) || 0 : 0;
+            let costoEnvio = 0;
 
-            // Si no es Montevideo o es retiro en punto, sin cargo de envío
-            if (metodo === "punto" || departamento !== "Montevideo") {
+            if (!departamento || !metodo) {
                 if (filaEnvioEl) filaEnvioEl.style.display = "none";
                 if (totalEnvioEl) totalEnvioEl.textContent = ``;
-                let totalFinal = totalProductos;
-
-                // Restar puntos si existen
-                const puntosUsarInput = document.getElementById('puntos-usar');
-                if (puntosUsarInput) {
-                    const puntosAUsar = parseInt(puntosUsarInput.value) || 0;
-                    totalFinal -= puntosAUsar;
-                }
+                let totalFinal = totalProductos - puntosAUsar;
                 if (totalFinal < 0) totalFinal = 0;
                 if (totalFinalEl) totalFinalEl.textContent = `UYU ${totalFinal}`;
                 return;
             }
 
-            // Si es Montevideo con entrega a domicilio: 150 UYU (gratis si total > 1500)
-            if (departamento === "Montevideo" && metodo === "domicilio") {
-                const costoEnvio = totalProductos > 1500 ? 0 : 150;
-                let totalFinal = totalProductos + costoEnvio;
-
-                // Restar puntos si existen
-                const puntosUsarInput = document.getElementById('puntos-usar');
-                if (puntosUsarInput) {
-                    const puntosAUsar = parseInt(puntosUsarInput.value) || 0;
-                    totalFinal -= puntosAUsar;
+            if (departamento === "Montevideo") {
+                if (metodo === "punto") {
+                    costoEnvio = 0;
+                } else if (metodo === "domicilio") {
+                    costoEnvio = totalProductos > 1500 ? 0 : 150;
                 }
-                if (totalFinal < 0) totalFinal = 0;
-
-                if (filaEnvioEl) filaEnvioEl.style.display = costoEnvio > 0 ? "flex" : "none";
-                if (totalEnvioEl) totalEnvioEl.textContent = costoEnvio > 0 ? `UYU ${costoEnvio}` : ``;
-                if (totalFinalEl) totalFinalEl.textContent = `UYU ${totalFinal}`;
+            } else {
+                if (totalProductos > 2000) {
+                    costoEnvio = 0;
+                } else if (metodo === "domicilio") {
+                    costoEnvio = 280;
+                } else if (metodo === "punto") {
+                    costoEnvio = 240;
+                }
             }
+
+            let totalFinal = totalProductos + costoEnvio - puntosAUsar;
+            if (totalFinal < 0) totalFinal = 0;
+
+            if (filaEnvioEl) filaEnvioEl.style.display = costoEnvio > 0 ? "flex" : "none";
+            if (totalEnvioEl) totalEnvioEl.textContent = costoEnvio > 0 ? `UYU ${costoEnvio}` : ``;
+            if (totalFinalEl) totalFinalEl.textContent = `UYU ${totalFinal}`;
         }
 
         selectDepartamento.addEventListener("change", () => {
