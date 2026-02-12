@@ -14,6 +14,59 @@ if (!isset($_SESSION['admin_id'])) {
     <title>Subir libros por tabla - Panel Admin</title>
     <link rel="stylesheet" href="../public/css/admin.css">
     <style>
+        .isbn-lookup {
+            background-color: var(--gris-claro);
+            border-left: 4px solid var(--rojo-principal);
+            padding: 16px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .isbn-lookup .row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .isbn-lookup input {
+            flex: 1 1 260px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: "Raleway", sans-serif;
+            font-size: 14px;
+        }
+
+        .isbn-lookup .admin-btn {
+            background-color: var(--rojo-principal);
+            color: var(--blanco);
+            padding: 10px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .isbn-lookup .admin-btn:hover {
+            filter: brightness(1.1);
+        }
+
+        .isbn-message {
+            margin-top: 10px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .isbn-message.success {
+            color: #155724;
+        }
+
+        .isbn-message.error {
+            color: #721c24;
+        }
+
         .table-container {
             overflow-x: auto;
             margin-bottom: 20px;
@@ -136,6 +189,14 @@ if (!isset($_SESSION['admin_id'])) {
                 <section class="admin-section">
                     <h2>Agregar libros manualmente</h2>
 
+                    <div class="isbn-lookup">
+                        <div class="row">
+                            <input type="text" id="isbn-buscar" placeholder="Buscar por ISBN (10 o 13)" autocomplete="off">
+                            <button type="button" class="admin-btn" id="btn-isbn">Buscar en Google Books</button>
+                        </div>
+                        <div id="isbn-message" class="isbn-message"></div>
+                    </div>
+
                     <button type="button" class="add-row-btn" onclick="agregarFila()">+ Agregar fila</button>
 
                     <form action="process_books_table.php" method="POST" id="booksForm">
@@ -191,6 +252,8 @@ if (!isset($_SESSION['admin_id'])) {
     </div>
 
     <script>
+        const GOOGLE_BOOKS_API_KEY = 'AIzaSyA99TwJyi85BKC7p9lIQXiv4b_UbuZ21N4';
+
         function agregarFila() {
             const tableBody = document.getElementById('tableBody');
             const newRow = document.createElement('tr');
@@ -216,6 +279,103 @@ if (!isset($_SESSION['admin_id'])) {
             } else {
                 alert('Debe haber al menos una fila en la tabla');
             }
+        }
+
+        const isbnInput = document.getElementById('isbn-buscar');
+        const isbnButton = document.getElementById('btn-isbn');
+        const isbnMessage = document.getElementById('isbn-message');
+
+        isbnButton.addEventListener('click', buscarISBN);
+        isbnInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                buscarISBN();
+            }
+        });
+
+        async function buscarISBN() {
+            const isbn = isbnInput.value.trim();
+            if (!isbn) {
+                mostrarISBNMensaje('Ingresa un ISBN valido', 'error');
+                return;
+            }
+
+            mostrarISBNMensaje('Buscando informacion en Google Books...', 'success');
+
+            try {
+                const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${encodeURIComponent(isbn)}&key=${GOOGLE_BOOKS_API_KEY}`;
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (!data.items || data.items.length === 0) {
+                    mostrarISBNMensaje('No se encontro informacion para ese ISBN', 'error');
+                    return;
+                }
+
+                const book = data.items[0].volumeInfo || {};
+                const titulo = book.title || '';
+                const autor = (book.authors && book.authors.length > 0) ? book.authors[0] : '';
+                const editorial = book.publisher || '';
+                const numPaginas = book.pageCount || '';
+                const descripcion = book.description || '';
+                const imagen = (book.imageLinks && (book.imageLinks.thumbnail || book.imageLinks.smallThumbnail)) || '';
+
+                const isbnValue = obtenerISBN(book.industryIdentifiers, isbn);
+
+                const row = obtenerFilaDestino();
+                row.querySelector('input[name="titulo[]"]').value = titulo;
+                row.querySelector('input[name="autor[]"]').value = autor;
+                row.querySelector('input[name="isbn[]"]').value = isbnValue;
+                row.querySelector('input[name="editorial[]"]').value = editorial;
+                row.querySelector('input[name="numPaginas[]"]').value = numPaginas;
+                row.querySelector('textarea[name="descripcion[]"]').value = descripcion;
+                row.querySelector('input[name="imagen[]"]').value = imagen;
+
+                mostrarISBNMensaje('Datos cargados en la tabla', 'success');
+            } catch (error) {
+                console.error(error);
+                mostrarISBNMensaje('Error al consultar Google Books', 'error');
+            }
+        }
+
+        function obtenerFilaDestino() {
+            const tableBody = document.getElementById('tableBody');
+            const rows = Array.from(tableBody.querySelectorAll('tr'));
+
+            for (const row of rows) {
+                const tituloInput = row.querySelector('input[name="titulo[]"]');
+                if (tituloInput && tituloInput.value.trim() === '') {
+                    return row;
+                }
+            }
+
+            agregarFila();
+            return tableBody.lastElementChild;
+        }
+
+        function obtenerISBN(identifiers, fallback) {
+            if (!Array.isArray(identifiers)) {
+                return fallback || '';
+            }
+
+            const isbn13 = identifiers.find((id) => id.type === 'ISBN_13');
+            const isbn10 = identifiers.find((id) => id.type === 'ISBN_10');
+
+            if (isbn13 && isbn13.identifier) {
+                return isbn13.identifier;
+            }
+
+            if (isbn10 && isbn10.identifier) {
+                return isbn10.identifier;
+            }
+
+            return fallback || '';
+        }
+
+        function mostrarISBNMensaje(texto, tipo) {
+            isbnMessage.textContent = texto;
+            isbnMessage.className = `isbn-message ${tipo}`;
+            isbnMessage.style.display = 'block';
         }
     </script>
 </body>
