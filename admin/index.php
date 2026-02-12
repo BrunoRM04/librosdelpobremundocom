@@ -16,6 +16,76 @@
         header("Location: login.php");
         exit;
     }
+
+    require_once __DIR__ . '/../api/_shared/config.php';
+
+    function esc($valor)
+    {
+        return htmlspecialchars((string)$valor, ENT_QUOTES, 'UTF-8');
+    }
+
+    function fmt_money($valor)
+    {
+        return number_format((float)$valor, 2, ',', '.');
+    }
+
+    $ventasTotal = 0;
+    $ingresosTotal = 0;
+    $ticketPromedio = 0;
+    $ventasHoy = 0;
+    $ventasSemana = 0;
+    $ventasMes = 0;
+    $ultimaVenta = null;
+    $ventasPorPago = [];
+    $ventasPorEntrega = [];
+    $ventasPorDepto = [];
+
+    $clientesTotal = 0;
+    $clientesConPuntos = 0;
+    $puntosTotales = 0;
+
+    try {
+        $stmt = $pdo->query("SELECT COUNT(*) AS total, COALESCE(SUM(total), 0) AS ingresos, COALESCE(AVG(total), 0) AS ticket FROM ventas");
+        $resumen = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($resumen) {
+            $ventasTotal = (int)$resumen['total'];
+            $ingresosTotal = (float)$resumen['ingresos'];
+            $ticketPromedio = (float)$resumen['ticket'];
+        }
+
+        $stmt = $pdo->query("SELECT COUNT(*) FROM ventas WHERE DATE(fecha_registro) = CURDATE()");
+        $ventasHoy = (int)$stmt->fetchColumn();
+
+        $stmt = $pdo->query("SELECT COUNT(*) FROM ventas WHERE fecha_registro >= DATE_SUB(CURDATE(), INTERVAL 6 DAY)");
+        $ventasSemana = (int)$stmt->fetchColumn();
+
+        $stmt = $pdo->query("SELECT COUNT(*) FROM ventas WHERE fecha_registro >= DATE_FORMAT(CURDATE(), '%Y-%m-01')");
+        $ventasMes = (int)$stmt->fetchColumn();
+
+        $stmt = $pdo->query("SELECT MAX(fecha_registro) FROM ventas");
+        $ultimaVenta = $stmt->fetchColumn();
+
+        $stmt = $pdo->query("SELECT metodo_pago, COUNT(*) AS total FROM ventas GROUP BY metodo_pago ORDER BY total DESC");
+        $ventasPorPago = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt = $pdo->query("SELECT metodo_entrega, COUNT(*) AS total FROM ventas GROUP BY metodo_entrega ORDER BY total DESC");
+        $ventasPorEntrega = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt = $pdo->query("SELECT departamento, COUNT(*) AS total FROM ventas GROUP BY departamento ORDER BY total DESC");
+        $ventasPorDepto = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt = $pdo->query("SELECT COUNT(*) AS total, COALESCE(SUM(puntos), 0) AS puntos FROM clientes");
+        $clientesResumen = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($clientesResumen) {
+            $clientesTotal = (int)$clientesResumen['total'];
+            $puntosTotales = (int)$clientesResumen['puntos'];
+        }
+
+        $stmt = $pdo->query("SELECT COUNT(*) FROM clientes WHERE puntos > 0");
+        $clientesConPuntos = (int)$stmt->fetchColumn();
+    } catch (Exception $e) {
+        // Si falla la BD, se muestran ceros para mantener el panel operativo.
+    }
     ?>
 
     <div class="admin-container">
@@ -32,6 +102,88 @@
             </div>
 
             <div class="admin-content">
+                <section class="admin-section admin-kpi-section">
+                    <h2>Indicadores del negocio</h2>
+                    <div class="admin-kpi-grid">
+                        <div class="admin-kpi-card">
+                            <h3>Ventas totales</h3>
+                            <p class="admin-kpi-value"><?php echo esc($ventasTotal); ?></p>
+                        </div>
+                        <div class="admin-kpi-card">
+                            <h3>Ingresos totales</h3>
+                            <p class="admin-kpi-value">$<?php echo esc(fmt_money($ingresosTotal)); ?> UYU</p>
+                        </div>
+                        <div class="admin-kpi-card">
+                            <h3>Ticket promedio</h3>
+                            <p class="admin-kpi-value">$<?php echo esc(fmt_money($ticketPromedio)); ?> UYU</p>
+                        </div>
+                        <div class="admin-kpi-card">
+                            <h3>Ventas hoy</h3>
+                            <p class="admin-kpi-value"><?php echo esc($ventasHoy); ?></p>
+                        </div>
+                        <div class="admin-kpi-card">
+                            <h3>Ventas semana</h3>
+                            <p class="admin-kpi-value"><?php echo esc($ventasSemana); ?></p>
+                        </div>
+                        <div class="admin-kpi-card">
+                            <h3>Ventas mes</h3>
+                            <p class="admin-kpi-value"><?php echo esc($ventasMes); ?></p>
+                        </div>
+                        <div class="admin-kpi-card">
+                            <h3>Ultima venta</h3>
+                            <p class="admin-kpi-value"><?php echo $ultimaVenta ? esc($ultimaVenta) : 'Sin ventas'; ?></p>
+                        </div>
+                        <div class="admin-kpi-card">
+                            <h3>Clientes registrados</h3>
+                            <p class="admin-kpi-value"><?php echo esc($clientesTotal); ?></p>
+                        </div>
+                        <div class="admin-kpi-card">
+                            <h3>Clientes con puntos</h3>
+                            <p class="admin-kpi-value"><?php echo esc($clientesConPuntos); ?></p>
+                        </div>
+                        <div class="admin-kpi-card">
+                            <h3>Puntos totales</h3>
+                            <p class="admin-kpi-value"><?php echo esc($puntosTotales); ?></p>
+                        </div>
+                        <div class="admin-kpi-card admin-kpi-list">
+                            <h3>Ventas por metodo de pago</h3>
+                            <ul>
+                                <?php if (empty($ventasPorPago)): ?>
+                                    <li>Sin datos</li>
+                                <?php else: ?>
+                                    <?php foreach ($ventasPorPago as $fila): ?>
+                                        <li><?php echo esc($fila['metodo_pago'] ?? 'N/D'); ?>: <?php echo esc($fila['total']); ?></li>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </ul>
+                        </div>
+                        <div class="admin-kpi-card admin-kpi-list">
+                            <h3>Ventas por metodo de entrega</h3>
+                            <ul>
+                                <?php if (empty($ventasPorEntrega)): ?>
+                                    <li>Sin datos</li>
+                                <?php else: ?>
+                                    <?php foreach ($ventasPorEntrega as $fila): ?>
+                                        <li><?php echo esc($fila['metodo_entrega'] ?? 'N/D'); ?>: <?php echo esc($fila['total']); ?></li>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </ul>
+                        </div>
+                        <div class="admin-kpi-card admin-kpi-list">
+                            <h3>Ventas por departamento</h3>
+                            <ul>
+                                <?php if (empty($ventasPorDepto)): ?>
+                                    <li>Sin datos</li>
+                                <?php else: ?>
+                                    <?php foreach ($ventasPorDepto as $fila): ?>
+                                        <li><?php echo esc($fila['departamento'] ?? 'N/D'); ?>: <?php echo esc($fila['total']); ?></li>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
                 <section class="admin-section">
                     <h2>Opciones disponibles</h2>
                     <div class="admin-options">

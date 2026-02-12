@@ -242,6 +242,50 @@ body {
     font-weight: 600;
 }
 
+.admin-kpi-section {
+    margin-bottom: 30px;
+}
+
+.admin-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+.admin-kpi-card {
+    background-color: var(--gris-claro);
+    border-radius: 8px;
+    padding: 18px 20px;
+    box-shadow: 0 2px 8px var(--sombra);
+    border-left: 4px solid var(--rojo-principal);
+}
+
+.admin-kpi-card h3 {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.admin-kpi-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--rojo-principal);
+}
+
+.admin-kpi-list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    color: #333;
+}
+
 .admin-options {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
