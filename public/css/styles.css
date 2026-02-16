@@ -105,6 +105,24 @@ body {
 
 /* HEADER */
 
+/* BANNER PRINCIPAL */
+
+.banner-principal {
+  width: 100%;
+  aspect-ratio: 16 / 5;
+  overflow: hidden;
+  background-color: var(--blanco);
+}
+
+.banner-principal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* BANNER PRINCIPAL */
+
 /* BUSCADOR */
 
 .mensaje-sin-resultados {

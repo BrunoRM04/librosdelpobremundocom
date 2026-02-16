@@ -130,6 +130,28 @@
       </div>
     </section>
 
+    <section class="banner-principal">
+      <img src="public/img/banners/Richard Ford - Cumpleaños 81.jpg" alt="Banner principal">
+    </section>
+
+    <section class="seccion-libros-destacados seccion-secundaria">
+      <div class="contenedor-libros-destacados">
+        <h2 class="titulo-libros-destacados">Richard Ford - 82 años</h2>
+
+        <div class="contenedor-carrusel">
+          <button class="flecha-carrusel flecha-izquierda" id="flecha-izquierda-novedades">
+            <i class='bx bx-chevron-left'></i>
+          </button>
+
+          <div class="carrusel-libros" id="carrusel-novedades"></div>
+
+          <button class="flecha-carrusel flecha-derecha" id="flecha-derecha-novedades">
+            <i class='bx bx-chevron-right'></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
     <section class="seccion-libros-destacados">
       <div class="contenedor-libros-destacados">
         <h2 class="titulo-libros-destacados">Últimos Ingresos</h2>
@@ -142,24 +164,6 @@
           <div class="carrusel-libros" id="carrusel-destacados"></div>
 
           <button class="flecha-carrusel flecha-derecha" id="flecha-derecha">
-            <i class='bx bx-chevron-right'></i>
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <section class="seccion-libros-destacados seccion-secundaria">
-      <div class="contenedor-libros-destacados">
-        <h2 class="titulo-libros-destacados">Destacados Pobre Mundo</h2>
-
-        <div class="contenedor-carrusel">
-          <button class="flecha-carrusel flecha-izquierda" id="flecha-izquierda-novedades">
-            <i class='bx bx-chevron-left'></i>
-          </button>
-
-          <div class="carrusel-libros" id="carrusel-novedades"></div>
-
-          <button class="flecha-carrusel flecha-derecha" id="flecha-derecha-novedades">
             <i class='bx bx-chevron-right'></i>
           </button>
         </div>
@@ -228,7 +232,7 @@
     });
 
     const cantidadUltimosIngresos = 20;
-    const librosNovedades = [1215, 1216, 1131, 1132, 1133, 1134, 1123, 1124, 1125, 1126, 1119];
+    const librosNovedades = [1374, 2215, 2620, 2621, 2622, 2623, 2624];
 
     function renderCarrusel(libros, carruselId) {
       const contenedor = document.getElementById(carruselId);
