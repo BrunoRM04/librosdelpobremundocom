@@ -113,21 +113,35 @@
       <i class='bx bxl-whatsapp'></i>
     </a>
 
-    <section class="seccion-buscador-libros">
-      <div class="contenedor-buscador">
-        <h1 class="titulo-buscador">Explora en nuestro catálogo</h1>
-        <p class="descripcion-buscador">Busca titulo, autor, isbn y más.</p>
-        <form class="grupo-buscador" id="formBuscador">
-          <input type="text" class="campo-buscador" placeholder="Buscar un libro...">
-          <button class="boton-buscador" type="submit">Buscar</button>
+    <!-- NUEVO BUSCADOR BOOK DESIGN -->
+    <section class="buscador-book-seccion">
+      <div class="buscador-book-contenedor">
+
+        <div class="buscador-book-eyebrow">
+          <span>Libros Del Pobre Mundo · Catálogo completo</span>
+        </div>
+
+        <h1 class="buscador-book-titulo">Encuentra tu próxima lectura</h1>
+        <p class="buscador-book-descripcion">Busca por título, autor, ISBN o editorial</p>
+
+        <form class="buscador-book-form" id="formBuscador">
+          <input
+            type="text"
+            class="buscador-book-campo"
+            placeholder="¿Qué libro estás buscando?"
+            autocomplete="off"
+            id="campoBuscador"
+          >
+          <button class="buscador-book-boton" type="submit">Buscar</button>
         </form>
-      </div>
-    </section>
-
-    <section class="resultados-buscador-libros" id="resultados-buscador">
-      <div class="contenedor-resultados">
 
       </div>
+
+      <div class="buscador-book-ornamento"><span>✦</span></div>
+
+      <!-- RESULTADOS -->
+      <div class="buscador-book-resultados" id="resultadosBuscador"></div>
+
     </section>
 
     <section class="seccion-libros-destacados seccion-secundaria">
@@ -470,50 +484,72 @@
       }
     }
 
-    const campoBuscador = document.querySelector(".campo-buscador");
-
+    const campoBuscador = document.getElementById("campoBuscador");
     const formBuscador = document.getElementById("formBuscador");
+    const resultadosBuscador = document.getElementById("resultadosBuscador");
 
     formBuscador.addEventListener("submit", e => {
       e.preventDefault();
     });
 
     campoBuscador.addEventListener("input", debounce(async e => {
-
       const q = e.target.value.trim();
-      const cont = document.querySelector("#resultados-buscador .contenedor-resultados");
-      cont.innerHTML = "";
+      resultadosBuscador.innerHTML = "";
       if (q.length < 2) return;
 
       const r = await fetch(`api/web/buscar.php?q=${encodeURIComponent(q)}`);
       const libros = await r.json();
 
-      libros.forEach(l => {
+      if (libros.length === 0) {
+        resultadosBuscador.innerHTML = `
+          <div class="buscador-book-sin-resultados">
+            <p class="buscador-book-sin-resultados-titulo">No encontramos resultados para <strong style="color:var(--rojo-principal)">"${q}"</strong></p>
+            <p class="buscador-book-sin-resultados-texto">Podés consultarnos directamente y te ayudamos a encontrarlo.</p>
+            <a href="https://wa.me/59894090711" class="buscador-book-btn-consultar">Consultar por WhatsApp</a>
+          </div>
+        `;
+        return;
+      }
 
+      libros.forEach(l => {
         let img = l.imagen;
         if (!img.startsWith("http")) {
           img = `public/img/portadas/${img.replace(/^.*[\\/]/, '')}`;
         }
 
-        cont.innerHTML += `
-<div class="item-resultado-libro">
-  <img src="${img}" 
-       class="imagen-resultado-libro"
-       onerror="this.src='public/img/portadas/default.jpg'">
+        const precioOriginal = parseInt(l.precio);
+        const precioFinal = Math.round(precioOriginal * 0.95);
 
-  <div class="info-resultado-libro">
-    <h3 class="titulo-resultado-libro">${l.titulo}</h3>
-    <p class="autor-resultado-libro">${l.autor}</p>
-  </div>
-
-  <div class="acciones-resultado-libro">
-    <a href="libro-detalle.html?id=${l.id}" class="boton-ver-detalle">Ver más</a>
-  </div>
-</div>
-    `;
+        resultadosBuscador.innerHTML += `
+          <div class="buscador-book-resultado-item">
+            <img
+              src="${img}"
+              class="buscador-book-resultado-img"
+              alt="${l.titulo}"
+              onerror="this.style.background='#e8ddd5';this.removeAttribute('src')"
+            >
+            <div class="buscador-book-resultado-info">
+              <p class="buscador-book-resultado-titulo">${l.titulo}</p>
+              <p class="buscador-book-resultado-autor">${l.autor}</p>
+              <p class="buscador-book-resultado-editorial">${l.editorial}</p>
+            </div>
+            <div class="buscador-book-resultado-acciones">
+              <span class="buscador-book-precio">UYU ${precioFinal}</span>
+              <a href="libro-detalle.html?id=${l.id}" class="buscador-book-btn-ver">Ver más</a>
+            </div>
+          </div>
+        `;
       });
-
     }, 300));
+
+    // Funcionalidad tags de búsqueda rápida
+    document.querySelectorAll(".buscador-book-tag").forEach(tag => {
+      tag.addEventListener("click", () => {
+        const busqueda = tag.dataset.busqueda;
+        campoBuscador.value = busqueda;
+        campoBuscador.dispatchEvent(new Event("input", { bubbles: true }));
+      });
+    });
 
     let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
 
