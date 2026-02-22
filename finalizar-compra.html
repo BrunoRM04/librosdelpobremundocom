@@ -194,6 +194,16 @@
                         <p id="descuento-aplicado" class="texto-descuento-miserias"></p>
                     </div>
 
+                    <div id="contenedor-cupon">
+                        <h2 class="titulo-seccion">🎟️ Añadir cupón</h2>
+                        <div class="cupon-controles">
+                            <input type="text" id="input-cupon" class="campo-formulario"
+                                placeholder="Ingresa tu código de cupón">
+                            <button type="button" id="btn-validar-cupon" class="boton-validar-cupon">Validar</button>
+                        </div>
+                        <p id="estado-cupon" class="texto-estado-cupon"></p>
+                    </div>
+
                     <h2 class="titulo-seccion">Método de pago</h2>
                     <div class="metodos-pago">
                         <label><input type="radio" name="pago" required> Mercado Pago</label>
@@ -939,6 +949,8 @@
             const totalFinalTexto = document.getElementById("total-final").textContent.replace("UYU ", "");
 
             const usuarioRegistrado = JSON.parse(localStorage.getItem('usuarioRegistrado'));
+            const cuponInput = document.getElementById('input-cupon');
+            const cuponAplicado = cuponInput.value.trim() || null;
 
             const datosVenta = {
                 nombre: nombreCompleto,
@@ -952,6 +964,8 @@
                 metodo_pago: opcionPago,
                 monto_efectivo: montoEfectivo,
                 puntos_usados: puntosUsados,
+                descuento_cupon_porcentaje: window.descuentoCupon || 0,
+                cupon_codigo: cuponAplicado,
                 total_productos: totalProductos,
                 costo_envio: parseInt(costoEnvioTexto) || 0,
                 total_final: parseInt(totalFinalTexto) || totalProductos,
@@ -1147,6 +1161,13 @@
             const envio = parseInt(costoEnvioTexto) || 0;
 
             let total = totalProductos + envio - puntosAUsar;
+            
+            // Aplicar descuento por cupón si existe
+            if (window.descuentoCupon > 0) {
+                const descuentoMonto = Math.floor(total * (window.descuentoCupon / 100));
+                total -= descuentoMonto;
+            }
+            
             if (total < 0) total = 0;
 
             if (totalFinalEl) {
@@ -1155,6 +1176,58 @@
 
             window.totalFinalConDescuentoPuntos = total;
         }
+
+        // Funcionalidad de cupones
+        let descuentoCupon = 0;
+        window.descuentoCupon = 0;
+
+        const btnValidarCupon = document.getElementById('btn-validar-cupon');
+        const inputCupon = document.getElementById('input-cupon');
+        const estadoCupon = document.getElementById('estado-cupon');
+
+        btnValidarCupon.addEventListener('click', async () => {
+            const cupon = inputCupon.value.trim();
+
+            if (cupon.length < 2) {
+                estadoCupon.textContent = '❌ Ingresa un código de cupón válido';
+                estadoCupon.className = 'texto-estado-cupon error';
+                return;
+            }
+
+            try {
+                const response = await fetch(`api/web/validar_cupon.php?cupon=${encodeURIComponent(cupon)}`);
+                const data = await response.json();
+
+                if (!data.ok) {
+                    estadoCupon.textContent = `❌ ${data.mensaje}`;
+                    estadoCupon.className = 'texto-estado-cupon error';
+                    window.descuentoCupon = 0;
+                    recalcularTotalConDescuento();
+                    return;
+                }
+
+                // Cupón válido
+                window.descuentoCupon = data.porcentaje;
+                const cuponNombre = cupon.toUpperCase();
+                estadoCupon.textContent = `✅ Cupón "${cuponNombre}" aplicado: ${data.porcentaje}% descuento`;
+                estadoCupon.className = 'texto-estado-cupon exito';
+                inputCupon.disabled = true;
+                btnValidarCupon.disabled = true;
+                recalcularTotalConDescuento();
+
+            } catch (error) {
+                console.error('Error al validar cupón:', error);
+                estadoCupon.textContent = '❌ Error al validar el cupón. Intenta más tarde.';
+                estadoCupon.className = 'texto-estado-cupon error';
+            }
+        });
+
+        // Permitir validar cupón presionando Enter
+        inputCupon.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                btnValidarCupon.click();
+            }
+        });
 
         async function abrirPanelUsuario(usuario) {
             const panelUsuario = document.getElementById('panelUsuario');

@@ -4134,6 +4134,65 @@ body {
   display: block;
 }
 
+.cupon-controles {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#input-cupon {
+  padding: 0.8rem;
+  border: 1px solid var(--blanco);
+  background-color: transparent;
+  color: var(--blanco);
+  outline: none;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+#input-cupon:focus {
+  border-color: var(--blanco);
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+#input-cupon::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.boton-validar-cupon {
+  background-color: var(--blanco) !important;
+  color: var(--rojo-principal) !important;
+  padding: 0.8rem 1.2rem !important;
+  border: none !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  font-weight: bold !important;
+  transition: all 0.3s ease !important;
+  white-space: nowrap;
+}
+
+.boton-validar-cupon:hover {
+  background-color: var(--negro) !important;
+  color: var(--blanco) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+.texto-estado-cupon {
+  color: var(--blanco);
+  font-weight: bold;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+.texto-estado-cupon.exito {
+  color: #90EE90;
+}
+
+.texto-estado-cupon.error {
+  color: #FF6B6B;
+}
+
 .oculto {
   display: none !important;
 }
