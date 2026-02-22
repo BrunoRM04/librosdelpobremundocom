@@ -1,6 +1,7 @@
 /* GENERAL */
 
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
 
 * {
   margin: 0;
@@ -1489,6 +1490,515 @@ body {
 
 
 /* LIBRO DETALLES */
+
+/* BOOK INDIVIDUAL (NUEVO DETALLE) */
+
+.book-individual {
+  background: var(--blanco);
+  padding: 5rem 2rem 6rem;
+  display: flex;
+  justify-content: center;
+  font-family: "DM Sans", sans-serif;
+  color: var(--negro);
+}
+
+.book-individual__inner {
+  width: 100%;
+  max-width: 1240px;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.book-individual__card {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+.book-individual__visual {
+  position: sticky;
+  top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.book-individual__cover-wrap {
+  position: relative;
+  background: var(--gris-claro, #f5f4f2);
+  overflow: hidden;
+}
+
+.book-individual__cover-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset -8px 0 18px rgba(0, 0, 0, 0.08);
+  pointer-events: none;
+}
+
+.book-individual__cover {
+  width: 100%;
+  display: block;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+.book-individual__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--rojo-principal);
+  color: var(--blanco);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.85rem;
+  align-self: flex-start;
+}
+
+.book-individual__miseries {
+  font-size: 0.82rem;
+  color: var(--gris-texto, #5a5a5a);
+  letter-spacing: 0.04em;
+  padding-top: 0.25rem;
+  border-top: 1px solid var(--gris-linea, #d4d1cc);
+}
+
+.book-individual__miseries strong {
+  color: var(--rojo-principal);
+}
+
+.book-individual__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-top: 0.5rem;
+}
+
+.book-individual__label {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rojo-principal);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.book-individual__title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 700;
+  color: var(--negro);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.book-individual__meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--gris-linea, #d4d1cc);
+  margin-bottom: 2rem;
+}
+
+.book-individual__meta-item {
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--gris-linea, #d4d1cc);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.book-individual__meta-item:nth-child(odd) {
+  padding-right: 2rem;
+}
+
+.book-individual__meta-item:nth-child(even) {
+  padding-left: 2rem;
+  border-left: 1px solid var(--gris-linea, #d4d1cc);
+}
+
+.book-individual__meta-key {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gris-texto, #5a5a5a);
+  font-weight: 500;
+}
+
+.book-individual__meta-val {
+  font-size: 0.92rem;
+  color: var(--negro);
+  font-weight: 400;
+}
+
+.book-individual__pricing {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--gris-linea, #d4d1cc);
+  border-bottom: 1px solid var(--gris-linea, #d4d1cc);
+}
+
+.book-individual__price-current {
+  font-family: "Playfair Display", serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--negro);
+  letter-spacing: -0.01em;
+}
+
+.book-individual__price-original {
+  font-size: 1rem;
+  color: var(--gris-texto, #5a5a5a);
+  text-decoration: line-through;
+  font-weight: 300;
+}
+
+.book-individual__price-tag {
+  margin-left: auto;
+  background: var(--rojo-principal);
+  color: var(--blanco);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.7rem;
+  align-self: center;
+}
+
+.book-individual__qty {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.book-individual__qty-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gris-texto, #5a5a5a);
+  font-weight: 500;
+}
+
+.book-individual__qty-ctrl {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid var(--gris-linea, #d4d1cc);
+}
+
+.book-individual__qty-ctrl button {
+  background: var(--blanco);
+  border: none;
+  width: 38px;
+  height: 38px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: var(--negro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.book-individual__qty-ctrl button:hover {
+  background: var(--gris-claro, #f5f4f2);
+}
+
+.book-individual__qty-ctrl span {
+  width: 44px;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-left: 1px solid var(--gris-linea, #d4d1cc);
+  border-right: 1px solid var(--gris-linea, #d4d1cc);
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-individual__actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.book-individual__btn-cart {
+  flex: 1;
+  background: var(--negro);
+  color: var(--blanco);
+  border: none;
+  padding: 1rem 1.5rem;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  transition: background 0.15s;
+}
+
+.book-individual__btn-cart:hover {
+  background: #1a1a1a;
+}
+
+.book-individual__btn-cart--red {
+  background: var(--rojo-principal);
+}
+
+.book-individual__btn-cart--red:hover {
+  background: #7a0001;
+}
+
+.book-individual__btn-fav {
+  background: var(--blanco);
+  color: var(--negro);
+  border: 1px solid var(--negro);
+  padding: 1rem 1.2rem;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.book-individual__btn-fav:hover {
+  background: var(--negro);
+  color: var(--blanco);
+}
+
+.book-individual__btn-fav.activo {
+  background: var(--negro);
+  color: var(--blanco);
+}
+
+.book-individual__btn-whatsapp {
+  flex: 1;
+  background: var(--blanco);
+  color: var(--negro);
+  border: 1px solid var(--negro);
+  padding: 1rem 1.5rem;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.book-individual__btn-whatsapp:hover {
+  background: var(--negro);
+  color: var(--blanco);
+}
+
+.book-individual__no-stock {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rojo-principal);
+  font-weight: 500;
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--rojo-principal);
+  border-bottom: 1px solid var(--rojo-principal);
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.book-individual__logistics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--gris-linea, #d4d1cc);
+}
+
+.book-individual__logistics-block {
+  padding: 1.5rem 0;
+}
+
+.book-individual__logistics-block:last-child {
+  padding-left: 2rem;
+  border-left: 1px solid var(--gris-linea, #d4d1cc);
+}
+
+.book-individual__logistics-title {
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rojo-principal);
+  font-weight: 500;
+  margin-bottom: 0.9rem;
+}
+
+.book-individual__logistics-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.book-individual__logistics-list li {
+  font-size: 0.84rem;
+  color: var(--gris-texto, #5a5a5a);
+  line-height: 1.5;
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.book-individual__logistics-list li .icon-dot {
+  color: var(--rojo-principal);
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.book-individual__description {
+  border-top: 1px solid var(--gris-linea, #d4d1cc);
+  padding-top: 3rem;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.book-individual__desc-heading {
+  font-family: "Playfair Display", serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--negro);
+  line-height: 1.3;
+}
+
+.book-individual__desc-heading span {
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--rojo-principal);
+  margin-top: 0.8rem;
+}
+
+.book-individual__desc-text {
+  font-size: 0.98rem;
+  line-height: 1.85;
+  color: var(--gris-texto, #5a5a5a);
+  font-weight: 300;
+}
+
+@media (max-width: 1024px) {
+  .book-individual__card {
+    grid-template-columns: 280px 1fr;
+    gap: 3.5rem;
+  }
+
+  .book-individual__description {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .book-individual {
+    padding: 3rem 1.25rem 4rem;
+  }
+
+  .book-individual__card {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .book-individual__visual {
+    position: static;
+    max-width: 260px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .book-individual__title,
+  .book-individual__label {
+    text-align: center;
+  }
+
+  .book-individual__meta {
+    grid-template-columns: 1fr;
+  }
+
+  .book-individual__meta-item:nth-child(even) {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .book-individual__pricing {
+    flex-wrap: wrap;
+  }
+
+  .book-individual__price-tag {
+    margin-left: 0;
+  }
+
+  .book-individual__actions {
+    flex-direction: column;
+  }
+
+  .book-individual__btn-fav {
+    width: 100%;
+  }
+
+  .book-individual__logistics {
+    grid-template-columns: 1fr;
+  }
+
+  .book-individual__logistics-block:last-child {
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid var(--gris-linea, #d4d1cc);
+  }
+
+  .book-individual__description {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .book-individual__desc-heading {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-individual__qty {
+    gap: 1rem;
+  }
+
+  .book-individual__desc-text {
+    font-size: 0.92rem;
+  }
+}
 
 .sin-stock-detalle {
   display: inline-block;

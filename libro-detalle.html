@@ -108,8 +108,8 @@
             <i class='bx bxl-whatsapp'></i>
         </a>
 
-        <section class="zona-detalle-libro">
-            <div class="contenedor-detalle-libro" id="contenedorLibroDetalle">
+        <section class="book-individual">
+            <div class="book-individual__inner" id="contenedorLibroDetalle">
                 <p class="mensaje-cargando">Cargando información del libro...</p>
             </div>
         </section>
@@ -218,67 +218,140 @@
                         const nombreArchivo = rutaImagen.split('/').pop().replace(/%20/g, ' ');
                         rutaImagen = `public/img/portadas/${nombreArchivo}`;
                     }
-                    contenedor.innerHTML = `
-        <div class="tarjeta-libro-detalle">
-          <img src="${rutaImagen}" alt="Portada del libro" class="imagen-libro-detalle">
-          <div class="info-libro-detalle">
-            <h1 class="titulo-libro-detalle">${libro.titulo}</h1>
-            <p class="dato-libro"><strong>Autor:</strong> ${libro.autor}</p>
-            <p class="dato-libro"><strong>Editorial:</strong> ${libro.editorial}</p>
-            <p class="dato-libro"><strong>ISBN:</strong> ${libro.isbn}</p>
-            <p class="dato-libro"><strong>Páginas:</strong> ${libro.numPaginas}</p>
-                        <p class="miserias-detalle">Este libro genera ${puntosPobreMundo} miserias</p>
-            <div class="precio-libro-detalle">
-  <span class="precio-original-libro">UYU ${precioOriginal}</span>
-  <span class="precio-descuento-libro">UYU ${precioFinal}</span>
-</div>
-                        <div class="cantidad-libro">
-                            <label for="cantidad">Cantidad:</label>
-                            <div class="control-cantidad">
-                                <button id="menosCantidad">&minus;</button>
-                                <span id="valorCantidad">1</span>
-                                <button id="masCantidad">+</button>
+                                        const enStock = Number(libro.stock) > 0;
+                                        const badgeHtml = enStock
+                                                ? `<span class="book-individual__badge"><i class='bx bx-book-open'></i> En stock</span>`
+                                                : `<span class="book-individual__no-stock">Sin stock</span>`;
+
+                                        let accionesHtml = "";
+                                        if (enStock) {
+                                                accionesHtml = libro.consultarPorWhatsApp
+                                                        ? `<a href="https://wa.me/${libro.numeroWhatsApp}?text=Hola,%20quiero%20consultar%20por%20el%20libro%20${encodeURIComponent(libro.titulo)}"
+                            target="_blank" class="book-individual__btn-whatsapp boton-consultar">
+                            <i class='bx bxl-whatsapp'></i>
+                            Consultar
+                     </a>`
+                                                        : `<button class="book-individual__btn-cart boton-anadir-detalle">
+                            <i class='bx bx-cart-alt'></i>
+                            Añadir al carrito
+                        </button>`;
+
+                                                accionesHtml += `
+                    <button class="book-individual__btn-fav boton-favorito-detalle">
+                        <i class='bx bx-heart'></i>
+                        Favoritos
+                    </button>`;
+                                        } else {
+                                                accionesHtml = `
+                    <a href="https://wa.me/59894090711?text=Hola,%20quiero%20consultar%20por%20el%20libro%20${encodeURIComponent(libro.titulo)}"
+                        target="_blank" class="book-individual__btn-whatsapp boton-consultar">
+                        <i class='bx bxl-whatsapp'></i>
+                        Consultar disponibilidad
+                    </a>
+                    <button class="book-individual__btn-fav boton-favorito-detalle">
+                        <i class='bx bx-heart'></i>
+                        Favoritos
+                    </button>`;
+                                        }
+
+                                        contenedor.innerHTML = `
+                <div class="book-individual__card">
+                    <div class="book-individual__visual">
+                        <div class="book-individual__cover-wrap">
+                            <img src="${rutaImagen}" alt="Portada del libro" class="book-individual__cover">
+                        </div>
+                        ${badgeHtml}
+                        <p class="book-individual__miseries">
+                            Este libro genera <strong>${puntosPobreMundo} miserias</strong>
+                        </p>
+                    </div>
+
+                    <div class="book-individual__info">
+                        <p class="book-individual__label">Detalle del libro</p>
+                        <h1 class="book-individual__title">${libro.titulo}</h1>
+
+                        <div class="book-individual__meta">
+                            <div class="book-individual__meta-item">
+                                <span class="book-individual__meta-key">Autor</span>
+                                <span class="book-individual__meta-val" data-field="autor">${libro.autor}</span>
+                            </div>
+                            <div class="book-individual__meta-item">
+                                <span class="book-individual__meta-key">Editorial</span>
+                                <span class="book-individual__meta-val" data-field="editorial">${libro.editorial}</span>
+                            </div>
+                            <div class="book-individual__meta-item">
+                                <span class="book-individual__meta-key">ISBN</span>
+                                <span class="book-individual__meta-val" data-field="isbn">${libro.isbn}</span>
+                            </div>
+                            <div class="book-individual__meta-item">
+                                <span class="book-individual__meta-key">Páginas</span>
+                                <span class="book-individual__meta-val" data-field="paginas">${libro.numPaginas}</span>
                             </div>
                         </div>
-<div class="acciones-libro-detalle">
-  ${libro.stock > 0
-                            ? (
-                                libro.consultarPorWhatsApp
-                                    ? `<a href="https://wa.me/${libro.numeroWhatsApp}?text=Hola,%20quiero%20consultar%20por%20el%20libro%20${encodeURIComponent(libro.titulo)}" 
-              target="_blank" class="boton-consultar">
-              <i class='bx bxl-whatsapp'></i> Consultar
-           </a>`
-                                    : `<button class="boton-anadir-detalle"><i class='bx bx-cart-alt'></i> Añadir al carrito</button>`
-                            ) +
-                            `<button class="boton-favorito-detalle"><i class='bx bx-heart'></i> Añadir a favoritos</button>`
-                            : `
-                                      <a href="https://wa.me/59894090711?text=Hola,%20quiero%20consultar%20por%20el%20libro%20${encodeURIComponent(libro.titulo)}"
-                                          target="_blank" class="boton-consultar">
-                                          <i class='bx bxl-whatsapp'></i> Consultar
-                                      </a>
-                                      <button class="boton-favorito-detalle"><i class='bx bx-heart'></i> Añadir a favoritos</button>`
-                        }
-</div>
-            <div class="envios-libro">
-              <p><strong>Envíos:</strong></p>
-              <ul>
-                <li>📦 Montevideo (24 horas): <strong>UYU $150 (Envío gratuito a partir de $1500)</strong></li>
-                <li>🚛 Interior del país (DAC): <strong>Retiro en agencia: UYU $240 - Envio a domicilio: UYU $280 (Envío gratuito a partir de $2000)</strong></li>
-              </ul>
-            </div>
 
-            <div class="pagos-libro">
-  <p><strong>Pagos:</strong></p>
-  <ul>
-    <li>💳 Aceptamos tarjetas de crédito y débito. (Hasta 12 cuotas sin interés)</li>
-    <li>📱 Pagos con Mercado Pago.</li>
-    <li>💵 Transferencias bancarias y efectivo</li>
-  </ul>
-</div>
+                        <div class="book-individual__pricing">
+                            <span class="book-individual__price-current">UYU ${precioFinal}</span>
+                            <span class="book-individual__price-original">UYU ${precioOriginal}</span>
+                            <span class="book-individual__price-tag">-${Math.round(descuento * 100)}%</span>
+                        </div>
 
-          </div>
-        </div>
-        <p class="descripcion-libro-detalle">${libro.descripcion}</p>`;
+                        <div class="book-individual__qty">
+                            <span class="book-individual__qty-label">Cantidad</span>
+                            <div class="book-individual__qty-ctrl">
+                                <button id="menosCantidad" aria-label="Restar cantidad">&minus;</button>
+                                <span id="valorCantidad">1</span>
+                                <button id="masCantidad" aria-label="Sumar cantidad">+</button>
+                            </div>
+                        </div>
+
+                        <div class="book-individual__actions" id="accionesLibro">
+                            ${accionesHtml}
+                        </div>
+
+                        <div class="book-individual__logistics">
+                            <div class="book-individual__logistics-block">
+                                <p class="book-individual__logistics-title">Envíos</p>
+                                <ul class="book-individual__logistics-list">
+                                    <li>
+                                        <i class='bx bx-package icon-dot'></i>
+                                        <span>Montevideo (24h): <strong>UYU $150</strong> — gratis desde $1.500</span>
+                                    </li>
+                                    <li>
+                                        <i class='bx bx-trip icon-dot'></i>
+                                        <span>Interior (DAC) — Agencia: <strong>$240</strong> · Domicilio: <strong>$280</strong> — gratis desde $2.000</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="book-individual__logistics-block">
+                                <p class="book-individual__logistics-title">Formas de pago</p>
+                                <ul class="book-individual__logistics-list">
+                                    <li>
+                                        <i class='bx bx-credit-card icon-dot'></i>
+                                        <span>Tarjetas de crédito y débito — hasta 12 cuotas sin interés</span>
+                                    </li>
+                                    <li>
+                                        <i class='bx bxl-mercado-pago icon-dot'></i>
+                                        <span>Mercado Pago</span>
+                                    </li>
+                                    <li>
+                                        <i class='bx bx-money icon-dot'></i>
+                                        <span>Transferencia bancaria y efectivo</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="book-individual__description">
+                    <div>
+                        <h2 class="book-individual__desc-heading">
+                            Sobre el libro
+                            <span></span>
+                        </h2>
+                    </div>
+                    <p class="book-individual__desc-text" id="descripcionLibro">${libro.descripcion}</p>
+                </div>`;
 
                     let cantidad = 1;
                     const valorCantidad = document.getElementById("valorCantidad");
@@ -381,15 +454,15 @@
         document.addEventListener("click", e => {
             const botonCarrito = e.target.closest('.boton-anadir-detalle');
             if (botonCarrito) {
-                const titulo = document.querySelector('.titulo-libro-detalle')?.textContent;
-                const autor = document.querySelector('.dato-libro:nth-child(2)')?.textContent.replace('Autor:', '').trim();
-                const imagen = document.querySelector('.imagen-libro-detalle')?.src;
-                const precio = parseInt(document.querySelector('.precio-descuento-libro')?.textContent.replace(/[^\d]/g, ''));
+                const titulo = document.querySelector('.book-individual__title')?.textContent;
+                const autor = document.querySelector('[data-field="autor"]')?.textContent.trim();
+                const imagen = document.querySelector('.book-individual__cover')?.src;
+                const precio = parseInt(document.querySelector('.book-individual__price-current')?.textContent.replace(/[^\d]/g, ''));
                 const cantidad = parseInt(document.getElementById('valorCantidad')?.textContent || '1');
 
                 if (!titulo || !autor || !imagen || !precio || !cantidad) return;
 
-                const precioFinal = parseInt(document.querySelector('.precio-descuento-libro')?.textContent.replace(/[^\d]/g, ''));
+                const precioFinal = parseInt(document.querySelector('.book-individual__price-current')?.textContent.replace(/[^\d]/g, ''));
 
                 const existente = carrito.find(item => item.titulo === titulo);
                 if (existente) {
