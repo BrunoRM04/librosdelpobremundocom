@@ -1498,7 +1498,6 @@ body {
   padding: 5rem 2rem 6rem;
   display: flex;
   justify-content: center;
-  font-family: "DM Sans", sans-serif;
   color: var(--negro);
 }
 
@@ -1738,7 +1737,6 @@ body {
   color: var(--blanco);
   border: none;
   padding: 1rem 1.5rem;
-  font-family: "DM Sans", sans-serif;
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -1768,7 +1766,6 @@ body {
   color: var(--negro);
   border: 1px solid var(--negro);
   padding: 1rem 1.2rem;
-  font-family: "DM Sans", sans-serif;
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -1798,7 +1795,6 @@ body {
   color: var(--negro);
   border: 1px solid var(--negro);
   padding: 1rem 1.5rem;
-  font-family: "DM Sans", sans-serif;
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.12em;
