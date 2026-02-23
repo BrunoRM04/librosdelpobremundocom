@@ -654,6 +654,141 @@
 
   </script>
 
+  <script>
+    (function () {
+      if (window.__cargadorNavegacionInlineInicializado) return;
+      window.__cargadorNavegacionInlineInicializado = true;
+
+      var DURACION_MINIMA_MS = 850;
+      var cargadorPantalla = null;
+      var navegandoConCargador = false;
+
+      function crearCargador() {
+        if (cargadorPantalla) return cargadorPantalla;
+
+        cargadorPantalla = document.createElement("div");
+        cargadorPantalla.className = "cargador-pantalla";
+        cargadorPantalla.setAttribute("aria-hidden", "true");
+
+        cargadorPantalla.innerHTML = [
+          '<div class="cargador-escenario">',
+          '  <div class="cargador-contenedor-logo">',
+          '    <div class="cargador-logo-brillo"></div>',
+          '    <div class="cargador-logo-wrap">',
+          '      <img src="public/img/marca/blanco.png" alt="Libros del Pobre Mundo" />',
+          '    </div>',
+          '  </div>',
+          '  <div class="cargador-progreso-area">',
+          '    <div class="cargador-progreso-pista"><div class="cargador-progreso-relleno"></div></div>',
+          '    <div class="cargador-puntos"><div class="cargador-punto"></div><div class="cargador-punto"></div><div class="cargador-punto"></div></div>',
+          '    <span class="cargador-texto">Entrando al Pobre Mundo</span>',
+          '  </div>',
+          '</div>',
+          '<div class="cargador-cortina"></div>'
+        ].join("");
+
+        document.body.appendChild(cargadorPantalla);
+        return cargadorPantalla;
+      }
+
+      function esClickSimple(evento) {
+        return evento.button === 0 && !evento.metaKey && !evento.ctrlKey && !evento.shiftKey && !evento.altKey;
+      }
+
+      function esNavegacionInterna(url) {
+        return url.origin === window.location.origin;
+      }
+
+      function esMismaPagina(url) {
+        return url.pathname === window.location.pathname && url.search === window.location.search;
+      }
+
+      function mostrarCargadorYNavegar(urlDestino) {
+        if (navegandoConCargador) return;
+
+        var destino = new URL(urlDestino, window.location.href);
+        if (!esNavegacionInterna(destino)) {
+          window.location.href = destino.href;
+          return;
+        }
+
+        if (esMismaPagina(destino) && destino.hash) {
+          window.location.href = destino.href;
+          return;
+        }
+
+        navegandoConCargador = true;
+        crearCargador().classList.add("activo");
+
+        window.setTimeout(function () {
+          window.location.href = destino.href;
+        }, DURACION_MINIMA_MS);
+      }
+
+      function manejarClickEnlaces(evento) {
+        if (!esClickSimple(evento)) return;
+
+        var enlace = evento.target.closest("a[href]");
+        if (!enlace) return;
+
+        var hrefAtributo = (enlace.getAttribute("href") || "").trim();
+        if (!hrefAtributo || hrefAtributo.startsWith("#") || hrefAtributo.startsWith("javascript:")) return;
+        if (hrefAtributo.startsWith("mailto:") || hrefAtributo.startsWith("tel:")) return;
+        if (enlace.hasAttribute("download")) return;
+        if (enlace.target && enlace.target.toLowerCase() !== "_self") return;
+
+        var destino;
+        try {
+          destino = new URL(enlace.href, window.location.href);
+        } catch (_error) {
+          return;
+        }
+
+        if (!esNavegacionInterna(destino)) return;
+        if (esMismaPagina(destino) && destino.hash) return;
+        if (destino.href === window.location.href) return;
+
+        evento.preventDefault();
+        mostrarCargadorYNavegar(destino.href);
+      }
+
+      function manejarFormularios(evento) {
+        var formulario = evento.target;
+        if (!(formulario instanceof HTMLFormElement)) return;
+        if (formulario.target && formulario.target.toLowerCase() !== "_self") return;
+
+        var action = formulario.getAttribute("action");
+        if (!action || action.trim() === "") return;
+
+        var destino;
+        try {
+          destino = new URL(action, window.location.href);
+        } catch (_error) {
+          return;
+        }
+
+        if (!esNavegacionInterna(destino)) return;
+        if (esMismaPagina(destino) && !destino.hash) return;
+        if (destino.href === window.location.href) return;
+
+        crearCargador().classList.add("activo");
+      }
+
+      function inicializarCargadorNavegacion() {
+        crearCargador();
+        document.addEventListener("click", manejarClickEnlaces, true);
+        document.addEventListener("submit", manejarFormularios, true);
+        window.mostrarCargadorYNavegar = mostrarCargadorYNavegar;
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", inicializarCargadorNavegacion);
+      } else {
+        inicializarCargadorNavegacion();
+      }
+    })();
+  </script>
+
 
 </body>
 

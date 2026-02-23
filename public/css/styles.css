@@ -13,12 +13,309 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Raleway", sans-serif;
+  opacity: 0;
+  animation: body-fade-in 560ms ease-out forwards;
+}
+
+@keyframes body-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    opacity: 1;
+    animation: none;
+  }
 }
 
 :root {
   --rojo-principal: #9E0001;
   --blanco: #ffffff;
   --negro: #000000;
+}
+
+.cargador-pantalla {
+  position: fixed;
+  inset: 0;
+  background: var(--rojo-principal);
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  overflow: hidden;
+}
+
+.cargador-pantalla::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+  background-size: 180px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.35;
+}
+
+.cargador-pantalla::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.45) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cargador-pantalla.activo {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+.cargador-escenario {
+  position: relative;
+  z-index: 2;
+  width: 100dvw;
+  min-height: 100dvh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: clamp(34px, 7vh, 64px);
+  padding: clamp(28px, 6vw, 56px);
+}
+
+.cargador-contenedor-logo {
+  position: relative;
+  display: inline-block;
+}
+
+.cargador-logo-brillo {
+  position: absolute;
+  inset: -30px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+  animation: cargador-brillo-pulso 2s ease-in-out 0.2s infinite;
+  pointer-events: none;
+}
+
+.cargador-logo-wrap {
+  opacity: 0;
+  animation:
+    cargador-subida-fade 0.6s cubic-bezier(.22, 1, .36, 1) 0.2s forwards,
+    cargador-rebote-suave 2.2s cubic-bezier(.36, .07, .19, .97) 1s infinite;
+}
+
+.cargador-logo-wrap img {
+  width: clamp(130px, 32vw, 230px);
+  max-width: 70vw;
+  height: auto;
+  filter: drop-shadow(0 12px 40px rgba(0, 0, 0, 0.55));
+}
+
+.cargador-progreso-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  opacity: 0;
+  animation: cargador-subida-fade 0.5s cubic-bezier(.22, 1, .36, 1) 0.7s forwards;
+}
+
+.cargador-progreso-pista {
+  width: clamp(170px, 52vw, 320px);
+  height: 3px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.cargador-progreso-relleno {
+  height: 100%;
+  width: 0%;
+  background: var(--blanco);
+  border-radius: 999px;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+}
+
+.cargador-pantalla.activo .cargador-progreso-relleno {
+  animation: cargador-llenar-barra 2.4s cubic-bezier(.4, 0, .2, 1) 0.2s forwards;
+}
+
+.cargador-puntos {
+  display: flex;
+  gap: 8px;
+}
+
+.cargador-punto {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  animation: cargador-punto-pulso 1.2s ease-in-out infinite;
+}
+
+.cargador-punto:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.cargador-punto:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.cargador-texto {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: clamp(9px, 1.9vw, 11px);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-family: Georgia, serif;
+  text-align: center;
+}
+
+@media (max-width: 420px) {
+  .cargador-logo-brillo {
+    inset: -18px;
+  }
+
+  .cargador-progreso-area {
+    gap: 14px;
+  }
+}
+
+.cargador-cortina {
+  position: fixed;
+  inset: 0;
+  background: var(--blanco);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cargador-pantalla.activo .cargador-cortina {
+  animation: cargador-cortina-flash 0.7s ease-in-out 2.8s forwards;
+}
+
+@keyframes cargador-subida-fade {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cargador-rebote-suave {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  30% {
+    transform: translateY(-10px);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+
+  70% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes cargador-brillo-pulso {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.95);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes cargador-llenar-barra {
+  0% {
+    width: 0%;
+  }
+
+  40% {
+    width: 45%;
+  }
+
+  70% {
+    width: 75%;
+  }
+
+  90% {
+    width: 92%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes cargador-punto-pulso {
+  0%,
+  100% {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(0.8);
+  }
+
+  50% {
+    background: rgba(255, 255, 255, 0.9);
+    transform: scale(1.2);
+  }
+}
+
+@keyframes cargador-cortina-flash {
+  0% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    background: var(--negro);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cargador-logo-wrap,
+  .cargador-progreso-area,
+  .cargador-pantalla.activo .cargador-progreso-relleno,
+  .cargador-punto,
+  .cargador-logo-brillo,
+  .cargador-pantalla.activo .cargador-cortina {
+    animation: none;
+  }
+
+  .cargador-logo-wrap,
+  .cargador-progreso-area {
+    opacity: 1;
+    transform: none;
+  }
+
+  .cargador-progreso-relleno {
+    width: 100%;
+  }
 }
 
 /* GENERAL */
@@ -835,6 +1132,11 @@ body {
 .titulo-libro {
   font-weight: bold;
   font-size: 1rem;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.25s ease;
 }
 
 .autor-libro {
@@ -1424,6 +1726,18 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.25s ease;
+}
+
+.tarjeta-libro:hover .titulo-libro,
+.tarjeta-catalogo:hover .titulo-catalogo-libro,
+.titulo-libro:hover,
+.titulo-catalogo-libro:hover {
+  text-decoration-color: currentColor;
 }
 
 .autor-catalogo-libro {
