@@ -1437,6 +1437,13 @@
                 document.addEventListener("click", manejarClickEnlaces, true);
                 document.addEventListener("submit", manejarFormularios, true);
                 window.mostrarCargadorYNavegar = mostrarCargadorYNavegar;
+
+                window.addEventListener("pageshow", function () {
+                    navegandoConCargador = false;
+                    if (cargadorPantalla) {
+                        cargadorPantalla.classList.remove("activo");
+                    }
+                });
             }
 
             if (document.readyState === "loading") {
