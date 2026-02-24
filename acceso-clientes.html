@@ -122,20 +122,41 @@
         </div>
 
         <div class="carrito-lateral" id="carritoLateral">
-            <div class="encabezado-carrito">
-                <h2 class="titulo-carrito">Tu Carrito</h2>
-                <i class='bx bx-x cerrar-carrito' id="cerrarCarrito"></i>
+            <div class="carrito-encabezado">
+                <div class="carrito-encabezado-inner">
+                    <p class="carrito-titulo-eyebrow">Libros Del Pobre Mundo</p>
+                    <h2 class="carrito-titulo">Tu carrito</h2>
+                </div>
+                <button class="carrito-cerrar" id="cerrarCarrito" type="button" aria-label="Cerrar carrito">
+                    <i class='bx bx-x'></i>
+                </button>
             </div>
 
-            <div class="contenido-carrito" id="contenidoCarrito"></div>
-
-            <div class="zona-total-y-boton">
-                <div class="total-carrito">
-                    <span>Total:</span>
-                    <strong id="totalCarrito">UYU 0</strong>
+            <div class="contenido-carrito" id="contenidoCarrito">
+                <div class="carrito-vacio" id="carritoVacio">
+                    <i class='bx bx-book-open carrito-vacio-icono'></i>
+                    <h3 class="carrito-vacio-titulo">El carrito está vacío</h3>
+                    <p class="carrito-vacio-texto">Todavía no hay ningún libro aquí.<br>Explorá el catálogo y encontrá tu próxima lectura.</p>
                 </div>
-                <button class="boton-comprar-ahora" id="botonComprarAhora">
-                    <i class='bx bx-credit-card'></i> Comprar ahora
+            </div>
+
+            <div class="carrito-zona-pie zona-total-y-boton">
+                <div class="carrito-resumen">
+                    <div class="carrito-resumen-fila">
+                        <span>Subtotal</span>
+                        <span id="subtotalCarrito">UYU 0</span>
+                    </div>
+                    <div class="carrito-resumen-fila">
+                        <span>Descuento (5%)</span>
+                        <span id="descuentoCarrito">— UYU 0</span>
+                    </div>
+                    <div class="carrito-resumen-total">
+                        <span class="carrito-resumen-total-label">Total</span>
+                        <span class="carrito-resumen-total-valor" id="totalCarrito">UYU 0</span>
+                    </div>
+                </div>
+                <button class="boton-comprar-ahora" id="botonComprarAhora" type="button">
+                    <i class='bx bx-credit-card'></i> Finalizar compra
                 </button>
             </div>
         </div>
@@ -221,33 +242,64 @@
             const contenedor = document.getElementById("contenidoCarrito");
             if (!contenedor) return;
 
-            contenedor.innerHTML = "";
-            let total = 0;
+            if (carrito.length === 0) {
+                contenedor.innerHTML = `
+                    <div class="carrito-vacio" id="carritoVacio">
+                        <i class='bx bx-book-open carrito-vacio-icono'></i>
+                        <h3 class="carrito-vacio-titulo">El carrito está vacío</h3>
+                        <p class="carrito-vacio-texto">Todavía no hay ningún libro aquí.<br>Explorá el catálogo y encontrá tu próxima lectura.</p>
+                    </div>
+                `;
+                const subtotalVacio = document.getElementById("subtotalCarrito");
+                const descuentoVacio = document.getElementById("descuentoCarrito");
+                const totalVacio = document.getElementById("totalCarrito");
+                if (subtotalVacio) subtotalVacio.textContent = "UYU 0";
+                if (descuentoVacio) descuentoVacio.textContent = "— UYU 0";
+                if (totalVacio) totalVacio.textContent = "UYU 0";
+                localStorage.setItem("carrito", JSON.stringify(carrito));
+                return;
+            }
+
+            let subtotal = 0;
+            let html = "";
 
             carrito.forEach((item, i) => {
-                total += item.precio * item.cantidad;
-
-                contenedor.innerHTML += `
-                <div class="item-carrito">
-                    <img src="${item.imagen}">
-                    <div class="item-detalles">
-                        <h4>${item.titulo}</h4>
-                        <p>${item.autor}</p>
-                        <div class="controles-cantidad">
-                            <button onclick="cambiarCantidad(${i},-1)">-</button>
-                            <span>${item.cantidad}</span>
-                            <button onclick="cambiarCantidad(${i},1)">+</button>
+                subtotal += item.precio * item.cantidad;
+                html += `
+                <div class="carrito-item">
+                    <div class="carrito-item-numero">${String(i + 1).padStart(2, '0')}</div>
+                    <div class="carrito-item-cuerpo">
+                        <img src="${item.imagen}" alt="${item.titulo}" class="carrito-item-imagen" onerror="this.onerror=null;this.src='public/img/portadas/default.jpg'">
+                        <div class="carrito-item-info">
+                            <p class="carrito-item-titulo">${item.titulo}</p>
+                            <p class="carrito-item-autor">${item.autor}</p>
+                            <p class="carrito-item-precio">UYU ${item.precio * item.cantidad}</p>
+                            <div class="carrito-item-controles">
+                                <button class="carrito-control-boton" onclick="cambiarCantidad(${i},-1)" type="button">−</button>
+                                <span class="carrito-control-cantidad">${item.cantidad}</span>
+                                <button class="carrito-control-boton" onclick="cambiarCantidad(${i},1)" type="button">+</button>
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <strong>UYU ${item.precio * item.cantidad}</strong>
-                        <i class='bx bx-trash' onclick="eliminarItem(${i})"></i>
+                    <div class="carrito-item-eliminar-col">
+                        <button class="carrito-item-eliminar" onclick="eliminarItem(${i})" type="button" title="Quitar">
+                            <i class='bx bx-x'></i>
+                        </button>
                     </div>
                 </div>
                 `;
             });
 
-            document.getElementById("totalCarrito").textContent = `UYU ${total}`;
+            contenedor.innerHTML = html;
+
+            const descuento = Math.round(subtotal * 0.05);
+            const total = subtotal - descuento;
+            const subtotalCarrito = document.getElementById("subtotalCarrito");
+            const descuentoCarrito = document.getElementById("descuentoCarrito");
+            const totalCarrito = document.getElementById("totalCarrito");
+            if (subtotalCarrito) subtotalCarrito.textContent = `UYU ${subtotal}`;
+            if (descuentoCarrito) descuentoCarrito.textContent = `— UYU ${descuento}`;
+            if (totalCarrito) totalCarrito.textContent = `UYU ${total}`;
             localStorage.setItem("carrito", JSON.stringify(carrito));
         }
 
