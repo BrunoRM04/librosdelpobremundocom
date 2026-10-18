@@ -8,9 +8,10 @@ $pass = 'clave_base';
 $TOKEN = 'token_telegram';
 $CHAT_ID = 'id_chat_telegram';
 $MERCADOPAGO_ACCESS_TOKEN = 'token_mercadopago';
-// Búsqueda de libros por ISBN en el admin (ambas opcionales).
-$GOOGLE_BOOKS_API_KEY = ''; // console.cloud.google.com → habilitar "Books API" → Credenciales → Clave de API
-$ANTHROPIC_API_KEY = '';    // platform.claude.com → API Keys; se usa sólo si ninguna biblioteca encuentra el ISBN
+// Búsqueda de libros por ISBN en el admin. Preferir OPENAI_API_KEY como variable
+// de entorno del servidor. Si no está disponible, configurarla solo en el
+// config.php privado, nunca en este archivo ni en Git.
+$OPENAI_API_KEY = getenv('OPENAI_API_KEY') ?: '';
 
 $pdo = new PDO(
     "mysql:host=$host;dbname=$db;charset=utf8mb4",
