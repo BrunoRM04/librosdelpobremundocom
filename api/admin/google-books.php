@@ -12,9 +12,11 @@ if (!is_string($q) || trim($q) === '' || mb_strlen($q, 'UTF-8') > 120) {
     echo json_encode(['error' => 'Consulta inválida']);
     exit;
 }
+require_once __DIR__ . '/../_shared/config.php';
 $parametros = ['q' => trim($q), 'maxResults' => 10];
-$clave = getenv('GOOGLE_BOOKS_API_KEY');
-if ($clave !== false && $clave !== '') $parametros['key'] = $clave;
+// Sin API key Google ya no da cuota (responde 429 siempre).
+$clave = $GOOGLE_BOOKS_API_KEY ?? getenv('GOOGLE_BOOKS_API_KEY');
+if ($clave) $parametros['key'] = $clave;
 $url = 'https://www.googleapis.com/books/v1/volumes?' . http_build_query($parametros);
 $curl = curl_init($url);
 curl_setopt_array($curl, [
@@ -30,7 +32,7 @@ curl_close($curl);
 if ($respuesta === false || $estado !== 200) {
     error_log('Google Books status: ' . $estado);
     http_response_code(502);
-    echo json_encode(['error' => 'Google Books no está disponible']);
+    echo json_encode(['error' => $estado === 429 ? 'Google Books sin cuota: falta GOOGLE_BOOKS_API_KEY en config.php o se agotó la cuota diaria' : 'Google Books no está disponible']);
     exit;
 }
 $datos = json_decode($respuesta, true);

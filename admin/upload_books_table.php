@@ -333,11 +333,15 @@ if (!isset($_SESSION['admin_id'])) {
             }
             isbnButton.disabled = true;
             isbnResultados.replaceChildren();
-            mostrarISBNMensaje('Buscando en Google Books, Open Library y Crossref...', 'success');
+            mostrarISBNMensaje(esISBN ? 'Buscando en Google Books, Open Library, Crossref y agencias ISBN...' : 'Buscando en Google Books y Open Library...', 'success');
 
             const solicitudes = [buscarGoogle(esISBN ? isbn : consulta, esISBN), buscarOpenLibrary(esISBN ? isbn : consulta, esISBN)];
-            if (esISBN) solicitudes.push(buscarCrossref(isbn));
-            const respuestas = await Promise.allSettled(solicitudes);
+            if (esISBN) solicitudes.push(buscarCrossref(isbn), buscarServidor(isbn, 'agencia'));
+            let respuestas = await Promise.allSettled(solicitudes);
+            if (esISBN && !respuestas.some(r => r.status === 'fulfilled' && r.value.length)) {
+                mostrarISBNMensaje('No apareció en las bibliotecas. Buscando en la web con IA (puede tardar hasta un minuto)...', 'success');
+                respuestas = respuestas.concat(await Promise.allSettled([buscarServidor(isbn, 'ia')]));
+            }
             isbnButton.disabled = false;
             const encontrados = respuestas.flatMap(r => r.status === 'fulfilled' ? r.value : []);
             const unicos = new Map();
@@ -369,9 +373,9 @@ if (!isset($_SESSION['admin_id'])) {
             });
         }
 
-        async function obtenerJSON(url) {
+        async function obtenerJSON(url, espera = 10000) {
             const controller = new AbortController();
-            const timeout = setTimeout(() => controller.abort(), 10000);
+            const timeout = setTimeout(() => controller.abort(), espera);
             try {
                 const response = await fetch(url, { signal: controller.signal });
                 if (!response.ok) throw new Error(`Servicio no disponible: ${response.status}`);
@@ -462,6 +466,12 @@ if (!isset($_SESSION['admin_id'])) {
             })).filter(libro => libro.titulo);
             cacheOpenLibrary.set(claveCache, resultado);
             return resultado;
+        }
+
+        // Agencias ISBN nacionales (Colombia, Chile, México, Perú) o IA con búsqueda web, vía el servidor.
+        async function buscarServidor(isbn, fuente) {
+            const data = await obtenerJSON(`../api/admin/isbn-fuentes.php?isbn=${encodeURIComponent(isbn)}&fuente=${fuente}`, fuente === 'ia' ? 120000 : 20000);
+            return (data.items || []).filter(libro => libro?.titulo);
         }
 
         async function buscarCrossref(isbn) {
