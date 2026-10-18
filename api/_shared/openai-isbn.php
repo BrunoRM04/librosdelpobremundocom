@@ -26,21 +26,25 @@ function libro_desde_respuesta_openai($respuesta, $isbn)
     $fuentes = [];
     $busco = false;
     foreach ($respuesta['output'] ?? [] as $item) {
-        if (($item['type'] ?? '') === 'web_search_call' && ($item['status'] ?? '') === 'completed') $busco = true;
+        if (($item['type'] ?? '') === 'web_search_call' && ($item['status'] ?? '') === 'completed') {
+            $busco = true;
+            foreach ($item['action']['sources'] ?? [] as $fuente) {
+                agregar_fuente_openai($fuentes, $fuente['url'] ?? '', $fuente['title'] ?? 'Fuente web');
+            }
+        }
         if (($item['type'] ?? '') !== 'message') continue;
         foreach ($item['content'] ?? [] as $contenido) {
             if (($contenido['type'] ?? '') !== 'output_text') continue;
             $texto .= $contenido['text'] ?? '';
             foreach ($contenido['annotations'] ?? [] as $cita) {
-                $url = $cita['url'] ?? '';
-                if (($cita['type'] ?? '') === 'url_citation' && is_string($url) && strlen($url) <= 2048 && filter_var($url, FILTER_VALIDATE_URL) && parse_url($url, PHP_URL_SCHEME) === 'https') {
-                    $fuentes[$url] = ['url' => $url, 'titulo' => substr((string)($cita['title'] ?? 'Fuente'), 0, 120)];
-                }
+                if (($cita['type'] ?? '') === 'url_citation') agregar_fuente_openai($fuentes, $cita['url'] ?? '', $cita['title'] ?? 'Fuente web');
             }
         }
     }
     if (!$busco || !$fuentes) return null;
-    $datos = json_decode(trim($texto), true);
+    $texto = trim($texto);
+    if (preg_match('/^```(?:json)?\s*(.*?)\s*```$/s', $texto, $bloque)) $texto = $bloque[1];
+    $datos = json_decode($texto, true);
     if (!is_array($datos) || ($datos['encontrado'] ?? false) !== true) return ['items' => [], 'fuentes' => array_values($fuentes)];
     if (isbn_normalizado($datos['isbn'] ?? '') !== $isbn || empty($datos['titulo']) || !is_string($datos['titulo'])) return null;
 
@@ -69,18 +73,25 @@ function libro_desde_respuesta_openai($respuesta, $isbn)
     ];
 }
 
-function buscar_isbn_openai($isbn, $clave)
+function agregar_fuente_openai(&$fuentes, $url, $titulo)
+{
+    if (!is_string($url) || strlen($url) > 2048 || !filter_var($url, FILTER_VALIDATE_URL) || parse_url($url, PHP_URL_SCHEME) !== 'https') return;
+    $fuentes[$url] = ['url' => $url, 'titulo' => mb_substr(strip_tags((string)$titulo), 0, 120, 'UTF-8')];
+}
+
+function buscar_isbn_openai($isbn, $clave, $modelo = 'gpt-6-luna')
 {
     $cuerpo = [
-        'model' => 'gpt-5-nano',
+        'model' => $modelo,
         'store' => false,
+        'reasoning' => ['effort' => 'low'],
         'tools' => [['type' => 'web_search', 'search_context_size' => 'low']],
         'tool_choice' => 'required',
         'max_tool_calls' => 2,
-        'max_output_tokens' => 1600,
-        'text' => ['format' => ['type' => 'json_object']],
-        'instructions' => 'Buscá en la web la edición exacta del ISBN solicitado. Respondé solamente un objeto JSON con encontrado (booleano), isbn, titulo, autor, editorial, numPaginas (entero o null), descripcion (sinopsis breve en español, máximo 1000 caracteres) e imagen (URL HTTPS directa de la portada o cadena vacía). Usá únicamente datos respaldados por páginas que mencionen exactamente el ISBN. No inventes ni completes campos inciertos; usá cadenas vacías o null. Si no encontrás una coincidencia segura, devolvé encontrado=false y el resto vacío. No incluyas precio ni stock.',
-        'input' => 'Buscá los datos bibliográficos y la portada para el ISBN exacto ' . $isbn . '. Devolvé JSON.',
+        'max_output_tokens' => 3000,
+        'include' => ['web_search_call.action.sources'],
+        'instructions' => 'Encontrá la ficha bibliográfica de la edición que coincide con el ISBN exacto. Buscá el número sin guiones y con guiones. Entregá un objeto JSON sin markdown: encontrado booleano, isbn, titulo, autor, editorial, numPaginas entero o null, descripcion breve, imagen URL HTTPS directa o vacía. Dejá vacíos los campos no comprobados; encontrado=true cuando una fuente identifica claramente ese ISBN y título. No inventes. No incluyas precio ni stock.',
+        'input' => 'ISBN ' . $isbn,
     ];
     $curl = curl_init('https://api.openai.com/v1/responses');
     curl_setopt_array($curl, [
@@ -94,12 +105,28 @@ function buscar_isbn_openai($isbn, $clave)
             'Authorization: Bearer ' . $clave,
         ],
     ]);
+    if (PHP_OS_FAMILY === 'Windows' && defined('CURLSSLOPT_NATIVE_CA')) {
+        curl_setopt($curl, CURLOPT_SSL_OPTIONS, CURLSSLOPT_NATIVE_CA);
+    }
     $respuesta = curl_exec($curl);
     $estado = curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
+    $curlError = curl_error($curl);
+    $curlErrno = curl_errno($curl);
     curl_close($curl);
-    if ($respuesta === false || $estado !== 200) {
-        error_log('OpenAI ISBN HTTP status: ' . $estado);
-        return ['error' => $estado === 429 ? 'OpenAI alcanzó su límite de uso. Probá más tarde.' : 'OpenAI no pudo completar la búsqueda. Revisá la clave y los créditos de la API.'];
+    if ($respuesta === false) {
+        error_log('OpenAI ISBN cURL error: ' . $curlErrno . ' ' . $curlError);
+        return ['error' => $curlErrno === 60
+            ? 'PHP no puede validar el certificado HTTPS de OpenAI. Actualizá la CA de cURL en el servidor.'
+            : 'No se pudo conectar con OpenAI: ' . mb_substr($curlError, 0, 200, 'UTF-8')];
+    }
+    if ($estado !== 200) {
+        $error = json_decode((string)$respuesta, true)['error'] ?? [];
+        $detalle = preg_replace('/sk-[A-Za-z0-9_-]+/', '[clave oculta]', (string)($error['message'] ?? ''));
+        $detalle = mb_substr(trim(preg_replace('/\s+/u', ' ', $detalle)), 0, 300, 'UTF-8');
+        error_log('OpenAI ISBN HTTP status: ' . $estado . '; type: ' . ($error['type'] ?? '-') . '; code: ' . ($error['code'] ?? '-') . '; param: ' . ($error['param'] ?? '-'));
+        if ($estado === 401) return ['error' => 'OpenAI rechazó la clave configurada (401).'];
+        if ($estado === 429) return ['error' => 'OpenAI respondió 429: ' . ($detalle ?: 'límite de uso o cuota agotada.')];
+        return ['error' => 'OpenAI respondió ' . $estado . ': ' . ($detalle ?: 'no se pudo completar la búsqueda.')];
     }
     $datos = json_decode($respuesta, true);
     $libro = libro_desde_respuesta_openai($datos, $isbn);

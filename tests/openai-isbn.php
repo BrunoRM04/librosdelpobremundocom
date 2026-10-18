@@ -36,6 +36,13 @@ $sinFuentes = $respuesta;
 $sinFuentes['output'][1]['content'][0]['annotations'] = [];
 verificar(libro_desde_respuesta_openai($sinFuentes, $isbn) === null, 'No aceptar datos sin fuentes');
 
+$conFuentesDeBusqueda = $sinFuentes;
+$conFuentesDeBusqueda['output'][0]['action']['sources'] = [
+    ['url' => 'https://example.org/libro', 'title' => 'Catálogo'],
+];
+verificar(count(libro_desde_respuesta_openai($conFuentesDeBusqueda, $isbn)['items']) === 1,
+    'Aceptar fuentes de la búsqueda web aunque el JSON no tenga anotaciones');
+
 $sinBusqueda = $respuesta;
 unset($sinBusqueda['output'][0]);
 verificar(libro_desde_respuesta_openai($sinBusqueda, $isbn) === null, 'No aceptar datos sin búsqueda web');

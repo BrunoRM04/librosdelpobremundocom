@@ -19,16 +19,14 @@ if ($isbn === '') {
     echo json_encode(['error' => 'ISBN inválido']);
     exit;
 }
-$clave = getenv('OPENAI_API_KEY');
-if (!$clave) {
-    require_once __DIR__ . '/../_shared/config.php';
-    $clave = $OPENAI_API_KEY ?? '';
-}
+require_once __DIR__ . '/../_shared/config.php';
+$clave = trim((string)($OPENAI_API_KEY ?? ''));
+if ($clave === '') $clave = trim((string)(getenv('OPENAI_API_KEY') ?: ''));
 if (!$clave) {
     http_response_code(503);
     echo json_encode(['error' => 'Falta OPENAI_API_KEY en la configuración del servidor']);
     exit;
 }
-$resultado = buscar_isbn_openai($isbn, $clave);
+$resultado = buscar_isbn_openai($isbn, $clave, $OPENAI_ISBN_MODEL ?? 'gpt-6-luna');
 if (isset($resultado['error'])) http_response_code(502);
 echo json_encode($resultado, JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE);
