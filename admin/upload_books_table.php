@@ -341,6 +341,16 @@ $_SESSION['csrf_admin'] ??= bin2hex(random_bytes(32));
                 }
                 cargarLibroEncontrado(libro);
                 const fuentes = Array.isArray(data.fuentes) ? data.fuentes : [];
+                if (libro.descripcionFuente) {
+                    const etiquetaDescripcion = document.createElement('span');
+                    etiquetaDescripcion.textContent = 'Descripción original: ';
+                    const enlaceDescripcion = document.createElement('a');
+                    enlaceDescripcion.href = libro.descripcionFuente;
+                    enlaceDescripcion.target = '_blank';
+                    enlaceDescripcion.rel = 'noopener noreferrer';
+                    enlaceDescripcion.textContent = 'ver ficha verificada';
+                    isbnResultados.append(etiquetaDescripcion, enlaceDescripcion);
+                }
                 if (fuentes.length) {
                     const etiqueta = document.createElement('span');
                     etiqueta.textContent = 'Fuentes consultadas: ';
@@ -367,7 +377,11 @@ $_SESSION['csrf_admin'] ??= bin2hex(random_bytes(32));
             for (const campo of ['titulo', 'autor', 'isbn', 'editorial', 'numPaginas', 'descripcion', 'imagen']) {
                 row.querySelector(`[name="${campo}[]"]`).value = libro[campo] || '';
             }
-            mostrarISBNMensaje('Datos cargados. Completá precio y stock, y verificá la edición antes de guardar.', 'success');
+            if (libro.descripcionFuente) {
+                mostrarISBNMensaje('Datos cargados con la descripción original verificada. Completá precio y stock, y revisá la edición antes de guardar.', 'success');
+            } else {
+                mostrarISBNMensaje('Datos cargados. No se pudo verificar una descripción original completa para este ISBN: completá ese campo desde una fuente confiable. Revisá la edición antes de guardar.', 'error');
+            }
             row.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 

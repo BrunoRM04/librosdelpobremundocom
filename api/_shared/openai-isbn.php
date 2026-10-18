@@ -19,7 +19,7 @@ function isbn_normalizado($valor)
     return (10 - $suma % 10) % 10 === (int)$valor[12] ? $valor : '';
 }
 
-function libro_desde_respuesta_openai($respuesta, $isbn)
+function libro_desde_respuesta_openai($respuesta, $isbn, $obtenerHtml = null)
 {
     if (!is_array($respuesta) || ($respuesta['status'] ?? '') !== 'completed') return null;
     $texto = '';
@@ -58,6 +58,29 @@ function libro_desde_respuesta_openai($respuesta, $isbn)
     $paginas = filter_var($paginas, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1, 'max_range' => 10000]]);
     $titulo = $campo('titulo', 250);
     if ($titulo === '') return null;
+    $descripcion = '';
+    $descripcionFuente = '';
+    $urlDescripcion = $datos['descripcion_url'] ?? '';
+    $urls = [];
+    if (is_string($urlDescripcion) && isset($fuentes[$urlDescripcion])) $urls[] = $urlDescripcion;
+    foreach ($fuentes as $url => $fuente) {
+        if (count($urls) >= 3) break;
+        if (!in_array($url, $urls, true)) $urls[] = $url;
+    }
+    foreach ($urls as $url) {
+        $html = $obtenerHtml ? $obtenerHtml($url) : descargar_ficha_isbn($url);
+        $textoEncontrado = is_string($html) ? descripcion_original_de_ficha($html, $isbn) : '';
+        if ($textoEncontrado !== '') {
+            $descripcion = $textoEncontrado;
+            $descripcionFuente = $url;
+            break;
+        }
+    }
+    if ($descripcionFuente !== '') {
+        $fuenteElegida = $fuentes[$descripcionFuente];
+        unset($fuentes[$descripcionFuente]);
+        $fuentes = [$descripcionFuente => $fuenteElegida] + $fuentes;
+    }
     return [
         'items' => [[
             'titulo' => $titulo,
@@ -65,12 +88,140 @@ function libro_desde_respuesta_openai($respuesta, $isbn)
             'isbn' => $isbn,
             'editorial' => $campo('editorial', 250),
             'numPaginas' => $paginas === false ? '' : $paginas,
-            'descripcion' => $campo('descripcion', 1000),
+            'descripcion' => $descripcion,
+            'descripcionFuente' => $descripcionFuente,
             'imagen' => $imagen,
             'fuente' => 'OpenAI + búsqueda web',
         ]],
-        'fuentes' => array_slice(array_values($fuentes), 0, 4),
+        'fuentes' => array_slice(array_values($fuentes), 0, 8),
     ];
+}
+
+function texto_ficha_normalizado($valor)
+{
+    $valor = html_entity_decode(strip_tags((string)$valor), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    return trim(preg_replace('/\s+/u', ' ', $valor));
+}
+
+function texto_descripcion_original($valor)
+{
+    $valor = preg_replace('~<br\s*/?>|</(?:p|div|li|h[1-6])\s*>~i', "\n\n", (string)$valor);
+    $valor = html_entity_decode(strip_tags($valor), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    $lineas = array_map('trim', preg_split('/\R/u', $valor));
+    return trim(preg_replace('/\n{3,}/', "\n\n", implode("\n", $lineas)));
+}
+
+function descripcion_valida_de_ficha($texto)
+{
+    $longitud = mb_strlen($texto, 'UTF-8');
+    return $longitud >= 60 && $longitud <= 10000
+        && !preg_match('/(?:\.\.\.|…|leer m[aá]s|read more)\s*$/iu', trim($texto));
+}
+
+function descripcion_original_de_ficha($html, $isbn)
+{
+    if (!class_exists('DOMDocument') || !is_string($html) || strlen($html) > 4000000) return '';
+    $documento = new DOMDocument();
+    $estadoAnterior = libxml_use_internal_errors(true);
+    $cargado = $documento->loadHTML('<?xml encoding="UTF-8">' . $html, LIBXML_NONET | LIBXML_NOERROR | LIBXML_NOWARNING);
+    libxml_clear_errors();
+    libxml_use_internal_errors($estadoAnterior);
+    if (!$cargado) return '';
+    $xpath = new DOMXPath($documento);
+    $fragmentosPagina = [];
+    foreach ($xpath->query('//text()[not(ancestor::script) and not(ancestor::style)]') as $fragmento) {
+        $fragmentosPagina[] = $fragmento->nodeValue;
+    }
+    $textoPagina = texto_ficha_normalizado(implode(' ', $fragmentosPagina));
+    preg_match_all('/(?<![A-Za-z0-9])(?:97[89][\s-]?)?(?:\d[\s-]?){9}[\dX](?![A-Za-z0-9])/i', $textoPagina, $coincidencias);
+    $isbnPresente = false;
+    foreach ($coincidencias[0] as $coincidencia) {
+        if (isbn_normalizado($coincidencia) === $isbn) {
+            $isbnPresente = true;
+            break;
+        }
+    }
+    if (!$isbnPresente) return '';
+
+    $candidatos = [];
+    foreach ($xpath->query('//script[@type="application/ld+json"]') as $nodo) {
+        $datos = json_decode($nodo->textContent, true);
+        if (is_array($datos)) agregar_descripciones_estructuradas($datos, $candidatos);
+    }
+    foreach ($xpath->query('//*[@itemprop="description" or @id or @class]') as $nodo) {
+        $atributos = $nodo->getAttribute('id') . ' ' . $nodo->getAttribute('class');
+        $puntaje = 0;
+        if (preg_match('/(?:synopsis|sinopsis|contratapa|book-summary)/i', $atributos)) $puntaje = 100;
+        elseif (preg_match('/(?:description|resumen)/i', $atributos)) $puntaje = 75;
+        elseif ($nodo->getAttribute('itemprop') === 'description') $puntaje = 70;
+        if ($puntaje === 0) continue;
+        if (preg_match('/(?:review|opinion|comentario)/i', $atributos)) $puntaje -= 50;
+        if (preg_match('/(?:body|content|text)/i', $atributos)) $puntaje += 20;
+        $texto = texto_descripcion_original($documento->saveHTML($nodo));
+        if (descripcion_valida_de_ficha($texto)) $candidatos[] = ['texto' => $texto, 'puntaje' => $puntaje];
+    }
+    if (!$candidatos) return '';
+    usort($candidatos, static function ($a, $b) {
+        return $b['puntaje'] <=> $a['puntaje'] ?: mb_strlen($b['texto'], 'UTF-8') <=> mb_strlen($a['texto'], 'UTF-8');
+    });
+    return $candidatos[0]['texto'];
+}
+
+function agregar_descripciones_estructuradas($datos, &$candidatos)
+{
+    if (!is_array($datos)) return;
+    $tipo = $datos['@type'] ?? '';
+    if (is_array($tipo)) $tipo = implode(' ', $tipo);
+    if (is_string($tipo) && preg_match('/(?:Book|Product)/i', $tipo)
+        && isset($datos['description']) && is_string($datos['description'])) {
+        $texto = texto_descripcion_original($datos['description']);
+        if (descripcion_valida_de_ficha($texto)) $candidatos[] = ['texto' => $texto, 'puntaje' => 85];
+    }
+    foreach ($datos as $valor) {
+        if (is_array($valor)) agregar_descripciones_estructuradas($valor, $candidatos);
+    }
+}
+
+function descargar_ficha_isbn($url)
+{
+    $partes = parse_url($url);
+    if (!is_array($partes) || ($partes['scheme'] ?? '') !== 'https' || !empty($partes['user'])
+        || !empty($partes['pass']) || isset($partes['port']) || empty($partes['host'])) return null;
+    $host = $partes['host'];
+    if (filter_var($host, FILTER_VALIDATE_IP) || !preg_match('/^[a-z0-9.-]+$/i', $host)) return null;
+    $direcciones = gethostbynamel($host);
+    if (!$direcciones) return null;
+    $direccion = null;
+    foreach ($direcciones as $ip) {
+        if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
+            $direccion = $ip;
+            break;
+        }
+    }
+    if ($direccion === null) return null;
+    $contenido = '';
+    $curl = curl_init($url);
+    curl_setopt_array($curl, [
+        CURLOPT_FOLLOWLOCATION => false,
+        CURLOPT_CONNECTTIMEOUT => 4,
+        CURLOPT_TIMEOUT => 12,
+        CURLOPT_RESOLVE => [$host . ':443:' . $direccion],
+        CURLOPT_HTTPHEADER => ['Accept: text/html'],
+        CURLOPT_USERAGENT => 'Mozilla/5.0 (compatible; LibrospobremundoISBN/1.0)',
+        CURLOPT_WRITEFUNCTION => static function ($curl, $bloque) use (&$contenido) {
+            if (strlen($contenido) + strlen($bloque) > 4000000) return 0;
+            $contenido .= $bloque;
+            return strlen($bloque);
+        },
+    ]);
+    if (PHP_OS_FAMILY === 'Windows' && defined('CURLSSLOPT_NATIVE_CA')) {
+        curl_setopt($curl, CURLOPT_SSL_OPTIONS, CURLSSLOPT_NATIVE_CA);
+    }
+    $resultado = curl_exec($curl);
+    $estado = curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
+    $tipo = curl_getinfo($curl, CURLINFO_CONTENT_TYPE);
+    curl_close($curl);
+    return $resultado && $estado === 200 && str_starts_with((string)$tipo, 'text/html') ? $contenido : null;
 }
 
 function agregar_fuente_openai(&$fuentes, $url, $titulo)
@@ -79,20 +230,25 @@ function agregar_fuente_openai(&$fuentes, $url, $titulo)
     $fuentes[$url] = ['url' => $url, 'titulo' => mb_substr(strip_tags((string)$titulo), 0, 120, 'UTF-8')];
 }
 
-function buscar_isbn_openai($isbn, $clave, $modelo = 'gpt-6-luna')
+function solicitud_isbn_openai($isbn, $modelo)
 {
-    $cuerpo = [
+    return [
         'model' => $modelo,
         'store' => false,
         'reasoning' => ['effort' => 'low'],
         'tools' => [['type' => 'web_search', 'search_context_size' => 'low']],
         'tool_choice' => 'required',
         'max_tool_calls' => 2,
-        'max_output_tokens' => 3000,
+        'max_output_tokens' => 2000,
         'include' => ['web_search_call.action.sources'],
-        'instructions' => 'Encontrá la ficha bibliográfica de la edición que coincide con el ISBN exacto. Buscá el número sin guiones y con guiones. Entregá un objeto JSON sin markdown: encontrado booleano, isbn, titulo, autor, editorial, numPaginas entero o null, descripcion breve, imagen URL HTTPS directa o vacía. Dejá vacíos los campos no comprobados; encontrado=true cuando una fuente identifica claramente ese ISBN y título. No inventes. No incluyas precio ni stock.',
+        'instructions' => 'Encontrá la ficha bibliográfica de la edición que coincide con el ISBN exacto. Buscá el número sin guiones y con guiones. Entregá un objeto JSON sin markdown: encontrado booleano, isbn, titulo, autor, editorial, numPaginas entero o null, descripcion_url, imagen URL HTTPS directa o vacía. descripcion_url debe ser la URL HTTPS exacta de una ficha pública que muestre ese ISBN y publique la sinopsis o descripción original del libro, preferentemente de la editorial. Incluí esa URL entre las fuentes de la búsqueda web. NO redactes ni copies una descripción: el servidor la extrae directamente de la ficha. Si no encontrás una ficha con sinopsis, dejá descripcion_url vacía. Dejá vacíos los demás campos no comprobados; encontrado=true cuando una fuente identifica claramente ese ISBN y título. No incluyas precio ni stock.',
         'input' => 'ISBN ' . $isbn,
     ];
+}
+
+function buscar_isbn_openai($isbn, $clave, $modelo = 'gpt-6-luna')
+{
+    $cuerpo = solicitud_isbn_openai($isbn, $modelo);
     $curl = curl_init('https://api.openai.com/v1/responses');
     curl_setopt_array($curl, [
         CURLOPT_RETURNTRANSFER => true,
