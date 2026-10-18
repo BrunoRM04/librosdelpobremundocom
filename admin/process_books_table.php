@@ -58,14 +58,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
                 trim($titulos[$i]) === '' ||
                 trim($autores[$i]) === '' ||
                 trim($isbns[$i]) === '' ||
-                trim($editoriales[$i]) === '' ||
-                trim($numPaginas[$i]) === '' ||
                 trim($precios[$i]) === '' ||
-                trim($descripciones[$i]) === '' ||
-                trim($imagenes[$i]) === '' ||
                 trim($stocks[$i]) === ''
             ) {
-                $errores[] = "Fila $fila: Todos los campos son obligatorios. Esta fila fue omitida.";
+                $errores[] = "Fila $fila: Completá título, autor, ISBN, precio y stock.";
                 continue;
             }
 

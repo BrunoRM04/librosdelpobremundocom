@@ -1,1 +1,4 @@
 libros.json
+api/_shared/config.php
+.env
+.server-api-snapshot/

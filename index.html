@@ -19,6 +19,7 @@
     gtag('config', 'G-DF5MEPLKRP');
   </script>
 
+    <script src="public/js/precios.js"></script>
 </head>
 
 <body>
@@ -99,8 +100,8 @@
             <span id="subtotalCarrito">UYU 0</span>
           </div>
           <div class="carrito-resumen-fila">
-            <span>Descuento (5%)</span>
-            <span id="descuentoCarrito">— UYU 0</span>
+            <span>Promoción del 20% incluida</span>
+            <span id="descuentoCarrito">Aplicada</span>
           </div>
           <div class="carrito-resumen-total">
             <span class="carrito-resumen-total-label">Total</span>
@@ -273,7 +274,7 @@
       libros.forEach(libro => {
 
         const precioOriginal = parseInt(libro.precio);
-        const precioFinal = Math.round(precioOriginal * 0.95);
+        const precioFinal = PreciosPobreMundo.final(precioOriginal);
         const puntosPobreMundo = Math.floor(precioFinal / 100) * 3;
 
         let rutaImagen = libro.imagen;
@@ -285,7 +286,7 @@
         tarjeta.classList.add('tarjeta-libro');
 
         tarjeta.innerHTML = `
-      <span class="etiqueta-descuento">-5%</span>
+      <span class="etiqueta-descuento">-20%</span>
       <button class="boton-favorito" data-id="${libro.id}">
         <i class='bx bx-heart'></i>
       </button>
@@ -327,6 +328,8 @@
         .then(libros => {
           librosCache = libros;
           stockCache = libros;
+          carrito = PreciosPobreMundo.actualizarCarrito(carrito, libros);
+          actualizarCarrito();
 
           const ultimos = [...libros]
             .sort((a, b) => Number(b.id) - Number(a.id))
@@ -401,7 +404,7 @@
         const descuentoVacio = document.getElementById("descuentoCarrito");
         const totalVacio = document.getElementById("totalCarrito");
         if (subtotalVacio) subtotalVacio.textContent = "UYU 0";
-        if (descuentoVacio) descuentoVacio.textContent = "— UYU 0";
+        if (descuentoVacio) descuentoVacio.textContent = "Aplicada";
         if (totalVacio) totalVacio.textContent = "UYU 0";
         localStorage.setItem("carrito", JSON.stringify(carrito));
         return;
@@ -441,14 +444,14 @@
 
       contenedor.innerHTML = html;
 
-      const descuento = Math.round(subtotal * 0.05);
+      const descuento = 0;
       const total = subtotal - descuento;
 
       const subtotalCarrito = document.getElementById("subtotalCarrito");
       const descuentoCarrito = document.getElementById("descuentoCarrito");
       const totalCarrito = document.getElementById("totalCarrito");
       if (subtotalCarrito) subtotalCarrito.textContent = `UYU ${subtotal}`;
-      if (descuentoCarrito) descuentoCarrito.textContent = `— UYU ${descuento}`;
+      if (descuentoCarrito) descuentoCarrito.textContent = "Aplicada";
       if (totalCarrito) totalCarrito.textContent = `UYU ${total}`;
       localStorage.setItem("carrito", JSON.stringify(carrito));
     }
@@ -570,7 +573,7 @@
         }
 
         const precioOriginal = parseInt(l.precio);
-        const precioFinal = Math.round(precioOriginal * 0.95);
+        const precioFinal = PreciosPobreMundo.final(precioOriginal);
 
         resultadosBuscador.innerHTML += `
           <div class="buscador-book-resultado-item">

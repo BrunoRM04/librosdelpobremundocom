@@ -67,6 +67,30 @@ if (!isset($_SESSION['admin_id'])) {
             color: #721c24;
         }
 
+        .isbn-resultados {
+            display: grid;
+            gap: 8px;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+
+        .isbn-result {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #fff;
+            text-align: left;
+            cursor: pointer;
+            overflow-wrap: anywhere;
+        }
+
+        .isbn-result:hover,
+        .isbn-result:focus-visible {
+            border-color: var(--rojo-principal);
+            background: #fff7f7;
+        }
+
         .table-container {
             overflow-x: auto;
             margin-bottom: 20px;
@@ -191,10 +215,11 @@ if (!isset($_SESSION['admin_id'])) {
 
                     <div class="isbn-lookup">
                         <div class="row">
-                            <input type="text" id="isbn-buscar" placeholder="Buscar por ISBN (10 o 13)" autocomplete="off">
-                            <button type="button" class="admin-btn" id="btn-isbn">Buscar en Google Books</button>
+                            <input type="search" id="isbn-buscar" placeholder="ISBN, título o autor" autocomplete="off" aria-label="Buscar datos de un libro">
+                            <button type="button" class="admin-btn" id="btn-isbn">Buscar libro</button>
                         </div>
                         <div id="isbn-message" class="isbn-message"></div>
+                        <div id="isbn-resultados" class="isbn-resultados" aria-live="polite"></div>
                     </div>
 
                     <button type="button" class="add-row-btn" onclick="agregarFila()">+ Agregar fila</button>
@@ -207,11 +232,11 @@ if (!isset($_SESSION['admin_id'])) {
                                         <th class="col-large">Título *</th>
                                         <th class="col-medium">Autor *</th>
                                         <th class="col-medium">ISBN *</th>
-                                        <th class="col-medium">Editorial *</th>
-                                        <th class="col-small">N° Páginas *</th>
-                                        <th class="col-small">Precio *</th>
-                                        <th class="col-xlarge">Descripción *</th>
-                                        <th class="col-large">Imagen *</th>
+                                        <th class="col-medium">Editorial</th>
+                                        <th class="col-small">N° Páginas</th>
+                                        <th class="col-small">Precio de lista *</th>
+                                        <th class="col-xlarge">Descripción</th>
+                                        <th class="col-large">Imagen</th>
                                         <th class="col-small">Stock *</th>
                                         <th class="col-small">Acción</th>
                                     </tr>
@@ -221,11 +246,11 @@ if (!isset($_SESSION['admin_id'])) {
                                         <td><input type="text" name="titulo[]" required></td>
                                         <td><input type="text" name="autor[]" required></td>
                                         <td><input type="text" name="isbn[]" required></td>
-                                        <td><input type="text" name="editorial[]" required></td>
-                                        <td><input type="number" name="numPaginas[]" required min="1"></td>
+                                        <td><input type="text" name="editorial[]"></td>
+                                        <td><input type="number" name="numPaginas[]" min="0"></td>
                                         <td><input type="number" name="precio[]" required step="0.01" min="0"></td>
-                                        <td><textarea name="descripcion[]" required></textarea></td>
-                                        <td><input type="text" name="imagen[]" required></td>
+                                        <td><textarea name="descripcion[]"></textarea></td>
+                                        <td><input type="text" name="imagen[]"></td>
                                         <td><input type="number" name="stock[]" required min="0"></td>
                                         <td><button type="button" class="remove-row-btn" onclick="eliminarFila(this)">Eliminar</button></td>
                                     </tr>
@@ -252,8 +277,6 @@ if (!isset($_SESSION['admin_id'])) {
     </div>
 
     <script>
-        const GOOGLE_BOOKS_API_KEY = 'AIzaSyA99TwJyi85BKC7p9lIQXiv4b_UbuZ21N4';
-
         function agregarFila() {
             const tableBody = document.getElementById('tableBody');
             const newRow = document.createElement('tr');
@@ -261,11 +284,11 @@ if (!isset($_SESSION['admin_id'])) {
                 <td><input type="text" name="titulo[]" required></td>
                 <td><input type="text" name="autor[]" required></td>
                 <td><input type="text" name="isbn[]" required></td>
-                <td><input type="text" name="editorial[]" required></td>
-                <td><input type="number" name="numPaginas[]" required min="1"></td>
+                <td><input type="text" name="editorial[]"></td>
+                <td><input type="number" name="numPaginas[]" min="0"></td>
                 <td><input type="number" name="precio[]" required step="0.01" min="0"></td>
-                <td><textarea name="descripcion[]" required></textarea></td>
-                <td><input type="text" name="imagen[]" required></td>
+                <td><textarea name="descripcion[]"></textarea></td>
+                <td><input type="text" name="imagen[]"></td>
                 <td><input type="number" name="stock[]" required min="0"></td>
                 <td><button type="button" class="remove-row-btn" onclick="eliminarFila(this)">Eliminar</button></td>
             `;
@@ -284,6 +307,8 @@ if (!isset($_SESSION['admin_id'])) {
         const isbnInput = document.getElementById('isbn-buscar');
         const isbnButton = document.getElementById('btn-isbn');
         const isbnMessage = document.getElementById('isbn-message');
+        const isbnResultados = document.getElementById('isbn-resultados');
+        const cacheOpenLibrary = new Map();
 
         isbnButton.addEventListener('click', buscarISBN);
         isbnInput.addEventListener('keypress', (e) => {
@@ -294,48 +319,173 @@ if (!isset($_SESSION['admin_id'])) {
         });
 
         async function buscarISBN() {
-            const isbn = isbnInput.value.trim();
-            if (!isbn) {
-                mostrarISBNMensaje('Ingresa un ISBN valido', 'error');
+            if (isbnButton.disabled) return;
+            const consulta = isbnInput.value.trim();
+            if (consulta.length < 2) {
+                mostrarISBNMensaje('Ingresá un ISBN, título o autor', 'error');
                 return;
             }
-
-            mostrarISBNMensaje('Buscando informacion en Google Books...', 'success');
-
-            try {
-                const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${encodeURIComponent(isbn)}&key=${GOOGLE_BOOKS_API_KEY}`;
-                const response = await fetch(url);
-                const data = await response.json();
-
-                if (!data.items || data.items.length === 0) {
-                    mostrarISBNMensaje('No se encontro informacion para ese ISBN', 'error');
-                    return;
-                }
-
-                const book = data.items[0].volumeInfo || {};
-                const titulo = book.title || '';
-                const autor = (book.authors && book.authors.length > 0) ? book.authors[0] : '';
-                const editorial = book.publisher || '';
-                const numPaginas = book.pageCount || '';
-                const descripcion = book.description || '';
-                const imagen = (book.imageLinks && (book.imageLinks.thumbnail || book.imageLinks.smallThumbnail)) || '';
-
-                const isbnValue = obtenerISBN(book.industryIdentifiers, isbn);
-
-                const row = obtenerFilaDestino();
-                row.querySelector('input[name="titulo[]"]').value = titulo;
-                row.querySelector('input[name="autor[]"]').value = autor;
-                row.querySelector('input[name="isbn[]"]').value = isbnValue;
-                row.querySelector('input[name="editorial[]"]').value = editorial;
-                row.querySelector('input[name="numPaginas[]"]').value = numPaginas;
-                row.querySelector('textarea[name="descripcion[]"]').value = descripcion;
-                row.querySelector('input[name="imagen[]"]').value = imagen;
-
-                mostrarISBNMensaje('Datos cargados en la tabla', 'success');
-            } catch (error) {
-                console.error(error);
-                mostrarISBNMensaje('Error al consultar Google Books', 'error');
+            const isbn = consulta.replace(/[\s-]/g, '').toUpperCase();
+            const esISBN = /^(?:\d{13}|\d{9}[\dX])$/.test(isbn);
+            if (esISBN && !isbnValido(isbn)) {
+                mostrarISBNMensaje('El ISBN tiene un dígito de control incorrecto. Revisalo y probá otra vez.', 'error');
+                return;
             }
+            isbnButton.disabled = true;
+            isbnResultados.replaceChildren();
+            mostrarISBNMensaje('Buscando en Google Books, Open Library y Crossref...', 'success');
+
+            const solicitudes = [buscarGoogle(esISBN ? isbn : consulta, esISBN), buscarOpenLibrary(esISBN ? isbn : consulta, esISBN)];
+            if (esISBN) solicitudes.push(buscarCrossref(isbn));
+            const respuestas = await Promise.allSettled(solicitudes);
+            isbnButton.disabled = false;
+            const encontrados = respuestas.flatMap(r => r.status === 'fulfilled' ? r.value : []);
+            const unicos = new Map();
+            encontrados.forEach(libro => {
+                const clave = isbn13(libro.isbn) || libro.isbn || `${libro.titulo.toLowerCase()}|${libro.autor.toLowerCase()}`;
+                if (!unicos.has(clave)) unicos.set(clave, libro);
+                else {
+                    const anterior = unicos.get(clave);
+                    for (const campo of ['titulo', 'autor', 'editorial', 'numPaginas', 'descripcion', 'imagen']) {
+                        if (!anterior[campo] && libro[campo]) anterior[campo] = libro[campo];
+                    }
+                }
+            });
+            const libros = [...unicos.values()];
+            if (!libros.length) {
+                const fallaron = respuestas.every(r => r.status === 'rejected');
+                if (esISBN) obtenerFilaDestino().querySelector('[name="isbn[]"]').value = isbn;
+                mostrarISBNMensaje(fallaron ? 'No se pudieron consultar las bibliotecas. Probá de nuevo o cargá el libro manualmente.' : 'No se encontraron datos. Probá con parte del título o cargá el libro manualmente.', 'error');
+                return;
+            }
+            mostrarISBNMensaje(`${libros.length} resultado(s). Elegí la edición correcta y revisá los datos antes de guardar.`, 'success');
+            libros.forEach(libro => {
+                const boton = document.createElement('button');
+                boton.type = 'button';
+                boton.className = 'isbn-result';
+                boton.textContent = `${libro.titulo} · ${libro.autor || 'Autor sin dato'} · ISBN ${libro.isbn || 'sin dato'} · ${libro.fuente}`;
+                boton.addEventListener('click', () => cargarLibroEncontrado(libro));
+                isbnResultados.appendChild(boton);
+            });
+        }
+
+        async function obtenerJSON(url) {
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 10000);
+            try {
+                const response = await fetch(url, { signal: controller.signal });
+                if (!response.ok) throw new Error(`Servicio no disponible: ${response.status}`);
+                return await response.json();
+            } finally {
+                clearTimeout(timeout);
+            }
+        }
+
+        async function buscarGoogle(consulta, esISBN) {
+            const q = esISBN ? `isbn:${consulta}` : consulta;
+            const data = await obtenerJSON(`../api/admin/google-books.php?q=${encodeURIComponent(q)}`);
+            return (data.items || []).map(item => {
+                const info = item.volumeInfo || {};
+                const identificadores = info.industryIdentifiers || [];
+                const isbn = obtenerISBN(identificadores, '');
+                if (esISBN && !identificadores.some(i => mismoISBN(i.identifier || '', consulta))) return null;
+                return {
+                    titulo: info.title || '', autor: (info.authors || []).join(', '), isbn,
+                    editorial: info.publisher || '', numPaginas: info.pageCount || '',
+                    descripcion: info.description || '', imagen: (info.imageLinks?.thumbnail || info.imageLinks?.smallThumbnail || '').replace(/^http:/, 'https:'),
+                    fuente: 'Google Books'
+                };
+            }).filter(libro => libro?.titulo);
+        }
+
+        async function buscarOpenLibrary(consulta, esISBN) {
+            const claveCache = `${esISBN ? 'isbn' : 'texto'}:${consulta}`;
+            if (cacheOpenLibrary.has(claveCache)) return cacheOpenLibrary.get(claveCache);
+            if (esISBN) {
+                const clave = `ISBN:${consulta}`;
+                const libros = [];
+                let ficha = null;
+                try {
+                    const data = await obtenerJSON(`https://openlibrary.org/api/books?bibkeys=${encodeURIComponent(clave)}&jscmd=data&format=json`);
+                    ficha = data[clave];
+                } catch (error) { /* probar otra ruta */ }
+                if (ficha) libros.push({
+                    titulo: ficha.title || '', autor: (ficha.authors || []).map(a => a.name).join(', '), isbn: consulta,
+                    editorial: (ficha.publishers || []).map(p => p.name).join(', '), numPaginas: ficha.number_of_pages || '',
+                    descripcion: typeof ficha.notes === 'string' ? ficha.notes : '',
+                    imagen: ficha.cover?.medium || ficha.cover?.small || '', fuente: 'Open Library'
+                });
+                if (!libros.length) {
+                    await new Promise(resolve => setTimeout(resolve, 1100));
+                    try {
+                        const edicion = await obtenerJSON(`https://openlibrary.org/isbn/${encodeURIComponent(consulta)}.json`);
+                        if (edicion?.title) libros.push({
+                            titulo: edicion.title, autor: '', isbn: consulta,
+                            editorial: (edicion.publishers || []).join(', '), numPaginas: edicion.number_of_pages || '',
+                            descripcion: typeof edicion.description === 'string' ? edicion.description : edicion.description?.value || '',
+                            imagen: edicion.covers?.[0] ? `https://covers.openlibrary.org/b/id/${edicion.covers[0]}-M.jpg` : '',
+                            fuente: 'Open Library'
+                        });
+                    } catch (error) { /* probar búsqueda de ISBN */ }
+                }
+                if (libros.length && libros[0].autor) {
+                    cacheOpenLibrary.set(claveCache, libros);
+                    return libros;
+                }
+                await new Promise(resolve => setTimeout(resolve, 1100));
+                let busqueda = null;
+                try {
+                    busqueda = await obtenerJSON(`https://openlibrary.org/search.json?isbn=${encodeURIComponent(consulta)}&limit=5&fields=title,author_name,isbn,publisher,number_of_pages_median,cover_i`);
+                } catch (error) {
+                    if (!libros.length) throw error;
+                }
+                for (const info of busqueda?.docs || []) {
+                    if (!(info.isbn || []).some(valor => mismoISBN(valor, consulta))) continue;
+                    libros.push({
+                        titulo: info.title || '', autor: (info.author_name || []).slice(0, 2).join(', '), isbn: consulta,
+                        editorial: (info.publisher || [])[0] || '', numPaginas: info.number_of_pages_median || '',
+                        descripcion: '', imagen: info.cover_i ? `https://covers.openlibrary.org/b/id/${info.cover_i}-M.jpg` : '',
+                        fuente: 'Open Library'
+                    });
+                }
+                const resultado = libros.filter(libro => libro.titulo);
+                cacheOpenLibrary.set(claveCache, resultado);
+                return resultado;
+            }
+            const data = await obtenerJSON(`https://openlibrary.org/search.json?q=${encodeURIComponent(consulta)}&limit=10&fields=title,author_name,isbn,publisher,number_of_pages_median,cover_i`);
+            const resultado = (data.docs || []).map(info => ({
+                titulo: info.title || '', autor: (info.author_name || []).slice(0, 2).join(', '),
+                isbn: (info.isbn || [])[0] || '', editorial: (info.publisher || [])[0] || '',
+                numPaginas: info.number_of_pages_median || '', descripcion: '',
+                imagen: info.cover_i ? `https://covers.openlibrary.org/b/id/${info.cover_i}-M.jpg` : '',
+                fuente: 'Open Library'
+            })).filter(libro => libro.titulo);
+            cacheOpenLibrary.set(claveCache, resultado);
+            return resultado;
+        }
+
+        async function buscarCrossref(isbn) {
+            const url = `https://api.crossref.org/works?filter=isbn:${encodeURIComponent(isbn)}&rows=50&select=title,author,publisher,ISBN,type`;
+            const data = await obtenerJSON(url);
+            const tiposLibro = new Set(['book', 'monograph', 'edited-book', 'reference-book']);
+            return (data.message?.items || [])
+                .filter(item => tiposLibro.has(item.type) && (item.ISBN || []).some(valor => mismoISBN(valor, isbn)))
+                .map(item => ({
+                    titulo: item.title?.[0] || '',
+                    autor: (item.author || []).map(a => [a.given, a.family].filter(Boolean).join(' ')).join(', '),
+                    isbn, editorial: item.publisher || '', numPaginas: '', descripcion: '', imagen: '',
+                    fuente: 'Crossref'
+                }))
+                .filter(libro => libro.titulo);
+        }
+
+        function cargarLibroEncontrado(libro) {
+            const row = obtenerFilaDestino();
+            for (const campo of ['titulo', 'autor', 'isbn', 'editorial', 'numPaginas', 'descripcion', 'imagen']) {
+                row.querySelector(`[name="${campo}[]"]`).value = libro[campo] || '';
+            }
+            mostrarISBNMensaje('Datos cargados. Completá precio y stock, y verificá la edición antes de guardar.', 'success');
+            row.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
         function obtenerFilaDestino() {
@@ -370,6 +520,32 @@ if (!isset($_SESSION['admin_id'])) {
             }
 
             return fallback || '';
+        }
+
+        function isbn13(valor) {
+            const limpio = String(valor).replace(/[\s-]/g, '').toUpperCase();
+            if (/^\d{13}$/.test(limpio)) return limpio;
+            if (!/^\d{9}[\dX]$/.test(limpio)) return '';
+            const base = `978${limpio.slice(0, 9)}`;
+            const suma = [...base].reduce((total, digito, indice) => total + Number(digito) * (indice % 2 ? 3 : 1), 0);
+            return base + ((10 - suma % 10) % 10);
+        }
+
+        function mismoISBN(a, b) {
+            const primero = isbn13(a);
+            return primero !== '' && primero === isbn13(b);
+        }
+
+        function isbnValido(valor) {
+            if (/^\d{13}$/.test(valor)) {
+                const suma = [...valor.slice(0, 12)].reduce((total, digito, indice) => total + Number(digito) * (indice % 2 ? 3 : 1), 0);
+                return (10 - suma % 10) % 10 === Number(valor[12]);
+            }
+            if (/^\d{9}[\dX]$/.test(valor)) {
+                const suma = [...valor].reduce((total, digito, indice) => total + (digito === 'X' ? 10 : Number(digito)) * (10 - indice), 0);
+                return suma % 11 === 0;
+            }
+            return false;
         }
 
         function mostrarISBNMensaje(texto, tipo) {

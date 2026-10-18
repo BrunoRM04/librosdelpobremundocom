@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['admin_id'])) {
+    header('Location: login.php');
+    exit;
+}
+$_SESSION['csrf_admin'] ??= bin2hex(random_bytes(32));
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -10,13 +18,6 @@
 
 <body>
     <?php
-    session_start();
-
-    if (!isset($_SESSION['admin_id'])) {
-        header("Location: login.php");
-        exit;
-    }
-
     require_once __DIR__ . '/../api/_shared/config.php';
 
     function esc($valor)
@@ -98,7 +99,7 @@
 
         <main class="admin-main">
             <div class="admin-welcome">
-                <p>Bienvenido: <strong><?php echo $_SESSION['admin_user']; ?></strong></p>
+                <p>Bienvenido: <strong><?php echo esc($_SESSION['admin_user'] ?? 'Admin'); ?></strong></p>
             </div>
 
             <div class="admin-content">
@@ -199,11 +200,18 @@
                 </section>
 
                 <section class="admin-section">
-                    <h2>Buscar y Editar Libro</h2>
+                    <h2>Buscar y editar libros</h2>
                     <div class="admin-search-box">
                         <div class="search-inputs">
-                            <input type="text" id="buscar-libro" class="admin-input" placeholder="Buscar por nombre o ISBN...">
+                            <input type="search" id="buscar-libro" class="admin-input" placeholder="Título, autor, editorial, ISBN o ID" aria-label="Buscar libros">
                             <button class="admin-btn" id="btn-buscar">Buscar</button>
+                        </div>
+                        <p>Podés buscar varias palabras. Dejá el campo vacío para recorrer todo el catálogo.</p>
+                        <div id="lista-libros" class="admin-book-results" aria-live="polite"></div>
+                        <div id="paginacion-libros" class="admin-book-pagination" style="display: none;">
+                            <button type="button" class="admin-btn" id="pagina-anterior">Anterior</button>
+                            <span id="pagina-estado"></span>
+                            <button type="button" class="admin-btn" id="pagina-siguiente">Siguiente</button>
                         </div>
                         <div id="resultado-busqueda" class="resultado-busqueda" style="display: none;">
                             <div class="libro-resultado">
@@ -232,8 +240,9 @@
                                         <input type="number" id="libro-num-paginas" class="admin-input" step="1" min="0">
                                     </div>
                                     <div class="form-group">
-                                        <label>Precio (UYU):</label>
+                                        <label>Precio de lista (UYU):</label>
                                         <input type="number" id="libro-precio" class="admin-input" step="1" min="0">
+                                        <small>La tienda aplica automáticamente el 20% de descuento.</small>
                                     </div>
                                     <div class="form-group">
                                         <label>Descripción:</label>
@@ -262,61 +271,96 @@
         const btnBuscar = document.getElementById('btn-buscar');
         const inputBuscar = document.getElementById('buscar-libro');
         const resultadoBusqueda = document.getElementById('resultado-busqueda');
+        const listaLibros = document.getElementById('lista-libros');
+        const paginacionLibros = document.getElementById('paginacion-libros');
+        const paginaAnterior = document.getElementById('pagina-anterior');
+        const paginaSiguiente = document.getElementById('pagina-siguiente');
+        const paginaEstado = document.getElementById('pagina-estado');
         const mensajeBusqueda = document.getElementById('mensaje-busqueda');
         const btnGuardar = document.getElementById('btn-guardar');
+        const csrfAdmin = <?php echo json_encode($_SESSION['csrf_admin']); ?>;
         let libroActualId = null;
+        let ultimaBusqueda = 0;
+        let paginaActual = 1;
 
         btnBuscar.addEventListener('click', buscarLibro);
         inputBuscar.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') buscarLibro();
         });
         btnGuardar.addEventListener('click', guardarCambios);
+        paginaAnterior.addEventListener('click', () => buscarPagina(paginaActual - 1));
+        paginaSiguiente.addEventListener('click', () => buscarPagina(paginaActual + 1));
+        buscarLibro();
 
         async function buscarLibro() {
-            const termino = inputBuscar.value.trim();
-            if (!termino) {
-                mostrarMensaje('Por favor ingresa un nombre o ISBN', 'error');
-                resultadoBusqueda.style.display = 'none';
-                return;
-            }
+            return buscarPagina(1);
+        }
 
+        async function buscarPagina(pagina) {
+            const numeroBusqueda = ++ultimaBusqueda;
+            const termino = inputBuscar.value.trim();
+            btnBuscar.disabled = true;
+            listaLibros.textContent = 'Buscando libros...';
+            paginacionLibros.style.display = 'none';
+            resultadoBusqueda.style.display = 'none';
+            libroActualId = null;
             try {
                 const response = await fetch('../api/admin/buscar-libro-admin.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
-                    body: `termino=${encodeURIComponent(termino)}`
+                    body: new URLSearchParams({ termino, pagina })
                 });
-
                 const data = await response.json();
-
-                if (data.success && data.libro) {
-                    const libro = data.libro;
-                    libroActualId = libro.id;
-                    
-                    document.getElementById('libro-titulo').value = libro.titulo || '';
-                    document.getElementById('libro-autor').value = libro.autor || '';
-                    document.getElementById('libro-isbn').value = libro.isbn || '';
-                    document.getElementById('libro-editorial').value = libro.editorial || '';
-                    document.getElementById('libro-num-paginas').value = libro.numPaginas ?? '';
-                    document.getElementById('libro-id').textContent = libro.id;
-                    document.getElementById('libro-precio').value = libro.precio ?? '';
-                    document.getElementById('libro-descripcion').value = libro.descripcion || '';
-                    document.getElementById('libro-imagen').value = libro.imagen || '';
-                    document.getElementById('libro-stock').value = libro.stock ?? '';
-
-                    resultadoBusqueda.style.display = 'block';
-                    mensajeBusqueda.style.display = 'none';
-                } else {
-                    mostrarMensaje(data.message || 'Libro no encontrado', 'error');
-                    resultadoBusqueda.style.display = 'none';
+                if (numeroBusqueda !== ultimaBusqueda) return;
+                if (!response.ok || !data.success) throw new Error(data.message || 'Error al buscar libros');
+                paginaActual = data.pagina;
+                listaLibros.replaceChildren();
+                if (!data.libros.length) {
+                    listaLibros.textContent = 'No encontramos libros con esos datos. Probá con parte del título, autor o ISBN.';
+                    return;
                 }
+                const resumen = document.createElement('p');
+                resumen.textContent = `${data.total} libro(s) encontrados`;
+                listaLibros.appendChild(resumen);
+                data.libros.forEach(libro => {
+                    const boton = document.createElement('button');
+                    boton.type = 'button';
+                    boton.className = 'admin-book-result';
+                    boton.textContent = `${libro.titulo} · ${libro.autor} · ISBN ${libro.isbn || 'sin dato'} · ID ${libro.id}`;
+                    boton.addEventListener('click', () => seleccionarLibro(libro));
+                    listaLibros.appendChild(boton);
+                });
+                paginacionLibros.style.display = 'flex';
+                paginaEstado.textContent = `Página ${data.pagina} de ${data.paginas}`;
+                paginaAnterior.disabled = data.pagina <= 1;
+                paginaSiguiente.disabled = data.pagina >= data.paginas;
+                mensajeBusqueda.style.display = 'none';
             } catch (error) {
+                if (numeroBusqueda !== ultimaBusqueda) return;
                 console.error('Error:', error);
-                mostrarMensaje('Error al buscar el libro', 'error');
-                resultadoBusqueda.style.display = 'none';
+                listaLibros.textContent = '';
+                mostrarMensaje(error.message || 'Error al buscar libros', 'error');
+            } finally {
+                if (numeroBusqueda === ultimaBusqueda) btnBuscar.disabled = false;
             }
+        }
+
+        function seleccionarLibro(libro) {
+            libroActualId = libro.id;
+            document.getElementById('libro-titulo').value = libro.titulo || '';
+            document.getElementById('libro-autor').value = libro.autor || '';
+            document.getElementById('libro-isbn').value = libro.isbn || '';
+            document.getElementById('libro-editorial').value = libro.editorial || '';
+            document.getElementById('libro-num-paginas').value = libro.numPaginas ?? '';
+            document.getElementById('libro-id').textContent = libro.id;
+            document.getElementById('libro-precio').value = libro.precio ?? '';
+            document.getElementById('libro-descripcion').value = libro.descripcion || '';
+            document.getElementById('libro-imagen').value = libro.imagen || '';
+            document.getElementById('libro-stock').value = libro.stock ?? '';
+            resultadoBusqueda.style.display = 'block';
+            resultadoBusqueda.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         async function guardarCambios() {
@@ -353,6 +397,7 @@
                     },
                     body: new URLSearchParams({
                         id: libroActualId,
+                        csrf: csrfAdmin,
                         titulo,
                         autor,
                         isbn,
@@ -368,11 +413,8 @@
                 const data = await response.json();
 
                 if (data.success) {
+                    await buscarPagina(paginaActual);
                     mostrarMensaje('Cambios guardados correctamente', 'success');
-                    setTimeout(() => {
-                        resultadoBusqueda.style.display = 'none';
-                        inputBuscar.value = '';
-                    }, 1500);
                 } else {
                     mostrarMensaje(data.message || 'Error al guardar', 'error');
                 }
