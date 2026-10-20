@@ -221,7 +221,7 @@ function descargar_ficha_isbn($url)
     $estado = curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
     $tipo = curl_getinfo($curl, CURLINFO_CONTENT_TYPE);
     curl_close($curl);
-    return $resultado && $estado === 200 && str_starts_with((string)$tipo, 'text/html') ? $contenido : null;
+    return $resultado && $estado === 200 && strpos((string)$tipo, 'text/html') === 0 ? $contenido : null;
 }
 
 function agregar_fuente_openai(&$fuentes, $url, $titulo)

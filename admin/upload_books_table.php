@@ -331,7 +331,13 @@ $_SESSION['csrf_admin'] ??= bin2hex(random_bytes(32));
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: new URLSearchParams({ isbn, csrf: csrfISBN })
                 });
-                const data = await response.json();
+                const texto = await response.text();
+                let data;
+                try {
+                    data = JSON.parse(texto);
+                } catch {
+                    throw new Error(`El servidor interrumpió la búsqueda (HTTP ${response.status}). Revisá el registro de errores de PHP.`);
+                }
                 if (!response.ok) throw new Error(data.error || 'No se pudo buscar el libro.');
                 const libro = data.items?.[0];
                 if (!libro) {
