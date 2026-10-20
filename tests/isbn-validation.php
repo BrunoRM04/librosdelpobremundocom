@@ -36,6 +36,43 @@ $libro = libro_desde_respuesta_openai($respuesta, $isbn, static fn($url) => $htm
 verificar_isbn($libro['items'][0]['descripcion'] === trim($descripcionOriginal),
     'La sinopsis debe salir completa de la ficha, sin el resumen de la IA ni corte de 1000 caracteres');
 verificar_isbn($libro['items'][0]['descripcionFuente'] === $url, 'Guardar la URL de la descripción');
+verificar_isbn($libro['items'][0]['descripcionTipo'] === 'original', 'Distinguir la sinopsis original');
+
+$htmlConFicha = '<html><body><span>ISBN ' . $isbn . '</span><script type="application/ld+json">'
+    . json_encode([
+        '@type' => ['Book', 'Product'], 'isbn' => $isbn, 'name' => 'Libro de prueba: edición gráfica',
+        'author' => ['name' => 'Autora verificada'], 'publisher' => ['name' => 'Editorial verificada'],
+        'numberOfPages' => 88, 'image' => 'https://example.org/portada.webp',
+        'description' => $descripcionOriginal,
+    ], JSON_UNESCAPED_UNICODE) . '</script></body></html>';
+$datosEscasos = json_decode($respuesta['output'][1]['content'][0]['text'], true);
+$datosEscasos['autor'] = '';
+$datosEscasos['fichas'] = [$url];
+$soloTitulo = $respuesta;
+$soloTitulo['output'][1]['content'][0]['text'] = json_encode($datosEscasos);
+$completo = libro_desde_respuesta_openai($soloTitulo, $isbn, static fn($url) => $htmlConFicha)['items'][0];
+verificar_isbn($completo['titulo'] === 'Libro de prueba: edición gráfica' && $completo['autor'] === 'Autora verificada'
+    && $completo['editorial'] === 'Editorial verificada' && $completo['numPaginas'] === 88
+    && $completo['imagen'] === 'https://example.org/portada.webp',
+    'Completar todos los campos desde la ficha comercial del ISBN');
+
+$htmlTituloTienda = '<html><body><span>ISBN ' . $isbn . '</span><script type="application/ld+json">'
+    . json_encode(['@type' => 'Book', 'isbn' => $isbn,
+        'name' => 'Libro de prueba, Autora - Edición gráfica | Librería ejemplo',
+        'description' => $descripcionOriginal], JSON_UNESCAPED_UNICODE) . '</script></body></html>';
+$tituloLimpio = libro_desde_respuesta_openai($respuesta, $isbn, static fn($url) => $htmlTituloTienda)['items'][0];
+verificar_isbn($tituloLimpio['titulo'] === 'Libro de prueba',
+    'Usar el título bibliográfico sin el título SEO de la librería');
+
+$datosGenerados = json_decode($respuesta['output'][1]['content'][0]['text'], true);
+$datosGenerados['descripcion_generada'] = str_repeat('Párrafo de descripción elaborado a partir de los datos comprobados del libro. ', 10);
+$conFallback = $respuesta;
+$conFallback['output'][1]['content'][0]['text'] = json_encode($datosGenerados);
+$generado = libro_desde_respuesta_openai($conFallback, $isbn, static fn($url) => null)['items'][0];
+verificar_isbn($generado['descripcionTipo'] === 'generada' && mb_strlen($generado['descripcion'], 'UTF-8') >= 500
+    && $generado['descripcionFuente'] === '', 'Usar descripción extensa marcada como generada si falta la original');
+verificar_isbn(puntaje_fuente_libro('https://isbnsearch.org/isbn/' . $isbn, 'ISBN', $isbn) < 0,
+    'Descartar registradores de ISBN como ficha comercial');
 
 $htmlVisible = '<html><body><span>ISBN ' . $isbn . '</span><div class="sinopsis-body"><p>'
     . str_repeat('Primer párrafo de la descripción original. ', 4) . '</p><p>'

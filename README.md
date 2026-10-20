@@ -2,7 +2,7 @@
 
 ## Búsqueda de libros por ISBN en el admin
 
-En `admin/upload_books_table.php`, ingresá un ISBN de 10 o 13 dígitos y pulsá **Completar por ISBN**. OpenAI busca la edición en la web y completa título, autor, editorial, páginas y portada cuando encuentra datos respaldados por fuentes. Para la descripción, el servidor abre una ficha citada que muestra ese ISBN y extrae directamente su sinopsis completa, conservando los párrafos; no usa texto redactado o resumido por la IA. Si la ficha no permite comprobar la sinopsis original, el campo queda vacío y el admin muestra un aviso para completarlo manualmente. Revisá los enlaces de las fuentes y los campos de la fila. Precio y stock se ingresan manualmente antes de **Subir libros**.
+En `admin/upload_books_table.php`, ingresá un ISBN de 10 o 13 dígitos y pulsá **Completar por ISBN**. OpenAI busca fichas de librerías, editoriales y distribuidores de la edición exacta. El servidor lee los datos estructurados de esas fichas para completar título, autor, editorial, páginas y portada; usa los datos de la búsqueda para los campos que falten. La sinopsis se extrae literalmente de una ficha que muestra ese ISBN, conservando sus párrafos. Si no se puede extraer, se puede cargar una descripción extensa generada por IA y el admin la señala para revisión. Si tampoco hay datos suficientes para generarla, la descripción queda vacía. Revisá los enlaces y los campos de la fila. Precio y stock se ingresan manualmente antes de **Subir libros**.
 
 La búsqueda usa el modelo `gpt-6-luna` con la herramienta `web_search`; cada consulta genera cargos por búsqueda y por tokens. El endpoint exige sesión de admin y token CSRF.
 

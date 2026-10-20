@@ -68,6 +68,10 @@ $_SESSION['csrf_admin'] ??= bin2hex(random_bytes(32));
             color: #721c24;
         }
 
+        .isbn-message.warning {
+            color: #8a5a00;
+        }
+
         .isbn-resultados {
             display: grid;
             gap: 6px;
@@ -383,10 +387,15 @@ $_SESSION['csrf_admin'] ??= bin2hex(random_bytes(32));
             for (const campo of ['titulo', 'autor', 'isbn', 'editorial', 'numPaginas', 'descripcion', 'imagen']) {
                 row.querySelector(`[name="${campo}[]"]`).value = libro[campo] || '';
             }
-            if (libro.descripcionFuente) {
-                mostrarISBNMensaje('Datos cargados con la descripción original verificada. Completá precio y stock, y revisá la edición antes de guardar.', 'success');
+            const faltantes = [['autor', 'autor'], ['editorial', 'editorial'], ['numPaginas', 'páginas'], ['imagen', 'portada']]
+                .filter(([campo]) => !libro[campo]).map(([, etiqueta]) => etiqueta);
+            const avisoFaltantes = faltantes.length ? ` Faltan: ${faltantes.join(', ')}.` : '';
+            if (libro.descripcionTipo === 'original') {
+                mostrarISBNMensaje(`Datos cargados con sinopsis de la ficha original.${avisoFaltantes} Completá precio y stock y revisá la edición antes de guardar.`, faltantes.length ? 'warning' : 'success');
+            } else if (libro.descripcionTipo === 'generada') {
+                mostrarISBNMensaje(`Datos cargados. La descripción fue generada por IA porque no se pudo extraer una sinopsis original; revisala antes de guardar.${avisoFaltantes} Completá precio y stock.`, 'warning');
             } else {
-                mostrarISBNMensaje('Datos cargados. No se pudo verificar una descripción original completa para este ISBN: completá ese campo desde una fuente confiable. Revisá la edición antes de guardar.', 'error');
+                mostrarISBNMensaje(`Datos cargados sin descripción verificable.${avisoFaltantes} Completá ese campo desde una fuente confiable y revisá la edición.`, 'warning');
             }
             row.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
